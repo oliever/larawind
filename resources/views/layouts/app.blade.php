@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ $title }}</title>
+    <title>{{ $title }} | {{ config('app.name', 'Laravel') }}</title>
 
     <!-- Fonts -->
     <link href="https://fonts.googleapis.com/css?family=Nunito:400,600,700" rel="stylesheet">
@@ -20,14 +20,16 @@
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.css" />
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.js" defer></script>
-    <script src="{{asset('js/charts-lines.js')}}" defer></script>
+    
+    <!--<script  src="{{asset('js/charts-lines.js')}}" defer></script>
     <script src="{{asset('js/charts-pie.js')}}" defer></script>
     <script src="{{asset('js/charts-bars.js')}}" defer></script>
+    -->
 
     @livewireStyles
-    <script>
-        import Turbolinks from 'turbolinks';
-        Turbolinks.start()
+    <script  type="module">
+        //import Turbolinks from 'turbolinks';
+        //Turbolinks.start()
     </script>
 
     <!-- Scripts -->

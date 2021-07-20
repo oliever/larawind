@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-
+use App\Http\Controllers\KaizenController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -17,12 +17,10 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-// Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
-//     return view('dashboard');
-// })->name('dashboard');
-
-
 Route::group(['middleware' => ['auth:sanctum', 'verified']], function () {
+    Route::get('/kaizen/create', [KaizenController::class, 'create'])
+                    ->name('kaizen.create');
+    
     Route::view('dashboard', 'dashboard')->name('dashboard');
     Route::view('forms', 'forms')->name('forms');
     Route::view('cards', 'cards')->name('cards');
