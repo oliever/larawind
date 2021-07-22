@@ -25,9 +25,9 @@
                             <input class="block w-full pr-10 mt-1 text-sm text-black dark:text-gray-300 dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:focus:shadow-outline-gray form-input" placeholder="Date" />
                             <div class="absolute inset-y-0 right-0 flex items-center mr-3 pointer-events-none">
                                 <svg class="w-5 h-5" aria-hidden="true" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" stroke="currentColor">
-                                    <path d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z">
-                                    </path>
+                                    <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line>
                                 </svg>
+
                             </div>
                         </div>
                     </label>
@@ -270,7 +270,7 @@
                 @livewire('kaizen.rapid-causes')
 
                 @livewire('kaizen.solutions')
-
+{{--
                 <div class="mb-4">
                     <div class="grid gap-2 mb-2 sm:grid-cols-4 md:grid-cols-4 xl:grid-cols-4">
                         <span class="text-gray-700 dark:text-gray-400">Solutions</span>
@@ -285,7 +285,7 @@
                         <input class="block w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:text-gray-300 dark:focus:shadow-outline-gray form-input" placeholder="Done" />
 
                     </div>
-                </div>
+                </div> --}}
 
 
             </div>
