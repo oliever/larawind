@@ -1,3 +1,6 @@
+# Kaizen Notes
+php artisan storage:link
+
 # Larawind - Laravel 8.0+ Jetstream and Tailwind CSS Admin Theme
 
 This project is created with [Laravel Jetstream](https://jetstream.laravel.com/1.x/introduction.html) Framework and [Tailwind CSS](https://tailwindcss.com), the admin environment is desing by [Windmill Dashboard](https://windmill-dashboard.vercel.app/).

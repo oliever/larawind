@@ -13,14 +13,15 @@ use App\Http\Controllers\KaizenController;
 |
 */
 
-Route::get('/', function () {
+/* Route::get('/', function () {
     return view('welcome');
-});
+}); */
 
 Route::group(['middleware' => ['auth:sanctum', 'verified']], function () {
     Route::get('/kaizen/create', [KaizenController::class, 'create'])
                     ->name('kaizen.create');
-    
+
+    Route::view('/', 'dashboard')->name('home');
     Route::view('dashboard', 'dashboard')->name('dashboard');
     Route::view('forms', 'forms')->name('forms');
     Route::view('cards', 'cards')->name('cards');
