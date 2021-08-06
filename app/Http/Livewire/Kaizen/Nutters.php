@@ -70,6 +70,7 @@ class Nutters extends Component
         $this->kaizen->user_id =  auth()->user()->id;
          //$kaizen = Kaizen::create($this->kaizen);
         $this->kaizen->save();
+        session()->flash('message', 'Kaizen Form saved: ' . $this->kaizen->id);
 
 
 

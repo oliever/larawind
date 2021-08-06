@@ -17,7 +17,7 @@ class CreateKaizensTable extends Migration
             $table->id();
             $table->text('name');
             $table->foreignId('user_id')->index();
-            $table->text('team_members')->nullable();
+
             $table->foreignId('location_id');
             $table->longText('reason')->nullable();
             $table->longText('problem')->nullable();
@@ -28,6 +28,7 @@ class CreateKaizensTable extends Migration
             $table->boolean('just_do_it')->default(false);
             $table->boolean('handled_at_location')->default(false);
             $table->boolean('head_office_input')->default(false);
+            $table->text('affected_areas')->nullable();
 
             $table->dateTime('to_project', $precision = 0)->nullable();
 
