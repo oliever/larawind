@@ -15,6 +15,7 @@ class CreateKaizensTable extends Migration
     {
         Schema::create('kaizens', function (Blueprint $table) {
             $table->id();
+            $table->text('name');
             $table->foreignId('user_id')->index();
             $table->text('team_members')->nullable();
             $table->foreignId('location_id');
@@ -25,8 +26,8 @@ class CreateKaizensTable extends Migration
 
             $table->boolean('rapid')->default(false);
             $table->boolean('just_do_it')->default(false);
-            $table->boolean('location_level')->default(false);
-            $table->boolean('head_office_inout')->default(false);
+            $table->boolean('handled_at_location')->default(false);
+            $table->boolean('head_office_input')->default(false);
 
             $table->dateTime('to_project', $precision = 0)->nullable();
 

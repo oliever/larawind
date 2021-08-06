@@ -21,9 +21,12 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.css" />
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.js" defer></script>
 
-    <script  src="{{asset('js/charts-lines.js')}}" defer></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+
+    {{-- <script  src="{{asset('js/charts-lines.js')}}" defer></script>
     <script src="{{asset('js/charts-pie.js')}}" defer></script>
-    <script src="{{asset('js/charts-bars.js')}}" defer></script>
+    <script src="{{asset('js/charts-bars.js')}}" defer></script> --}}
 
 
     @livewireStyles
@@ -34,6 +37,9 @@
 
     <!-- Scripts -->
     {{-- <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.6.0/dist/alpine.js" defer></script> --}}
+
+    {{-- <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
+    <link rel="icon" href="/favicon.ico" type="image/x-icon"> --}}
 </head>
 
 <body>
@@ -43,15 +49,18 @@
 
         <div class="flex flex-col flex-1 w-full">
             @include('layouts.navigation-dropdown')
+
             <main class="h-full overflow-y-auto">
+
                 {{ $slot }}
             </main>
         </div>
 
 
-        @stack('modals')
+        {{-- @stack('modals') --}}
 
         @livewireScripts
+
     </div>
 </body>
 

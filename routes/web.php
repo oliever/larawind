@@ -18,6 +18,9 @@ use App\Http\Controllers\KaizenController;
 }); */
 
 Route::group(['middleware' => ['auth:sanctum', 'verified']], function () {
+    Route::resource('users', \App\Http\Controllers\UsersController::class);
+    Route::resource('kaizen', App\Http\Controllers\KaizenController::class);
+
     Route::get('/kaizen/create', [KaizenController::class, 'create'])
                     ->name('kaizen.create');
 

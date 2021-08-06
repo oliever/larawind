@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Kaizen;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 
 class KaizenController extends Controller
@@ -19,6 +20,11 @@ class KaizenController extends Controller
      */
     public function create()
     {
+        /* $kaizen = Kaizen::create([
+            'user_id' => Auth::user()->id,
+            'location_id' => 1,
+
+        ]); */
         return view('kaizen.create');
     }
 
@@ -30,7 +36,7 @@ class KaizenController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        info($request);
     }
 
     /**

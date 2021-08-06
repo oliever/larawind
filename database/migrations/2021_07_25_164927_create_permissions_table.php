@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateRapidCausesTable extends Migration
+class CreatePermissionsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,13 +13,11 @@ class CreateRapidCausesTable extends Migration
      */
     public function up()
     {
-        Schema::create('rapid_causes', function (Blueprint $table) {
+        Schema::create('permissions', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('kaizen_id')->index();
-            $table->string('description');
-            $table->string('findings');
-            $table->string('root_cause');
+            $table->string('title')->nullable();
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 
@@ -30,6 +28,6 @@ class CreateRapidCausesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('rapid_causes');
+        Schema::dropIfExists('permissions');
     }
 }
