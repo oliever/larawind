@@ -1,8 +1,15 @@
+<div class="container grid px-6 mx-auto" x-data="{isJustDoIt:@entangle('isJustDoIt'), isRapid:@entangle('isRapid'), isModalOpen:false}">
+    @if ($kaizen->to_project)
+            <h2 class="mt-6 text-2xl font-semibold text-gray-700 dark:text-gray-200">
+                KAIZEN #{{$kaizen->id}}
+            </h2 >
+            <span class="mb-6 text-gray-700 dark:text-gray-400"">Submitted: {{\Carbon\Carbon::parse($kaizen->to_project)->format('F j, Y, g:i a');}}</span>
+        @else
+            <h2 class="my-6 text-2xl font-semibold text-gray-700 dark:text-gray-200">
+                New KAIZEN
+            </h2>
+        @endif
 
-<div class="container grid px-6 mx-auto" x-data="{isRapid:false, isJustDoIt:false, isModalOpen:false}">
-    <h2 class="my-6 text-2xl font-semibold text-gray-700 dark:text-gray-200">
-        KAIZEN Continuous Improvement Suggestion Form
-    </h2>
 
     @if (session()->has('message'))
         <a class="flex items-center justify-between p-4 mb-8 text-sm font-semibold text-purple-100 bg-purple-600 rounded-lg shadow-md focus:outline-none focus:shadow-outline-purple"
@@ -17,17 +24,17 @@
         </a>
     @endif
 
-    <form wire:submit.prevent="save">
+    <form wire:submit.prevent="">
         @csrf
         <h4 class="mb-2 text-lg font-semibold text-gray-600 dark:text-gray-300">
             General Info
         </h4>
         <div class="px-4 py-3 mb-8 bg-white rounded-lg shadow-md dark:bg-gray-800"><!--card-->
-            <div class="grid gap-2 mb- md:grid-cols-1 xl:grid-cols-2">
-                <div class="gap-2 mb-2">
+            <div class="grid gap-2 mb- md:grid-cols-1 xl:grid-cols-3">
+                <div class="gap-2 mb-2 col-span-2">
                     <label class="block text-sm">
                         <span class="text-gray-700 dark:text-gray-400">Name</span>
-                        <input class="required block w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:text-gray-300 dark:focus:shadow-outline-gray form-input"
+                        <input class="required block w-full mt-1 text-xl dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:text-gray-300 dark:focus:shadow-outline-gray form-input"
                             wire:model="kaizen.name"
                             name="kaizen.name"
                             placeholder="Name" />
@@ -37,9 +44,9 @@
                     @enderror
                 </div>
 
-                <div class="grid gap-2 mb-2 md:grid-cols-1 xl:grid-cols-2">
+                <div class="grid gap-2 mb-2 md:grid-cols-1 xl:grid-cols-1">
 
-                    <label class="block text-sm">
+                    {{-- <label class="block text-sm">
                         <span class="text-gray-700 dark:text-gray-400">Date</span>
                         <!-- focus-within sets the color for the icon when input is focused -->
                         <div class="relative text-gray-500 focus-within:text-purple-600 dark:focus-within:text-purple-400">
@@ -47,17 +54,12 @@
                             id="date" name="date" type="date"
                             name="kaizen.date"
                             defaulDate="minDate:Today" class="block w-full pr-10 mt-1 text-sm text-black dark:text-gray-300 dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:focus:shadow-outline-gray form-input" placeholder="Date" />
-                            {{-- <div class="absolute inset-y-0 right-0 flex items-center mr-3 pointer-events-none">
-                                <svg class="w-5 h-5" aria-hidden="true" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" stroke="currentColor">
-                                    <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line>
-                                </svg>
 
-                            </div> --}}
                         </div>
                     </label>
                     @error('kaizen.date')
                         <p class="text-sm text-red-600">{{ $message }}</p>
-                    @enderror
+                    @enderror --}}
 
                     <label class="block text-sm">
                         <span class="text-gray-700 dark:text-gray-400">
@@ -95,7 +97,7 @@
 
                 <div class="flex mt-2 text-sm">
                     <label class="flex items-center dark:text-gray-400">
-                        <input wire:model="kaizen.just_do_it" @click="isJustDoIt=!isJustDoIt" id="isJustDoIt" type="checkbox"
+                        <input wire:model="isJustDoIt" @click="isJustDoIt=!isJustDoIt" id="isJustDoIt" type="checkbox"
                                 class="text-purple-600 form-checkbox focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:focus:shadow-outline-gray" />
                         <span class="ml-2">
                             Just Do It
@@ -104,7 +106,7 @@
                 </div>
                 <div class="flex mt-2 text-sm">
                     <label class="flex items-center dark:text-gray-400">
-                        <input wire:model="kaizen.rapid" @click="isRapid=!isRapid" id="isRapid" type="checkbox"
+                        <input wire:model="isRapid" @click="isRapid=!isRapid" id="isRapid" type="checkbox"
                                 class="text-purple-600 form-checkbox focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:focus:shadow-outline-gray" />
                         <span class="ml-2">
                             Rapid Kaizen
@@ -143,10 +145,10 @@
                     <div class="flex mt-2 text-sm">
                         <label class="flex items-center dark:text-gray-400">
                             <input type="checkbox"
-                                id="{{ $affectedArea->key }}"
-                                wire:model="selectedAfftectedAreas.{{$affectedArea->key}}" class="text-purple-600 form-checkbox focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:focus:shadow-outline-gray" />
+                                value="{{ $affectedArea->id }}"
+                                wire:model="selectedAfftectedAreas.{{$affectedArea->id}}" class="text-purple-600 form-checkbox focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:focus:shadow-outline-gray" />
                             <span class="ml-2">
-                                {{ $affectedArea->value }}
+                                {{ $affectedArea->name }} {{-- ({{$affectedArea->id}}) --}}
                             </span>
                         </label>
                     </div>
@@ -211,7 +213,7 @@
                     </label>
                 </div>
 
-                @livewire('kaizen.rapid-causes')
+                <livewire:kaizen.rapid-causes :kaizen="$kaizen">
 
                 @livewire('kaizen.solutions')
 {{--
@@ -235,12 +237,29 @@
             </div>
         </div>
 
-       <div class="flex">
+        <h4 class="mb-2 text-lg font-semibold text-gray-600 dark:text-gray-300">
+            Images
+        </h4>
+        <div class="px-4 py-3 mb-8 bg-white rounded-lg shadow-md dark:bg-gray-800"><!--card-->
+                @livewire('kaizen.image-upload')
+        </div>
+
+        <div class="flex">
+            @if ($kaizen->to_project)
+            <button wire:click="submitKaizen" class = 'ml-4 px-4 py-2 text-sm font-medium leading-5 text-white transition-colors duration-150 bg-purple-600 border border-transparent rounded-lg active:bg-purple-600 hover:bg-purple-700 focus:outline-none focus:shadow-outline-purple'>
+                {{ __('Update') }}
+            </button>
+            @else
+            <button wire:click="saveAsDraft" class = 'px-4 py-2 text-sm font-medium leading-5 text-white transition-colors duration-150 bg-purple-600 border border-transparent rounded-lg active:bg-purple-600 hover:bg-purple-700 focus:outline-none focus:shadow-outline-purple'>
+                {{ __('Save as Draft') }}
+            </button>
+
+            <button wire:click="submitKaizen" class = 'ml-4 px-4 py-2 text-sm font-medium leading-5 text-white transition-colors duration-150 bg-purple-600 border border-transparent rounded-lg active:bg-purple-600 hover:bg-purple-700 focus:outline-none focus:shadow-outline-purple'>
+                {{ __('Save as Project') }}
+            </button>
+            @endif
 
 
-            <x-button>
-                {{ __('Save') }}
-            </x-button>
 
             <x-action-message class="ml-3 mt-2" on="saved">
                 {{ __('Saved.') }}

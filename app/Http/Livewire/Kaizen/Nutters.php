@@ -4,6 +4,11 @@ namespace App\Http\Livewire\Kaizen;
 
 use Livewire\Component;
 use App\Models\Kaizen;
+use App\Models\Location;
+use App\Models\RefAffectedArea;
+use DateTime;
+use Carbon\Carbon;
+
 
 class Nutters extends Component
 {
@@ -22,7 +27,7 @@ class Nutters extends Component
         'kaizen.name' => 'required|min:5',
         'kaizen.location_id' => 'required',
         'kaizen.reason' => '',
-        'kaizen.problem' => 'required|min:5',
+        'kaizen.problem' => '',
         'kaizen.rapid' => '',
         'kaizen.just_do_it' => '',
         'kaizen.head_office_input' => '',
@@ -32,12 +37,27 @@ class Nutters extends Component
         'kaizen.expected_result' => '',
     ];
 
-    public function mount()
+    public function mount(Kaizen $kaizen = null)
     {
+        $this->kaizen = $kaizen;
+        $this->isJustDoIt = $kaizen->just_do_it;
+        $this->isRapid = $kaizen->rapid;
+        //$this->selectedAfftectedAreas = explode(",", $kaizen->affected_areas);
+        foreach(explode(",", $kaizen->affected_areas) as $key=>$value){
+            //replace keys (index) with values from db
+            $this->selectedAfftectedAreas[$value] = $value;
+        }
+        info($this->selectedAfftectedAreas);
+        if(!$kaizen){
+            $this->kaizen = new Kaizen();
+            $this->isJustDoIt = false;
+            $this->isRapid = false;
+        }
 
-        $this->kaizen = new Kaizen();
         $this->kaizen->rapid = false;
         $this->kaizen->just_do_it = false;
+        $this->kaizen->head_office_input = false;
+        $this->kaizen->handled_at_location = false;
 
         /* $this->selectedAfftectedAreas['safety'] = true; */
 
@@ -49,16 +69,26 @@ class Nutters extends Component
         info($this->isModalOpen);
     }
 
-    public function save()
+    public function saveAsDraft(){
+        $this->save();
+    }
+
+    public function submitKaizen(){
+        $this->save(true);
+    }
+
+    private function save($asProject = false)
     {
         //session()->flash('message', 'Post successfully updated.');
         //$this->isModalOpen = true;
         info($this->selectedAfftectedAreas);
+        $this->kaizen->rapid = $this->isRapid;
+        $this->kaizen->just_do_it = $this->isJustDoIt;
 
-        $this->kaizen->affected_areas = implode(', ', array_keys($this->selectedAfftectedAreas));
+        $this->kaizen->affected_areas = implode(',', array_keys($this->selectedAfftectedAreas));
 
         info($this->kaizen->toJson(JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES));
-        $this->emit('kaizenAdded', 0);
+        $this->emit('kaizenAdded', 0);//move this
         $this->emit('saved');//to display action message
         //$valid = $this->validate();
         $this->validate();
@@ -67,19 +97,22 @@ class Nutters extends Component
         } */
 
         // Execution doesn't reach here if validation fails.
+        if($asProject)
+            $this->kaizen->to_project =Carbon::now();
+
         $this->kaizen->user_id =  auth()->user()->id;
          //$kaizen = Kaizen::create($this->kaizen);
         $this->kaizen->save();
-        session()->flash('message', 'Kaizen Form saved: ' . $this->kaizen->id);
 
-
-
+        $message = 'Kaizen Form saved as draft: ' . $this->kaizen->id;
+        if($this->kaizen->to_project)
+            $message = 'Kaizen Form saved as Project: ' . $this->kaizen->id;
+        session()->flash('message', $message);
     }
-
-
 
     public function render()
     {
+        info($this->selectedAfftectedAreas);
         $this->stores = $this->getStores();
         $this->affectedAreas = $this->getAffectedAreas();
         return view('livewire.kaizen.nutters');
@@ -87,16 +120,12 @@ class Nutters extends Component
 
     private function getStores()
     {
-        return array(
-            '0' => (object) array(
-                'id' => '1',
-                'name' => 'Med Hat'
-             ),
-        );
+        return Location::get();
     }
 
     private function getAffectedAreas(){
-        return array(
+        return RefAffectedArea::where(['team_id'=>auth()->user()-> currentTeam->id])->get();
+       /*  return array(
             '0' => (object) array(
                 'key' => 'people',
                 'value' => 'People'
@@ -157,6 +186,6 @@ class Nutters extends Component
                 'key' => 'other',
                 'value' => 'Other'
              ),
-        );
+        ); */
     }
 }

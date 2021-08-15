@@ -16,6 +16,7 @@ class CreateLocationsTable extends Migration
         Schema::create('locations', function (Blueprint $table) {
             $table->id();
             $table->foreignId('team_id')->index();
+            $table->string('code')->nullable();
             $table->string('name');
             $table->boolean('active')->default(1);
             $table->timestamps();

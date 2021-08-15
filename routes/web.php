@@ -19,10 +19,12 @@ use App\Http\Controllers\KaizenController;
 
 Route::group(['middleware' => ['auth:sanctum', 'verified']], function () {
     Route::resource('users', \App\Http\Controllers\UsersController::class);
-    Route::resource('kaizen', App\Http\Controllers\KaizenController::class);
+    //Route::post('upload', [\App\Http\Controllers\UploadController::class, 'upload']);
+    //Route::resource('kaizen', App\Http\Controllers\KaizenController::class);
 
-    Route::get('/kaizen/create', [KaizenController::class, 'create'])
-                    ->name('kaizen.create');
+    Route::get('/kaizen/create', [KaizenController::class, 'create'])->name('kaizen.create');
+    Route::get('/kaizen/', [KaizenController::class, 'index'])->name('kaizen.index');
+    Route::get('/kaizen/{kaizen}', [KaizenController::class, 'show'])->name('kaizen.show');
 
     Route::view('/', 'dashboard')->name('home');
     Route::view('dashboard', 'dashboard')->name('dashboard');

@@ -17,11 +17,11 @@ class CreateKaizensTable extends Migration
             $table->id();
             $table->text('name');
             $table->foreignId('user_id')->index();
+            $table->foreignId('team_id')->index();
 
             $table->foreignId('location_id');
             $table->longText('reason')->nullable();
             $table->longText('problem')->nullable();
-            $table->longText('location_comments')->nullable();
             $table->integer('completed')->nullable();
 
             $table->boolean('rapid')->default(false);
@@ -32,10 +32,6 @@ class CreateKaizensTable extends Migration
 
             $table->dateTime('to_project', $precision = 0)->nullable();
 
-            $table->string('rapid_method')->nullable();
-            $table->boolean('rapid_action_sustained')->default(false);
-            $table->boolean('rapid_follow_up')->default(false);
-            $table->string('responsible')->nullable();
             $table->timestamps();
         });
     }

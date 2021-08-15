@@ -15,6 +15,7 @@ class CreateRefAffectedAreasTable extends Migration
     {
         Schema::create('ref_affected_areas', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('team_id')->index();
             $table->string('name');
             $table->timestamps();
         });

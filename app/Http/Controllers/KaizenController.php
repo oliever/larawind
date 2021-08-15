@@ -10,7 +10,7 @@ class KaizenController extends Controller
 {
     public function index()
     {
-        //
+        return view('kaizen.index');
     }
 
     /**
@@ -47,7 +47,8 @@ class KaizenController extends Controller
      */
     public function show(Kaizen $kaizen)
     {
-        //
+       /*  info($kaizen); */
+        return view('kaizen.show',compact('kaizen'));
     }
 
     /**
