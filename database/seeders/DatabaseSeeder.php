@@ -16,12 +16,14 @@ class DatabaseSeeder extends Seeder
         // User::factory(10)->create();
         //Team::factory(2)->create();
         $this->call([
+            LocationsSeeder::class,
+            PermissionRoleTableSeeder::class,
             PermissionsTableSeeder::class,
             RolesTableSeeder::class,
-            PermissionRoleTableSeeder::class,
-            UsersTableSeeder::class,
+            RefAffectedAreasSeeder::class,
             RoleUserTableSeeder::class,
             TeamsTableSeeder::class,
+            UsersTableSeeder::class,
         ]);
     }
 }
