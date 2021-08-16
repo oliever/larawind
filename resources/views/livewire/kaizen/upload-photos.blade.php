@@ -20,6 +20,7 @@
                 </div>
 
                 <input type='file' class="hidden" wire:model="photo" accept="image/*"/>
+                <div wire:loading wire:target="photo">Loading...</div>
             </label>
             @if ($photo)
             <span>
