@@ -12,7 +12,7 @@ use Carbon\Carbon;
 
 class Nutters extends Component
 {
-    public Kaizen $kaizen;
+    public $kaizen;
     public $stores;
     public $affectedAreas;
     public $isRapid = false;
