@@ -22,12 +22,15 @@ Route::group(['middleware' => ['auth:sanctum', 'verified']], function () {
     //Route::post('upload', [\App\Http\Controllers\UploadController::class, 'upload']);
     //Route::resource('kaizen', App\Http\Controllers\KaizenController::class);
 
-    Route::get('/kaizen/create', [KaizenController::class, 'create'])->name('kaizen.create');
+    Route::get('/', [KaizenController::class, 'index'])->name('dashboard');
+    Route::get('/dashboard', [KaizenController::class, 'index'])->name('dashboard');
     Route::get('/kaizen/', [KaizenController::class, 'index'])->name('kaizen.index');
+    Route::get('/kaizen/create', [KaizenController::class, 'create'])->name('kaizen.create');
+
     Route::get('/kaizen/{kaizen}', [KaizenController::class, 'show'])->name('kaizen.show');
 
-    Route::view('/', 'dashboard')->name('home');
-    Route::view('dashboard', 'dashboard')->name('dashboard');
+    //Route::view('/', '')->name('home');
+    //Route::view('', 'dashboard')->name('dashboard');
     Route::view('forms', 'forms')->name('forms');
     Route::view('cards', 'cards')->name('cards');
     Route::view('charts', 'charts')->name('charts');

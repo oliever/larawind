@@ -17,7 +17,7 @@
             </a>
         </li>
 
-        <li class="relative px-6 py-3">
+        {{-- <li class="relative px-6 py-3">
             {!! request()->routeIs('kaizen.index') ? '<span class="absolute inset-y-0 left-0 w-1 bg-purple-600 rounded-tr-lg rounded-br-lg" aria-hidden="true"></span>' : '' !!}
             <a data-turbolinks-action="replace" href="{{route('kaizen.index')}}"
             class="inline-flex items-center w-full text-sm {!! request()->routeIs('kaizen.index') ? 'font-semibold dark:text-gray-100' : 'dark:text-gray-400' !!} text-gray-800 transition-colors duration-150 hover:text-gray-800
@@ -27,7 +27,7 @@
                 </svg>
                 <span class="ml-4">{{ __('Kaizen Projects') }}</span>
             </a>
-        </li>
+        </li> --}}
 
         <li class="relative px-6 py-3">
             {!! request()->routeIs('kaizen.create') ? '<span class="absolute inset-y-0 left-0 w-1 bg-purple-600 rounded-tr-lg rounded-br-lg" aria-hidden="true"></span>' : '' !!}

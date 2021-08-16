@@ -97,8 +97,8 @@
 
                 <div class="flex mt-2 text-sm">
                     <label class="flex items-center dark:text-gray-400">
-                        <input wire:model="isJustDoIt" @click="isJustDoIt=!isJustDoIt" id="isJustDoIt" type="checkbox"
-                                class="text-purple-600 form-checkbox focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:focus:shadow-outline-gray" />
+                        <input wire:model="isJustDoIt" @click="isJustDoIt=!isJustDoIt; isRapid=!isRapid" id="isJustDoIt" type="checkbox"
+                                class="text-purple-600 form-checkbox focus:border-purple-400 outline-black focus:shadow-outline-purple dark:focus:shadow-outline-gray" style="border-color:purple" />
                         <span class="ml-2">
                             Just Do It
                         </span>
@@ -106,8 +106,8 @@
                 </div>
                 <div class="flex mt-2 text-sm">
                     <label class="flex items-center dark:text-gray-400">
-                        <input wire:model="isRapid" @click="isRapid=!isRapid" id="isRapid" type="checkbox"
-                                class="text-purple-600 form-checkbox focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:focus:shadow-outline-gray" />
+                        <input wire:model="isRapid" @click="isRapid=!isRapid; isJustDoIt=!isJustDoIt" id="isRapid" type="checkbox"
+                                class="text-purple-600 form-checkbox focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:focus:shadow-outline-gray" style="border-color:purple"/>
                         <span class="ml-2">
                             Rapid Kaizen
                         </span>
@@ -117,7 +117,7 @@
                     <label class="flex items-center dark:text-gray-400">
                         <input type="checkbox"
                                 wire:model="kaizen.head_office_input"
-                                class="text-purple-600 form-checkbox focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:focus:shadow-outline-gray" />
+                                class="text-purple-600 form-checkbox focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:focus:shadow-outline-gray" style="border-color:purple"/>
                         <span class="ml-2">
                             Head Office Input
                         </span>
@@ -127,7 +127,7 @@
                     <label class="flex items-center dark:text-gray-400">
                         <input type="checkbox"
                                 wire:model="kaizen.handled_at_location"
-                                class="text-purple-600 form-checkbox focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:focus:shadow-outline-gray" />
+                                class="text-purple-600 form-checkbox focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:focus:shadow-outline-gray" style="border-color:purple"/>
                         <span class="ml-2">
                             Handled at Store Level
                         </span>
@@ -146,7 +146,7 @@
                         <label class="flex items-center dark:text-gray-400">
                             <input type="checkbox"
                                 value="{{ $affectedArea->id }}"
-                                wire:model="selectedAfftectedAreas.{{$affectedArea->id}}" class="text-purple-600 form-checkbox focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:focus:shadow-outline-gray" />
+                                wire:model="selectedAfftectedAreas.{{$affectedArea->id}}" class="text-purple-600 form-checkbox focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:focus:shadow-outline-gray" style="border-color:purple"/>
                             <span class="ml-2">
                                 {{ $affectedArea->name }} {{-- ({{$affectedArea->id}}) --}}
                             </span>
@@ -238,10 +238,10 @@
         </div>
 
         <h4 class="mb-2 text-lg font-semibold text-gray-600 dark:text-gray-300">
-            Images
+            Photos
         </h4>
-        <div class="px-4 py-3 mb-8 bg-white rounded-lg shadow-md dark:bg-gray-800"><!--card-->
-                @livewire('kaizen.image-upload')
+        <div class="px-4 py-3 mb-8 bg-white rounded-lg shadow-md dark:bg-gray-800 justify-center flex"><!--card-->
+                @livewire('kaizen.upload-photos')
         </div>
 
         <div class="flex">

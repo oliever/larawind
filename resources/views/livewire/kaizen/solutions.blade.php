@@ -31,7 +31,7 @@
                                 wire:model="solutions.{{$index}}.findings" /></td>
                         <td>
                             <div class="relative ml-4 text-gray-500 focus-within:text-purple-600">
-                                <input type="checkbox" class="text-purple-600 form-checkbox focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:focus:shadow-outline-gray"
+                                <input type="checkbox" class="text-purple-600 form-checkbox focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:focus:shadow-outline-gray" style="border-color:purple"
                                 wire:model="solutions.{{$index}}.done" />
 <!--
                              <button wire:click.prevent="removeSolution({{$index}})" class="absolute inset-y-0 right-0 px-4 text-sm font-medium leading-5 text-white transition-colors duration-150 bg-red-600 border border-transparent rounded-r-md active:bg-red-600 hover:bg-red-700 focus:outline-none focus:shadow-outline-red">

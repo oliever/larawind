@@ -16,7 +16,7 @@ class Nutters extends Component
     public $stores;
     public $affectedAreas;
     public $isRapid = false;
-    public $isJustDoIt = false;
+    public $isJustDoIt = true;
     public $selectedAfftectedAreas = [];
 
     public $isModalOpen = false;
@@ -40,8 +40,6 @@ class Nutters extends Component
     public function mount(Kaizen $kaizen = null)
     {
         $this->kaizen = $kaizen;
-        $this->isJustDoIt = $kaizen->just_do_it;
-        $this->isRapid = $kaizen->rapid;
         //$this->selectedAfftectedAreas = explode(",", $kaizen->affected_areas);
         foreach(explode(",", $kaizen->affected_areas) as $key=>$value){
             //replace keys (index) with values from db
@@ -50,14 +48,15 @@ class Nutters extends Component
         info($this->selectedAfftectedAreas);
         if(!$kaizen){
             $this->kaizen = new Kaizen();
-            $this->isJustDoIt = false;
+            $this->isJustDoIt = true;
             $this->isRapid = false;
+            $this->kaizen->rapid = false;
+            $this->kaizen->just_do_it = true;
+            $this->kaizen->head_office_input = false;
+            $this->kaizen->handled_at_location = false;
         }
 
-        $this->kaizen->rapid = false;
-        $this->kaizen->just_do_it = false;
-        $this->kaizen->head_office_input = false;
-        $this->kaizen->handled_at_location = false;
+
 
         /* $this->selectedAfftectedAreas['safety'] = true; */
 
