@@ -18,6 +18,7 @@ class Kaizen extends Model //implements HasMedia
                             'location_id'
                           ];
 
+
     public static function last()
     {
         return static::all()->last();

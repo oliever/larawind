@@ -39,15 +39,15 @@ class RapidCauses extends Component
         $this->rapidCauses[999] = $rapidCause ;
     }
 
-    public function kaizenAdded($n){//(Kaizen $kaizen){
-        //info('saving causes... ' . $kaizen->id);
+    public function kaizenAdded(Kaizen $kaizen){
+        info('saving causes... ');
 
         foreach($this->rapidCauses as $rapidCause){
             // info(@" {$rapidCauses} {$rapidCauses}");
             //info($rapidCause);
             if(!isset($rapidCause['id'])){
                 $rapidCause = RapidCause::create([
-                    'kaizen_id' => $this->kaizen->id,
+                    'kaizen_id' => $kaizen->id,
                     'description' => $rapidCause['description'],
                     'findings' => $rapidCause['findings'],
                     'root_cause' => $rapidCause['root_cause'],

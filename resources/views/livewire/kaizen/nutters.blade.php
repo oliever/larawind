@@ -22,6 +22,7 @@
             </div>
         {{-- <span>View more →</span> --}}
         </a>
+
     @endif
 
     <form wire:submit.prevent="">
@@ -215,7 +216,7 @@
 
                 <livewire:kaizen.rapid-causes :kaizen="$kaizen">
 
-                @livewire('kaizen.solutions')
+
 {{--
                 <div class="mb-4">
                     <div class="grid gap-2 mb-2 sm:grid-cols-4 md:grid-cols-4 xl:grid-cols-4">
@@ -241,7 +242,7 @@
             Photos
         </h4>
         <div class="px-4 py-3 mb-8 bg-white rounded-lg shadow-md dark:bg-gray-800 justify-center flex"><!--card-->
-                @livewire('kaizen.upload-photos')
+            <livewire:kaizen.upload-photos :kaizen="$kaizen">
         </div>
 
         <div class="flex justify-center mb-8">
@@ -261,8 +262,9 @@
 
 
 
-            <x-action-message class="ml-3 mt-2" on="saved">
+            <x-action-message class="ml-3 mt-2 text-purple-100 bg-purple-600 rounded-lg shadow-md focus:outline-none focus:shadow-outline-purple" on="saved">
                 {{ __('Saved.') }}
+
             </x-action-message>
        </div>
 

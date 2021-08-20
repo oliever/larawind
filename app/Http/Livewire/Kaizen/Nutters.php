@@ -45,7 +45,6 @@ class Nutters extends Component
             //replace keys (index) with values from db
             $this->selectedAfftectedAreas[$value] = $value;
         }
-        info($this->selectedAfftectedAreas);
         if(!$kaizen){
             $this->kaizen = new Kaizen();
             $this->isJustDoIt = true;
@@ -55,11 +54,6 @@ class Nutters extends Component
             $this->kaizen->head_office_input = false;
             $this->kaizen->handled_at_location = false;
         }
-
-
-
-        /* $this->selectedAfftectedAreas['safety'] = true; */
-
     }
 
     public function openModal(){
@@ -78,40 +72,38 @@ class Nutters extends Component
 
     private function save($asProject = false)
     {
-        //session()->flash('message', 'Post successfully updated.');
-        //$this->isModalOpen = true;
         info($this->selectedAfftectedAreas);
         $this->kaizen->rapid = $this->isRapid;
         $this->kaizen->just_do_it = $this->isJustDoIt;
+        $this->kaizen->team_id = auth()->user()->currentTeam->id;
+        $this->kaizen->user_id =  auth()->user()->id;
+        $this->kaizen->head_office_input = $this->kaizen->head_office_input ? true : false;
+        $this->kaizen->handled_at_location = $this->kaizen->head_office_input ? true : false;
 
         $this->kaizen->affected_areas = implode(',', array_keys($this->selectedAfftectedAreas));
 
-        info($this->kaizen->toJson(JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES));
-        $this->emit('kaizenAdded', 0);//move this
-        $this->emit('saved');//to display action message
-        //$valid = $this->validate();
         $this->validate();
-       /*  if($valid){
-            session()->flash('message', 'Form errors found.');
-        } */
 
         // Execution doesn't reach here if validation fails.
         if($asProject)
             $this->kaizen->to_project =Carbon::now();
 
-        $this->kaizen->user_id =  auth()->user()->id;
-         //$kaizen = Kaizen::create($this->kaizen);
         $this->kaizen->save();
+        info('nutters kaizen saved');
+        info($this->kaizen);
+
+        $this->emit('saved');//to display action message
+        $this->emit('kaizenAdded', $this->kaizen->id);//move this
 
         $message = 'Kaizen Form saved as draft: ' . $this->kaizen->id;
         if($this->kaizen->to_project)
             $message = 'Kaizen Form saved as Project: ' . $this->kaizen->id;
-        session()->flash('message', $message);
+       session()->flash('message', $message);
+
     }
 
     public function render()
     {
-        info($this->selectedAfftectedAreas);
         $this->stores = $this->getStores();
         $this->affectedAreas = $this->getAffectedAreas();
         return view('livewire.kaizen.nutters');
@@ -123,7 +115,7 @@ class Nutters extends Component
     }
 
     private function getAffectedAreas(){
-        return RefAffectedArea::where(['team_id'=>auth()->user()-> currentTeam->id])->get();
+        return RefAffectedArea::where(['team_id'=>auth()->user()->currentTeam->id])->get();
        /*  return array(
             '0' => (object) array(
                 'key' => 'people',
