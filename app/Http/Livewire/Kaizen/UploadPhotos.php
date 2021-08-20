@@ -77,6 +77,7 @@ class UploadPhotos extends Component
             $constraint->aspectRatio();
             $constraint->upsize();
         });
+        Storage::makeDirectory('photos/');
         $img->save(storage_path('app/photos/' . $photo->getFilename()));
         $img->resize(null, 315, function ($constraint) {
             $constraint->aspectRatio();
