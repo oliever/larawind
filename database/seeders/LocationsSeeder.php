@@ -208,15 +208,6 @@ class LocationsSeeder extends Seeder
                 'active'         => true,
                 'created_at'     => Carbon::now()
             ],
-            [
-                'id'             => 100,
-                'team_id'        => 1,
-                'code'           => "100",
-                'name'           => "The Organic Box",
-                'active'         => true,
-                'created_at'     => Carbon::now()
-            ],
-
         ];
 
         Location::insert($locations);
