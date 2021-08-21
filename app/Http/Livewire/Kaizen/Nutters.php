@@ -111,7 +111,7 @@ class Nutters extends Component
 
     private function getStores()
     {
-        return Location::get();
+        return Location::get()->sortBy('name');
     }
 
     private function getAffectedAreas(){
