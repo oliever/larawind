@@ -36,11 +36,11 @@ class RapidCauses extends Component
         $newMember = Member::make(); */
 
         $rapidCause = RapidCause::make();
-        $this->rapidCauses[999] = $rapidCause ;
+        $this->rapidCauses[] = $rapidCause ;
     }
 
     public function kaizenAdded(Kaizen $kaizen){
-        info('saving causes... ');
+        info('saving rapid causes... ');
 
         foreach($this->rapidCauses as $rapidCause){
             // info(@" {$rapidCauses} {$rapidCauses}");
@@ -76,8 +76,6 @@ class RapidCauses extends Component
         unset($this->rapidCauses[$index]);
 
         $this->rapidCauses = array_values($this->rapidCauses);
-
-
     }
 
 

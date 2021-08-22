@@ -1,14 +1,18 @@
 <div class="container grid px-6 mx-auto" x-data="{isJustDoIt:@entangle('isJustDoIt'), isRapid:@entangle('isRapid'), isModalOpen:false}">
     @if ($kaizen->to_project)
-            <h2 class="mt-6 text-2xl font-semibold text-gray-700 dark:text-gray-200">
-                KAIZEN #{{$kaizen->id}}
-            </h2 >
-            <span class="mb-6 text-gray-700 dark:text-gray-400"">Submitted: {{\Carbon\Carbon::parse($kaizen->to_project)->format('F j, Y, g:i a');}}</span>
-        @else
-            <h2 class="my-6 text-2xl font-semibold text-gray-700 dark:text-gray-200">
-                New KAIZEN
-            </h2>
-        @endif
+        <h2 class="mt-6 text-2xl font-semibold text-gray-700 dark:text-gray-200">
+            KAIZEN #{{$kaizen->id}}
+        </h2 >
+        <span class="mb-6 text-gray-700 dark:text-gray-400"">Submitted: {{\Carbon\Carbon::parse($kaizen->to_project)->format('F j, Y, g:i a');}}</span>
+    @elseif ($kaizen->id)
+        <h2 class="my-6 text-2xl font-semibold text-gray-700 dark:text-gray-200">
+            KAIZEN #{{$kaizen->id}} (Draft)
+        </h2>
+    @else
+        <h2 class="my-6 text-2xl font-semibold text-gray-700 dark:text-gray-200">
+            New KAIZEN
+        </h2>
+    @endif
 
 
     @if (session()->has('message'))
@@ -215,7 +219,7 @@
                 </div>
 
                 <livewire:kaizen.rapid-causes :kaizen="$kaizen">
-
+                <livewire:kaizen.rapid-solutions :kaizen="$kaizen">
 
 {{--
                 <div class="mb-4">

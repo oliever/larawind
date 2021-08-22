@@ -19,7 +19,8 @@ class CreateRapidSolutionsTable extends Migration
             $table->string('description');
             $table->string('who');
             $table->timestamp('when')->nullable();
-            $table->timestamp('done')->nullable();
+            //$table->timestamp('done')->nullable();
+            $table->boolean('done')->default(false);
             $table->timestamps();
         });
     }

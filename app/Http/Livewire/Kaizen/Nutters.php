@@ -54,6 +54,10 @@ class Nutters extends Component
             $this->kaizen->head_office_input = false;
             $this->kaizen->handled_at_location = false;
         }
+        else{
+            $this->isJustDoIt = $this->kaizen->just_do_it;
+            $this->isRapid = $this->kaizen->rapid;
+        }
     }
 
     public function openModal(){
@@ -93,7 +97,7 @@ class Nutters extends Component
         info($this->kaizen);
 
         $this->emit('saved');//to display action message
-        $this->emit('kaizenAdded', $this->kaizen->id);//move this
+        $this->emit('kaizenAdded', $this->kaizen->id);
 
         $message = 'Kaizen Form saved as draft: ' . $this->kaizen->id;
         if($this->kaizen->to_project)

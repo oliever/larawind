@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 //use Spatie\MediaLibrary\HasMedia;
 //use Spatie\MediaLibrary\InteractsWithMedia;
 
+/* Defaults as Kaizen Suggestion Form */
 class Kaizen extends Model //implements HasMedia
 {
     use HasFactory;//, InteractsWithMedia;
