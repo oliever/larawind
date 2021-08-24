@@ -22,7 +22,7 @@ class DraftKaizensDatatable extends LivewireDatatable
 
     public function builder()
     {
-        return Kaizen::query()->whereNull('to_project');
+        return Kaizen::query()->whereNull('posted');
     }
 
     public function columns()

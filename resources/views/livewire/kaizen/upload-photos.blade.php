@@ -1,6 +1,6 @@
 <div x-data="{photo:@entangle('photo')}">
     @if ($savedPhotos)
-        <div class="grid gap-2 mb-6 md:grid-cols-1 xl:grid-cols-2">
+        <div class="grid gap-2 mb-6 {{ $type == 'main' ? 'md:grid-cols-1 xl:grid-cols-2' : 'grid-cols-1' }} ">
                 @foreach ($savedPhotos as $savedPhoto)
                     @if($savedPhoto)
                         <img class="mt-4" src="{{ asset('photos/' . $savedPhoto['filename']) }}">

@@ -18,13 +18,16 @@ class UploadPhotos extends Component
     public $photos;
     public $savedPhotos;
     public $kaizen;
+    public $type;
 
     protected $listeners = ['kaizenAdded'];
 
     public function mount(Kaizen $kaizen = null){
         $this->kaizen = $kaizen;
+        info($this->type);
+        info($this->kaizen);
         //$this->rapidCauses = RapidCause::where(['kaizen_id'=>$kaizen->id])->get();
-        foreach(Photo::where(['model'=>get_class(new Kaizen()), 'model_id'=>$kaizen->id])->get() as $savedPhoto){
+        foreach(Photo::where(['type'=>$this->type, 'model'=>get_class(new Kaizen()), 'model_id'=>$kaizen->id])->get() as $savedPhoto){
             $this->savedPhotos[$savedPhoto->id] = $savedPhoto;
         }
     }
@@ -48,9 +51,6 @@ class UploadPhotos extends Component
             info($this->photo->getRealPath()); */
             $this->photos[] = $this->photo;
         }
-
-
-
         $this->photo = null;
 
     }
@@ -59,15 +59,19 @@ class UploadPhotos extends Component
         info('saving photos...');
         if($this->photos)
             foreach($this->photos as $photo){
-                //info($photo->getFilename());
-               // info(get_class(new Photo()));
-                $this->resize($photo);
-                $kaizenPhoto = Photo::create([
-                    'model' => get_class(new Kaizen()),
-                    'model_id' => $kaizen->id,
-                    'filename' => $photo->getFilename(),
-                ]);
-                $kaizenPhoto->save();
+                $existing = Photo::where(['filename'=>$photo->getFilename()])->count();
+                //info('existing: '. $existing);
+                if($existing == 0){
+                    $this->resize($photo);
+                    $kaizenPhoto = Photo::create([
+                        'model' => get_class(new Kaizen()),
+                        'model_id' => $kaizen->id,
+                        'type' => $this->type,
+                        'filename' => $photo->getFilename(),
+                    ]);
+                    //info($kaizenPhoto);
+                    $kaizenPhoto->save();
+                }
             }
     }
 

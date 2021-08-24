@@ -1,16 +1,16 @@
-<div class="container grid px-6 mx-auto" x-data="{isJustDoIt:@entangle('isJustDoIt'), isRapid:@entangle('isRapid'), isModalOpen:false}">
-    @if ($kaizen->to_project)
+<div class="container grid px-6 mx-auto" x-data="{isJustDoIt:@entangle('isJustDoIt'), isRapid:@entangle('isRapid'),hasBeforeAfter:@entangle('hasBeforeAfter'), isModalOpen:false}">
+    @if ($kaizen->posted)
         <h2 class="mt-6 text-2xl font-semibold text-gray-700 dark:text-gray-200">
-            KAIZEN #{{$kaizen->id}}
+            Kaizen Suggestion #{{$kaizen->id}}
         </h2 >
-        <span class="mb-6 text-gray-700 dark:text-gray-400"">Submitted: {{\Carbon\Carbon::parse($kaizen->to_project)->format('F j, Y, g:i a');}}</span>
+        <span class="mb-6 text-gray-700 dark:text-gray-400"">Submitted: {{\Carbon\Carbon::parse($kaizen->posted)->format('F j, Y, g:i a');}}</span>
     @elseif ($kaizen->id)
         <h2 class="my-6 text-2xl font-semibold text-gray-700 dark:text-gray-200">
-            KAIZEN #{{$kaizen->id}} (Draft)
+            Kaizen Suggestion #{{$kaizen->id}} (Draft)
         </h2>
     @else
         <h2 class="my-6 text-2xl font-semibold text-gray-700 dark:text-gray-200">
-            New KAIZEN
+            New Kaizen Suggestion
         </h2>
     @endif
 
@@ -246,13 +246,43 @@
             Photos
         </h4>
         <div class="px-4 py-3 mb-8 bg-white rounded-lg shadow-md dark:bg-gray-800 justify-center flex"><!--card-->
-            <livewire:kaizen.upload-photos :kaizen="$kaizen">
+            {{-- <livewire:kaizen.upload-photos :kaizen="$kaizen"> --}}
+            @livewire('kaizen.upload-photos',['kaizen'  => $kaizen, 'type'  => 'main'])
+        </div>
+
+        <div x-show="hasBeforeAfter" x-transition:enter="transition ease-out duration-500" x-transition:enter-start="opacity-0 transform scale-90" x-transition:enter-end="opacity-100 transform scale-100" x-transition:leave="transition ease-in duration-200" x-transition:leave-start="opacity-100 transform scale-100" x-transition:leave-end="opacity-0 transform scale-90">
+            <h4 class="mb-2 text-lg font-semibold text-gray-600 dark:text-gray-300">
+                Before and After Report
+            </h4>
+            <div class="grid gap-6 mb-8 md:grid-cols-1 xl:grid-cols-2">
+                <div class="min-w-0 p-4 bg-white rounded-lg shadow-xs dark:bg-gray-800"><!--card-->
+                    <h4 class="mb-4 font-semibold text-gray-600 dark:text-gray-300">
+                        Before Photos
+                    </h4>
+                    <p class="text-gray-600 dark:text-gray-400">
+                        @livewire('kaizen.upload-photos',['kaizen'  => $kaizen, 'type'  => 'before'])
+                    </p>
+                </div>
+                <div class="min-w-0 p-4 bg-white rounded-lg shadow-xs dark:bg-gray-800"><!--card-->
+                    <h4 class="mb-4 font-semibold text-gray-600 dark:text-gray-300">
+                        After Photos
+                    </h4>
+                    <p>
+                        @livewire('kaizen.upload-photos',['kaizen'  => $kaizen, 'type'  => 'after'])
+                    </p>
+                </div>
+            </div>
+
         </div>
 
         <div class="flex justify-center mb-8">
-            @if ($kaizen->to_project)
+            @if ($kaizen->posted)
             <button wire:click="submitKaizen"  class="ml-4 px-4 py-2 text-sm font-medium leading-5 text-white transition-colors duration-150 bg-purple-600 border border-transparent rounded-lg active:bg-purple-600 hover:bg-purple-700 focus:outline-none focus:shadow-outline-purple">
                 {{ __('Update') }}
+            </button>
+
+            <button x-show="!hasBeforeAfter" wire:click="createBeforeAfter"  class="ml-4 px-4 py-2 text-sm font-medium leading-5 text-white transition-colors duration-150 bg-purple-600 border border-transparent rounded-lg active:bg-purple-600 hover:bg-purple-700 focus:outline-none focus:shadow-outline-purple">
+                {{ __('Create Before and After Report') }}
             </button>
             @else
             <button wire:click="saveAsDraft" class="px-4 py-2 text-sm font-medium leading-5 text-white transition-colors duration-150 bg-purple-600 border border-transparent rounded-lg active:bg-purple-600 hover:bg-purple-700 focus:outline-none focus:shadow-outline-purple">

@@ -17,6 +17,7 @@ class Nutters extends Component
     public $affectedAreas;
     public $isRapid = false;
     public $isJustDoIt = true;
+    public $hasBeforeAfter = false;
     public $selectedAfftectedAreas = [];
 
     public $isModalOpen = false;
@@ -41,22 +42,27 @@ class Nutters extends Component
     {
         $this->kaizen = $kaizen;
         //$this->selectedAfftectedAreas = explode(",", $kaizen->affected_areas);
-        foreach(explode(",", $kaizen->affected_areas) as $key=>$value){
-            //replace keys (index) with values from db
-            $this->selectedAfftectedAreas[$value] = $value;
-        }
-        if(!$kaizen){
+
+
+       if(!isset($this->kaizen['id'])){
             $this->kaizen = new Kaizen();
             $this->isJustDoIt = true;
             $this->isRapid = false;
             $this->kaizen->rapid = false;
+
             $this->kaizen->just_do_it = true;
             $this->kaizen->head_office_input = false;
             $this->kaizen->handled_at_location = false;
+            $this->hasBeforeAfter = false;
         }
         else{
             $this->isJustDoIt = $this->kaizen->just_do_it;
             $this->isRapid = $this->kaizen->rapid;
+            $this->hasBeforeAfter = $this->kaizen->before_after;
+            foreach(explode(",", $kaizen->affected_areas) as $key=>$value){
+                //replace keys (index) with values from db
+                $this->selectedAfftectedAreas[$value] = $value;
+            }
         }
     }
 
@@ -76,21 +82,23 @@ class Nutters extends Component
 
     private function save($asProject = false)
     {
-        info($this->selectedAfftectedAreas);
         $this->kaizen->rapid = $this->isRapid;
         $this->kaizen->just_do_it = $this->isJustDoIt;
         $this->kaizen->team_id = auth()->user()->currentTeam->id;
         $this->kaizen->user_id =  auth()->user()->id;
         $this->kaizen->head_office_input = $this->kaizen->head_office_input ? true : false;
-        $this->kaizen->handled_at_location = $this->kaizen->head_office_input ? true : false;
+        $this->kaizen->handled_at_location = $this->kaizen->handled_at_location ? true : false;
+        $this->kaizen->before_after = $this->hasBeforeAfter;
 
-        $this->kaizen->affected_areas = implode(',', array_keys($this->selectedAfftectedAreas));
+        //info($this->selectedAfftectedAreas);
+        $this->kaizen->affected_areas = implode(',', array_keys(array_filter($this->selectedAfftectedAreas)));
+        //info($this->kaizen->affected_areas);
 
         $this->validate();
 
         // Execution doesn't reach here if validation fails.
         if($asProject)
-            $this->kaizen->to_project =Carbon::now();
+            $this->kaizen->posted =Carbon::now();
 
         $this->kaizen->save();
         info('nutters kaizen saved');
@@ -100,14 +108,20 @@ class Nutters extends Component
         $this->emit('kaizenAdded', $this->kaizen->id);
 
         $message = 'Kaizen Form saved as draft: ' . $this->kaizen->id;
-        if($this->kaizen->to_project)
+        if($this->kaizen->posted)
             $message = 'Kaizen Form saved as Project: ' . $this->kaizen->id;
        session()->flash('message', $message);
 
     }
 
+    public function createBeforeAfter()
+    {
+        $this->hasBeforeAfter = true;
+    }
     public function render()
     {
+        info($this->kaizen);
+        info($this->isJustDoIt);
         $this->stores = $this->getStores();
         $this->affectedAreas = $this->getAffectedAreas();
         return view('livewire.kaizen.nutters');

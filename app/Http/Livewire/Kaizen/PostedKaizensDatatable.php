@@ -13,7 +13,7 @@ use Mediconesystems\LivewireDatatables\BooleanColumn;
 
 
 
-class ActiveKaizensDatatable extends LivewireDatatable
+class PostedKaizensDatatable extends LivewireDatatable
 {
     public $model = Kaizen::class;
 
@@ -22,7 +22,7 @@ class ActiveKaizensDatatable extends LivewireDatatable
 
     public function builder()
     {
-        return Kaizen::query()->whereNotNull('to_project');
+        return Kaizen::query()->whereNotNull('posted');
     }
 
     public function columns()
@@ -47,8 +47,8 @@ class ActiveKaizensDatatable extends LivewireDatatable
             BooleanColumn::name('handled_at_location')
             ->label('Handle At Branch'),
 
-            DateColumn::raw('to_project')
-                ->label('Submitted')
+            DateColumn::raw('posted')
+                ->label('Posted')
                 ->format('F j, Y, g:i a'),
 
         ];

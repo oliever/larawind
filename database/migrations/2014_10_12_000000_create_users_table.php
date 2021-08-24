@@ -23,6 +23,7 @@ class CreateUsersTable extends Migration
             $table->string('current_team_id')->nullable();
             $table->text('profile_photo_path')->nullable();
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 
@@ -33,6 +34,11 @@ class CreateUsersTable extends Migration
      */
     public function down()
     {
+        Schema::create('users', function (Blueprint $table) {
+            $table->dropSoftDeletes();
+        });
         Schema::dropIfExists('users');
+
+
     }
 }

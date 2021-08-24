@@ -34,8 +34,15 @@ class CreateKaizensTable extends Migration
             $table->boolean('head_office_input')->default(false);
             $table->text('affected_areas')->nullable();
 
-            $table->dateTime('to_project', $precision = 0)->nullable();
+            $table->dateTime('posted', $precision = 0)->nullable();
 
+            //Before and After report
+            $table->boolean('before_after')->default(false);
+            $table->foreignId('validating_user_id')->nullable()->index();
+            $table->foreignId('approving_user_id')->nullable()->index();
+            $table->longText('benefits')->nullable();
+
+            $table->softDeletes();
             $table->timestamps();
         });
     }
@@ -47,6 +54,9 @@ class CreateKaizensTable extends Migration
      */
     public function down()
     {
+        Schema::table('kaizens', function (Blueprint $table) {
+            $table->dropSoftDeletes();
+        });
         Schema::dropIfExists('kaizens');
     }
 }
