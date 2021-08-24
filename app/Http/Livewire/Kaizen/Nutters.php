@@ -36,6 +36,7 @@ class Nutters extends Component
         'kaizen.handled_at_location' => '',
         'kaizen.solution' => '',
         'kaizen.expected_result' => '',
+        'kaizen.benefits' => '',
     ];
 
     public function mount(Kaizen $kaizen = null)

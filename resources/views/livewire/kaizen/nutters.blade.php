@@ -272,6 +272,16 @@
                     </p>
                 </div>
             </div>
+            <div class="min-w-0 p-4 bg-white rounded-lg shadow-xs dark:bg-gray-800"><!--card-->
+                <h4 class="mb-4 font-semibold text-gray-600 dark:text-gray-300">
+                    Benefits
+                </h4>
+                <label class="block mt-4 text-sm">
+                    <textarea wire:model="kaizen.benefits" class="block w-full mt-1 text-sm dark:text-gray-300 dark:border-gray-600 dark:bg-gray-700 form-textarea focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:focus:shadow-outline-gray"
+                    rows="3" placeholder="Quality/Cost/Efficiency/Delivery/Waste/Safety/Energy/Moral/Other"></textarea>
+                </label>
+            </div>
+
 
         </div>
 
