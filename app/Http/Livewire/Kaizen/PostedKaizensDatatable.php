@@ -47,6 +47,9 @@ class PostedKaizensDatatable extends LivewireDatatable
             BooleanColumn::name('handled_at_location')
             ->label('Handle At Branch'),
 
+            BooleanColumn::name('before_after')
+            ->label('Before and AFter Report'),
+
             DateColumn::raw('posted')
                 ->label('Posted')
                 ->format('F j, Y, g:i a'),
