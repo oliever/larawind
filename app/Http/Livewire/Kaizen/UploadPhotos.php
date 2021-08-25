@@ -24,8 +24,8 @@ class UploadPhotos extends Component
 
     public function mount(Kaizen $kaizen = null){
         $this->kaizen = $kaizen;
-        info($this->type);
-        info($this->kaizen);
+        /* info($this->type);
+        info($this->kaizen); */
         //$this->rapidCauses = RapidCause::where(['kaizen_id'=>$kaizen->id])->get();
         foreach(Photo::where(['type'=>$this->type, 'model'=>get_class(new Kaizen()), 'model_id'=>$kaizen->id])->get() as $savedPhoto){
             $this->savedPhotos[$savedPhoto->id] = $savedPhoto;
@@ -47,9 +47,21 @@ class UploadPhotos extends Component
     public function save()
     {
         if($this->photo){
-            /* info($this->photo->getFilename());
-            info($this->photo->getRealPath()); */
-            $this->photos[] = $this->photo;
+
+            if(isset($this->kaizen['id'])){
+                $this->resize($this->photo);
+                $kaizenPhoto = Photo::create([
+                    'model' => get_class(new Kaizen()),
+                    'model_id' =>$this->kaizen['id'],
+                    'type' => $this->type,
+                    'filename' => $this->photo->getFilename(),
+                ]);
+                $kaizenPhoto->save();
+                $this->savedPhotos[$kaizenPhoto->id] = $kaizenPhoto;
+            }else{
+                $this->photos[] = $this->photo;
+            }
+
         }
         $this->photo = null;
 
