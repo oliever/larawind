@@ -68,8 +68,9 @@ class UploadPhotos extends Component
     }
 
     public function kaizenAdded(Kaizen $kaizen){
-        info('saving photos...');
-        if($this->photos)
+
+        if($this->photos){
+            info(@"saving {$this->type} photos: " .count($this->photos));
             foreach($this->photos as $photo){
                 $existing = Photo::where(['filename'=>$photo->getFilename()])->count();
                 //info('existing: '. $existing);
@@ -85,6 +86,8 @@ class UploadPhotos extends Component
                     $kaizenPhoto->save();
                 }
             }
+        }
+
     }
 
     private function resize($photo){

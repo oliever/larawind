@@ -112,7 +112,7 @@ class Nutters extends Component
         if($this->kaizen->posted)
             $message = 'Kaizen Form saved as Project: ' . $this->kaizen->id;
        session()->flash('message', $message);
-
+       //return redirect()->to('/kaizen/' . $this->kaizen->id);
     }
 
     public function createBeforeAfter()
@@ -121,8 +121,6 @@ class Nutters extends Component
     }
     public function render()
     {
-        info($this->kaizen);
-        info($this->isJustDoIt);
         $this->stores = $this->getStores();
         $this->affectedAreas = $this->getAffectedAreas();
         return view('livewire.kaizen.nutters');

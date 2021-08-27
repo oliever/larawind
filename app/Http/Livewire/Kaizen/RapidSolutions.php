@@ -30,23 +30,34 @@ class RapidSolutions extends Component
     public function addRapidSolution(){
 
         $rapidSolution = RapidSolution::make();
-        $this->rapidSolutions[] = $rapidSolution ;
+        $this->rapidSolutions[] = $rapidSolution;
     }
 
     public function kaizenAdded(Kaizen $kaizen){
-        info('saving rapid solutions... ');
-
+        info('saving rapid solutions: ' . count($this->rapidSolutions));
         foreach($this->rapidSolutions as $rapidSolution){
             // info(@" {$rapidCauses} {$rapidCauses}");
-            //info($rapidCause);
+            //info($rapidSolution);
+            $description = isset($rapidSolution['description']) ? $rapidSolution['description'] : "";
+            $who = isset($rapidSolution['who']) ? $rapidSolution['who'] : "";
+            $when = isset($rapidSolution['when']) ? $rapidSolution['when'] : null;
+            $done = isset($rapidSolution['done']) ? $rapidSolution['done'] : false;
             if(!isset($rapidSolution['id'])){
+
                 $rapidSolution = RapidSolution::create([
                     'kaizen_id' => $kaizen->id,
-                    'description' => $rapidSolution['description'],
-                    'who' => $rapidSolution['who'],
-                    'when' => $rapidSolution['when'],
-                    'done' => isset($rapidSolution['done']) ? true : false ,
+                    'description' => $description,
+                    'who' => $who,
+                    'when' =>  $when ,
+                    'done' =>  $done,
                 ]);
+            }else{
+                $rapidSolution = RapidSolution::where('id',$rapidSolution['id'])->first();
+                $rapidSolution->description = $description;
+                $rapidSolution->who = $who;
+                $rapidSolution->when = $when;
+                $rapidSolution->done = $done;
+                $rapidSolution->save();
             }
         }
 
@@ -57,10 +68,11 @@ class RapidSolutions extends Component
                 $rapidSolution->delete();
         }
 
-        $this->rapidSolution = array();//reset
-        foreach(RapidSolution::where(['kaizen_id'=>$this->kaizen->id])->get() as $solution){
+        $this->rapidSolutions = array();//reset
+        foreach(RapidSolution::where(['kaizen_id'=>$kaizen->id])->get() as $solution){
             $this->rapidSolutions[$solution->id] = $solution;
         }
+
     }
 
     public function removeRapidSolution($index){

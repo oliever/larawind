@@ -40,18 +40,27 @@ class RapidCauses extends Component
     }
 
     public function kaizenAdded(Kaizen $kaizen){
-        info('saving rapid causes... ');
+        info('saving rapid causes: ' . count($this->rapidCauses));
 
         foreach($this->rapidCauses as $rapidCause){
             // info(@" {$rapidCauses} {$rapidCauses}");
-            //info($rapidCause);
+            $description = isset($rapidCause['description']) ? $rapidCause['description'] : "";
+            $findings = isset($rapidCause['findings']) ? $rapidCause['findings'] : "";
+            $rootCause = isset($rapidCause['root_cause']) ? $rapidCause['root_cause'] : "";
             if(!isset($rapidCause['id'])){
+
                 $rapidCause = RapidCause::create([
                     'kaizen_id' => $kaizen->id,
-                    'description' => $rapidCause['description'],
-                    'findings' => $rapidCause['findings'],
-                    'root_cause' => $rapidCause['root_cause'],
+                    'description' => $description,
+                    'findings' => $findings,
+                    'root_cause' => $rootCause,
                 ]);
+            }else{
+                $rapidCause = RapidCause::where('id',$rapidCause['id'])->first();
+                $rapidCause->description = $description;
+                $rapidCause->findings = $findings;
+                $rapidCause->root_cause = $rootCause;
+                $rapidCause->save();
             }
         }
 
@@ -63,7 +72,7 @@ class RapidCauses extends Component
         }
 
         $this->rapidCauses = array();//reset
-        foreach(RapidCause::where(['kaizen_id'=>$this->kaizen->id])->get() as $cause){
+        foreach(RapidCause::where(['kaizen_id'=>$kaizen->id])->get() as $cause){
             $this->rapidCauses[$cause->id] = $cause;
         }
 
