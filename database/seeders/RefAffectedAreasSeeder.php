@@ -87,11 +87,7 @@ class RefAffectedAreasSeeder extends Seeder
                 'name'           => 'Technology',
                 'created_at'     => Carbon::now()
             ],
-            [
-                'team_id'        => 1,
-                'name'           => 'Other',
-                'created_at'     => Carbon::now()
-            ],
+
         ];
 
         RefAffectedArea::insert($refAffectedAreas);
