@@ -158,6 +158,15 @@
                         </label>
                     </div>
                 @endforeach
+                <div class="flex mt-2 text-sm">
+                    <label class="flex pr-2 items-center dark:text-gray-400">
+                        Other
+                    </label>
+                    <input class="required block w-full  text-xs dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:text-gray-300 dark:focus:shadow-outline-gray form-input"
+                            wire:model="kaizen.other_affected_area"
+                            name="kaizen.other_affected_area"
+                            placeholder="Other Affected Area" />
+                </div>
             </div>
 
         </div><!--Affected Aread-->

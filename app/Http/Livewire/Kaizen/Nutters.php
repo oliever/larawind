@@ -27,6 +27,7 @@ class Nutters extends Component
     protected $rules = [
         'kaizen.name' => 'required|min:5',
         'kaizen.location_id' => 'required',
+        'kaizen.other_affected_area' => '',
         'kaizen.reason' => '',
         'kaizen.problem' => '',
         'kaizen.rapid' => '',
@@ -37,6 +38,7 @@ class Nutters extends Component
         'kaizen.solution' => '',
         'kaizen.expected_result' => '',
         'kaizen.benefits' => '',
+
     ];
 
     public function mount(Kaizen $kaizen = null)

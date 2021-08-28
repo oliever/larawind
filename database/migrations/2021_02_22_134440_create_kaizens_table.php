@@ -33,6 +33,7 @@ class CreateKaizensTable extends Migration
             $table->boolean('handled_at_location')->default(false);
             $table->boolean('head_office_input')->default(false);
             $table->text('affected_areas')->nullable();
+            $table->text('other_affected_area')->nullable();
 
             $table->dateTime('posted', $precision = 0)->nullable();
 
