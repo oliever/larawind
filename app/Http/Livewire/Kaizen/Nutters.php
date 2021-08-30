@@ -38,6 +38,7 @@ class Nutters extends Component
         'kaizen.solution' => '',
         'kaizen.expected_result' => '',
         'kaizen.benefits' => '',
+        'kaizen.rapid_problem' => '',
 
     ];
 

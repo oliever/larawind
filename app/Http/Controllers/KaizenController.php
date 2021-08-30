@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Kaizen;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\App;
 
 class KaizenController extends Controller
 {
@@ -49,6 +50,14 @@ class KaizenController extends Controller
     {
        /*  info($kaizen); */
         return view('kaizen.show',compact('kaizen'));
+    }
+    public function pdf(Kaizen $kaizen)
+    {
+        $data['kaizen'] = $kaizen;
+        $pdf = App::make('dompdf.wrapper');
+        $pdf->loadView('kaizen.pdf.nutters', $data);
+        $format = '%s_%s_%s.pdf';
+        return $pdf->stream(sprintf($format, $kaizen->id, $kaizen->name, $kaizen->posted_at));
     }
 
     /**

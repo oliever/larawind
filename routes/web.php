@@ -28,6 +28,7 @@ Route::group(['middleware' => ['auth:sanctum', 'verified']], function () {
     Route::get('/kaizen/create', [KaizenController::class, 'create'])->name('kaizen.create');
 
     Route::get('/kaizen/{kaizen}', [KaizenController::class, 'show'])->name('kaizen.show');
+    Route::get('/kaizen/pdf/{kaizen}', [KaizenController::class, 'pdf'])->name('kaizen.pdf');
 
     //Route::view('/', '')->name('home');
     //Route::view('', 'dashboard')->name('dashboard');

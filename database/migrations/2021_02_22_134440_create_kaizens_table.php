@@ -29,6 +29,7 @@ class CreateKaizensTable extends Migration
             $table->longText('expected_result')->nullable();//Just do it
 
             $table->boolean('rapid')->default(false);
+            $table->longText('rapid_problem')->nullable();
             $table->boolean('just_do_it')->default(false);
             $table->boolean('handled_at_location')->default(false);
             $table->boolean('head_office_input')->default(false);

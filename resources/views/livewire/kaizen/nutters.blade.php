@@ -1,18 +1,36 @@
 <div class="container grid px-6 mx-auto" x-data="{isJustDoIt:@entangle('isJustDoIt'), isRapid:@entangle('isRapid'),hasBeforeAfter:@entangle('hasBeforeAfter'), isModalOpen:false}">
-    @if ($kaizen->posted)
-        <h2 class="mt-6 text-2xl font-semibold text-gray-700 dark:text-gray-200">
-            Kaizen Suggestion #{{$kaizen->id}}
-        </h2 >
-        <span class="mb-6 text-gray-700 dark:text-gray-400"">Submitted: {{\Carbon\Carbon::parse($kaizen->posted)->format('F j, Y, g:i a');}}</span>
-    @elseif ($kaizen->id)
-        <h2 class="my-6 text-2xl font-semibold text-gray-700 dark:text-gray-200">
-            Kaizen Suggestion #{{$kaizen->id}} (Draft)
-        </h2>
-    @else
-        <h2 class="my-6 text-2xl font-semibold text-gray-700 dark:text-gray-200">
-            New Kaizen Suggestion
-        </h2>
-    @endif
+    <div class="flex justify-between mb-8">
+        <div>
+            @if ($kaizen->posted)
+                <h2 class="mt-6 text-2xl font-semibold text-gray-700 dark:text-gray-200">
+                    Kaizen Suggestion #{{$kaizen->id}}
+                </h2 >
+                <span class="mb-6 text-gray-700 dark:text-gray-400"">Submitted: {{\Carbon\Carbon::parse($kaizen->posted)->format('F j, Y, g:i a');}}</span>
+            @elseif ($kaizen->id)
+                <h2 class="my-6 text-2xl font-semibold text-gray-700 dark:text-gray-200">
+                    Kaizen Suggestion #{{$kaizen->id}} (Draft)
+                </h2>
+            @else
+                <h2 class="my-6 text-2xl font-semibold text-gray-700 dark:text-gray-200">
+                    New Kaizen Suggestion
+                </h2>
+            @endif
+        </div>
+        <div class="mt-8">
+            @if ($kaizen->posted)
+            <a href="/kaizen/pdf/{{$kaizen->id}}" target="_blank">
+                <button
+                class="flex items-center justify-between px-4 py-2 text-sm font-medium leading-5 text-white transition-colors duration-150 bg-purple-600 border border-transparent rounded-lg active:bg-purple-600 hover:bg-purple-700 focus:outline-none focus:shadow-outline-purple">
+                    <span class="pr-2">Print</span>
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 17h2a2 2 0 002-2v-4a2 2 0 00-2-2H5a2 2 0 00-2 2v4a2 2 0 002 2h2m2 4h6a2 2 0 002-2v-4a2 2 0 00-2-2H9a2 2 0 00-2 2v4a2 2 0 002 2zm8-12V5a2 2 0 00-2-2H9a2 2 0 00-2 2v4h10z" />
+                    </svg>
+                </button>
+            </a>
+            @endif
+        </div>
+    </div>
+
 
 
     @if (session()->has('message'))
@@ -212,20 +230,12 @@
             <h4 class="mb-2 text-lg font-semibold text-gray-600 dark:text-gray-300">
                 Rapid Kaizen
             </h4>
-            <div class="px-4 py-3 mb-8 bg-white rounded-lg shadow-md dark:bg-gray-800"><!--card-->
-                <div class="grid gap-2 mb-6 md:grid-cols-1 xl:grid-cols-2">
-                    <label class="block mt-4 text-sm">
-                        <span class="text-gray-700 dark:text-gray-400">Problem Description:</span>
-                        <textarea class="block w-full mt-1 text-sm dark:text-gray-300 dark:border-gray-600 dark:bg-gray-700 form-textarea focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:focus:shadow-outline-gray"
-                        rows="3" placeholder="Problem Description"></textarea>
-                    </label>
-
-                    <label class="block mt-4 text-sm">
-                        <span class="text-gray-700 dark:text-gray-400">Problem Picture or Sketch (if required):</span>
-                        <textarea class="block w-full mt-1 text-sm dark:text-gray-300 dark:border-gray-600 dark:bg-gray-700 form-textarea focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:focus:shadow-outline-gray"
-                        rows="3" placeholder="Problem"></textarea>
-                    </label>
-                </div>
+            <div class="px-4 py-2 mb-8 bg-white rounded-lg shadow-md dark:bg-gray-800"><!--card-->
+                <label class="block mt-4 mb-6 text-sm">
+                    <span class="text-gray-700 dark:text-gray-400">Problem Description:</span>
+                    <textarea wire:model="kaizen.rapid_problem" class="block w-full mt-1 text-sm dark:text-gray-300 dark:border-gray-600 dark:bg-gray-700 form-textarea focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:focus:shadow-outline-gray"
+                    rows="3" placeholder="Problem Description"></textarea>
+                </label>
 
                 <livewire:kaizen.rapid-causes :kaizen="$kaizen">
                 <livewire:kaizen.rapid-solutions :kaizen="$kaizen">
