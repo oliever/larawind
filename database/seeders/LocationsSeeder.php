@@ -208,6 +208,14 @@ class LocationsSeeder extends Seeder
                 'active'         => true,
                 'created_at'     => Carbon::now()
             ],
+            [
+                'id'             => 999,
+                'team_id'        => 1,
+                'code'           => "999",
+                'name'           => "Head Office",
+                'active'         => true,
+                'created_at'     => Carbon::now()
+            ],
         ];
 
         Location::insert($locations);
