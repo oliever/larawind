@@ -24,7 +24,7 @@ class DatabaseSeeder extends Seeder
             RefAffectedAreasSeeder::class,
             RoleUserTableSeeder::class,
             TeamsTableSeeder::class,
-
+            TeamUserSeeder::class,
         ]);
     }
 }
