@@ -2,6 +2,8 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\KaizenController;
+use App\Http\Controllers\ProjectController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -24,11 +26,16 @@ Route::group(['middleware' => ['auth:sanctum', 'verified']], function () {
 
     Route::get('/', [KaizenController::class, 'index'])->name('dashboard');
     Route::get('/dashboard', [KaizenController::class, 'index'])->name('dashboard');
+
     Route::get('/kaizen/', [KaizenController::class, 'index'])->name('kaizen.index');
     Route::get('/kaizen/create', [KaizenController::class, 'create'])->name('kaizen.create');
-
     Route::get('/kaizen/{kaizen}', [KaizenController::class, 'show'])->name('kaizen.show');
     Route::get('/kaizen/pdf/{kaizen}', [KaizenController::class, 'pdf'])->name('kaizen.pdf');
+
+    Route::get('/project/', [ProjectController::class, 'index'])->name('project.index');
+    Route::get('/project/create', [ProjectController::class, 'create'])->name('project.create');
+    Route::get('/project/{project}', [ProjectController::class, 'show'])->name('project.show');
+    Route::get('/project/pdf/{project}', [ProjectController::class, 'pdf'])->name('project.pdf');
 
     //Route::view('/', '')->name('home');
     //Route::view('', 'dashboard')->name('dashboard');

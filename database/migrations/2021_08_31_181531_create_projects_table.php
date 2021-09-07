@@ -28,14 +28,17 @@ class CreateProjectsTable extends Migration
             $table->foreignId('location_id')->nullable();
             $table->boolean('capex')->default(false);
 
-            $table->decimal('loss',9,4)->nullable();
-            $table->decimal('budget',9,4)->nullable();
-            $table->decimal('hours',2,2)->nullable();
-            $table->decimal('savings',9,4)->nullable();
+            $table->text('affected_areas')->nullable();
+            $table->text('other_affected_area')->nullable();
+
+            $table->decimal('loss',9,2)->nullable();
+            $table->decimal('budget',9,2)->nullable();
+            $table->decimal('hours',9,2)->nullable();
+            $table->decimal('savings',9,2)->nullable();
             $table->dateTime('start', $precision = 0)->nullable();
             $table->dateTime('end', $precision = 0)->nullable();
             $table->text('status')->nullable();
-            $table->decimal('completion',2,2)->default(0);
+            $table->decimal('completion',9,2)->default(0);
 
             $table->longText('metric')->nullable();
             $table->longText('deliverables')->nullable();
@@ -47,9 +50,12 @@ class CreateProjectsTable extends Migration
             $table->boolean('approved_sponsor')->default(false);
             $table->boolean('approved_champion')->default(false);
 
-            $table->decimal('hours_actual',2,2)->nullable();
-            $table->decimal('savings_actual',9,4)->nullable();
+            $table->decimal('hours_actual',9,2)->nullable();
+            $table->text('hours_actual_validated')->nullable();
+            $table->decimal('savings_actual',9,2)->nullable();
+            $table->text('savings_actual_validated')->nullable();
 
+            $table->dateTime('posted', $precision = 0)->nullable();
             $table->softDeletes();
             $table->timestamps();
         });
