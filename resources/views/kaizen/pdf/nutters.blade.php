@@ -1,7 +1,7 @@
 @extends ('layouts.pdf-kaizen')
 <div style="text-align: center;">
 
-	<h1><img width="200" src="photos/_nutters-logo.jpg" alt=""><br>
+	<h1><img width="200" src="/photos/_nutters-logo.jpg" alt=""><br>
         <span>
         @if ($kaizen->rapid)
             Rapid
