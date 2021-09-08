@@ -1,5 +1,9 @@
 
 
+
+    <link rel="stylesheet" type="text/css" media="print" href="{{ asset('css/app.css') }}" />
+    <link rel="stylesheet" type="text/css" media="print" href="{{ asset('css/tailwind.output.css') }}" />
+
 <style>
     body{
         font-family: 'Open Sans', sans-serif;

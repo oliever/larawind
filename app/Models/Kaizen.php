@@ -21,6 +21,10 @@ class Kaizen extends Model //implements HasMedia
                             'location_id'
                           ];
 
+    public function location()
+    {
+        return $this->belongsTo(Location::class);
+    }
 
     public static function last()
     {

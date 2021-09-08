@@ -20,10 +20,10 @@
                         <td><textarea name="rapidSolutions[{{$index}}][who]" id="rapidSolutions[{{$index}}][who]"
                             class="block w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:text-gray-300 dark:focus:shadow-outline-gray form-input"
                             placeholder="Who" wire:model="rapidSolutions.{{$index}}.who" ></textarea></td>
-                        <td><textarea name="rapidSolutions[{{$index}}][when]" id="rapidSolutions[{{$index}}][when]"
+                        <td><input name="rapidSolutions[{{$index}}][when]" id="rapidSolutions[{{$index}}][when]"
                             class="block w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:text-gray-300 dark:focus:shadow-outline-gray form-input"
                             placeholder="When" wire:model="rapidSolutions.{{$index}}.when"
-                            type="date"></textarea></td>
+                            type="date"/></td>
                         <td>
                             <div class="relative ml-4 text-gray-500 focus-within:text-purple-600">
                                 <input type="checkbox" class="text-purple-600 form-checkbox focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:focus:shadow-outline-gray" style="border-color:purple"
