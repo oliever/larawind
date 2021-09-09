@@ -32,4 +32,17 @@
     {
         border-bottom: : solid 1px;
     }
+
+    ul {
+    list-style: none;
+    }
+
+    ul li:before {
+    content: '✓';
+    }
+
+    .section-header{
+        font-size: 10;  background: #000; color: #fff; padding: 5px
+    }
+
     </style>

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Kaizen;
+use App\Models\RefAffectedArea;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\App;
@@ -54,6 +55,7 @@ class KaizenController extends Controller
     public function pdf(Kaizen $kaizen)
     {
         $data['kaizen'] = $kaizen;
+        $data['affectedAreas'] = array_chunk(RefAffectedArea::where(['team_id'=>auth()->user()->currentTeam->id])->get()->toArray(),4);
         $pdf = App::make('dompdf.wrapper');
         $pdf->loadView('kaizen.pdf.nutters', $data);
         $format = '%s_%s_%s.pdf';
