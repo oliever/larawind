@@ -40,13 +40,82 @@
                 @endforeach
             </tr>
         @endforeach
+        @if ($kaizen->other_affected_area)
+            <tr>
+                <td colspan="4">
+                    Other: {{$kaizen->other_affected_area}}
+                </td>
+            </tr>
+        @endif
         <tr>
-            <td colspan="2" class="section-header">Reason For kaizen</td>
-            <td colspan="2" class="section-header">Problem</td>
+            <td colspan="2" class="input-header">Reason For kaizen</td>
+            <td colspan="2" class="input-header">Problem</td>
         </tr>
         <tr>
             <td  colspan="2">{{$kaizen->reason}}</td><td  colspan="2">{{$kaizen->problem}}</td>
         </tr>
+        <tr>
+            <td colspan="2" class="input-header">Causes</td>
+            <td colspan="2" class="input-header">Solution</td>
+        </tr>
+        <tr>
+            <td  colspan="2">{{$kaizen->causes}}</td><td  colspan="2">{{$kaizen->solution}}</td>
+        </tr>
+        <tr>
+            <td colspan="4" class="input-header">Result</td>
+        </tr>
+        <tr>
+            <td  colspan="4">{{$kaizen->expected_result}}</td>
+        </tr>
+        <tr> <td colspan="4" class="section-header">PHOTOS</td></tr>
+
+        @foreach($photos as $photo)
+        <tr>
+            @foreach($photo as $photoInner)
+            <td colspan="2">
+                <img style="width: 300px; padding: 10 15" class="mt-4" src="photos/{{ $photoInner['filename'] }}">
+            </td>
+            @endforeach
+        </tr>
+        @endforeach
+
+        @if ($kaizen->before_after)
+            <tr> <td colspan="4" class="section-header">BEFORE AND AFTER REPORT</td></tr>
+            <tr>
+                <td colspan="2" class="input-header">Before Photos</td>
+                <td colspan="2" class="input-header">After Photos</td>
+            </tr>
+            <tr>
+                <td colspan="2">
+                    <table>
+                        <tr>
+                            @foreach($before_photos as $photo)
+                            <td colspan="2" style="text-align: center">
+                                <img style="width: 300px; padding: 10px" class="mt-4" src="photos/{{ $photo['filename'] }}">
+                            </td>
+                            @endforeach
+                        </tr>
+                    </table>
+                </td>
+                <td colspan="2">
+                    <table>
+                        <tr>
+                            @foreach($after_photos as $photo)
+                            <td colspan="2" style="text-align: center">
+                                <img style="width: 300px; padding: 10px" class="mt-4" src="photos/{{ $photo['filename'] }}">
+                            </td>
+                            @endforeach
+                        </tr>
+                    </table>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="4" class="input-header">Benefits</td>
+            </tr>
+            <tr>
+                <td  colspan="4">{{$kaizen->benefits}}</td>
+            </tr>
+        @endif
     </table>
 
 </div>

@@ -26,7 +26,7 @@
     table
     {
         width: 100%;
-        border: solid 1px;
+
     }
     td
     {
@@ -42,7 +42,10 @@
     }
 
     .section-header{
-        font-size: 10;  background: #000; color: #fff; padding: 5px
+        font-size: 10;  background: #000; color: #fff; padding: 5px; text-align: center;
+    }
+    .input-header{
+        font-size: 10;  background: #000; color: #fff; padding: 5px;
     }
 
     </style>

@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\Kaizen;
 use App\Models\RefAffectedArea;
+use App\Models\Photo;
+
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\App;
@@ -56,6 +58,18 @@ class KaizenController extends Controller
     {
         $data['kaizen'] = $kaizen;
         $data['affectedAreas'] = array_chunk(RefAffectedArea::where(['team_id'=>auth()->user()->currentTeam->id])->get()->toArray(),4);
+        foreach(Photo::where(['type'=>'main', 'model'=>get_class(new Kaizen()), 'model_id'=>$kaizen->id])->get() as $savedPhoto){
+            $data['photos'][$savedPhoto->id] = $savedPhoto;
+        }
+        $data['photos'] = array_chunk($data['photos'], 2);
+
+        foreach(Photo::where(['type'=>'before', 'model'=>get_class(new Kaizen()), 'model_id'=>$kaizen->id])->get() as $savedPhoto){
+            $data['before_photos'][$savedPhoto->id] = $savedPhoto;
+        }
+        foreach(Photo::where(['type'=>'after', 'model'=>get_class(new Kaizen()), 'model_id'=>$kaizen->id])->get() as $savedPhoto){
+            $data['after_photos'][$savedPhoto->id] = $savedPhoto;
+        }
+
         $pdf = App::make('dompdf.wrapper');
         $pdf->loadView('kaizen.pdf.nutters', $data);
         $format = '%s_%s_%s.pdf';
