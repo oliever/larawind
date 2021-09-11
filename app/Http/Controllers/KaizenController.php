@@ -59,7 +59,7 @@ class KaizenController extends Controller
         $data['kaizen'] = $kaizen;
         $data['affectedAreas'] = array_chunk(RefAffectedArea::where(['team_id'=>auth()->user()->currentTeam->id])->get()->toArray(),4);
         $data['selectedAffectedAreas'] = array_fill_keys(explode(",", $kaizen->affected_areas),'checked');
-        info($data['selectedAffectedAreas']);
+
         foreach(Photo::where(['type'=>'main', 'model'=>get_class(new Kaizen()), 'model_id'=>$kaizen->id])->get() as $savedPhoto){
             $data['photos'][$savedPhoto->id] = $savedPhoto;
         }

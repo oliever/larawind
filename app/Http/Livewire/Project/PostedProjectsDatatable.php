@@ -29,26 +29,13 @@ class PostedProjectsDatatable extends LivewireDatatable
     {
         return [
             NumberColumn::name('id')
-            ->linkTo('kaizen')
+            ->linkTo('project')
             ->label('ID'),
 
-            Column::name('name')
+            Column::name('description')
             ->searchable(),
 
-            BooleanColumn::name('just_do_it')
-            ->label('Just Do It'),
 
-            BooleanColumn::name('rapid')
-            ->label('Rapid Kaizen'),
-
-            BooleanColumn::name('head_office_input')
-            ->label('Head Office Input'),
-
-            BooleanColumn::name('handled_at_location')
-            ->label('Handle At Branch'),
-
-            BooleanColumn::name('before_after')
-            ->label('Before and AFter Report'),
 
             DateColumn::raw('posted')
                 ->label('Posted')
