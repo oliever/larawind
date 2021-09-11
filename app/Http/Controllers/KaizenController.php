@@ -58,6 +58,8 @@ class KaizenController extends Controller
     {
         $data['kaizen'] = $kaizen;
         $data['affectedAreas'] = array_chunk(RefAffectedArea::where(['team_id'=>auth()->user()->currentTeam->id])->get()->toArray(),4);
+        $data['selectedAffectedAreas'] = array_fill_keys(explode(",", $kaizen->affected_areas),'checked');
+        info($data['selectedAffectedAreas']);
         foreach(Photo::where(['type'=>'main', 'model'=>get_class(new Kaizen()), 'model_id'=>$kaizen->id])->get() as $savedPhoto){
             $data['photos'][$savedPhoto->id] = $savedPhoto;
         }
@@ -70,7 +72,6 @@ class KaizenController extends Controller
             $data['after_photos'][$savedPhoto->id] = $savedPhoto;
         }
 
-        \PDF::setOptions(['dpi' => 150, 'defaultFont' => 'sans-serif', 'isRemoteEnabledx' => true]);
         $pdf = App::make('dompdf.wrapper');
         $pdf->loadView('kaizen.pdf.nutters', $data);
         $format = '%s_%s_%s.pdf';

@@ -31,11 +31,7 @@
                 @foreach($affectedArea as $affectedAreaInner)
                 <td style="width: 25%">
                     <span>
-                        <input style="vertical-align: middle" type="checkbox"
-                        @isset($selectedAffectedAreas[$affectedAreaInner['id']])
-                        checked
-                        @endisset
-                        />
+                        <input style="vertical-align: middle" type="checkbox" checked/>
                         <span style="vertical-align: middle">
                             {{ $affectedAreaInner['name']}}
                         </span>
@@ -46,8 +42,8 @@
         @endforeach
         @if ($kaizen->other_affected_area)
             <tr>
-                <td colspan="4" style="padding-bottom: 20px;">
-                    <i>Other:</i>  {{$kaizen->other_affected_area}}
+                <td colspan="4">
+                    Other: {{$kaizen->other_affected_area}}
                 </td>
             </tr>
         @endif
@@ -69,9 +65,9 @@
             <td colspan="4" class="input-header">Result</td>
         </tr>
         <tr>
-            <td  colspan="4" style="padding-bottom: 20px;">{{$kaizen->expected_result}}</td>
+            <td  colspan="4">{{$kaizen->expected_result}}</td>
         </tr>
-        <tr> <td colspan="4" class="section-header"  >PHOTOS</td></tr>
+        <tr> <td colspan="4" class="section-header">PHOTOS</td></tr>
 
         @foreach($photos as $photo)
         <tr>
