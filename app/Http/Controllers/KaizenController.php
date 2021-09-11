@@ -70,7 +70,7 @@ class KaizenController extends Controller
             $data['after_photos'][$savedPhoto->id] = $savedPhoto;
         }
 
-        \PDF::setOptions(['dpi' => 150, 'defaultFont' => 'sans-serif', 'isRemoteEnabled' => true]);
+        \PDF::setOptions(['dpi' => 150, 'defaultFont' => 'sans-serif', 'isRemoteEnabledx' => true]);
         $pdf = App::make('dompdf.wrapper');
         $pdf->loadView('kaizen.pdf.nutters', $data);
         $format = '%s_%s_%s.pdf';
