@@ -39,6 +39,12 @@ class TeamUserSeeder extends Seeder
                 'user_id'        => 4,
                 'role'           => 4,
             ],
+            [
+                'id'             => 5,
+                'team_id'        => 1,
+                'user_id'        => 5,
+                'role'           => 1,
+            ],
         ];
 
         TeamUser::insert($teamUsers);
