@@ -7,6 +7,7 @@ use App\Models\User;
 
 class SearchUserDropdown extends Component
 {
+    protected $listeners = ['userSelected'];
 
     public $search = '';
 
@@ -25,6 +26,11 @@ class SearchUserDropdown extends Component
         return view('livewire.search-user-dropdown', [
             'searchResults' => collect($searchResults )->take(7),
         ]);
+    }
+
+    public function userSelected($userId)
+    {
+        $this->search = '';//Clear search textbox
     }
 
 }

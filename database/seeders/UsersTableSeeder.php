@@ -40,7 +40,7 @@ class UsersTableSeeder extends Seeder
             ],
             [
                 'id'             => 5,
-                'name'           => 'User',
+                'name'           => 'Paul Odgen',
                 'email'          => 'pogden@nutters.com',
                 'password'       => bcrypt('password'),
                 'remember_token' => null,
