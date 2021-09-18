@@ -5,6 +5,7 @@ namespace App\Http\Livewire\Kaizen;
 use Livewire\Component;
 use App\Models\Kaizen;
 use App\Models\Location;
+use App\Models\User;
 use App\Models\RefAffectedArea;
 use DateTime;
 use Carbon\Carbon;
@@ -19,10 +20,11 @@ class Nutters extends Component
     public $isJustDoIt = true;
     public $hasBeforeAfter = false;
     public $selectedAfftectedAreas = [];
-
-    public $isModalOpen = false;
-
     public $shown = false;
+
+    public $isSearchUserModalOpen = false;
+    public $selectedUsers = [];
+    protected $listeners = ['userSelected'];
 
     protected $rules = [
         'kaizen.name' => 'required|min:5',
@@ -33,6 +35,7 @@ class Nutters extends Component
         'kaizen.rapid' => '',
         'kaizen.just_do_it' => '',
         'kaizen.head_office_input' => '',
+        'kaizen.head_office_comment' => '',
         'kaizen.causes' => '',
         'kaizen.handled_at_location' => '',
         'kaizen.solution' => '',
@@ -41,6 +44,19 @@ class Nutters extends Component
         'kaizen.rapid_problem' => '',
 
     ];
+
+    public function userSelected($userId)
+    {
+        info('adding user ' . $userId);
+        $this->selectedUsers[] = User::where(['id' => $userId])->first() ;
+        $this->isSearchUserModalOpen = false;
+    }
+
+    public function removeSelectedUser($index)
+    {
+        info('removing user: index ' . $index);
+        unset($this->selectedUsers[$index]);
+    }
 
     public function mount(Kaizen $kaizen = null)
     {
@@ -67,13 +83,20 @@ class Nutters extends Component
                 //replace keys (index) with values from db
                 $this->selectedAfftectedAreas[$value] = $value;
             }
+            foreach(explode(",", $kaizen->members) as $key=>$value){
+                //replace keys (index) with values from db
+                $this->selectedUsers[] = User::where(['id' => $value])->first() ;
+            }
         }
     }
 
-    public function openModal(){
-        info($this->isModalOpen);
-        $this->isModalOpen = true;
-        info($this->isModalOpen);
+    public function openSearchUserModal(){
+
+        $this->isSearchUserModalOpen = true;
+    }
+
+    public function closeSearchUserModal(){
+        $this->isSearchUserModalOpen = false;
     }
 
     public function saveAsDraft(){
@@ -90,6 +113,10 @@ class Nutters extends Component
         $this->kaizen->just_do_it = $this->isJustDoIt;
         $this->kaizen->team_id = auth()->user()->currentTeam->id;
         $this->kaizen->user_id =  auth()->user()->id;
+        $this->kaizen->members = implode(', ', array_map(function ($entry) {
+            return $entry['id'];
+          }, $this->selectedUsers));
+
         $this->kaizen->head_office_input = $this->kaizen->head_office_input ? true : false;
         $this->kaizen->handled_at_location = $this->kaizen->handled_at_location ? true : false;
         $this->kaizen->before_after = $this->hasBeforeAfter;
@@ -126,6 +153,8 @@ class Nutters extends Component
     {
         $this->stores = $this->getStores();
         $this->affectedAreas = $this->getAffectedAreas();
+
+
         return view('livewire.kaizen.nutters');
     }
 
@@ -136,67 +165,6 @@ class Nutters extends Component
 
     private function getAffectedAreas(){
         return RefAffectedArea::where(['team_id'=>auth()->user()->currentTeam->id])->get();
-       /*  return array(
-            '0' => (object) array(
-                'key' => 'people',
-                'value' => 'People'
-             ),
-             '1' => (object) array(
-                'key' => 'warehouse',
-                'value' => 'Warehouse'
-             ),
-             '2' => (object) array(
-                'key' => 'head_office',
-                'value' => 'Head Office'
-             ),
-             '3' => (object) array(
-                'key' => 'safety',
-                'value' => 'Safety'
-             ),
-             '4' => (object) array(
-                'key' => 'inventory',
-                'value' => 'Inventory'
-             ),
-             '5' => (object) array(
-                'key' => 'receiving',
-                'value' => 'Receiving'
-             ),
-             '6' => (object) array(
-                'key' => 'cost_buying',
-                'value' => 'Cost/buying'
-             ),
-             '7' => (object) array(
-                'key' => 'margin',
-                'value' => 'Margin'
-             ),
-             '8' => (object) array(
-                'key' => 'all_stores',
-                'value' => 'All Stores'
-             ),
-             '9' => (object) array(
-                'key' => 'policy_procedure',
-                'value' => 'Policy/Procedure'
-             ),
-             '10' => (object) array(
-                'key' => 'pricing',
-                'value' => 'Pricing'
-             ),
-             '11' => (object) array(
-                'key' => 'technology',
-                'value' => 'Technology'
-             ),
-             '12' => (object) array(
-                'key' => 'order',
-                'value' => 'Order'
-             ),
-             '13' => (object) array(
-                'key' => 'cost',
-                'value' => 'Cost'
-             ),
-             '14' => (object) array(
-                'key' => 'other',
-                'value' => 'Other'
-             ),
-        ); */
+
     }
 }

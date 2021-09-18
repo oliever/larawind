@@ -1,4 +1,4 @@
-<div class="container grid px-6 mx-auto" x-data="{isJustDoIt:@entangle('isJustDoIt'), isRapid:@entangle('isRapid'),hasBeforeAfter:@entangle('hasBeforeAfter'), isModalOpen:false}">
+<div class="container grid px-6 mx-auto" x-data="{isJustDoIt:@entangle('isJustDoIt'), isRapid:@entangle('isRapid'),hasBeforeAfter:@entangle('hasBeforeAfter'),isHeadOfficeInput: @entangle('kaizen.head_office_input'), isSearchUserModalOpen:  @entangle('isSearchUserModalOpen'), selectedUsers:  @entangle('selectedUsers')}">
     <div class="flex justify-between mb-8">
         <div>
             @if ($kaizen->posted)
@@ -43,7 +43,7 @@
                 <div class="gap-2 mb-2 col-span-2">
                     <label class="block text-sm">
                         <span class="text-gray-700 dark:text-gray-400">Name</span>
-                        <input class="required block w-full mt-1 text-xl dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:text-gray-300 dark:focus:shadow-outline-gray form-input"
+                        <input class="required block w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:text-gray-300 dark:focus:shadow-outline-gray form-input"
                             wire:model="kaizen.name"
                             name="kaizen.name"
                             placeholder="Name" />
@@ -55,20 +55,6 @@
 
                 <div class="grid gap-2 mb-2 md:grid-cols-1 xl:grid-cols-1">
 
-                    {{-- <label class="block text-sm">
-                        <span class="text-gray-700 dark:text-gray-400">Date</span>
-                        <!-- focus-within sets the color for the icon when input is focused -->
-                        <div class="relative text-gray-500 focus-within:text-purple-600 dark:focus-within:text-purple-400">
-                            <input
-                            id="date" name="date" type="date"
-                            name="kaizen.date"
-                            defaulDate="minDate:Today" class="block w-full pr-10 mt-1 text-sm text-black dark:text-gray-300 dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:focus:shadow-outline-gray form-input" placeholder="Date" />
-
-                        </div>
-                    </label>
-                    @error('kaizen.date')
-                        <p class="text-sm text-red-600">{{ $message }}</p>
-                    @enderror --}}
 
                     <label class="block text-sm">
                         <span class="text-gray-700 dark:text-gray-400">
@@ -91,17 +77,36 @@
 
                 </div>
             </div>
-            <div class="grid gap-2 mb-2 md:grid-cols-2 xl:grid-cols-4">
-                {{-- <label class="inline-flex items-center text-gray-600 dark:text-gray-400">
-                    <input type="radio" class="text-purple-600 form-radio focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:focus:shadow-outline-gray"
-                            name="kaizenType" value="justDoIt" />
-                    <span class="ml-2">Just Do It Kaizen</span>
+
+            <div class="mt-3 grid gap-2 mb-2 md:grid-cols-1 xl:grid-cols-2">
+                <label class="block text-sm">
+                    <span class="text-gray-700 dark:text-gray-400">Team Members
+                        </span><button wire:click.prevent="openSearchUserModal" class=" px-1 text-xs text-white transition-colors duration-150 bg-green-700 border border-transparent rounded-md active:bg-green-700 hover:bg-green-800 focus:outline-none focus:shadow-outline-green">
+                            +
+                        </button>
+                    {{-- <input class="required block w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:text-gray-300 dark:focus:shadow-outline-gray form-input"
+                        wire:model="kaizen.name"
+                        name="kaizen.name"
+                        placeholder="Team Members" /> --}}
+                        <div class="block ">
+                            @foreach($selectedUsers as $index => $selectedUser)
+                            <span class="mt-4 text-gray-700 dark:text-gray-400 text-xl align-middle">{{$selectedUser['name']}}
+
+                                </span>
+                                <button wire:click.prevent="removeSelectedUser({{$index}})" class="mr-3 px-1 text-xs text-white transition-colors duration-150 bg-red-700 border border-transparent rounded-md active:bg-red-700 hover:bg-red-800 focus:outline-none focus:shadow-outline-red">
+                                    X
+                                </button>
+                            @endforeach
+
+                        </div>
+
                 </label>
-                <label class="inline-flex items-center ml-6 text-gray-600 dark:text-gray-400">
-                    <input @click="isRapid=!isRapid" type="radio" class="text-purple-600 form-radio focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:focus:shadow-outline-gray"
-                    name="kaizenType" value="rapid" />
-                    <span class="ml-2">Rapid Kaizen</span>
-                </label> --}}
+                @error('kaizen.name')
+                    <p class="text-sm text-red-600">{{ $message }}</p>
+                @enderror
+            </div>
+
+            <div class="grid gap-2 mb-2 md:grid-cols-2 xl:grid-cols-4">
 
 
                 <div class="flex mt-2 text-sm">
@@ -143,6 +148,8 @@
                     </label>
                 </div>
             </div>
+
+
         </div>
 
         <h4 class="mb-2 text-lg font-semibold text-gray-600 dark:text-gray-300">
@@ -174,6 +181,16 @@
             </div>
 
         </div><!--Affected Aread-->
+
+        <div x-show="isHeadOfficeInput" x-transition:enter="transition ease-out duration-500" x-transition:enter-start="opacity-0 transform scale-90" x-transition:enter-end="opacity-100 transform scale-100" x-transition:leave="transition ease-in duration-200" x-transition:leave-start="opacity-100 transform scale-100" x-transition:leave-end="opacity-0 transform scale-90">
+            <div class="px-4 py-3 mb-8 bg-white rounded-lg shadow-md dark:bg-gray-800"><!--card-->
+                <label class="block mt-4 text-sm">
+                    <span class="text-gray-700 dark:text-gray-400"> Head Office Comment:</span>
+                    <textarea wire:model="kaizen.head_office_comment" class="block w-full mt-1 text-sm dark:text-gray-300 dark:border-gray-600 dark:bg-gray-700 form-textarea focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:focus:shadow-outline-gray"
+                    rows="3" placeholder=" Head Office Comment"></textarea>
+                </label>
+            </div>
+        </div>
 
         <div x-show="isJustDoIt" x-transition:enter="transition ease-out duration-500" x-transition:enter-start="opacity-0 transform scale-90" x-transition:enter-end="opacity-100 transform scale-100" x-transition:leave="transition ease-in duration-200" x-transition:leave-start="opacity-100 transform scale-100" x-transition:leave-end="opacity-0 transform scale-90">
             <div class="px-4 py-3 mb-8 bg-white rounded-lg shadow-md dark:bg-gray-800"><!--card-->
@@ -319,27 +336,44 @@
 
     </form>
 
-    {{-- <div>
-        <button @click="isModalOpen=true" class="px-4 py-2 text-sm font-medium leading-5 text-white transition-colors duration-150 bg-purple-600 border border-transparent rounded-lg active:bg-purple-600 hover:bg-purple-700 focus:outline-none focus:shadow-outline-purple">
-            Open Modal
-        </button>
-    </div> --}}
+    <div x-show="isSearchUserModalOpen" x-transition:enter="transition ease-out duration-150" x-transition:enter-start="opacity-0" x-transition:enter-end="opacity-100" x-transition:leave="transition ease-in duration-150" x-transition:leave-start="opacity-100" x-transition:leave-end="opacity-0" class="fixed inset-0 z-30 flex items-end bg-black bg-opacity-50 sm:items-center sm:justify-center">
+        <!-- Modal -->
+        <div  x-transition:enter="transition ease-out duration-150" x-transition:enter-start="opacity-0 transform translate-y-1/2" x-transition:enter-end="opacity-100" x-transition:leave="transition ease-in duration-150" x-transition:leave-start="opacity-100" x-transition:leave-end="opacity-0  transform translate-y-1/2"  wire:keydown.escape="closeSearchUserModal" class="w-full px-6 py-4  bg-white rounded-t-lg dark:bg-gray-800 sm:rounded-lg sm:m-4 sm:max-w-xl" role="dialog" id="modal">
+            <!-- Remove header if you don't want a close icon. Use modal body to place modal tile. -->
+            <header class="flex justify-end">
+                <button class="inline-flex items-center justify-center w-6 h-6 text-gray-400 transition-colors duration-150 rounded dark:hover:text-gray-200 hover: hover:text-gray-700" aria-label="close" wire:click="closeSearchUserModal">
+                    <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20" role="img" aria-hidden="true">
+                        <path d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd" fill-rule="evenodd"></path>
+                    </svg>
+                </button>
+            </header>
+            <!-- Modal body -->
+            <div class="mt-4 mb-6">
+                <!-- Modal title -->
+                <p class="mb-2 text-lg font-semibold text-gray-700 dark:text-gray-300">
+                    Search Team Member
+                </p>
+                <!-- Modal description -->
+                <p class="text-sm text-gray-700 dark:text-gray-400">
+                    {{-- <input class="required block w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:text-gray-300 dark:focus:shadow-outline-gray form-input"
+                    wire:model="userSearch"
+                    name="userSearch"
+                    placeholder="Team Members" /> --}}
 
+                    {{-- @livewire('search-user-dropdown') --}}
+                    <livewire:search-user-dropdown :selectedUsers="$selectedUsers">
+                </p>
+            </div>
+            <footer class="flex flex-col items-center justify-end px-6 py-3 -mx-6 -mb-4 space-y-4 sm:space-y-0 sm:space-x-6 sm:flex-row bg-gray-50 dark:bg-gray-800">
+                <button wire:click="closeSearchUserModal" class="w-full px-5 py-3 text-sm font-medium leading-5 text-white text-gray-700 transition-colors duration-150 border border-gray-300 rounded-lg dark:text-gray-400 sm:px-4 sm:py-2 sm:w-auto active:bg-transparent hover:border-gray-500 focus:border-gray-500 active:text-gray-500 focus:outline-none focus:shadow-outline-gray">
+                    Cancel
+                </button>
 
+            </footer>
+        </div>
+    </div>
 </div>
 
-
-
-
-
-
-    {{-- <input type="text" wire:model="name">
-    @error('name') <span class="error">{{ $message }}</span> @enderror
-
-    <input type="text" wire:model="email">
-    @error('email') <span class="error">{{ $message }}</span> @enderror
-
-    <button type="submit">Save Contact</button> --}}
 
 
 @section('scripts')

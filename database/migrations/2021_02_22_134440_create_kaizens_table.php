@@ -20,21 +20,23 @@ class CreateKaizensTable extends Migration
             $table->foreignId('team_id')->index();
 
             $table->foreignId('location_id');
+            $table->text('members')->nullable();
             $table->integer('completed')->nullable();
-
-            $table->longText('reason')->nullable();//Just do it
-            $table->longText('problem')->nullable();//Just do it
-            $table->longText('causes')->nullable();//Just do it
-            $table->longText('solution')->nullable();//Just do it
-            $table->longText('expected_result')->nullable();//Just do it
 
             $table->boolean('rapid')->default(false);
             $table->longText('rapid_problem')->nullable();
             $table->boolean('just_do_it')->default(false);
             $table->boolean('handled_at_location')->default(false);
             $table->boolean('head_office_input')->default(false);
+            $table->longText('head_office_comment')->nullable();
             $table->text('affected_areas')->nullable();
             $table->text('other_affected_area')->nullable();
+
+            $table->longText('reason')->nullable();//Just do it
+            $table->longText('problem')->nullable();//Just do it
+            $table->longText('causes')->nullable();//Just do it
+            $table->longText('solution')->nullable();//Just do it
+            $table->longText('expected_result')->nullable();//Just do it
 
             $table->dateTime('posted', $precision = 0)->nullable();
 
