@@ -23,13 +23,13 @@
 
     @if (strlen($search) >= 2)
         <div
-            class="z-50 absolute bg-gray-800 text-sm rounded w-64"
+            class="z-50 absolute bg-gray-800 text-sm rounded w-64 mt-1"
             x-show.transition.opacity="isOpen"
         >
             @if ($searchResults->count() > 0)
                 <ul class="bg-white dark:bg-gray-600">
                     @foreach ($searchResults as $result)
-                        <li class="border-b border-gray-200 text-gray-700 dark:text-gray-300">
+                        <li class="border-b border-gray-200 dark:border-gray-600 text-gray-700 dark:text-gray-300">
                             <a wire:click="$emit('userSelected', {{ $result['id'] }})"
                                 href="#" class="block hover:bg-gray-100 dark:hover:bg-gray-700 px-3 py-3 items-center transition ease-in-out duration-150"
                                 @if ($loop->last) @keydown.tab="isOpen = false" @endif

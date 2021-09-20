@@ -7,7 +7,7 @@ use App\Models\User;
 
 class SearchUserDropdown extends Component
 {
-    protected $listeners = ['userSelected'];
+    protected $listeners = ['userSelected','searchUserModalClosed'];
 
     public $search = '';
 
@@ -29,6 +29,10 @@ class SearchUserDropdown extends Component
     }
 
     public function userSelected($userId)
+    {
+        $this->search = '';//Clear search textbox
+    }
+    public function searchUserModalClosed()
     {
         $this->search = '';//Clear search textbox
     }

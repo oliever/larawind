@@ -32,6 +32,7 @@ class Nutters extends Component
         'kaizen.other_affected_area' => '',
         'kaizen.reason' => '',
         'kaizen.problem' => '',
+        'kaizen.completed' => '',
         'kaizen.rapid' => '',
         'kaizen.just_do_it' => '',
         'kaizen.head_office_input' => '',
@@ -42,6 +43,9 @@ class Nutters extends Component
         'kaizen.expected_result' => '',
         'kaizen.benefits' => '',
         'kaizen.rapid_problem' => '',
+
+        'kaizen.validating_user_id' => '',
+        'kaizen.approving_user_id' => '',
 
     ];
 
@@ -87,6 +91,8 @@ class Nutters extends Component
                 //replace keys (index) with values from db
                 $this->selectedUsers[] = User::where(['id' => $value])->first() ;
             }
+
+            info( $this->selectedUsers);
         }
     }
 
@@ -97,6 +103,7 @@ class Nutters extends Component
 
     public function closeSearchUserModal(){
         $this->isSearchUserModalOpen = false;
+        $this->emit('searchUserModalClosed');//to display action message
     }
 
     public function saveAsDraft(){
@@ -114,7 +121,8 @@ class Nutters extends Component
         $this->kaizen->team_id = auth()->user()->currentTeam->id;
         $this->kaizen->user_id =  auth()->user()->id;
         $this->kaizen->members = implode(', ', array_map(function ($entry) {
-            return $entry['id'];
+            if($entry)
+                return $entry['id'];
           }, $this->selectedUsers));
 
         $this->kaizen->head_office_input = $this->kaizen->head_office_input ? true : false;
@@ -167,4 +175,5 @@ class Nutters extends Component
         return RefAffectedArea::where(['team_id'=>auth()->user()->currentTeam->id])->get();
 
     }
+
 }

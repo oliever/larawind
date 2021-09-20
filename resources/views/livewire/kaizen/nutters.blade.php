@@ -54,8 +54,6 @@
                 </div>
 
                 <div class="grid gap-2 mb-2 md:grid-cols-1 xl:grid-cols-1">
-
-
                     <label class="block text-sm">
                         <span class="text-gray-700 dark:text-gray-400">
                             Store Name
@@ -78,24 +76,23 @@
                 </div>
             </div>
 
-            <div class="mt-3 grid gap-2 mb-2 md:grid-cols-1 xl:grid-cols-2">
-                <label class="block text-sm">
+            <div class="grid gap-2 mb- md:grid-cols-1 xl:grid-cols-3">
+                <label class="block text-sm col-span-2">
                     <span class="text-gray-700 dark:text-gray-400">Team Members
                         </span><button wire:click.prevent="openSearchUserModal" class=" px-1 text-xs text-white transition-colors duration-150 bg-green-700 border border-transparent rounded-md active:bg-green-700 hover:bg-green-800 focus:outline-none focus:shadow-outline-green">
                             +
                         </button>
-                    {{-- <input class="required block w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:text-gray-300 dark:focus:shadow-outline-gray form-input"
-                        wire:model="kaizen.name"
-                        name="kaizen.name"
-                        placeholder="Team Members" /> --}}
                         <div class="block ">
                             @foreach($selectedUsers as $index => $selectedUser)
-                            <span class="mt-4 text-gray-700 dark:text-gray-400 text-xl align-middle">{{$selectedUser['name']}}
+                                @if ($index)
+                                    <span class="mt-4 text-gray-700 dark:text-gray-400 text-xl align-middle">{{$selectedUser['name']}}
 
-                                </span>
-                                <button wire:click.prevent="removeSelectedUser({{$index}})" class="mr-3 px-1 text-xs text-white transition-colors duration-150 bg-red-700 border border-transparent rounded-md active:bg-red-700 hover:bg-red-800 focus:outline-none focus:shadow-outline-red">
-                                    X
-                                </button>
+                                    </span>
+                                    <button wire:click.prevent="removeSelectedUser({{$index}})" class="mr-3 px-1 text-xs text-white transition-colors duration-150 bg-red-700 border border-transparent rounded-md active:bg-red-700 hover:bg-red-800 focus:outline-none focus:shadow-outline-red">
+                                        X
+                                    </button>
+                            @endif
+
                             @endforeach
 
                         </div>
@@ -104,6 +101,28 @@
                 @error('kaizen.name')
                     <p class="text-sm text-red-600">{{ $message }}</p>
                 @enderror
+
+                <label class="block text-sm">
+                    <span class="text-gray-700 dark:text-gray-400">
+                        Completion
+                    </span>
+                    <select
+                    wire:model="kaizen.completed"
+                    id="kaizen.completed"
+                    class="block w-full mt-1 text-sm dark:text-gray-300 dark:border-gray-600 dark:bg-gray-700 form-select focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:focus:shadow-outline-gray">
+                        <option value="0">0%</option>
+                        <option value="15">15%</option>
+                        <option value="30">30%</option>
+                        <option value="45">45%</option>
+                        <option value="60">60%</option>
+                        <option value="75">75%</option>
+                        <option value="90">90%</option>
+                        <option value="100">100%</option>
+                    </select>
+                    @error('kaizen.completed')
+                        <p class="text-sm text-red-600">{{ $message }}</p>
+                    @enderror
+                </label>
             </div>
 
             <div class="grid gap-2 mb-2 md:grid-cols-2 xl:grid-cols-4">
@@ -169,7 +188,7 @@
                         </label>
                     </div>
                 @endforeach
-                <div class="flex mt-2 text-sm">
+                <div class="flex mt-2 text-sm col-span-3">
                     <label class="flex pr-2 items-center dark:text-gray-400">
                         Other
                     </label>
@@ -302,7 +321,39 @@
                     <textarea wire:model="kaizen.benefits" class="block w-full mt-1 text-sm dark:text-gray-300 dark:border-gray-600 dark:bg-gray-700 form-textarea focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:focus:shadow-outline-gray"
                     rows="3" placeholder="Quality/Cost/Efficiency/Delivery/Waste/Safety/Energy/Moral/Other"></textarea>
                 </label>
+
+                <div class="grid gap-6 mt-4 mb-8 md:grid-cols-1 xl:grid-cols-2">
+                    <div>
+                        <span class="text-gray-700 dark:text-gray-400">
+                            Person Validating
+                        </span>
+                        <select
+                        wire:model="kaizen.validating_user_id"
+                        id="kaizen.validating_user_id"
+                        class="block w-full mt-1 text-sm dark:text-gray-300 dark:border-gray-600 dark:bg-gray-700 form-select focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:focus:shadow-outline-gray">
+                            <option></option>
+                            @foreach(auth()->user()->currentTeam->allUsers() as $user)
+                                <option value="{{ $user->id }}">{{ $user->name }}</option>
+                            @endforeach
+                        </select>
+                    </div>
+                    <div>
+                        <span class="text-gray-700 dark:text-gray-400">
+                            Person Approving
+                        </span>
+                        <select
+                        wire:model="kaizen.approving_user_id"
+                        id="kaizen.approving_user_id"
+                        class="block w-full mt-1 text-sm dark:text-gray-300 dark:border-gray-600 dark:bg-gray-700 form-select focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:focus:shadow-outline-gray">
+                            <option></option>
+                            @foreach(auth()->user()->currentTeam->allUsers() as $user)
+                                <option value="{{ $user->id }}">{{ $user->name }}</option>
+                            @endforeach
+                        </select>
+                    </div>
+                </div>
             </div>
+
 
 
         </div>
@@ -355,12 +406,6 @@
                 </p>
                 <!-- Modal description -->
                 <p class="text-sm text-gray-700 dark:text-gray-400">
-                    {{-- <input class="required block w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:text-gray-300 dark:focus:shadow-outline-gray form-input"
-                    wire:model="userSearch"
-                    name="userSearch"
-                    placeholder="Team Members" /> --}}
-
-                    {{-- @livewire('search-user-dropdown') --}}
                     <livewire:search-user-dropdown :selectedUsers="$selectedUsers">
                 </p>
             </div>
