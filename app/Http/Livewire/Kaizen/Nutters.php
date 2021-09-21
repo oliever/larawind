@@ -58,6 +58,7 @@ class Nutters extends Component
     {
         info('adding user ' . $userId);
         $this->selectedUsers[] = User::where(['id' => $userId])->first() ;
+
         $this->isSearchUserModalOpen = false;
     }
 
@@ -83,6 +84,8 @@ class Nutters extends Component
             $this->kaizen->head_office_input = false;
             $this->kaizen->handled_at_location = false;
             $this->hasBeforeAfter = false;
+
+            $this->selectedUsers[] =  new User();
         }
         else{
             $this->isJustDoIt = $this->kaizen->just_do_it;
@@ -127,7 +130,8 @@ class Nutters extends Component
         $this->kaizen->user_id =  auth()->user()->id;
         $this->kaizen->members = implode(', ', array_map(function ($entry) {
             if($entry)
-                return $entry['id'];
+                if(isset($entry['id']))
+                    return $entry['id'];
           }, $this->selectedUsers));
 
         $this->kaizen->head_office_input = $this->kaizen->head_office_input ? true : false;
