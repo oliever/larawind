@@ -155,6 +155,8 @@
                         id="project.capex"
                         class="block w-full mt-1 text-sm dark:text-gray-300 dark:border-gray-600 dark:bg-gray-700 form-select focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:focus:shadow-outline-gray">
                             <option></option>
+                            <option value="1">Capex</option>
+                            <option value="0">Non-Capex</option>
                         </select>
                         @error('project.capex')
                             <p class="text-sm text-red-600">{{ $message }}</p>
@@ -224,7 +226,13 @@
                         wire:model="project.capex"
                         id="project.capex"
                         class="block w-full mt-1 text-sm dark:text-gray-300 dark:border-gray-600 dark:bg-gray-700 form-select focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:focus:shadow-outline-gray">
-                            <option></option>
+                            <option value="Not started">Not started</option>
+                            <option value="Planned to start">Planned to start</option>
+                            <option value="In progress">In progress</option>
+                            <option value="Delayed">Delayed</option>
+                            <option value="On hold">On hold</option>
+                            <option value="Completed">Completed</option>
+                            <option value="Abandoned">Abandoned</option>
                         </select>
                         @error('project.capex')
                             <p class="text-sm text-red-600">{{ $message }}</p>
@@ -235,8 +243,19 @@
                         <span class="text-gray-700 dark:text-gray-400">
                             Completion Percentage
                         </span>
-                        <input type="number" class="required block w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:text-gray-300 dark:focus:shadow-outline-gray form-input"
-                            wire:model="project.completion" name="project."/>
+                        <select
+                    wire:model="project.completion"
+                    id="project.completion"
+                    class="block w-full mt-1 text-sm dark:text-gray-300 dark:border-gray-600 dark:bg-gray-700 form-select focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:focus:shadow-outline-gray">
+                        <option value="0">0%</option>
+                        <option value="15">15%</option>
+                        <option value="30">30%</option>
+                        <option value="45">45%</option>
+                        <option value="60">60%</option>
+                        <option value="75">75%</option>
+                        <option value="90">90%</option>
+                        <option value="100">100%</option>
+                    </select>
                     </label>
                 </div>
 
@@ -261,7 +280,7 @@
                         </label>
                     </div>
                 @endforeach
-                <div class="flex mt-2 text-sm">
+                <div class="flex mt-2 text-sm col-span-3">
                     <label class="flex pr-2 items-center dark:text-gray-400">
                         Other
                     </label>

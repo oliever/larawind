@@ -292,9 +292,10 @@
         </div>
 
         <div x-show="hasBeforeAfter" x-transition:enter="transition ease-out duration-500" x-transition:enter-start="opacity-0 transform scale-90" x-transition:enter-end="opacity-100 transform scale-100" x-transition:leave="transition ease-in duration-200" x-transition:leave-start="opacity-100 transform scale-100" x-transition:leave-end="opacity-0 transform scale-90">
-            <h4 class="mb-2 text-lg font-semibold text-gray-600 dark:text-gray-300">
+            <hr style="border-top: 1px dashed #444; padding: 10px">
+            <h1 class="mb-2 text-lg font-semibold text-gray-600 dark:text-gray-300 text-center">
                 Before and After Report
-            </h4>
+            </h1>
             <div class="grid gap-6 mb-8 md:grid-cols-1 xl:grid-cols-2">
                 <div class="min-w-0 p-4 bg-white rounded-lg shadow-xs dark:bg-gray-800"><!--card-->
                     <h4 class="mb-4 font-semibold text-gray-600 dark:text-gray-300">

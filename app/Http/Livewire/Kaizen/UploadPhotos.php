@@ -15,7 +15,9 @@ class UploadPhotos extends Component
     use WithFileUploads;
 
     public $photo;
+    public $caption;
     public $photos;
+    public $captions;
     public $savedPhotos;
     public $kaizen;
     public $type;
@@ -39,31 +41,34 @@ class UploadPhotos extends Component
             'photo' => 'image',
         ]);
 
-        /* info($this->photo->getRealPath());
-        info($this->photo->getClientOriginalName()); */
+        info($this->photo->getRealPath());
+        info($this->photo->getClientOriginalName());
     }
 
 
     public function save()
     {
         if($this->photo){
-
             if(isset($this->kaizen['id'])){
                 $this->resize($this->photo);
                 $kaizenPhoto = Photo::create([
                     'model' => get_class(new Kaizen()),
                     'model_id' =>$this->kaizen['id'],
                     'type' => $this->type,
+                    'caption' => $this->caption,
                     'filename' => $this->photo->getFilename(),
                 ]);
                 $kaizenPhoto->save();
                 $this->savedPhotos[$kaizenPhoto->id] = $kaizenPhoto;
             }else{
                 $this->photos[] = $this->photo;
+                $this->captions[] = $this->caption;
             }
 
         }
+        //reset variables
         $this->photo = null;
+        $this->caption = null;
 
     }
 
@@ -71,7 +76,8 @@ class UploadPhotos extends Component
 
         if($this->photos){
             info(@"saving {$this->type} photos: " .count($this->photos));
-            foreach($this->photos as $photo){
+            foreach($this->photos as $index =>$photo){
+
                 $existing = Photo::where(['filename'=>$photo->getFilename()])->count();
                 //info('existing: '. $existing);
                 if($existing == 0){
@@ -80,9 +86,9 @@ class UploadPhotos extends Component
                         'model' => get_class(new Kaizen()),
                         'model_id' => $kaizen->id,
                         'type' => $this->type,
+                        'caption' => $this->captions[$index],
                         'filename' => $photo->getFilename(),
                     ]);
-                    //info($kaizenPhoto);
                     $kaizenPhoto->save();
                 }
             }
@@ -108,8 +114,6 @@ class UploadPhotos extends Component
 
     public function render()
     {
-        //info(count($this->photos));
-        //info($this->savedPhotos);
         return view('livewire.kaizen.upload-photos');
     }
 }

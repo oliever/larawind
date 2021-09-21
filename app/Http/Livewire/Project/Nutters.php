@@ -22,6 +22,7 @@ class Nutters extends Component
     protected $rules = [
         'project.description' => 'required|min:5',
         'project.location_id' => 'required',
+        'project.capex' => '',
         'project.leader_id' => 'required',
         'project.sponsor_id' => 'required',
         'project.champion_id' => 'required',

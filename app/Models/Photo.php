@@ -13,6 +13,7 @@ class Photo extends Model
         'model',
         'model_id',
         'type',
+        'caption',
         'filename'
       ];
 }
