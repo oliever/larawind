@@ -49,9 +49,12 @@
 
             @error('photo') <span class="error">{{ $message }}</span> @enderror
             <br>
-            <button  x-show="photo" type="submit" class = 'ml-4 px-4 py-2 text-sm font-medium leading-5 text-white transition-colors duration-150 bg-purple-600 border border-transparent rounded-lg active:bg-purple-600 hover:bg-purple-700 focus:outline-none focus:shadow-outline-purple'>
-                {{ __('Add this photo') }}
-            </button>
+            <span class="fixed bottom-0 ">
+                <button  x-show="photo" type="submit" class = 'ml-4 px-4 py-2 text-sm font-medium leading-5 text-white transition-colors duration-150 bg-purple-600 border border-transparent rounded-lg active:bg-purple-600 hover:bg-purple-700 focus:outline-none focus:shadow-outline-purple'>
+                    {{ __('Add this photo') }}
+                </button>
+            </span>
+
         </div>
     </form>
 

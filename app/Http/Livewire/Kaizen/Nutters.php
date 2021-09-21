@@ -37,10 +37,15 @@ class Nutters extends Component
         'kaizen.just_do_it' => '',
         'kaizen.head_office_input' => '',
         'kaizen.head_office_comment' => '',
+        'kaizen.dollar_value' => '',//HO user only
+        'kaizen.savings' => '',//HO user only
+        'kaizen.hours_saved' => '',//HO user only
         'kaizen.causes' => '',
         'kaizen.handled_at_location' => '',
         'kaizen.solution' => '',
         'kaizen.expected_result' => '',
+        'kaizen.comments_before' => '',
+        'kaizen.comments_after' => '',
         'kaizen.benefits' => '',
         'kaizen.rapid_problem' => '',
 
@@ -156,6 +161,8 @@ class Nutters extends Component
     public function createBeforeAfter()
     {
         $this->hasBeforeAfter = true;
+        $this->kaizen->before_after = $this->hasBeforeAfter;
+        $this->kaizen->save();
     }
     public function render()
     {

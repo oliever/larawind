@@ -201,6 +201,34 @@
 
         </div><!--Affected Aread-->
 
+        <div class="px-4 py-3 mb-8 bg-white rounded-lg shadow-md dark:bg-gray-800 md:grid-cols-1 xl:grid-cols-3"><!--card-->
+            <div class="grid gap-2 mb- md:grid-cols-1 xl:grid-cols-3">
+                <div>
+                    <span class="text-gray-700 dark:text-gray-400">Dollar Value</span>
+                    <input class="required block w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:text-gray-300 dark:focus:shadow-outline-gray form-input"
+                        wire:model="kaizen.dollar_value"
+                        name="kaizen.dollar_value"
+                        placeholder="Dollar value" type="number"/>
+                </div>
+                <div>
+                    <span class="text-gray-700 dark:text-gray-400">Savings</span>
+                    <input class="required block w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:text-gray-300 dark:focus:shadow-outline-gray form-input"
+                        wire:model="kaizen.savings"
+                        name="kaizen.savings"
+                        placeholder="Savings" type="number"/>
+                </div>
+                <div>
+                    <span class="text-gray-700 dark:text-gray-400">Hours Saved</span>
+                    <input class="required block w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:text-gray-300 dark:focus:shadow-outline-gray form-input"
+                        wire:model="kaizen.hours_saved"
+                        name="kaizen.hours_saved"
+                        placeholder="Hours Saved" type="number"/>
+                </div>
+            </div>
+
+
+        </div>
+
         <div x-show="isHeadOfficeInput" x-transition:enter="transition ease-out duration-500" x-transition:enter-start="opacity-0 transform scale-90" x-transition:enter-end="opacity-100 transform scale-100" x-transition:leave="transition ease-in duration-200" x-transition:leave-start="opacity-100 transform scale-100" x-transition:leave-end="opacity-0 transform scale-90">
             <div class="px-4 py-3 mb-8 bg-white rounded-lg shadow-md dark:bg-gray-800"><!--card-->
                 <label class="block mt-4 text-sm">
@@ -314,6 +342,24 @@
                     </p>
                 </div>
             </div>
+
+            <div class="grid gap-6 mb-8 md:grid-cols-1 xl:grid-cols-2">
+                <div class="min-w-0 p-4 bg-white rounded-lg shadow-xs dark:bg-gray-800"><!--card-->
+                    <h4 class="mb-4 font-semibold text-gray-600 dark:text-gray-300">
+                        Before Comments
+                    </h4>
+                    <textarea wire:model="kaizen.comments_before" class="block w-full mt-1 text-sm dark:text-gray-300 dark:border-gray-600 dark:bg-gray-700 form-textarea focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:focus:shadow-outline-gray"
+                    rows="3" placeholder="Comments"></textarea>
+                </div>
+                <div class="min-w-0 p-4 bg-white rounded-lg shadow-xs dark:bg-gray-800"><!--card-->
+                    <h4 class="mb-4 font-semibold text-gray-600 dark:text-gray-300">
+                        After Comments
+                    </h4>
+                    <textarea wire:model="kaizen.comments_after" class="block w-full mt-1 text-sm dark:text-gray-300 dark:border-gray-600 dark:bg-gray-700 form-textarea focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:focus:shadow-outline-gray"
+                    rows="3" placeholder="Comments"></textarea>
+                </div>
+            </div>
+
             <div class="min-w-0 p-4 bg-white rounded-lg shadow-xs dark:bg-gray-800"><!--card-->
                 <h4 class="mb-4 font-semibold text-gray-600 dark:text-gray-300">
                     Benefits

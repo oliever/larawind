@@ -29,6 +29,10 @@ class CreateKaizensTable extends Migration
             $table->boolean('handled_at_location')->default(false);
             $table->boolean('head_office_input')->default(false);
             $table->longText('head_office_comment')->nullable();
+            $table->text('dollar_value')->nullable();//HO user only
+            $table->text('savings')->nullable();//HO user only
+            $table->text('hours_saved')->nullable();//HO user only
+
             $table->text('affected_areas')->nullable();
             $table->text('other_affected_area')->nullable();
 
@@ -42,6 +46,8 @@ class CreateKaizensTable extends Migration
 
             //Before and After report
             $table->boolean('before_after')->default(false);
+            $table->longText('comments_before')->nullable();//Just do it
+            $table->longText('comments_after')->nullable();//Just do it
             $table->foreignId('validating_user_id')->nullable()->index();
             $table->foreignId('approving_user_id')->nullable()->index();
             $table->longText('benefits')->nullable();
