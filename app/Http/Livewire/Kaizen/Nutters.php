@@ -29,6 +29,7 @@ class Nutters extends Component
     protected $rules = [
         'kaizen.name' => 'required|min:5',
         'kaizen.location_id' => 'required',
+        'kaizen.date_assigned' => '',
         'kaizen.other_affected_area' => '',
         'kaizen.reason' => '',
         'kaizen.problem' => '',

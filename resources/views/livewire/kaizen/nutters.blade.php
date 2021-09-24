@@ -77,7 +77,7 @@
             </div>
 
             <div class="grid gap-2 mb- md:grid-cols-1 xl:grid-cols-3">
-                <label class="block text-sm col-span-2">
+                <label class="block text-sm">
                     <span class="text-gray-700 dark:text-gray-400">Team Members
                         </span><button wire:click.prevent="openSearchUserModal" class=" px-1 text-xs text-white transition-colors duration-150 bg-green-700 border border-transparent rounded-md active:bg-green-700 hover:bg-green-800 focus:outline-none focus:shadow-outline-green">
                             +
@@ -101,6 +101,14 @@
                 @error('kaizen.name')
                     <p class="text-sm text-red-600">{{ $message }}</p>
                 @enderror
+
+                <label class="block text-sm">
+                    <span class="text-gray-700 dark:text-gray-400">Date Assigned</span>
+                    <input class="required block w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:text-gray-300 dark:focus:shadow-outline-gray form-input"
+                        wire:model="kaizen.date_assigned"
+                        name="kaizen.date_assigned"
+                        type="date" />
+                </label>
 
                 <label class="block text-sm">
                     <span class="text-gray-700 dark:text-gray-400">

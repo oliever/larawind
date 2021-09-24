@@ -21,6 +21,7 @@ class CreateKaizensTable extends Migration
 
             $table->foreignId('location_id');
             $table->text('members')->nullable();
+            $table->dateTime('date_assigned', $precision = 0)->nullable();
             $table->integer('completed')->nullable();
 
             $table->boolean('rapid')->default(false);
