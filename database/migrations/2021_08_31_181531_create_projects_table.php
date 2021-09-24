@@ -46,7 +46,7 @@ class CreateProjectsTable extends Migration
             $table->longText('risks')->nullable();
             $table->longText('comments')->nullable();
 
-            $table->bodateTimeolean('approved_manager')->nullable();
+            $table->dateTime('approved_manager')->nullable();
             $table->dateTime('approved_sponsor')->nullable();
             $table->dateTime('approved_champion')->nullable();
 
