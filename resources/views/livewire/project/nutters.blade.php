@@ -223,8 +223,8 @@
                             Status
                         </span>
                         <select
-                        wire:model="project.capex"
-                        id="project.capex"
+                        wire:model="project.status"
+                        id="project.status"
                         class="block w-full mt-1 text-sm dark:text-gray-300 dark:border-gray-600 dark:bg-gray-700 form-select focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:focus:shadow-outline-gray">
                             <option value="Not started">Not started</option>
                             <option value="Planned to start">Planned to start</option>
@@ -342,7 +342,7 @@
                     <span class="text-gray-700 dark:text-gray-400">
                         Project Manager
                     </span>
-                    <input class="required block w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:text-gray-300 dark:focus:shadow-outline-gray form-input"
+                    <input type="date" class="required block w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:text-gray-300 dark:focus:shadow-outline-gray form-input"
                         wire:model="project.approved_manager" name="project.approved_manager"/>
                 </label>
 
@@ -350,7 +350,7 @@
                     <span class="text-gray-700 dark:text-gray-400">
                         Project Sponsor
                     </span>
-                    <input class="required block w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:text-gray-300 dark:focus:shadow-outline-gray form-input"
+                    <input type="date" class="required block w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:text-gray-300 dark:focus:shadow-outline-gray form-input"
                         wire:model="project.approved_sponsor" name="project.approved_sponsor"/>
                 </label>
 
@@ -358,7 +358,7 @@
                     <span class="text-gray-700 dark:text-gray-400">
                         Project Champion
                     </span>
-                    <input class="required block w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:text-gray-300 dark:focus:shadow-outline-gray form-input"
+                    <input type="date" class="required block w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:text-gray-300 dark:focus:shadow-outline-gray form-input"
                         wire:model="project.approved_champion" name="project.approved_champion"/>
                 </label>
             </div>

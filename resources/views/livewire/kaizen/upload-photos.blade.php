@@ -1,13 +1,14 @@
+
 <div x-data="{photo:@entangle('photo'), caption:@entangle('caption')}">
     @if ($savedPhotos)
         <div class="grid gap-2 mb-6 {{ $type == 'main' ? 'md:grid-cols-1 xl:grid-cols-2' : 'grid-cols-1' }} ">
                 @foreach ($savedPhotos as $savedPhoto)
                     @if($savedPhoto)
-                    <div>
-                        <img class="mt-4" src="{{ asset('photos/' . $savedPhoto['filename']) }}">
-                        <p class="text-gray-700 dark:text-gray-400 text-small">{{$savedPhoto['caption']}}</p>{{-- <p class="text-sm text-red-600">{{ $message }}</p> --}}
-                    </div>
 
+                    <a @click="$dispatch('img-modal', {  imgModalSrc: '{{ asset('photos/' . $savedPhoto['filename']) }}', imgModalDesc: '{{$savedPhoto['caption']}}' })" class="cursor-pointer">
+                        <img alt="Placeholder" class="object-fit w-full" src="{{ asset('photos/' . $savedPhoto['filename']) }}">
+                        <p class="text-gray-700 dark:text-gray-400 text-small">{{$savedPhoto['caption']}}</p>
+                      </a>
                     @endif
                 @endforeach
         </div>
@@ -41,7 +42,7 @@
             <span>
                 <img x-show="photo" class="mt-4" width="150" src="{{ $photo->temporaryUrl() }}">
             </span>
-            <input class="required bloc w-1/4 text-xs dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:text-gray-300 dark:focus:shadow-outline-gray form-input"
+            <input class="required bloc  text-xs dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:text-gray-300 dark:focus:shadow-outline-gray form-input"
                             wire:model="caption"
                             name="caption"
                             placeholder="Caption" />
@@ -49,7 +50,7 @@
 
             @error('photo') <span class="error">{{ $message }}</span> @enderror
             <br>
-            <span class="fixed bottom-0 ">
+            <span class="">
                 <button  x-show="photo" type="submit" class = 'ml-4 px-4 py-2 text-sm font-medium leading-5 text-white transition-colors duration-150 bg-purple-600 border border-transparent rounded-lg active:bg-purple-600 hover:bg-purple-700 focus:outline-none focus:shadow-outline-purple'>
                     {{ __('Add this photo') }}
                 </button>
@@ -59,5 +60,26 @@
     </form>
 
 
+</div>
+
+<div x-data="{ imgModal : false, imgModalSrc : '', imgModalDesc : '' }">
+    <template @img-modal.window="imgModal = true; imgModalSrc = $event.detail.imgModalSrc; imgModalDesc = $event.detail.imgModalDesc;" x-if="imgModal">
+        <div x-transition:enter="transition ease-out duration-300" x-transition:enter-start="opacity-0 transform scale-90" x-transition:enter-end="opacity-100 transform scale-100" x-transition:leave="transition ease-in duration-300" x-transition:leave-start="opacity-100 transform scale-100" x-transition:leave-end="opacity-0 transform scale-90" x-on:click.away="imgModalSrc = ''" class="p-2 fixed w-full h-100 inset-0 z-50 overflow-hidden flex justify-center items-center bg-black bg-opacity-75">
+            <div @click.away="imgModal = ''" class="flex flex-col max-h-full overflow-auto">
+                <div class="z-50">
+                    <button @click="imgModal = ''" class="float-right pt-2 pr-2 outline-none focus:outline-none">
+                        <svg class="fill-current text-white " xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 18 18">
+                            <path d="M14.53 4.53l-1.06-1.06L9 7.94 4.53 3.47 3.47 4.53 7.94 9l-4.47 4.47 1.06 1.06L9 10.06l4.47 4.47 1.06-1.06L10.06 9z">
+                        </path>
+                        </svg>
+                    </button>
+                </div>
+                <div class="p-2">
+                    <img :alt="imgModalSrc" class="object-contain h-1/2-screen" :src="imgModalSrc">
+                    <p x-text="imgModalDesc" class="text-center text-white"></p>
+                </div>
+            </div>
+        </div>
+    </template>
 </div>
 

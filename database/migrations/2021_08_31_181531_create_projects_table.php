@@ -46,9 +46,9 @@ class CreateProjectsTable extends Migration
             $table->longText('risks')->nullable();
             $table->longText('comments')->nullable();
 
-            $table->boolean('approved_manager')->default(false);
-            $table->boolean('approved_sponsor')->default(false);
-            $table->boolean('approved_champion')->default(false);
+            $table->bodateTimeolean('approved_manager')->nullable();
+            $table->dateTime('approved_sponsor')->nullable();
+            $table->dateTime('approved_champion')->nullable();
 
             $table->decimal('hours_actual',9,2)->nullable();
             $table->text('hours_actual_validated')->nullable();
