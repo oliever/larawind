@@ -12,13 +12,12 @@
                     @endif
                 @endforeach
         </div>
-    @endif
-    @if ($photos)
+    @elseif ($photos)
         <div class="grid gap-2 mb-6 md:grid-cols-1 xl:grid-cols-2">
-                @foreach ($photos as $addedPhoto)
+                @foreach ($photos as $key=>$addedPhoto)
                 <div>
                     <img class="mt-4 px-20"  src="{{ $addedPhoto->temporaryUrl() }}">
-                    <p class="text-gray-700 dark:text-gray-400 text-small">{{$savedPhoto['caption']}}</p>
+                    <p class="text-gray-700 dark:text-gray-400 text-small">{{$captions[ $key]}}</p>
                 </div>
                 @endforeach
         </div>

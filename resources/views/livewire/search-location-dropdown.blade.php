@@ -33,7 +33,7 @@
                 <ul class="bg-white dark:bg-gray-600">
                     @foreach ($searchResults as $result)
                         <li class="border-b border-gray-200 dark:border-gray-600 text-gray-700 dark:text-gray-300">
-                            <a wire:click="$emit('userSelected', {{ $result['id'] }})"
+                            <a wire:click="$emit('locationSelected', {{ $result['id'] }})"
                                 href="#" class="block hover:bg-gray-100 dark:hover:bg-gray-700 px-3 py-3 items-center transition ease-in-out duration-150"
                                 @if ($loop->last) @keydown.tab="isOpen = false" @endif
                             >

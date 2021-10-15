@@ -21,6 +21,7 @@ class User extends Authenticatable
     use TwoFactorAuthenticatable;
 
     use SoftDeletes;
+    use SearchTrait;
 
     /**
      * The attributes that are mass assignable.
@@ -29,6 +30,11 @@ class User extends Authenticatable
      */
     protected $fillable = [
         'name', 'email', 'password',
+    ];
+
+    protected $searchable = [
+        'name',
+        'email',
     ];
 
     /**

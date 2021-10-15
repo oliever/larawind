@@ -1,4 +1,6 @@
 @extends ('layouts.pdf-kaizen')
+<title>Kaizen Suggestion: {{$kaizen->name}}</title>
+
 <div style="text-align: center;">
 
 	<h1><img width="200" src="photos/_nutters-logo.jpg" alt=""><br>
@@ -22,6 +24,16 @@
             <td colspan="2" style="padding: 10 0">Name: <strong>{{$kaizen->name}}</strong> </td>
             <td style="width: 20%">Date: <strong>{{Carbon\Carbon::create($kaizen->posted)->toFormattedDateString()}}</strong></td>
             <td style="width: 30%">Store Name: <strong>{{$kaizen->location->name}}</strong></td>
+        </tr>
+        <tr>
+            <td colspan="4" style="padding-bottom: 10">
+                Team Members:
+                @foreach ($team_members as $index=>$team_member)
+                @if($team_member)
+                    {{ $index}}.  <strong>{{ $team_member['name'] }} </strong>
+                    @endif
+                @endforeach
+            </td>
         </tr>
         <tr >
             <td colspan="6" class="section-header">AREAS AFFECTED</td>

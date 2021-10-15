@@ -19,8 +19,8 @@ class CreateKaizensTable extends Migration
             $table->foreignId('user_id')->index();
             $table->foreignId('team_id')->index();
 
-            $table->foreignId('location_id');
             $table->text('members')->nullable();
+            $table->boolean('all_locations')->default(false);
             $table->dateTime('date_assigned', $precision = 0)->nullable();
             $table->integer('completed')->nullable();
 

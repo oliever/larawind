@@ -29,11 +29,14 @@ class DraftProjectsDatatable extends LivewireDatatable
     {
         return [
             NumberColumn::name('id')
-            ->linkTo('project')
+            ->linkTo('project', 6)
             ->label('ID'),
 
             Column::name('description')
             ->searchable(),
+
+            NumberColumn::name('completion')
+            ->label('% Complete'),
 
 
             DateColumn::raw('created_at')

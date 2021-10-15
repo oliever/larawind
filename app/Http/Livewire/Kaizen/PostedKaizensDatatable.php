@@ -29,7 +29,7 @@ class PostedKaizensDatatable extends LivewireDatatable
     {
         return [
             NumberColumn::name('id')
-            ->linkTo('kaizen')
+            ->linkTo('kaizen', 6)
             ->label('ID'),
 
             Column::name('name')
@@ -40,6 +40,9 @@ class PostedKaizensDatatable extends LivewireDatatable
 
             BooleanColumn::name('rapid')
             ->label('Rapid Kaizen'),
+
+            NumberColumn::name('completion')
+            ->label('% Complete'),
 
             BooleanColumn::name('head_office_input')
             ->label('Head Office Input'),

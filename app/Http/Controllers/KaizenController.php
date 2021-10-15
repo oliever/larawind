@@ -6,6 +6,7 @@ use App\Models\Kaizen;
 use App\Models\RefAffectedArea;
 use App\Models\Photo;
 use App\Models\Location;
+use App\Models\User;
 
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
@@ -16,8 +17,8 @@ class KaizenController extends Controller
     public function index()
     {
         $data = [];
-        $data['top_kaizen_stores'] = Location::withCount('kaizens')->orderBy('kaizens_count','desc')->get()->take(3);
-        $data['top_project_stores'] = Location::withCount('projects')->orderBy('projects_count','desc')->get()->take(3);
+        $data['top_kaizen_stores'] = [];//Location::withCount('kaizens')->orderBy('kaizens_count','desc')->get()->take(3);
+        $data['top_project_stores'] = [];//Location::withCount('projects')->orderBy('projects_count','desc')->get()->take(3);
         foreach (Location::withCount('kaizens')->orderBy('kaizens_count','desc')->get()->take(3) as $location) {
 
             info($location);
@@ -77,7 +78,11 @@ class KaizenController extends Controller
         foreach(Photo::where(['type'=>'main', 'model'=>get_class(new Kaizen()), 'model_id'=>$kaizen->id])->get() as $savedPhoto){
             $data['photos'][$savedPhoto->id] = $savedPhoto;
         }
-        $data['photos'] = array_chunk($data['photos'], 2);
+
+        if(isset($data['photos']))
+            $data['photos'] = array_chunk($data['photos'], 2);
+        else
+            $data['photos'] = [];
 
         foreach(Photo::where(['type'=>'before', 'model'=>get_class(new Kaizen()), 'model_id'=>$kaizen->id])->get() as $savedPhoto){
             $data['before_photos'][$savedPhoto->id] = $savedPhoto;
@@ -85,6 +90,13 @@ class KaizenController extends Controller
         foreach(Photo::where(['type'=>'after', 'model'=>get_class(new Kaizen()), 'model_id'=>$kaizen->id])->get() as $savedPhoto){
             $data['after_photos'][$savedPhoto->id] = $savedPhoto;
         }
+
+        $selectedUsers = [];
+        foreach(explode(",", $kaizen->members) as $key=>$value){
+            //replace keys (index) with values from db
+            $selectedUsers[] = User::where(['id' => $value])->first() ;
+        }
+        $data['team_members'] = $selectedUsers;
 
         $pdf = App::make('dompdf.wrapper');
         $pdf->loadView('kaizen.pdf.nutters', $data);

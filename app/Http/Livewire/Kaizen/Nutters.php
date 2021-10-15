@@ -9,7 +9,7 @@ use App\Models\User;
 use App\Models\RefAffectedArea;
 use DateTime;
 use Carbon\Carbon;
-
+use Laravel\Jetstream\Jetstream;
 
 class Nutters extends Component
 {
@@ -22,14 +22,19 @@ class Nutters extends Component
     public $selectedAfftectedAreas = [];
     public $shown = false;
 
+    public $dateAssigned;
+
     public $isSearchUserModalOpen = false;
+    public $isSearchLocationModalOpen = false;
     public $selectedUsers = [];
-    protected $listeners = ['userSelected'];
+    public $selectedLocations = [];
+
+    protected $listeners = ['userSelected','locationSelected'];
 
     protected $rules = [
         'kaizen.name' => 'required|min:5',
-        'kaizen.location_id' => 'required',
         'kaizen.date_assigned' => '',
+        'kaizen.all_locations' => '',
         'kaizen.other_affected_area' => '',
         'kaizen.reason' => '',
         'kaizen.problem' => '',
@@ -58,9 +63,15 @@ class Nutters extends Component
     public function userSelected($userId)
     {
         info('adding user ' . $userId);
-        $this->selectedUsers[] = User::where(['id' => $userId])->first() ;
-
+        $this->selectedUsers[] = User::where(['id' => $userId])->first();
         $this->isSearchUserModalOpen = false;
+    }
+
+    public function locationSelected($locationId)
+    {
+        info('adding location ' . $locationId);
+        $this->selectedLocations[] = Location::where(['id' => $locationId])->first();
+        $this->isSearchLocationModalOpen = false;
     }
 
     public function removeSelectedUser($index)
@@ -69,13 +80,22 @@ class Nutters extends Component
         unset($this->selectedUsers[$index]);
     }
 
+    public function removeSelectedLocation($index)
+    {
+        info('removing Location: index ' . $index);
+        unset($this->selectedLocations[$index]);
+    }
+
     public function mount(Kaizen $kaizen = null)
     {
+        //info(Jetstream::$roles);
+
         $this->kaizen = $kaizen;
-        //$this->selectedAfftectedAreas = explode(",", $kaizen->affected_areas);
 
+        $this->selectedUsers[] =  new User();
+        $this->selectedLocations[] =  new Location();
 
-       if(!isset($this->kaizen['id'])){
+        if(!isset($this->kaizen['id'])){
             $this->kaizen = new Kaizen();
             $this->isJustDoIt = true;
             $this->isRapid = false;
@@ -86,9 +106,11 @@ class Nutters extends Component
             $this->kaizen->handled_at_location = false;
             $this->hasBeforeAfter = false;
 
-            $this->selectedUsers[] =  new User();
+
         }
         else{
+            //info(date('Y-m-d', strtotime($this->kaizen->date_assigned)));
+            $this->dateAssigned = date('Y-m-d', strtotime($this->kaizen->date_assigned));
             $this->isJustDoIt = $this->kaizen->just_do_it;
             $this->isRapid = $this->kaizen->rapid;
             $this->hasBeforeAfter = $this->kaizen->before_after;
@@ -101,7 +123,9 @@ class Nutters extends Component
                 $this->selectedUsers[] = User::where(['id' => $value])->first() ;
             }
 
-            info( $this->selectedUsers);
+            foreach ($this->kaizen->locations()->get() as $key => $value) {
+                $this->selectedLocations[] = $value;
+            }
         }
     }
 
@@ -110,9 +134,20 @@ class Nutters extends Component
         $this->isSearchUserModalOpen = true;
     }
 
+    public function openSearchLocationModal(){
+
+        $this->isSearchLocationModalOpen = true;
+    }
+
     public function closeSearchUserModal(){
+        info('closing user search...');
         $this->isSearchUserModalOpen = false;
         $this->emit('searchUserModalClosed');//to display action message
+    }
+
+    public function closeSearchLocationModal(){
+        $this->isSearchLocationModalOpen = false;
+        $this->emit('searchLocationModalClosed');//to display action message
     }
 
     public function saveAsDraft(){
@@ -139,17 +174,21 @@ class Nutters extends Component
         $this->kaizen->handled_at_location = $this->kaizen->handled_at_location ? true : false;
         $this->kaizen->before_after = $this->hasBeforeAfter;
 
+        $this->kaizen->date_assigned = date('Y-m-d', strtotime($this->dateAssigned));
+
         //info($this->selectedAfftectedAreas);
         $this->kaizen->affected_areas = implode(',', array_keys(array_filter($this->selectedAfftectedAreas)));
         //info($this->kaizen->affected_areas);
-
-        $this->validate();
+        //$this->validate();
 
         // Execution doesn't reach here if validation fails.
         if($asProject)
             $this->kaizen->posted =Carbon::now();
 
         $this->kaizen->save();
+
+        $this->saveLocations();
+
         info('nutters kaizen saved');
         info($this->kaizen);
 
@@ -161,6 +200,22 @@ class Nutters extends Component
             $message = 'Kaizen Form saved as Project: ' . $this->kaizen->id;
        session()->flash('message', $message);
        //return redirect()->to('/kaizen/' . $this->kaizen->id);
+    }
+
+    private function saveLocations(){
+        //$this->kaizen->locations = [];
+        info( 'saving locations...');
+
+        $locations = [];
+        foreach ($this->selectedLocations as $key => $location) {
+            info($location);
+            if(!empty($location))
+                array_push($locations, $location['id']);
+
+        }
+        $this->kaizen->locations()->sync($locations);
+        $this->kaizen->save();
+        info( $this->kaizen->locations);
     }
 
     public function createBeforeAfter()

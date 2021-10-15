@@ -24,6 +24,8 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
     <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
 
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/cleave.js/1.6.0/cleave.js" integrity="sha512-BjE6jVr0CP6MHwhQDktnlrSZsenyvbFgyBatZDZIvaNH9hiCVeyeh4vm0CR2JKLvNYGBPKpQQhAhr6hj6Fd4Ug==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
   {{--   <link href="https://unpkg.com/filepond/dist/filepond.css" rel="stylesheet" />
     <script src="https://unpkg.com/filepond-plugin-image-preview/dist/filepond-plugin-image-preview.js"></script>
     <script src="https://unpkg.com/filepond-plugin-file-validate-size/dist/filepond-plugin-file-validate-size.js"></script>

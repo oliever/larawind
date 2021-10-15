@@ -20,12 +20,13 @@ class CreateProjectsTable extends Migration
 
             $table->text('description');
 
-            $table->integer('leader_id')->nullable();
+            $table->integer('manager_id')->nullable();
             $table->integer('sponsor_id')->nullable();
             $table->integer('champion_id')->nullable();
             $table->text('primary_team')->nullable();
+            $table->boolean('all_locations')->default(false);
             $table->dateTime('equicapita_support', $precision = 0)->nullable();
-            $table->foreignId('location_id')->nullable();
+            $table->text('locations')->nullable();
             $table->boolean('capex')->default(false);
 
             $table->text('affected_areas')->nullable();
@@ -46,9 +47,9 @@ class CreateProjectsTable extends Migration
             $table->longText('risks')->nullable();
             $table->longText('comments')->nullable();
 
-            $table->dateTime('approved_manager')->nullable();
-            $table->dateTime('approved_sponsor')->nullable();
-            $table->dateTime('approved_champion')->nullable();
+            $table->integer('approved_manager_id')->nullable();
+            $table->integer('approved_sponsor_id')->nullable();
+            $table->integer('approved_champion_id')->nullable();
 
             $table->decimal('hours_actual',9,2)->nullable();
             $table->text('hours_actual_validated')->nullable();

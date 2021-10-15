@@ -18,12 +18,16 @@ class Kaizen extends Model //implements HasMedia
     protected $fillable = [
                             'name',
                             'user_id',
-                            'location_id'
                           ];
 
-    public function location()
+    /* public function location()
     {
         return $this->belongsTo(Location::class);
+    } */
+
+    public function locations()
+    {
+        return $this->belongsToMany(Location::class, 'kaizen_location');
     }
 
     public static function last()

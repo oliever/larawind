@@ -11,8 +11,13 @@ class Project extends Model
     use SoftDeletes;
     use HasFactory;
 
-    public function location()
+    /* public function location()
     {
         return $this->belongsTo(Location::class);
+    } */
+
+    public function locations()
+    {
+        return $this->belongsToMany(Location::class, 'project_location');
     }
 }
