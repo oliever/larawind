@@ -145,8 +145,8 @@
                         Completion
                     </span>
                     <select
-                    wire:model="kaizen.completed"
-                    id="kaizen.completed"
+                    wire:model="kaizen.completion"
+                    id="kaizen.completion"
                     class="block w-full mt-1 text-sm dark:text-gray-300 dark:border-gray-600 dark:bg-gray-700 form-select focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:focus:shadow-outline-gray">
                         <option value="0">0%</option>
                         <option value="15">15%</option>
@@ -157,7 +157,7 @@
                         <option value="90">90%</option>
                         <option value="100">100%</option>
                     </select>
-                    @error('kaizen.completed')
+                    @error('kaizen.completion')
                         <p class="text-sm text-red-600">{{ $message }}</p>
                     @enderror
                 </label>
