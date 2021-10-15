@@ -22,7 +22,7 @@ class CreateKaizensTable extends Migration
             $table->text('members')->nullable();
             $table->boolean('all_locations')->default(false);
             $table->dateTime('date_assigned', $precision = 0)->nullable();
-            $table->integer('completed')->nullable();
+            $table->decimal('completion',9,2)->default(0);
 
             $table->boolean('rapid')->default(false);
             $table->longText('rapid_problem')->nullable();
