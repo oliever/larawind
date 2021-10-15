@@ -38,7 +38,7 @@ class Nutters extends Component
         'kaizen.other_affected_area' => '',
         'kaizen.reason' => '',
         'kaizen.problem' => '',
-        'kaizen.completed' => '',
+        'kaizen.completion' => '',
         'kaizen.rapid' => '',
         'kaizen.just_do_it' => '',
         'kaizen.head_office_input' => '',
