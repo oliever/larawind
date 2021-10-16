@@ -41,8 +41,8 @@ class DraftKaizensDatatable extends LivewireDatatable
             BooleanColumn::name('rapid')
             ->label('Rapid Kaizen'),
 
-            NumberColumn::name('completed')
-            ->label('% Complete'),
+            NumberColumn::name('completion')
+            ->label('% Completion'),
 
             BooleanColumn::name('head_office_input')
             ->label('Head Office Input'),
