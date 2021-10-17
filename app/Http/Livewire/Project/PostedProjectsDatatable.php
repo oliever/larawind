@@ -35,7 +35,7 @@ class PostedProjectsDatatable extends LivewireDatatable
             Column::name('description')
             ->searchable(),
 
-            NumberColumn::name('completed')
+            NumberColumn::name('completion')
             ->label('% Complete'),
 
             DateColumn::raw('posted')

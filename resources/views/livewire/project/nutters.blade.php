@@ -253,7 +253,7 @@
                             End Date
                         </span>
                         <input type="date" class="required block w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:text-gray-300 dark:focus:shadow-outline-gray form-input"
-                            wire:model="project.end" name="project."/>
+                            wire:model="project.end" name="project.end">
                     </label>
                 </div>
 
@@ -472,11 +472,26 @@
                             wire:model="project.hours_actual" name="project.hours_actual"/>
                     </div>
                     <div>
-                        <span class="text-gray-700 dark:text-gray-400">
-                            Validated By
-                        </span>
-                        <input class="required block w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:text-gray-300 dark:focus:shadow-outline-gray form-input"
-                            wire:model="project.hours_actual_validated" name="project.hours_actual_validated"/>
+                        <label class="block text-sm" >
+                            <span class="text-gray-700 dark:text-gray-400">Validated By</span>
+                            <div class="block" style="min-height: 40px">
+                                @if (!$hasHoursActualValidator)
+                                    <button wire:click.prevent="openSearchUserModal('hours_actual_validator')" class="px-2 py-1 mt-1 italic text-xs leading-5 text-white transition-colors duration-150 bg-purple-600 border border-transparent rounded-lg active:bg-purple-600 hover:bg-purple-700 focus:outline-none focus:shadow-outline-purple">
+                                        {{ __('Select Hours Saved Validator') }}
+                                    </button>
+                                @endif
+                                @foreach($selectedHoursActualValidators as $index => $selectedUser)
+                                    @if ($index == 0)
+                                        <span class="mt-4 text-gray-700 dark:text-gray-400 text-xl align-middle">{{$selectedUser['name']}}
+
+                                        </span>
+                                        <button wire:click.prevent="removeSelectedUser({{$index}},'hours_actual_validator')" class="mr-3 px-1 text-xs text-white transition-colors duration-150 bg-red-700 border border-transparent rounded-md active:bg-red-700 hover:bg-red-800 focus:outline-none focus:shadow-outline-red">
+                                            X
+                                        </button>
+                                    @endif
+                                @endforeach
+                            </div>
+                        </label>
                     </div>
 
                     <div>
@@ -487,11 +502,26 @@
                             wire:model="project.savings_actual" name="project.savings_actual"/>
                     </div>
                     <div>
-                        <span class="text-gray-700 dark:text-gray-400">
-                            Validated By
-                        </span>
-                        <input class="required block w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:text-gray-300 dark:focus:shadow-outline-gray form-input"
-                            wire:model="project.savings_actual_validated" name="project.savings_actual_validated"/>
+                        <label class="block text-sm" >
+                            <span class="text-gray-700 dark:text-gray-400">Validated By</span>
+                            <div class="block" style="min-height: 40px">
+                                @if (!$hasSavingsActualValidator)
+                                    <button wire:click.prevent="openSearchUserModal('savings_actual_validator')" class="px-2 py-1 mt-1 italic text-xs leading-5 text-white transition-colors duration-150 bg-purple-600 border border-transparent rounded-lg active:bg-purple-600 hover:bg-purple-700 focus:outline-none focus:shadow-outline-purple">
+                                        {{ __('Select Dollar Savings Validator') }}
+                                    </button>
+                                @endif
+                                @foreach($selectedSavingsActualValidators as $index => $selectedUser)
+                                    @if ($index == 0)
+                                        <span class="mt-4 text-gray-700 dark:text-gray-400 text-xl align-middle">{{$selectedUser['name']}}
+
+                                        </span>
+                                        <button wire:click.prevent="removeSelectedUser({{$index}},'hours_actual_validator')" class="mr-3 px-1 text-xs text-white transition-colors duration-150 bg-red-700 border border-transparent rounded-md active:bg-red-700 hover:bg-red-800 focus:outline-none focus:shadow-outline-red">
+                                            X
+                                        </button>
+                                    @endif
+                                @endforeach
+                            </div>
+                        </label>
                     </div>
                 </div>
             </div>
@@ -568,6 +598,12 @@
                             @break
                         @case("ap_champion")
                             <livewire:search-user-dropdown :selectedUsers="$selectedApChampions">
+                            @break
+                        @case("hours_actual_validator")
+                            <livewire:search-user-dropdown :selectedUsers="$selectedHoursActualValidators">
+                            @break
+                        @case("savings_actual_validator")
+                            <livewire:search-user-dropdown :selectedUsers="$selectedSavingsActualValidators">
                             @break
                         @default
                             <span>Invalid search type</span>

@@ -34,7 +34,7 @@ class CreateProjectsTable extends Migration
 
             $table->decimal('loss',9,2)->nullable();
             $table->decimal('budget',9,2)->nullable();
-            $table->decimal('hours',9,2)->nullable();
+            $table->integer('hours')->nullable();
             $table->decimal('savings',9,2)->nullable();
             $table->dateTime('start', $precision = 0)->nullable();
             $table->dateTime('end', $precision = 0)->nullable();
@@ -51,10 +51,11 @@ class CreateProjectsTable extends Migration
             $table->integer('approved_sponsor_id')->nullable();
             $table->integer('approved_champion_id')->nullable();
 
-            $table->decimal('hours_actual',9,2)->nullable();
-            $table->text('hours_actual_validated')->nullable();
-            $table->decimal('savings_actual',9,2)->nullable();
-            $table->text('savings_actual_validated')->nullable();
+            $table->integer('hours_actual')->nullable();
+            $table->integer('hours_actual_validated_id')->nullable();
+            $table->integer('savings_actual')->nullable();
+            $table->integer('savings_actual_validated_id')->nullable();
+
 
             $table->dateTime('posted', $precision = 0)->nullable();
             $table->softDeletes();

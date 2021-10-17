@@ -18,22 +18,26 @@
 <div>
     <table style="border: none">
         <tr>
-            <td colspan="4" class="section-header">KAIZEN CONTINUOUS IMPROVEMENT SUGGESTION FORM</td>
+            <td colspan="6" class="section-header">KAIZEN CONTINUOUS IMPROVEMENT SUGGESTION FORM</td>
         </tr>
         <tr >
             <td colspan="2" style="padding: 10 0">Name: <strong>{{$kaizen->name}}</strong> </td>
-            <td style="width: 20%">Date: <strong>{{Carbon\Carbon::create($kaizen->posted)->toFormattedDateString()}}</strong></td>
-            <td style="width: 30%">Store Name: <strong>{{$kaizen->location->name}}</strong></td>
         </tr>
         <tr>
-            <td colspan="4" style="padding-bottom: 10">
-                Team Members:
+            <td style="padding-bottom: 10">
+                Team Members:<br>
                 @foreach ($team_members as $index=>$team_member)
-                @if($team_member)
-                    {{ $index}}.  <strong>{{ $team_member['name'] }} </strong>
+                    @if($team_member)
+                        <strong>{{ $team_member['name'] }} </strong><br>
                     @endif
                 @endforeach
             </td>
+            <td >Stores: <br>
+                @foreach ($kaizen->locations as $store)
+                    <strong>{{ $store->name }}</strong><br>
+                @endforeach
+            </td>
+            <td colspan="2">Date Assigned: <strong>{{Carbon\Carbon::create($kaizen->date_assigned)->toFormattedDateString()}}</strong></td>
         </tr>
         <tr >
             <td colspan="6" class="section-header">AREAS AFFECTED</td>

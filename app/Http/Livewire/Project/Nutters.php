@@ -22,13 +22,15 @@ class Nutters extends Component
     public $usersResults = [];
 
     public $isSearchUserModalOpen = false;
-    public $searchType;/* manager, sponsor, champion, ap_manager, ap_sponsor, ap_champion */
+    public $searchType;/* manager, sponsor, champion, ap_manager, ap_sponsor, ap_champion, hours_actual_validator, savings_actual_validator*/
     public $selectedManagers = [];
     public $selectedSponsors = [];
     public $selectedChampions = [];
     public $selectedApManagers = [];
     public $selectedApSponsors = [];
     public $selectedApChampions = [];
+    public $selectedHoursActualValidators = [];
+    public $selectedSavingsActualValidators = [];
 
     public $isSearchLocationModalOpen = false;
     public $selectedLocations = [];
@@ -39,6 +41,8 @@ class Nutters extends Component
     public $hasApManager;
     public $hasApSponsor;
     public $hasApChampion;
+    public $hasHoursActualValidator;
+    public $hasSavingsActualValidator;
 
     protected $listeners = ['userSelected','locationSelected'];
 
@@ -69,9 +73,9 @@ class Nutters extends Component
         'project.approved_sponsor_id' => '',
         'project.approved_champion_id' => '',
         'project.hours_actual' => '',
-        'project.hours_actual_validated' => '',
+        'project.hours_actual_validated_id' => '',
         'project.savings_actual' => '',
-        'project.savings_actual_validated' => '',
+        'project.savings_actual_validated_id' => '',
     ];
 
     public function mount(Project $project = null)
@@ -89,6 +93,8 @@ class Nutters extends Component
             $this->selectedApManagers[] =  new User();
             $this->selectedApSponsors[] =  new User();
             $this->selectedApChampions[] =  new User();
+            $this->selectedHoursActualValidators[] =  new User();
+            $this->selectedSavingsActualValidators[] =  new User();
         }
         else{
             if($project->manager_id)
@@ -101,8 +107,12 @@ class Nutters extends Component
                 $this->selectedApManagers[] =  User::where(['id' => $project->approved_manager_id])->first();
             if($project->approved_sponsor_id)
                 $this->selectedApSponsors[] =  User::where(['id' => $project->approved_sponsor_id])->first();
-            if($project->approved_manager_id)
-                $this->selectedApChampions[] =  User::where(['id' => $project->approved_manager_id])->first();
+            if($project->approved_champion_id)
+                $this->selectedApChampions[] =  User::where(['id' => $project->approved_champion_id])->first();
+            if($project->hours_actual_validated_id)
+                $this->selectedHoursActualValidators[] =  User::where(['id' => $project->hours_actual_validated_id])->first();
+            if($project->savings_actual_validated_id)
+                $this->selectedSavingsActualValidators[] =  User::where(['id' => $project->savings_actual_validated_id])->first();
 
             foreach(explode(",", $project->affected_areas) as $key=>$value){
                 //replace keys (index) with values from db
@@ -123,6 +133,7 @@ class Nutters extends Component
     }
 
     public function openSearchUserModal($type){
+        info ('openSearchUserModal: ' . $type);
         $this->searchType = $type;
         $this->isSearchUserModalOpen = true;
     }
@@ -164,7 +175,12 @@ class Nutters extends Component
             case 'ap_champion':
                 $this->selectedApChampions[] = User::where(['id' => $userId])->first();
                 break;
-
+            case 'hours_actual_validator':
+                $this->selectedHoursActualValidators[] = User::where(['id' => $userId])->first();
+                break;
+            case 'savings_actual_validator':
+                $this->selectedSavingsActualValidators[] = User::where(['id' => $userId])->first();
+                break;
             default:
                 $this->isSearchUserModalOpen = false;
                 break;
@@ -245,7 +261,6 @@ class Nutters extends Component
 
         info('saving project');
 
-        info($this->selectedManagers);
         if(isset($this->selectedManagers[0]))$this->project->manager_id = $this->selectedManagers[0]['id'];
         if(isset($this->selectedSponsors[0]))$this->project->sponsor_id = $this->selectedSponsors[0]['id'];
         if(isset($this->selectedChampions[0]))$this->project->champion_id = $this->selectedChampions[0]['id'];
@@ -253,6 +268,9 @@ class Nutters extends Component
         if(isset($this->selectedApManagers[0]))$this->project->approved_manager_id = $this->selectedManagers[0]['id'];
         if(isset($this->selectedApSponsors[0]))$this->project->approved_sponsor_id = $this->selectedApSponsors[0]['id'];
         if(isset($this->selectedApChampions[0]))$this->project->approved_champion_id = $this->selectedApChampions[0]['id'];
+
+        if(isset($this->selectedHoursActualValidators[0]))$this->project->hours_actual_validated_id = $this->selectedHoursActualValidators[0]['id'];
+        if(isset($this->selectedSavingsActualValidators[0]))$this->project->savings_actual_validated_id = $this->selectedSavingsActualValidators[0]['id'];
 
         $this->validate();
 
@@ -321,6 +339,14 @@ class Nutters extends Component
         $this->hasApChampion = false;
         foreach ($this->selectedApChampions as $key => $value) {
             if(isset($value['id'])){$this->hasApChampion = true;break;}
+        }
+        $this->hasHoursActualValidator = false;
+        foreach ($this->selectedHoursActualValidators as $key => $value) {
+            if(isset($value['id'])){$this->hasHoursActualValidator = true;break;}
+        }
+        $this->hasSavingsActualValidator = false;
+        foreach ($this->selectedSavingsActualValidators as $key => $value) {
+            if(isset($value['id'])){$this->hasSavingsActualValidator = true;break;}
         }
 
         $this->users = $this->getUsers();
