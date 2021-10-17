@@ -202,6 +202,11 @@ class Nutters extends Component
        //return redirect()->to('/kaizen/' . $this->kaizen->id);
     }
 
+    private function formatCleave(){
+        $this->kaizen->dollar_value = trim(str_replace("$", "", $this->kaizen->dollar_value)) == '' ? null : trim(str_replace("$", "", $this->kaizen->dollar_value));
+        $this->kaizen->savings = trim(str_replace("$", "", $this->kaizen->savings)) == '' ? null : trim(str_replace("$", "", $this->kaizen->savings));
+    }
+
     private function saveLocations(){
         //$this->kaizen->locations = [];
         info( 'saving locations...');

@@ -243,17 +243,17 @@
             <div class="grid gap-2 mb- md:grid-cols-1 xl:grid-cols-3">
                 <div>
                     <span class="text-gray-700 dark:text-gray-400">Dollar Value</span>
-                    <input class="required block w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:text-gray-300 dark:focus:shadow-outline-gray form-input"
+                    <input class="cleave-money block w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:text-gray-300 dark:focus:shadow-outline-gray form-input"
                         wire:model="kaizen.dollar_value"
                         name="kaizen.dollar_value"
-                        placeholder="Dollar value" type="number"/>
+                        placeholder="Dollar value"/>
                 </div>
                 <div>
                     <span class="text-gray-700 dark:text-gray-400">Savings</span>
-                    <input class="required block w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:text-gray-300 dark:focus:shadow-outline-gray form-input"
+                    <input class="cleave-money block w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:text-gray-300 dark:focus:shadow-outline-gray form-input"
                         wire:model="kaizen.savings"
                         name="kaizen.savings"
-                        placeholder="Savings" type="number"/>
+                        placeholder="Savings"/>
                 </div>
                 <div>
                     <span class="text-gray-700 dark:text-gray-400">Hours Saved</span>
@@ -524,10 +524,13 @@
         defaultDate: 'today',
 
     });
-    /*
-    flatpickr('#due', {
-        defaultDate: new Date().fp_incr(1),
-    }); */
+    document.querySelectorAll('.cleave-money').forEach(function(el) {
+        new Cleave(el, {
+            prefix: '$ ',
+            numeral: true,
+            numeralThousandGroupStyle: 'thousand'
+        });
+    });
 </script>
 
 
