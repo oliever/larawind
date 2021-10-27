@@ -179,9 +179,16 @@ class Nutters extends Component
         //info($this->selectedAfftectedAreas);
         $this->kaizen->affected_areas = implode(',', array_keys(array_filter($this->selectedAfftectedAreas)));
         //info($this->kaizen->affected_areas);
-        //$this->validate();
+        if(!$this->kaizen->all_locations)
+            $this->kaizen->all_locations = 0;
+
+        if(!$this->kaizen->completion)
+            $this->kaizen->completion = 0;
+
+        $this->validate();
 
         // Execution doesn't reach here if validation fails.
+
         if($asProject)
             $this->kaizen->posted =Carbon::now();
 
