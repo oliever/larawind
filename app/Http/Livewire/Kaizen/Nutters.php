@@ -29,7 +29,7 @@ class Nutters extends Component
     public $selectedUsers = [];
     public $selectedLocations = [];
 
-    protected $listeners = ['userSelected','locationSelected'];
+    protected $listeners = ['userSelected','locationSelected','usersCheckboxUpdated'];
 
     protected $rules = [
         'kaizen.name' => 'required|min:5',
@@ -59,6 +59,13 @@ class Nutters extends Component
         'kaizen.approving_user_id' => '',
 
     ];
+
+    public function usersCheckboxUpdated($selectedUsers)
+    {
+        info('usersCheckboxUpdated');
+        info($selectedUsers);
+    }
+
 
     public function userSelected($userId)
     {
@@ -194,7 +201,7 @@ class Nutters extends Component
 
         $this->kaizen->save();
 
-        $this->saveLocations();
+       // $this->saveLocations();
 
         info('nutters kaizen saved');
         info($this->kaizen);

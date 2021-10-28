@@ -37,136 +37,62 @@
         @csrf
         <h4 class="mb-2 text-lg font-semibold text-gray-600 dark:text-gray-300">
             General Info
-
-
         </h4>
         <div class="px-4 py-3 mb-8 bg-white rounded-lg shadow-md dark:bg-gray-800"><!--card-->
-            <div class="grid gap-2 mb- md:grid-cols-1 xl:grid-cols-3">
-                <div class="gap-2 mb-2 col-span-2">
-                    <label class="block text-sm">
-                        <span class="text-gray-700 dark:text-gray-400">Name</span>
-                        <input class="required block w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:text-gray-300 dark:focus:shadow-outline-gray form-input"
-                            wire:model="kaizen.name"
-                            name="kaizen.name"
-                            placeholder="Name" />
-                    </label>
-                    @error('kaizen.name')
-                        <p class="text-sm text-red-600">{{ $message }}</p>
-                    @enderror
-                </div>
+            <div class="grid gap-2 mb-2 md:grid-cols-1 xl:grid-cols-2">
+                {{-- column 1 --}}
+                <label class="block text-sm">
+                    <span class="text-gray-700 dark:text-gray-400">Name</span>
+                    <input class="required block w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:text-gray-300 dark:focus:shadow-outline-gray form-input"
+                        wire:model="kaizen.name"
+                        name="kaizen.name"
+                        placeholder="Name" />
+                </label>
+                @error('kaizen.name')
+                    <p class="text-sm text-red-600">{{ $message }}</p>
+                @enderror
 
-                <div class="grid gap-2 mb-2 md:grid-cols-1 xl:grid-cols-1">
+                {{-- column 2 --}}
+                <div class="grid gap-2 mb- grid-cols-2">
+                    {{-- column 1 --}}
                     <label class="block text-sm">
-                        @if (!$kaizen->all_locations)
-                        <button wire:click.prevent="openSearchLocationModal" class="mr-1 px-1 text-xs text-white transition-colors duration-150 bg-green-700 border border-transparent rounded-md active:bg-green-700 hover:bg-green-800 focus:outline-none focus:shadow-outline-green">
-                            +
-                        </button>
+                        <span class="text-gray-700 dark:text-gray-400">Date Assigned</span>
+                        @if ($kaizen->posted)
+                        <h4 class="mb-2 text-lg font-semibold text-gray-600 dark:text-gray-300">{{date('m/d/Y', strtotime($dateAssigned))}}</h4>
+                        @else
+                            <input class="required block w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:text-gray-300 dark:focus:shadow-outline-gray form-input"
+                                wire:model="dateAssigned" name="dateAssigned" type="date" />
                         @endif
-                        <span class="text-gray-700 dark:text-gray-400">Stores</span>
-                        <label class="pl-4 items-center dark:text-gray-400 inline-block">
-                            <input wire:model="kaizen.all_locations"  type="checkbox"
-                                    class="text-purple-600 form-checkbox focus:border-purple-400 outline-black focus:shadow-outline-purple dark:focus:shadow-outline-gray" style="border-color:purple" />
-                            <span class="ml-2">
-                                All Stores
-                            </span>
-                        </label>
-                        @if (!$kaizen->all_locations)
-                            <div class="block ">
-                                @foreach($selectedLocations as $index => $selectedLocation)
-                                    @if ($index)
-                                        <span class="mt-4 text-gray-700 dark:text-gray-400 text-xl align-middle">{{$selectedLocation['name']}}
 
-                                        </span>
-                                        <button wire:click.prevent="removeSelectedLocation({{$index}})" class="mr-3 px-1 text-xs text-white transition-colors duration-150 bg-red-700 border border-transparent rounded-md active:bg-red-700 hover:bg-red-800 focus:outline-none focus:shadow-outline-red">
-                                            X
-                                        </button>
-                                    @endif
-                                @endforeach
-                            </div>
-                        @endif
                     </label>
 
-                    {{-- <label class="block text-sm">
+                    {{-- column 2 --}}
+                    <label class="block text-sm">
                         <span class="text-gray-700 dark:text-gray-400">
-                            Store Name
+                            Completion
                         </span>
                         <select
-                        wire:model="kaizen.location_id"
-                        id="kaizen.location_id"
+                        wire:model="kaizen.completion"
+                        id="kaizen.completion"
                         class="block w-full mt-1 text-sm dark:text-gray-300 dark:border-gray-600 dark:bg-gray-700 form-select focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:focus:shadow-outline-gray">
-                            <option></option>
-                            @foreach($stores as $store)
-                                <option value="{{ $store->id }}">{{ $store->name }}</option>
-                            @endforeach
-
+                            <option value="0">0%</option>
+                            <option value="15">15%</option>
+                            <option value="30">30%</option>
+                            <option value="45">45%</option>
+                            <option value="60">60%</option>
+                            <option value="75">75%</option>
+                            <option value="90">90%</option>
+                            <option value="100">100%</option>
                         </select>
-                        @error('kaizen.location_id')
+                        @error('kaizen.completion')
                             <p class="text-sm text-red-600">{{ $message }}</p>
                         @enderror
-                    </label> --}}
-
+                    </label>
                 </div>
             </div>
 
-            <div class="grid gap-2 mb- md:grid-cols-1 xl:grid-cols-3">
-                <label class="block text-sm">
-                    <button wire:click.prevent="openSearchUserModal" class=" px-1 text-xs text-white transition-colors duration-150 bg-green-700 border border-transparent rounded-md active:bg-green-700 hover:bg-green-800 focus:outline-none focus:shadow-outline-green">
-                        +
-                    </button>
-                    <span class="text-gray-700 dark:text-gray-400">Team Members</span>
-                    <div class="block ">
-                        @foreach($selectedUsers as $index => $selectedUser)
-                            @if ($index && $selectedUser)
-                                <span class="mt-4 text-gray-700 dark:text-gray-400 text-xl align-middle">{{$selectedUser['name']}}
-
-                                </span>
-                                <button wire:click.prevent="removeSelectedUser({{$index}})" class="mr-3 px-1 text-xs text-white transition-colors duration-150 bg-red-700 border border-transparent rounded-md active:bg-red-700 hover:bg-red-800 focus:outline-none focus:shadow-outline-red">
-                                    X
-                                </button>
-                            @endif
-                        @endforeach
-                    </div>
-
-                </label>
-
-                <label class="block text-sm">
-                    <span class="text-gray-700 dark:text-gray-400">Date Assigned</span>
-                    @if ($kaizen->posted)
-                    <h4 class="mb-2 text-lg font-semibold text-gray-600 dark:text-gray-300">{{date('m/d/Y', strtotime($dateAssigned))}}</h4>
-                    @else
-                        <input class="required block w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:text-gray-300 dark:focus:shadow-outline-gray form-input"
-                            wire:model="dateAssigned" name="dateAssigned" type="date" />
-                    @endif
-
-                </label>
-
-                <label class="block text-sm">
-                    <span class="text-gray-700 dark:text-gray-400">
-                        Completion
-                    </span>
-                    <select
-                    wire:model="kaizen.completion"
-                    id="kaizen.completion"
-                    class="block w-full mt-1 text-sm dark:text-gray-300 dark:border-gray-600 dark:bg-gray-700 form-select focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:focus:shadow-outline-gray">
-                        <option value="0">0%</option>
-                        <option value="15">15%</option>
-                        <option value="30">30%</option>
-                        <option value="45">45%</option>
-                        <option value="60">60%</option>
-                        <option value="75">75%</option>
-                        <option value="90">90%</option>
-                        <option value="100">100%</option>
-                    </select>
-                    @error('kaizen.completion')
-                        <p class="text-sm text-red-600">{{ $message }}</p>
-                    @enderror
-                </label>
-            </div>
-
-            <div class="grid gap-2 mb-2 md:grid-cols-2 xl:grid-cols-4">
-
-
-                <div class="flex mt-2 text-sm">
+            <div class="grid gap-2 md:grid-cols-2 xl:grid-cols-4">
+                <div class="flex mt-2 text-sm ">
                     <label class="flex items-center dark:text-gray-400">
                         <input wire:model="isJustDoIt" @click="isJustDoIt=!isJustDoIt; isRapid=!isRapid" id="isJustDoIt" type="checkbox"
                                 class="text-purple-600 form-checkbox focus:border-purple-400 outline-black focus:shadow-outline-purple dark:focus:shadow-outline-gray" style="border-color:purple" />
@@ -206,8 +132,12 @@
                 </div>
             </div>
 
-
+            <div class="grid  mb-2 justify-items-center  grid-cols-2">
+                <label class="block text-sm"> @livewire('users-checkbox')</label>
+                <label class="block text-sm">@livewire('locations-checkbox')</label>
+            </div>
         </div>
+
 
         <h4 class="mb-2 text-lg font-semibold text-gray-600 dark:text-gray-300">
             Affected Areas

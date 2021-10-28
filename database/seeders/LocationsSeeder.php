@@ -16,13 +16,16 @@ class LocationsSeeder extends Seeder
     public function run()
     {
         $locations = [
+
             [
                 'id'             => 1,
                 'team_id'        => 1,
                 'code'           => "1",
                 'name'           => 'Medicine Hat',
                 'active'         => true,
-                'created_at'     => Carbon::now()
+                'created_at'     => Carbon::now(),
+                'is_area'        => false,
+                'area_id'        => 99
             ],
             [
                 'id'             => 3,
@@ -30,7 +33,9 @@ class LocationsSeeder extends Seeder
                 'code'           => "3",
                 'name'           => 'Red Deer',
                 'active'         => true,
-                'created_at'     => Carbon::now()
+                'created_at'     => Carbon::now(),
+                'is_area'        => false,
+                'area_id'        => 99
             ],
             [
                 'id'             => 5,
@@ -38,7 +43,9 @@ class LocationsSeeder extends Seeder
                 'code'           => "5",
                 'name'           => "Moose Jaw",
                 'active'         => true,
-                'created_at'     => Carbon::now()
+                'created_at'     => Carbon::now(),
+                'is_area'        => false,
+                'area_id'        => 99
             ],
             [
                 'id'             => 6,
@@ -46,7 +53,9 @@ class LocationsSeeder extends Seeder
                 'code'           => "6",
                 'name'           => "Lethbridge",
                 'active'         => true,
-                'created_at'     => Carbon::now()
+                'created_at'     => Carbon::now(),
+                'is_area'        => false,
+                'area_id'        => 99
             ],
             [
                 'id'             => 9,
@@ -54,7 +63,9 @@ class LocationsSeeder extends Seeder
                 'code'           => "9",
                 'name'           => "Wetaskiwin",
                 'active'         => true,
-                'created_at'     => Carbon::now()
+                'created_at'     => Carbon::now(),
+                'is_area'        => false,
+                'area_id'        => 99
             ],
             [
                 'id'             => 10,
@@ -62,7 +73,9 @@ class LocationsSeeder extends Seeder
                 'code'           => "10",
                 'name'           => "Lloydminster",
                 'active'         => true,
-                'created_at'     => Carbon::now()
+                'created_at'     => Carbon::now(),
+                'is_area'        => false,
+                'area_id'        => 99
             ],
             [
                 'id'             => 12,
@@ -70,7 +83,9 @@ class LocationsSeeder extends Seeder
                 'code'           => "12",
                 'name'           => "Estevan",
                 'active'         => true,
-                'created_at'     => Carbon::now()
+                'created_at'     => Carbon::now(),
+                'is_area'        => false,
+                'area_id'        => 99
             ],
             [
                 'id'             => 14,
@@ -78,7 +93,9 @@ class LocationsSeeder extends Seeder
                 'code'           => "14",
                 'name'           => "Leduc",
                 'active'         => true,
-                'created_at'     => Carbon::now()
+                'created_at'     => Carbon::now(),
+                'is_area'        => false,
+                'area_id'        => 99
             ],
             [
                 'id'             => 15,
@@ -86,7 +103,9 @@ class LocationsSeeder extends Seeder
                 'code'           => "15",
                 'name'           => "Prince Albert",
                 'active'         => true,
-                'created_at'     => Carbon::now()
+                'created_at'     => Carbon::now(),
+                'is_area'        => false,
+                'area_id'        => 99
             ],
             [
                 'id'             => 21,
@@ -94,7 +113,9 @@ class LocationsSeeder extends Seeder
                 'code'           => "21",
                 'name'           => "Yorkton",
                 'active'         => true,
-                'created_at'     => Carbon::now()
+                'created_at'     => Carbon::now(),
+                'is_area'        => false,
+                'area_id'        => 99
             ],
             [
                 'id'             => 24,
@@ -102,7 +123,9 @@ class LocationsSeeder extends Seeder
                 'code'           => "24",
                 'name'           => "Rocky Mountain House",
                 'active'         => true,
-                'created_at'     => Carbon::now()
+                'created_at'     => Carbon::now(),
+                'is_area'        => false,
+                'area_id'        => 99
             ],
             [
                 'id'             => 25,
@@ -110,7 +133,9 @@ class LocationsSeeder extends Seeder
                 'code'           => "25",
                 'name'           => "Melfort",
                 'active'         => true,
-                'created_at'     => Carbon::now()
+                'created_at'     => Carbon::now(),
+                'is_area'        => false,
+                'area_id'        => 99
             ],
             [
                 'id'             => 28,
@@ -118,7 +143,9 @@ class LocationsSeeder extends Seeder
                 'code'           => "28",
                 'name'           => "Jasper",
                 'active'         => true,
-                'created_at'     => Carbon::now()
+                'created_at'     => Carbon::now(),
+                'is_area'        => false,
+                'area_id'        => 99
             ],
             [
                 'id'             => 31,
@@ -126,7 +153,9 @@ class LocationsSeeder extends Seeder
                 'code'           => "31",
                 'name'           => "North Battleford",
                 'active'         => true,
-                'created_at'     => Carbon::now()
+                'created_at'     => Carbon::now(),
+                'is_area'        => false,
+                'area_id'        => 99
             ],
             [
                 'id'             => 32,
@@ -134,7 +163,9 @@ class LocationsSeeder extends Seeder
                 'code'           => "32",
                 'name'           => "Olds",
                 'active'         => true,
-                'created_at'     => Carbon::now()
+                'created_at'     => Carbon::now(),
+                'is_area'        => false,
+                'area_id'        => 99
             ],
             [
                 'id'             => 35,
@@ -142,7 +173,9 @@ class LocationsSeeder extends Seeder
                 'code'           => "35",
                 'name'           => "Salmon Arm",
                 'active'         => true,
-                'created_at'     => Carbon::now()
+                'created_at'     => Carbon::now(),
+                'is_area'        => false,
+                'area_id'        => 99
             ],
             [
                 'id'             => 38,
@@ -150,7 +183,9 @@ class LocationsSeeder extends Seeder
                 'code'           => "38",
                 'name'           => "Okotoks",
                 'active'         => true,
-                'created_at'     => Carbon::now()
+                'created_at'     => Carbon::now(),
+                'is_area'        => false,
+                'area_id'        => 99
             ],
             [
                 'id'             => 40,
@@ -158,7 +193,9 @@ class LocationsSeeder extends Seeder
                 'code'           => "40",
                 'name'           => "Dauphin",
                 'active'         => true,
-                'created_at'     => Carbon::now()
+                'created_at'     => Carbon::now(),
+                'is_area'        => false,
+                'area_id'        => 99
             ],
             [
                 'id'             => 43,
@@ -166,7 +203,9 @@ class LocationsSeeder extends Seeder
                 'code'           => "43",
                 'name'           => "Crankbrook",
                 'active'         => true,
-                'created_at'     => Carbon::now()
+                'created_at'     => Carbon::now(),
+                'is_area'        => false,
+                'area_id'        => 99
             ],
             [
                 'id'             => 44,
@@ -174,7 +213,9 @@ class LocationsSeeder extends Seeder
                 'code'           => "44",
                 'name'           => "Canmore",
                 'active'         => true,
-                'created_at'     => Carbon::now()
+                'created_at'     => Carbon::now(),
+                'is_area'        => false,
+                'area_id'        => 99
             ],
             [
                 'id'             => 45,
@@ -182,7 +223,9 @@ class LocationsSeeder extends Seeder
                 'code'           => "45",
                 'name'           => "Camrose",
                 'active'         => true,
-                'created_at'     => Carbon::now()
+                'created_at'     => Carbon::now(),
+                'is_area'        => false,
+                'area_id'        => 99
             ],
             [
                 'id'             => 47,
@@ -190,7 +233,9 @@ class LocationsSeeder extends Seeder
                 'code'           => "47",
                 'name'           => "Swift Current",
                 'active'         => true,
-                'created_at'     => Carbon::now()
+                'created_at'     => Carbon::now(),
+                'is_area'        => false,
+                'area_id'        => 99
             ],
             [
                 'id'             => 48,
@@ -198,7 +243,9 @@ class LocationsSeeder extends Seeder
                 'code'           => "48",
                 'name'           => "Saskatoon",
                 'active'         => true,
-                'created_at'     => Carbon::now()
+                'created_at'     => Carbon::now(),
+                'is_area'        => false,
+                'area_id'        => 99
             ],
             [
                 'id'             => 50,
@@ -206,7 +253,9 @@ class LocationsSeeder extends Seeder
                 'code'           => "50",
                 'name'           => "Airdrie",
                 'active'         => true,
-                'created_at'     => Carbon::now()
+                'created_at'     => Carbon::now(),
+                'is_area'        => false,
+                'area_id'        => 99
             ],
             [
                 'id'             => 999,
@@ -214,7 +263,19 @@ class LocationsSeeder extends Seeder
                 'code'           => "999",
                 'name'           => "Head Office",
                 'active'         => true,
-                'created_at'     => Carbon::now()
+                'created_at'     => Carbon::now(),
+                'is_area'        => false,
+                'area_id'        => 99
+            ],
+            [
+                'id'             => 99,
+                'team_id'        => 1,
+                'code'           => "99",
+                'name'           => 'All Stores',
+                'active'         => true,
+                'created_at'     => Carbon::now(),
+                'is_area'        => true,
+                'area_id'        => null
             ],
         ];
 

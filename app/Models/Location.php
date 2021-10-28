@@ -16,6 +16,10 @@ class Location extends Model
     public function projects(){
         return $this->hasMany(Project::class);
     } */
+    public function children()
+    {
+        return $this->hasMany(self::class, 'area_id', 'id');
+    }
 
     public function kaizens()
     {
