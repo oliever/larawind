@@ -80,6 +80,7 @@ class Nutters extends Component
 
     public function mount(Project $project = null)
     {
+        $this->users = auth()->user()->currentTeam->allUsers();
         $this->project = $project;
         //$this->selectedAfftectedAreas = explode(",", $kaizen->affected_areas);
 

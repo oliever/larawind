@@ -62,7 +62,13 @@
                 <p class="text-gray-600 dark:text-gray-400">
                     <label class="block text-sm" >
                         <span class="text-gray-700 dark:text-gray-400">Project Leader/Manager</span>
-                        <div class="block" style="min-height: 40px">
+                        <select class="block w-full mt-1 text-sm dark:text-gray-300 dark:border-gray-600 dark:bg-gray-700 form-select focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:focus:shadow-outline-gray">
+                            <option value="0" style="font-style: italic">Select Project Leader/Manager</option>
+                            @foreach ($users as $user)
+                                <option value="{{ $user->id }}">{{ $user->name}}</option>
+                            @endforeach
+                        </select>
+                        {{-- <div class="block" style="min-height: 40px">
                             @if (!$hasManager)
                                 <button wire:click.prevent="openSearchUserModal('manager')" class="px-2 py-1 mt-1 italic text-xs leading-5 text-white transition-colors duration-150 bg-purple-600 border border-transparent rounded-lg active:bg-purple-600 hover:bg-purple-700 focus:outline-none focus:shadow-outline-purple">
                                     {{ __('Select Project Leader/Manager') }}
@@ -78,13 +84,18 @@
                                     </button>
                                 @endif
                             @endforeach
-                        </div>
+                        </div> --}}
                     </label>
 
                     <label class="block text-sm">
-                        <span class="text-gray-700 dark:text-gray-400">Sponsor
-                            </span>
-                            <div class="block " style="min-height: 40px">
+                        <span class="text-gray-700 dark:text-gray-400">Sponsor</span>
+                        <select class="block w-full mt-1 text-sm dark:text-gray-300 dark:border-gray-600 dark:bg-gray-700 form-select focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:focus:shadow-outline-gray">
+                            <option value="0" style="font-style: italic">Select Sponsor</option>
+                            @foreach ($users as $user)
+                                <option value="{{ $user->id }}">{{ $user->name}}</option>
+                            @endforeach
+                        </select>
+                            {{-- <div class="block " style="min-height: 40px">
                                 @if (!$hasSponsor)
                                     <button wire:click.prevent="openSearchUserModal('sponsor')" class="px-2 py-1 mt-1 italic text-xs leading-5 text-white transition-colors duration-150 bg-purple-600 border border-transparent rounded-lg active:bg-purple-600 hover:bg-purple-700 focus:outline-none focus:shadow-outline-purple">
                                         {{ __('Select Sponsor') }}
@@ -100,13 +111,18 @@
                                         </button>
                                     @endif
                                 @endforeach
-                            </div>
+                            </div> --}}
                     </label>
 
                     <label class="block text-sm">
-                        <span class="text-gray-700 dark:text-gray-400">Champion
-                            </span>
-                            <div class="block " style="min-height: 40px">
+                        <span class="text-gray-700 dark:text-gray-400">Champion</span>
+                        <select class="block w-full mt-1 text-sm dark:text-gray-300 dark:border-gray-600 dark:bg-gray-700 form-select focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:focus:shadow-outline-gray">
+                            <option value="0" style="font-style: italic">Select Champion</option>
+                            @foreach ($users as $user)
+                                <option value="{{ $user->id }}">{{ $user->name}}</option>
+                            @endforeach
+                        </select>
+                            {{-- <div class="block " style="min-height: 40px">
                                 @if (!$hasChampion)
                                     <button wire:click.prevent="openSearchUserModal('champion')" class="px-2 py-1 mt-1 italic text-xs leading-5 text-white transition-colors duration-150 bg-purple-600 border border-transparent rounded-lg active:bg-purple-600 hover:bg-purple-700 focus:outline-none focus:shadow-outline-purple">
                                         {{ __('Select Champion') }}
@@ -122,7 +138,7 @@
                                         </button>
                                     @endif
                                 @endforeach
-                            </div>
+                            </div> --}}
                     </label>
 
                     {{-- <label class="mb-4 block text-sm">
@@ -155,7 +171,7 @@
                     </label>
 
                     <label class="mb-4 block text-sm">
-                        <label class="block text-sm">
+                        {{-- <label class="block text-sm">
                             @if (!$project->all_locations)
                             <button wire:click.prevent="openSearchLocationModal" class="mr-1 px-1 text-xs text-white transition-colors duration-150 bg-green-700 border border-transparent rounded-md active:bg-green-700 hover:bg-green-800 focus:outline-none focus:shadow-outline-green">
                                 +
@@ -183,7 +199,8 @@
                                     @endforeach
                                 </div>
                             @endif
-                        </label>
+                        </label> --}}
+                        <label class="block text-sm"><livewire:locations-checkbox :selectedLocations="$selectedLocations"></label>
                     </label>
 
                     <label class="mb-4 block text-sm">
@@ -381,7 +398,13 @@
 
                 <label class="block text-sm" >
                     <span class="text-gray-700 dark:text-gray-400">Approving Project Leader/Manager</span>
-                    <div class="block" style="min-height: 40px">
+                    <select class="block w-full mt-1 text-sm dark:text-gray-300 dark:border-gray-600 dark:bg-gray-700 form-select focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:focus:shadow-outline-gray">
+                        <option value="0" style="font-style: italic">Select Approving Project Leader/Manager</option>
+                        @foreach ($users as $user)
+                            <option value="{{ $user->id }}">{{ $user->name}}</option>
+                        @endforeach
+                    </select>
+                    {{-- <div class="block" style="min-height: 40px">
                         @if (!$hasApManager)
                             <button wire:click.prevent="openSearchUserModal('ap_manager')" class="px-2 py-1 mt-1 italic text-xs leading-5 text-white transition-colors duration-150 bg-purple-600 border border-transparent rounded-lg active:bg-purple-600 hover:bg-purple-700 focus:outline-none focus:shadow-outline-purple">
                                 {{ __('Select Approving Project Leader/Manager') }}
@@ -397,12 +420,18 @@
                                 </button>
                             @endif
                         @endforeach
-                    </div>
+                    </div> --}}
                 </label>
 
                 <label class="block text-sm" >
                     <span class="text-gray-700 dark:text-gray-400">Approving Sponsor</span>
-                    <div class="block" style="min-height: 40px">
+                    <select class="block w-full mt-1 text-sm dark:text-gray-300 dark:border-gray-600 dark:bg-gray-700 form-select focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:focus:shadow-outline-gray">
+                        <option value="0" style="font-style: italic">Select Approving Sponsor</option>
+                        @foreach ($users as $user)
+                            <option value="{{ $user->id }}">{{ $user->name}}</option>
+                        @endforeach
+                    </select>
+                    {{-- <div class="block" style="min-height: 40px">
                         @if (!$hasApSponsor)
                             <button wire:click.prevent="openSearchUserModal('ap_sponsor')" class="px-2 py-1 mt-1 italic text-xs leading-5 text-white transition-colors duration-150 bg-purple-600 border border-transparent rounded-lg active:bg-purple-600 hover:bg-purple-700 focus:outline-none focus:shadow-outline-purple">
                                 {{ __('Select Approving Sponsor') }}
@@ -418,7 +447,7 @@
                                 </button>
                             @endif
                         @endforeach
-                    </div>
+                    </div> --}}
                 </label>
 
                 {{-- <label class="mb-4 block text-sm">
@@ -431,7 +460,13 @@
 
                 <label class="block text-sm" >
                     <span class="text-gray-700 dark:text-gray-400">Approving Champion</span>
-                    <div class="block" style="min-height: 40px">
+                    <select class="block w-full mt-1 text-sm dark:text-gray-300 dark:border-gray-600 dark:bg-gray-700 form-select focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:focus:shadow-outline-gray">
+                        <option value="0" style="font-style: italic">Select Approving Champion</option>
+                        @foreach ($users as $user)
+                            <option value="{{ $user->id }}">{{ $user->name}}</option>
+                        @endforeach
+                    </select>
+                    {{-- <div class="block" style="min-height: 40px">
                         @if (!$hasApChampion)
                             <button wire:click.prevent="openSearchUserModal('ap_champion')" class="px-2 py-1 mt-1 italic text-xs leading-5 text-white transition-colors duration-150 bg-purple-600 border border-transparent rounded-lg active:bg-purple-600 hover:bg-purple-700 focus:outline-none focus:shadow-outline-purple">
                                 {{ __('Select Approving Champion') }}
@@ -447,7 +482,7 @@
                                 </button>
                             @endif
                         @endforeach
-                    </div>
+                    </div> --}}
                 </label>
 
                 {{-- <label class="mb-4 block text-sm">
@@ -474,7 +509,13 @@
                     <div>
                         <label class="block text-sm" >
                             <span class="text-gray-700 dark:text-gray-400">Validated By</span>
-                            <div class="block" style="min-height: 40px">
+                            <select class="block w-full mt-1 text-sm dark:text-gray-300 dark:border-gray-600 dark:bg-gray-700 form-select focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:focus:shadow-outline-gray">
+                                <option value="0" style="font-style: italic">Select Hours Saved Validator</option>
+                                @foreach ($users as $user)
+                                    <option value="{{ $user->id }}">{{ $user->name}}</option>
+                                @endforeach
+                            </select>
+                            {{-- <div class="block" style="min-height: 40px">
                                 @if (!$hasHoursActualValidator)
                                     <button wire:click.prevent="openSearchUserModal('hours_actual_validator')" class="px-2 py-1 mt-1 italic text-xs leading-5 text-white transition-colors duration-150 bg-purple-600 border border-transparent rounded-lg active:bg-purple-600 hover:bg-purple-700 focus:outline-none focus:shadow-outline-purple">
                                         {{ __('Select Hours Saved Validator') }}
@@ -490,7 +531,7 @@
                                         </button>
                                     @endif
                                 @endforeach
-                            </div>
+                            </div> --}}
                         </label>
                     </div>
 
@@ -504,7 +545,13 @@
                     <div>
                         <label class="block text-sm" >
                             <span class="text-gray-700 dark:text-gray-400">Validated By</span>
-                            <div class="block" style="min-height: 40px">
+                            <select class="block w-full mt-1 text-sm dark:text-gray-300 dark:border-gray-600 dark:bg-gray-700 form-select focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:focus:shadow-outline-gray">
+                                <option value="0" style="font-style: italic">Select Dollar Savings Validator</option>
+                                @foreach ($users as $user)
+                                    <option value="{{ $user->id }}">{{ $user->name}}</option>
+                                @endforeach
+                            </select>
+                            {{-- <div class="block" style="min-height: 40px">
                                 @if (!$hasSavingsActualValidator)
                                     <button wire:click.prevent="openSearchUserModal('savings_actual_validator')" class="px-2 py-1 mt-1 italic text-xs leading-5 text-white transition-colors duration-150 bg-purple-600 border border-transparent rounded-lg active:bg-purple-600 hover:bg-purple-700 focus:outline-none focus:shadow-outline-purple">
                                         {{ __('Select Dollar Savings Validator') }}
@@ -520,7 +567,7 @@
                                         </button>
                                     @endif
                                 @endforeach
-                            </div>
+                            </div> --}}
                         </label>
                     </div>
                 </div>
