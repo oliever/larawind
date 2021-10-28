@@ -20,7 +20,7 @@ class UsersCheckbox extends Component
     public function mount( $selectedUsers)
     {
         foreach ($selectedUsers as $value) {
-            $this->selected[] = $value->id;
+            $this->selected[] = strval($value->id);
         }
     }
 

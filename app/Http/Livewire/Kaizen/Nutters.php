@@ -96,8 +96,6 @@ class Nutters extends Component
 
     public function locationsCheckboxUpdated($locations){
         $this->selectedLocations = $locations;
-        info('locationsCheckboxUpdated');
-        info( $this->selectedLocations);
     }
     public function usersCheckboxUpdated($users){
         $this->selectedUsers = $users;
