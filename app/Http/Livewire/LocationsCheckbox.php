@@ -10,19 +10,17 @@ class LocationsCheckbox extends Component
 {
     public $selectArea;
     public $selected = [];
-    public $name;
+    public $locations = [];
 
     public $rules = [
-        'name' => 'required|min:3',
         'selected' => 'required|array'
     ];
 
     public function render()
     {
-        $locations = Location::where('area_id', null)->with('children')->get();
-        info($locations );
+        $this->locations = Location::where('area_id', null)->with('children')->get();
         return view('livewire.locations-checkbox', [
-            'locations' => $locations
+            'locations' =>  $this->locations
         ]);
     }
 
@@ -36,6 +34,11 @@ class LocationsCheckbox extends Component
             $locationIds = Location::where('area_id', $explode[1])->pluck('id')->map(fn($id) => (string)$id)->toArray();
             $this->selected = array_merge(array_diff($this->selected, $locationIds));
         }
+
+        if(count($this->locations[0]->children) > count($this->selected) && isset($this->selectArea[99])){
+            $this->selectArea[99] = false;//TODO: find parent instead of 99
+        }
+        $this->emit('locationsCheckboxUpdated',$this->selected);
     }
 
     public function save()

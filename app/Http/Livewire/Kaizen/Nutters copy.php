@@ -14,7 +14,7 @@ use Laravel\Jetstream\Jetstream;
 class Nutters extends Component
 {
     public $kaizen;
-    //public $stores;
+    public $stores;
     public $affectedAreas;
     public $isRapid = false;
     public $isJustDoIt = true;
@@ -29,7 +29,7 @@ class Nutters extends Component
     public $selectedUsers = [];
     public $selectedLocations = [];
 
-    protected $listeners = ['usersCheckboxUpdated', 'locationsCheckboxUpdated'];
+    protected $listeners = ['userSelected','locationSelected','usersCheckboxUpdated'];
 
     protected $rules = [
         'kaizen.name' => 'required|min:5',
@@ -60,9 +60,47 @@ class Nutters extends Component
 
     ];
 
+    public function usersCheckboxUpdated($selectedUsers)
+    {
+        info('usersCheckboxUpdated');
+        info($selectedUsers);
+    }
+
+
+    public function userSelected($userId)
+    {
+        info('adding user ' . $userId);
+        $this->selectedUsers[] = User::where(['id' => $userId])->first();
+        $this->isSearchUserModalOpen = false;
+    }
+
+    public function locationSelected($locationId)
+    {
+        info('adding location ' . $locationId);
+        $this->selectedLocations[] = Location::where(['id' => $locationId])->first();
+        $this->isSearchLocationModalOpen = false;
+    }
+
+    public function removeSelectedUser($index)
+    {
+        info('removing user: index ' . $index);
+        unset($this->selectedUsers[$index]);
+    }
+
+    public function removeSelectedLocation($index)
+    {
+        info('removing Location: index ' . $index);
+        unset($this->selectedLocations[$index]);
+    }
+
     public function mount(Kaizen $kaizen = null)
     {
+        //info(Jetstream::$roles);
+
         $this->kaizen = $kaizen;
+
+        $this->selectedUsers[] =  new User();
+        $this->selectedLocations[] =  new Location();
 
         if(!isset($this->kaizen['id'])){
             $this->kaizen = new Kaizen();
@@ -87,13 +125,38 @@ class Nutters extends Component
                 //replace keys (index) with values from db
                 $this->selectedAfftectedAreas[$value] = $value;
             }
+            foreach(explode(",", $kaizen->members) as $key=>$value){
+                //replace keys (index) with values from db
+                $this->selectedUsers[] = User::where(['id' => $value])->first() ;
+            }
+
+            foreach ($this->kaizen->locations()->get() as $key => $value) {
+                $this->selectedLocations[] = $value;
+            }
         }
     }
 
-    public function locationsCheckboxUpdated($locations){
-        $this->selectedLocations = $locations;
-        info( $this->selectedLocations);
+    public function openSearchUserModal(){
+
+        $this->isSearchUserModalOpen = true;
     }
+
+    public function openSearchLocationModal(){
+
+        $this->isSearchLocationModalOpen = true;
+    }
+
+    public function closeSearchUserModal(){
+        info('closing user search...');
+        $this->isSearchUserModalOpen = false;
+        $this->emit('searchUserModalClosed');//to display action message
+    }
+
+    public function closeSearchLocationModal(){
+        $this->isSearchLocationModalOpen = false;
+        $this->emit('searchLocationModalClosed');//to display action message
+    }
+
     public function saveAsDraft(){
         $this->save();
     }
@@ -108,6 +171,11 @@ class Nutters extends Component
         $this->kaizen->just_do_it = $this->isJustDoIt;
         $this->kaizen->team_id = auth()->user()->currentTeam->id;
         $this->kaizen->user_id =  auth()->user()->id;
+        $this->kaizen->members = implode(', ', array_map(function ($entry) {
+            if($entry)
+                if(isset($entry['id']))
+                    return $entry['id'];
+          }, $this->selectedUsers));
 
         $this->kaizen->head_office_input = $this->kaizen->head_office_input ? true : false;
         $this->kaizen->handled_at_location = $this->kaizen->handled_at_location ? true : false;
@@ -177,7 +245,7 @@ class Nutters extends Component
     }
     public function render()
     {
-        //$this->stores = $this->getStores();
+        $this->stores = $this->getStores();
         $this->affectedAreas = $this->getAffectedAreas();
 
 

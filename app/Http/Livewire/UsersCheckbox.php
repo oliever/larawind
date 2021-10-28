@@ -12,8 +12,6 @@ class UsersCheckbox extends Component
     public $selected = [];
     public $name;
 
-    protected $listeners = ['kaizenAdded'];
-
     public $rules = [
         'name' => 'required|min:3',
         'selected' => 'required|array'
