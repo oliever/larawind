@@ -26,16 +26,19 @@
         <tr>
             <td style="padding-bottom: 10">
                 Team Members:<br>
-                @foreach ($team_members as $index=>$team_member)
-                    @if($team_member)
-                        <strong>{{ $team_member['name'] }} </strong><br>
-                    @endif
+                @foreach ($kaizen->users as $member)
+                    <strong>{{ $member->name }}</strong><br>
                 @endforeach
             </td>
             <td >Stores: <br>
-                @foreach ($kaizen->locations as $store)
-                    <strong>{{ $store->name }}</strong><br>
-                @endforeach
+                @if($kaizen->all_locations)
+                    <strong>All Stores</strong><br>
+                @else
+                    @foreach ($kaizen->locations as $store)
+                        <strong>{{ $store->name }}</strong><br>
+                    @endforeach
+                @endif
+
             </td>
             <td colspan="2">Date Assigned: <strong>{{Carbon\Carbon::create($kaizen->date_assigned)->toFormattedDateString()}}</strong></td>
         </tr>

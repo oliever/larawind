@@ -126,8 +126,8 @@ class Nutters extends Component
         //info($this->selectedAfftectedAreas);
         $this->kaizen->affected_areas = implode(',', array_keys(array_filter($this->selectedAfftectedAreas)));
         //info($this->kaizen->affected_areas);
-        if(!$this->kaizen->all_locations)
-            $this->kaizen->all_locations = 0;
+       /*  if(!$this->kaizen->all_locations)
+            $this->kaizen->all_locations = 0; */
 
         if(!$this->kaizen->completion)
             $this->kaizen->completion = 0;
@@ -140,6 +140,11 @@ class Nutters extends Component
 
         if($asProject)
             $this->kaizen->posted =Carbon::now();
+
+       if(count($this->selectedLocations) == count(Location::where('area_id', null)->with('children')->get()[0]->children))
+            $this->kaizen->all_locations = 1;
+        else
+            $this->kaizen->all_locations = 0;
 
         $this->kaizen->save();
 
