@@ -41,23 +41,25 @@
         <div class="px-4 py-3 mb-8 bg-white rounded-lg shadow-md dark:bg-gray-800"><!--card-->
             <div class="grid gap-2 mb-2 md:grid-cols-1 xl:grid-cols-2">
                 {{-- column 1 --}}
-                <label class="block text-sm">
-                    <span class="text-gray-700 dark:text-gray-400">Name</span>
-                    <input class="required block w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:text-gray-300 dark:focus:shadow-outline-gray form-input"
-                        wire:model="kaizen.name"
-                        name="kaizen.name"
-                        placeholder="Name" />
-                </label>
-                @error('kaizen.name')
-                    <p class="text-sm text-red-600">{{ $message }}</p>
-                @enderror
+                <div>
+                    <label class="block text-sm">
+                        <span class="text-gray-700 dark:text-gray-400">Kaizen Name</span>
+                        <input class="required block w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:text-gray-300 dark:focus:shadow-outline-gray form-input"
+                            wire:model="kaizen.name"
+                            name="kaizen.name"
+                            placeholder="Kaizen Name" />
+                    </label>
+                    @error('kaizen.name')
+                        <p class="text-sm text-red-600">{{ $message }}</p>
+                    @enderror
+                </div>
 
                 {{-- column 2 --}}
                 <div class="grid gap-2 mb- grid-cols-2">
                     {{-- column 1 --}}
                     <label class="block text-sm">
                         <span class="text-gray-700 dark:text-gray-400">Date Assigned</span>
-                        @if ($kaizen->posted)
+                        @if ($kaizen->date_assigned)
                         <h4 class="mb-2 text-lg font-semibold text-gray-600 dark:text-gray-300">{{date('m/d/Y', strtotime($dateAssigned))}}</h4>
                         @else
                             <input class="required block w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:text-gray-300 dark:focus:shadow-outline-gray form-input"
@@ -133,8 +135,8 @@
             </div>
 
             <div class="grid  mb-2 justify-items-center  grid-cols-2">
-                <label class="block text-sm"> @livewire('users-checkbox')</label>
-                <label class="block text-sm">@livewire('locations-checkbox')</label>
+                <label class="block text-sm"><livewire:users-checkbox :selectedUsers="$selectedUsers"> </label>
+                <label class="block text-sm"><livewire:locations-checkbox :selectedLocations="$selectedLocations"></label>
             </div>
         </div>
 
@@ -361,9 +363,9 @@
                 {{ __('Create Before and After Report') }}
             </button>
             @else
-            <button wire:click="saveAsDraft" class="px-4 py-2 text-sm font-medium leading-5 text-white transition-colors duration-150 bg-purple-600 border border-transparent rounded-lg active:bg-purple-600 hover:bg-purple-700 focus:outline-none focus:shadow-outline-purple">
+            {{-- <button wire:click="saveAsDraft" class="px-4 py-2 text-sm font-medium leading-5 text-white transition-colors duration-150 bg-purple-600 border border-transparent rounded-lg active:bg-purple-600 hover:bg-purple-700 focus:outline-none focus:shadow-outline-purple">
                 {{ __('Save as Draft') }}
-            </button>
+            </button> --}}
 
             <button wire:click="submitKaizen" class="ml-4 px-4 py-2 text-sm font-medium leading-5 text-white transition-colors duration-150 bg-purple-600 border border-transparent rounded-lg active:bg-purple-600 hover:bg-purple-700 focus:outline-none focus:shadow-outline-purple">
                 {{ __('Save Suggestion Form') }}
@@ -381,7 +383,7 @@
     </form>
 
     {{-- Search User Modal --}}
-    <div x-show="isSearchUserModalOpen" x-transition:enter="transition ease-out duration-150" x-transition:enter-start="opacity-0" x-transition:enter-end="opacity-100" x-transition:leave="transition ease-in duration-150" x-transition:leave-start="opacity-100" x-transition:leave-end="opacity-0" class="fixed inset-0 z-30 flex items-end bg-black bg-opacity-50 sm:items-center sm:justify-center">
+    {{-- <div x-show="isSearchUserModalOpen" x-transition:enter="transition ease-out duration-150" x-transition:enter-start="opacity-0" x-transition:enter-end="opacity-100" x-transition:leave="transition ease-in duration-150" x-transition:leave-start="opacity-100" x-transition:leave-end="opacity-0" class="fixed inset-0 z-30 flex items-end bg-black bg-opacity-50 sm:items-center sm:justify-center">
         <!-- Modal -->
         <div  x-transition:enter="transition ease-out duration-150" x-transition:enter-start="opacity-0 transform translate-y-1/2" x-transition:enter-end="opacity-100" x-transition:leave="transition ease-in duration-150" x-transition:leave-start="opacity-100" x-transition:leave-end="opacity-0  transform translate-y-1/2"  wire:keydown.escape="closeSearchUserModal" class="w-full px-6 py-4  bg-white rounded-t-lg dark:bg-gray-800 sm:rounded-lg sm:m-4 sm:max-w-xl" role="dialog" id="modal">
             <!-- Remove header if you don't want a close icon. Use modal body to place modal tile. -->
@@ -409,10 +411,10 @@
 
             </footer>
         </div>
-    </div>
+    </div> --}}
 
     {{-- Search Location Modal --}}
-    <div x-show="isSearchLocationModalOpen" x-transition:enter="transition ease-out duration-150" x-transition:enter-start="opacity-0" x-transition:enter-end="opacity-100" x-transition:leave="transition ease-in duration-150" x-transition:leave-start="opacity-100" x-transition:leave-end="opacity-0" class="fixed inset-0 z-30 flex items-end bg-black bg-opacity-50 sm:items-center sm:justify-center">
+    {{-- <div x-show="isSearchLocationModalOpen" x-transition:enter="transition ease-out duration-150" x-transition:enter-start="opacity-0" x-transition:enter-end="opacity-100" x-transition:leave="transition ease-in duration-150" x-transition:leave-start="opacity-100" x-transition:leave-end="opacity-0" class="fixed inset-0 z-30 flex items-end bg-black bg-opacity-50 sm:items-center sm:justify-center">
         <!-- Modal -->
         <div  x-transition:enter="transition ease-out duration-150" x-transition:enter-start="opacity-0 transform translate-y-1/2" x-transition:enter-end="opacity-100" x-transition:leave="transition ease-in duration-150" x-transition:leave-start="opacity-100" x-transition:leave-end="opacity-0  transform translate-y-1/2"  wire:keydown.escape="closeSearchLocationModal" class="w-full px-6 py-4  bg-white rounded-t-lg dark:bg-gray-800 sm:rounded-lg sm:m-4 sm:max-w-xl" role="dialog" id="modal">
             <!-- Remove header if you don't want a close icon. Use modal body to place modal tile. -->
@@ -440,7 +442,7 @@
 
             </footer>
         </div>
-    </div>
+    </div> --}}
 </div>
 
 

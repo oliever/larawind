@@ -87,8 +87,6 @@
         </h4>
         <livewire:kaizen.posted-kaizens-datatable/>
 
-
-
         <h2 class="mt-6 text-2xl font-semibold text-gray-700 dark:text-gray-200 align-middle">
             Kaizen Projects <a href="{{route('project.create')}}"> <button class="px-3  text-sm font-medium leading-5 text-white transition-colors duration-150 bg-purple-600 border border-transparent rounded-md active:bg-purple-600 hover:bg-purple-700 focus:outline-none focus:shadow-outline-purple">
                 + {{ __('New Kaizen Project') }}
@@ -100,6 +98,7 @@
         </h4>
         <livewire:project.posted-projects-datatable/>
     </div>
+    {{--
     <hr style="border-top: 1px solid #444; margin-top: 20px">
 
     <div class="container grid px-6 mx-auto">
@@ -115,5 +114,5 @@
             Draft Kaizen Projects
         </h4>
         <livewire:project.draft-projects-datatable/>
-    </div>
+    </div> --}}
 </x-app-layout>

@@ -79,7 +79,8 @@ class Nutters extends Component
         }
         else{
             //info(date('Y-m-d', strtotime($this->kaizen->date_assigned)));
-            $this->dateAssigned = date('Y-m-d', strtotime($this->kaizen->date_assigned));
+            if($this->kaizen->date_assigned)
+                $this->dateAssigned = date('Y-m-d', strtotime($this->kaizen->date_assigned));
             $this->isJustDoIt = $this->kaizen->just_do_it;
             $this->isRapid = $this->kaizen->rapid;
             $this->hasBeforeAfter = $this->kaizen->before_after;
@@ -87,13 +88,21 @@ class Nutters extends Component
                 //replace keys (index) with values from db
                 $this->selectedAfftectedAreas[$value] = $value;
             }
+
+            $this->selectedLocations = $this->kaizen->locations()->get();
+            $this->selectedUsers = $this->kaizen->users()->get();
         }
     }
 
     public function locationsCheckboxUpdated($locations){
         $this->selectedLocations = $locations;
+        info('locationsCheckboxUpdated');
         info( $this->selectedLocations);
     }
+    public function usersCheckboxUpdated($users){
+        $this->selectedUsers = $users;
+    }
+
     public function saveAsDraft(){
         $this->save();
     }
@@ -113,7 +122,8 @@ class Nutters extends Component
         $this->kaizen->handled_at_location = $this->kaizen->handled_at_location ? true : false;
         $this->kaizen->before_after = $this->hasBeforeAfter;
 
-        $this->kaizen->date_assigned = date('Y-m-d', strtotime($this->dateAssigned));
+        if($this->dateAssigned)
+            $this->kaizen->date_assigned = date('Y-m-d', strtotime($this->dateAssigned));
 
         //info($this->selectedAfftectedAreas);
         $this->kaizen->affected_areas = implode(',', array_keys(array_filter($this->selectedAfftectedAreas)));
@@ -128,11 +138,15 @@ class Nutters extends Component
 
         // Execution doesn't reach here if validation fails.
 
+
+
         if($asProject)
             $this->kaizen->posted =Carbon::now();
 
         $this->kaizen->save();
 
+        $this->kaizen->locations()->sync($this->selectedLocations);
+        $this->kaizen->users()->sync($this->selectedUsers);
        // $this->saveLocations();
 
         info('nutters kaizen saved');

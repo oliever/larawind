@@ -17,9 +17,16 @@ class UsersCheckbox extends Component
         'selected' => 'required|array'
     ];
 
+    public function mount( $selectedUsers)
+    {
+        foreach ($selectedUsers as $value) {
+            $this->selected[] = $value->id;
+        }
+    }
+
     public function render()
     {
-        $users = User::get();
+        $users = auth()->user()->currentTeam->allUsers();
         return view('livewire.users-checkbox', [
             'users' => $users
         ]);

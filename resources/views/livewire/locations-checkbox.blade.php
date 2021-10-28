@@ -18,7 +18,7 @@
 
                 @foreach($location->children as $children)
                     <div>
-                        <input type="checkbox" wire:model="selected" value="{{ $children->id }}" id="select-location_{{ $children->id }}" class="inline-block mr-2 ml-4"/><label for="select-location_{{ $children->id }}">{{ $children->name }}</label>
+                        <input type="checkbox" wire:model="selected" value="{{ $children->id }}" id="select-location_{{ $children->id }}" class="inline-block mr-2 ml-4"/><label for="select-location_{{ $children->id }}">{{ $children->name }} ({{ $children->id }})</label>
                     </div>
                 @endforeach
             @endforeach
