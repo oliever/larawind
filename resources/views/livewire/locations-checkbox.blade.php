@@ -9,7 +9,7 @@
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
             </svg>
         </button>
-        <div x-show.transition="show"
+        <div x-show.transition="show"  @click.away="show = !show" @keydown.escape="show = !show"
             class="relative z-20 -mt-1 flex flex-col w-full px-4 py-4 whitespace-nowrap border border-gray-400 rounded text-gray-700 dark:text-gray-400 bg-white dark:border-gray-600 dark:bg-gray-700">
             @foreach($locations as $location)
                 <div>

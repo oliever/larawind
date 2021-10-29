@@ -9,8 +9,8 @@
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
             </svg>
         </button>
-        <div x-show.transition="show"
-            class="relative z-20 -mt-1 flex flex-col w-full px-4 py-4 whitespace-nowrap border border-gray-400 rounded text-gray-700 dark:text-gray-400 bg-white dark:border-gray-600 dark:bg-gray-700">
+        <div x-show.transition="show" @click.away="show = !show" @keydown.escape="show = !show"
+            class="dropdown relative z-20 -mt-1 flex flex-col w-full px-4 py-4 whitespace-nowrap border border-gray-400 rounded text-gray-700 dark:text-gray-400 bg-white dark:border-gray-600 dark:bg-gray-700">
             @foreach($users as $user)
             <div>
                 <input type="checkbox" wire:model="selected" value="{{ $user->id }}" id="select-user_{{ $user->id }}" class="inline-block mr-2 ml-4"/><label for="select-user_{{ $user->id }}">{{ $user->name }}</label>
