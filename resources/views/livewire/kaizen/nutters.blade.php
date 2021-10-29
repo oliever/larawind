@@ -1,15 +1,3 @@
-@push('scripts')
-<script>
-
-
-    function close(){
-        console.log('close');
-        document.querySelectorAll('.dropdown').forEach(function(el) {
-            el.style.diplay = 'none';
-        });
-    }
-</script>
-@endpush
 <div class="container grid px-6 mx-auto" x-data="{isJustDoIt:@entangle('isJustDoIt'), isRapid:@entangle('isRapid'),hasBeforeAfter:@entangle('hasBeforeAfter'),isHeadOfficeInput: @entangle('kaizen.head_office_input'), isSearchUserModalOpen:  @entangle('isSearchUserModalOpen'), selectedUsers:  @entangle('selectedUsers'), isSearchLocationModalOpen:  @entangle('isSearchLocationModalOpen'), selectedLocations:  @entangle('selectedLocations')}">
     <div class="flex justify-between mb-8">
         <div>
@@ -38,17 +26,7 @@
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 17h2a2 2 0 002-2v-4a2 2 0 00-2-2H5a2 2 0 00-2 2v4a2 2 0 002 2h2m2 4h6a2 2 0 002-2v-4a2 2 0 00-2-2H9a2 2 0 00-2 2v4a2 2 0 002 2zm8-12V5a2 2 0 00-2-2H9a2 2 0 00-2 2v4h10z" />
                     </svg>
                 </button>
-
-
             </a>
-
-            <button onclick="close()"
-                class="flex items-center justify-between px-4 py-2 text-sm font-medium leading-5 text-white transition-colors duration-150 bg-purple-600 border border-transparent rounded-lg active:bg-purple-600 hover:bg-purple-700 focus:outline-none focus:shadow-outline-purple">
-                    <span class="pr-2">CLOSSE</span>
-                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 17h2a2 2 0 002-2v-4a2 2 0 00-2-2H5a2 2 0 00-2 2v4a2 2 0 002 2h2m2 4h6a2 2 0 002-2v-4a2 2 0 00-2-2H9a2 2 0 00-2 2v4a2 2 0 002 2zm8-12V5a2 2 0 00-2-2H9a2 2 0 00-2 2v4h10z" />
-                    </svg>
-                </button>
             @endif
         </div>
     </div>
@@ -60,7 +38,7 @@
         <h4 class="mb-2 text-lg font-semibold text-gray-600 dark:text-gray-300">
             General Info
         </h4>
-        <div class="px-4 py-3 mb-8 bg-white rounded-lg shadow-md dark:bg-gray-800" onclick="close()"><!--card-->
+        <div class="px-4 py-3 mb-8 bg-white rounded-lg shadow-md dark:bg-gray-800"><!--card-->
             <div class="grid gap-2 mb-2 md:grid-cols-1 xl:grid-cols-2">
                 {{-- column 1 --}}
                 <div>
@@ -485,7 +463,6 @@
             numeralThousandGroupStyle: 'thousand'
         });
     });
-
 </script>
 
 
