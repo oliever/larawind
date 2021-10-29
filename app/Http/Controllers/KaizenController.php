@@ -84,9 +84,11 @@ class KaizenController extends Controller
         else
             $data['photos'] = [];
 
+        $data['before_photos'] = [];
         foreach(Photo::where(['type'=>'before', 'model'=>get_class(new Kaizen()), 'model_id'=>$kaizen->id])->get() as $savedPhoto){
             $data['before_photos'][$savedPhoto->id] = $savedPhoto;
         }
+        $data['after_photos'] = [];
         foreach(Photo::where(['type'=>'after', 'model'=>get_class(new Kaizen()), 'model_id'=>$kaizen->id])->get() as $savedPhoto){
             $data['after_photos'][$savedPhoto->id] = $savedPhoto;
         }

@@ -5,9 +5,9 @@
                 @foreach ($savedPhotos as $savedPhoto)
                     @if($savedPhoto)
 
-                    <a @click="$dispatch('img-modal', {  imgModalSrc: '{{ asset('photos/' . $savedPhoto['filename']) }}', imgModalDesc: '{{$savedPhoto['caption']}}' })" class="cursor-pointer">
+                    <a  @click="$dispatch('img-modal', {  imgModalSrc: '{{ asset('photos/' . $savedPhoto['filename']) }}', imgModalDesc: '{{$savedPhoto['caption']}}' })" class="cursor-pointer">
                         <img alt="Placeholder" class="object-fit w-full" src="{{ asset('photos/' . $savedPhoto['filename']) }}">
-                        <p class="text-gray-700 dark:text-gray-400 text-small">{{$savedPhoto['caption']}}</p>
+                        <p class="text-gray-700 dark:text-gray-400 text-small flex justify-center">{{$savedPhoto['caption']}}</p>
                       </a>
                     @endif
                 @endforeach
@@ -17,7 +17,7 @@
                 @foreach ($photos as $key=>$addedPhoto)
                 <div>
                     <img class="mt-4 px-20"  src="{{ $addedPhoto->temporaryUrl() }}">
-                    <p class="text-gray-700 dark:text-gray-400 text-small">{{$captions[ $key]}}</p>
+                    <p class="text-gray-700 dark:text-gray-400 text-small flex justify-center">{{$captions[ $key]}}</p>
                 </div>
                 @endforeach
         </div>
