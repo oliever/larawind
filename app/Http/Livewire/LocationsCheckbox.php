@@ -29,11 +29,18 @@ class LocationsCheckbox extends Component
 
     public function render()
     {
+        $label = 'Select stores';
+        if(isset($this->selectArea[99]))
+            if($this->selectArea[99])
+                $label = 'All stores';
+            else if(count($this->selected)){
+                $location = Location::where('id', $this->selected[0])->first();
+                $label = $location->name;
+            }
 
-
-        //info($this->locations);
         return view('livewire.locations-checkbox', [
-            'locations' =>  $this->locations
+            'locations' =>  $this->locations,
+            'label' => $label
         ]);
     }
 

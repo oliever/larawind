@@ -27,8 +27,16 @@ class UsersCheckbox extends Component
     public function render()
     {
         $users = auth()->user()->currentTeam->allUsers();
+        $label = 'Select members';
+        if(count($this->selected) == count($users))
+            $label = "All members";
+        else if(count($this->selected)){
+            $user = User::where('id' , $this->selected[0])->first();
+            $label = $user->name;
+        }
         return view('livewire.users-checkbox', [
-            'users' => $users
+            'users' => $users,
+            'label' => $label
         ]);
     }
 
