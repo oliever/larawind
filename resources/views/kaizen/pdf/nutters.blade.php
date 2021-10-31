@@ -30,7 +30,7 @@
                     <strong>{{ $member->name }}</strong><br>
                 @endforeach
             </td>
-            <td >Stores: <br>
+            <td style="padding-bottom: 10" >Stores: <br>
                 @if($kaizen->all_locations)
                     <strong>All Stores</strong><br>
                 @else

@@ -135,8 +135,13 @@
             </div>
 
             <div class="grid  mb-2 justify-items-center  grid-cols-2">
-                <label class="block text-sm"><livewire:users-checkbox :selectedUsers="$selectedUsers"> </label>
-                <label class="block text-sm"><livewire:locations-checkbox :selectedLocations="$selectedLocations"></label>
+                <div class="ml-8 mt-8 " style="width: 250px; ">
+                    <span class="">&nbsp;</span>
+                    <label class="block text-sm"><livewire:users-checkbox :selectedUsers="$selectedUsers"> </label>
+                </div>
+                <div class="ml-8 mt-8" style="width: 250px;">
+                    <label class="block text-sm"><livewire:locations-checkbox :selectedLocations="$selectedLocations"></label>
+                </div>
             </div>
         </div>
 

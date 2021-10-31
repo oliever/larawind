@@ -200,7 +200,9 @@
                                 </div>
                             @endif
                         </label> --}}
-                        <label class="block text-sm"><livewire:locations-checkbox :selectedLocations="$selectedLocations"></label>
+                        <div class="" >
+                            <label class="block text-sm"><livewire:locations-checkbox :selectedLocations="$selectedLocations"></label>
+                        </div>
                     </label>
 
                     <label class="mb-4 block text-sm">

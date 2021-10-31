@@ -35,11 +35,13 @@ class LocationsCheckbox extends Component
                 $label = 'All stores';
             else if(count($this->selected)){
                 $location = Location::where('id', $this->selected[0])->first();
-                $label = $location->name;
+                if($location)
+                    $label = $location->name;
             }
         }else if(count($this->selected)){
                 $location = Location::where('id', $this->selected[0])->first();
-                $label = $location->name;
+                if($location)
+                    $label = $location->name;
             }
 
 
