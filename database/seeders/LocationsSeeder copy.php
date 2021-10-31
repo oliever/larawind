@@ -62,6 +62,17 @@ class LocationsSeeder extends Seeder
                 'area_id'        => 99
             ],
             [
+                'id'             => 9,
+                'team_id'        => 1,
+                'code'           => "9",
+                'name'           => "Wetaskiwin",
+                'active'         => true,
+                'created_at'     => Carbon::now(),
+                'is_area'        => false,
+                'is_corporate'   => false,
+                'area_id'        => 99
+            ],
+            [
                 'id'             => 10,
                 'team_id'        => 1,
                 'code'           => "10",
@@ -70,6 +81,72 @@ class LocationsSeeder extends Seeder
                 'created_at'     => Carbon::now(),
                 'is_area'        => false,
                 'is_corporate'   => true,
+                'area_id'        => 99
+            ],
+            [
+                'id'             => 12,
+                'team_id'        => 1,
+                'code'           => "12",
+                'name'           => "Estevan",
+                'active'         => true,
+                'created_at'     => Carbon::now(),
+                'is_area'        => false,
+                'is_corporate'   => false,
+                'area_id'        => 99
+            ],
+            [
+                'id'             => 14,
+                'team_id'        => 1,
+                'code'           => "14",
+                'name'           => "Leduc",
+                'active'         => true,
+                'created_at'     => Carbon::now(),
+                'is_area'        => false,
+                'is_corporate'   => false,
+                'area_id'        => 99
+            ],
+            [
+                'id'             => 15,
+                'team_id'        => 1,
+                'code'           => "15",
+                'name'           => "Prince Albert",
+                'active'         => true,
+                'created_at'     => Carbon::now(),
+                'is_area'        => false,
+                'is_corporate'   => false,
+                'area_id'        => 99
+            ],
+            [
+                'id'             => 21,
+                'team_id'        => 1,
+                'code'           => "21",
+                'name'           => "Yorkton",
+                'active'         => true,
+                'created_at'     => Carbon::now(),
+                'is_area'        => false,
+                'is_corporate'   => false,
+                'area_id'        => 99
+            ],
+            [
+                'id'             => 24,
+                'team_id'        => 1,
+                'code'           => "24",
+                'name'           => "Rocky Mountain House",
+                'active'         => true,
+                'created_at'     => Carbon::now(),
+                'is_area'        => false,
+                'is_corporate'   => false,
+                'area_id'        => 99
+            ],
+            [
+                'id'             => 25,
+                'team_id'        => 1,
+                'code'           => "25",
+                'name'           => "Melfort",
+                'active'         => true,
+                'created_at'     => Carbon::now(),
+                'is_area'        => false,
+                'is_corporate'   => false,
                 'area_id'        => 99
             ],
             [
@@ -84,6 +161,39 @@ class LocationsSeeder extends Seeder
                 'area_id'        => 99
             ],
             [
+                'id'             => 31,
+                'team_id'        => 1,
+                'code'           => "31",
+                'name'           => "North Battleford",
+                'active'         => true,
+                'created_at'     => Carbon::now(),
+                'is_area'        => false,
+                'is_corporate'   => false,
+                'area_id'        => 99
+            ],
+            [
+                'id'             => 32,
+                'team_id'        => 1,
+                'code'           => "32",
+                'name'           => "Olds",
+                'active'         => true,
+                'created_at'     => Carbon::now(),
+                'is_area'        => false,
+                'is_corporate'   => false,
+                'area_id'        => 99
+            ],
+            [
+                'id'             => 35,
+                'team_id'        => 1,
+                'code'           => "35",
+                'name'           => "Salmon Arm",
+                'active'         => true,
+                'created_at'     => Carbon::now(),
+                'is_area'        => false,
+                'is_corporate'   => false,
+                'area_id'        => 99
+            ],
+            [
                 'id'             => 38,
                 'team_id'        => 1,
                 'code'           => "38",
@@ -92,6 +202,28 @@ class LocationsSeeder extends Seeder
                 'created_at'     => Carbon::now(),
                 'is_area'        => false,
                 'is_corporate'   => true,
+                'area_id'        => 99
+            ],
+            [
+                'id'             => 40,
+                'team_id'        => 1,
+                'code'           => "40",
+                'name'           => "Dauphin",
+                'active'         => true,
+                'created_at'     => Carbon::now(),
+                'is_area'        => false,
+                'is_corporate'   => false,
+                'area_id'        => 99
+            ],
+            [
+                'id'             => 43,
+                'team_id'        => 1,
+                'code'           => "43",
+                'name'           => "Crankbrook",
+                'active'         => true,
+                'created_at'     => Carbon::now(),
+                'is_area'        => false,
+                'is_corporate'   => false,
                 'area_id'        => 99
             ],
             [

@@ -20,6 +20,7 @@ class CreateLocationsTable extends Migration
             $table->string('name');
             $table->boolean('active')->default(1);
             $table->boolean('is_area')->default(0);
+            $table->boolean('is_corporate')->default(0);
             $table->integer('area_id')->nullable();
             $table->timestamps();
         });
