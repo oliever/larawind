@@ -16,6 +16,7 @@ class KaizenController extends Controller
 {
     public function index()
     {
+        info(auth()->user()->membership);
         $data = [];
         $data['top_kaizen_stores'] = [];//Location::withCount('kaizens')->orderBy('kaizens_count','desc')->get()->take(3);
         $data['top_project_stores'] = [];//Location::withCount('projects')->orderBy('projects_count','desc')->get()->take(3);
