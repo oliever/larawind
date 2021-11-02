@@ -19,8 +19,8 @@ class UploadPhotos extends Component
     public $photos;
     public $captions;
     public $savedPhotos;
-    public $kaizen;
-    public $type;
+    public $kaizen;//set on calling blade e.g. views\livewire\kaizen\nutters.blade.php
+    public $type;//set on calling blade e.g. views\livewire\kaizen\nutters.blade.php
 
     protected $listeners = ['kaizenAdded'];
 
@@ -40,37 +40,24 @@ class UploadPhotos extends Component
             //'photo' => 'image|max:6144',
             'photo' => 'image',
         ]);
-
-        info($this->photo->getRealPath());
-        info($this->photo->getClientOriginalName());
+        info("UploadPhotos::updatedPhoto; kaizen->id: '{$this->kaizen->id}'");
+        info(" RealPath:           {$this->photo->getRealPath()}");
+        info(" ClientOriginalName: {$this->photo->getClientOriginalName()}");
     }
 
 
     public function save()
     {
+        info('UploadPhotos::save: ' .  $this->kaizen->id);
         if($this->photo){
             if(isset($this->kaizen['id'])){
-                $strKaizenId = str_pad($this->kaizen->id, 4,"0", STR_PAD_LEFT);
-                $filename = @"k{$strKaizenId}_";
-                $kaizenPhoto = Photo::create([
-                    'model' => get_class(new Kaizen()),
-                    'model_id' =>$this->kaizen['id'],
-                    'type' => $this->type,
-                    'caption' => $this->caption,
-                    'filename' => $this->photo->getFilename(),
-                ]);
-                $kaizenPhoto->save();
-                $ext =substr($this->photo->getFilename(),strrpos($this->photo->getFilename(),'.')+0);
-                $strPhotoId = str_pad($kaizenPhoto->id, 5,"0", STR_PAD_LEFT);
-                $kaizenPhoto->filename = $filename . "{$strPhotoId}{$ext}";
-                $kaizenPhoto->save();
-                $this->resize($this->photo, $kaizenPhoto->filename);
-                $this->savedPhotos[$kaizenPhoto->id] = $kaizenPhoto;
+                $this->savePhoto($this->photo, $this->kaizen['id']);//immediately save single photo
             }else{
+                info(" temp photo: " .$this->photo);
                 $this->photos[] = $this->photo;
                 $this->captions[] = $this->caption;
+                info(" new count: " . count($this->photos));
             }
-
         }
         //reset variables
         $this->photo = null;
@@ -79,36 +66,32 @@ class UploadPhotos extends Component
     }
 
     public function kaizenAdded(Kaizen $kaizen){
-        info('kaizenAdded');
+        info('UploadPhotos::kaizenAdded: ' .  $kaizen->id);
         if($this->photos){
-            $strKaizenId = str_pad($kaizen->id, 4,"0", STR_PAD_LEFT);
-            $filename = @"k{$strKaizenId}_";
-            info(@"saving '{$this->type}' photos: " .count($this->photos));
-            foreach($this->photos as $index =>$photo){
-
-                $existing = Photo::where(['filename'=>$photo->getFilename()])->count();
-                //info('existing: '. $existing);
-                if($existing == 0){
-
-                    info(@"saving '{$this->type}' photo: " .$photo->getFilename());
-                    info($photo);
-                    $kaizenPhoto = Photo::create([
-                        'model' => get_class(new Kaizen()),
-                        'model_id' => $kaizen->id,
-                        'type' => $this->type,
-                        'caption' => $this->captions[$index],
-                        'filename' => $photo->getFilename(),
-                    ]);
-                    $kaizenPhoto->save();
-                    $ext =substr($photo->getFilename(),strrpos($photo->getFilename(),'.')+0);
-                    $strPhotoId = str_pad($kaizenPhoto->id, 5,"0", STR_PAD_LEFT);
-                    $kaizenPhoto->filename = $filename . "{$strPhotoId}{$ext}";
-                    $kaizenPhoto->save();
-                    $this->resize($photo,  $kaizenPhoto->filename);
-                }
+            foreach($this->photos as $index => $photo){
+                $this->savePhoto($photo, $kaizen->id);
             }
         }
+    }
 
+    private function savePhoto($photo, $kaizenId){//save after saving kaizen
+        info('UploadPhotos::savePhoto: ' .  $this->kaizen->id);
+        $strKaizenId = str_pad($this->kaizen->id, 4,"0", STR_PAD_LEFT);
+        $filename = @"k{$strKaizenId}_";
+        $kaizenPhoto = Photo::create([
+            'model' => get_class(new Kaizen()),
+            'model_id' =>$kaizenId,
+            'type' => $this->type,
+            'caption' => $this->caption,
+            'filename' => $photo->getFilename(),
+        ]);
+        $kaizenPhoto->save();
+        $ext =substr($photo->getFilename(),strrpos($photo->getFilename(),'.')+0);
+        $strPhotoId = str_pad($kaizenPhoto->id, 5,"0", STR_PAD_LEFT);
+        $kaizenPhoto->filename = $filename . "{$strPhotoId}_{$this->type}{$ext}";
+        $kaizenPhoto->save();
+        $this->resize($photo, $kaizenPhoto->filename);
+        $this->savedPhotos[$kaizenPhoto->id] = $kaizenPhoto;
     }
 
     private function resize($photo, $filename){
@@ -119,14 +102,14 @@ class UploadPhotos extends Component
         });
         Storage::makeDirectory('photos/');
         $img->save(storage_path('app/photos/' . $filename));
-        info('saved resized 1080: ' . storage_path('app/photos/thumbnail/' . $filename));
+        info(' saved resized 1080: ' . storage_path('app/photos/thumbnail/' . $filename));
         $img->resize(null, 315, function ($constraint) {
             $constraint->aspectRatio();
             $constraint->upsize();
         });
         Storage::makeDirectory('photos/thumbnail/');
         $img->save(storage_path('app/photos/thumbnail/' . $filename));
-        info('saved resized 315: ' . storage_path('app/photos/thumbnail/' .$filename));
+        info(' saved resized 315: ' . storage_path('app/photos/thumbnail/' .$filename));
         return true;
     }
 

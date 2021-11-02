@@ -6,7 +6,7 @@
                     @if($savedPhoto)
 
                     <a  @click="$dispatch('img-modal', {  imgModalSrc: '{{ asset('photos/' . $savedPhoto['filename']) }}', imgModalDesc: '{{$savedPhoto['caption']}}' })" class="cursor-pointer">
-                        <img alt="Placeholder" class="object-fit w-full" src="{{ asset('photos/' . $savedPhoto['filename']) }}">
+                        <img alt="{{ $savedPhoto['filename'] }}" class="object-fit w-full" src="{{ asset('photos/' . $savedPhoto['filename']) }}">
                         <p class="text-gray-700 dark:text-gray-400 text-small flex justify-center">{{$savedPhoto['caption']}}</p>
                       </a>
                     @endif

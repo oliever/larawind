@@ -34,7 +34,9 @@ class RapidSolutions extends Component
     }
 
     public function kaizenAdded(Kaizen $kaizen){
-        info('saving rapid solutions: ' . count($this->rapidSolutions));
+        if(count($this->rapidSolutions))
+            info('saving rapid solutions: ' . count($this->rapidSolutions));
+
         foreach($this->rapidSolutions as $rapidSolution){
             // info(@" {$rapidCauses} {$rapidCauses}");
             //info($rapidSolution);

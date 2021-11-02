@@ -63,6 +63,7 @@ class Nutters extends Component
     public function mount(Kaizen $kaizen = null)
     {
         $this->kaizen = $kaizen;
+        info("--Nutters::mount-- " . $this->kaizen->id);
 
         if(!isset($this->kaizen['id'])){
             $this->kaizen = new Kaizen();
@@ -152,11 +153,11 @@ class Nutters extends Component
         $this->kaizen->users()->sync($this->selectedUsers);
        // $this->saveLocations();
 
-        info('nutters kaizen saved');
+        info('---nutters_kaizen_saved---');
         info($this->kaizen);
 
         $this->emit('saved');//to display action message
-        $this->emit('kaizenAdded', $this->kaizen->id);
+        $this->emit('kaizenAdded', $this->kaizen->id);//Listeners: 1. UploadPhotos
 
         $message = 'Kaizen Form saved as draft: ' . $this->kaizen->id;
         if($this->kaizen->posted)
