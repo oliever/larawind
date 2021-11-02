@@ -141,7 +141,7 @@ class Nutters extends Component
         if($asProject)
             $this->kaizen->posted =Carbon::now();
 
-       if(count($this->selectedLocations) == count(Location::where('area_id', null)->with('children')->get()[0]->children))
+        if(count($this->selectedLocations) == count(Location::where('area_id', null)->with('children')->get()[0]->children))
             $this->kaizen->all_locations = 1;
         else
             $this->kaizen->all_locations = 0;

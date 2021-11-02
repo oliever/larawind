@@ -577,7 +577,7 @@
         </div>
 
         <div class="flex justify-center mb-8">
-            @if ($project->posted)
+            {{-- @if ($project->posted)
             <button wire:click="submitProject"  class="ml-4 px-4 py-2 text-sm font-medium leading-5 text-white transition-colors duration-150 bg-purple-600 border border-transparent rounded-lg active:bg-purple-600 hover:bg-purple-700 focus:outline-none focus:shadow-outline-purple">
                 {{ __('Update') }}
             </button>
@@ -591,7 +591,10 @@
             <button wire:click="submitProject" class="ml-4 px-4 py-2 text-sm font-medium leading-5 text-white transition-colors duration-150 bg-purple-600 border border-transparent rounded-lg active:bg-purple-600 hover:bg-purple-700 focus:outline-none focus:shadow-outline-purple">
                 {{ __('Save Kaizen Project') }}
             </button>
-            @endif
+            @endif --}}
+            <button wire:click="submitProject" class="ml-4 px-4 py-2 text-sm font-medium leading-5 text-white transition-colors duration-150 bg-purple-600 border border-transparent rounded-lg active:bg-purple-600 hover:bg-purple-700 focus:outline-none focus:shadow-outline-purple">
+                {{ __('Save Kaizen Project') }}
+            </button>
 
 
 
@@ -629,7 +632,7 @@
                 </p>
                 <!-- Modal description -->
                 <p class="text-sm text-gray-700 dark:text-gray-400">
-                    @switch($searchType)
+                    {{-- @switch($searchType)
                         @case("manager")
                             <livewire:search-user-dropdown :selectedUsers="$selectedManagers">
                             @break
@@ -657,7 +660,7 @@
                         @default
                             <span>Invalid search type</span>
                             @break
-                    @endswitch
+                    @endswitch --}}
 
                 </p>
             </div>

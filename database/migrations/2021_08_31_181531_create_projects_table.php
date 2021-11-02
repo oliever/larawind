@@ -27,7 +27,7 @@ class CreateProjectsTable extends Migration
             $table->boolean('all_locations')->default(false);
             $table->dateTime('equicapita_support', $precision = 0)->nullable();
             $table->text('locations')->nullable();
-            $table->boolean('capex')->default(false);
+            $table->boolean('capex')->default(false)->nullable();;
 
             $table->text('affected_areas')->nullable();
             $table->text('other_affected_area')->nullable();
