@@ -286,7 +286,7 @@
                         Before Photos
                     </h4>
                     <p class="text-gray-600 dark:text-gray-400">
-                        @livewire('kaizen.upload-photos',['kaizen'  => $kaizen, 'type'  => 'before'])
+                        @livewire('kaizen.upload-photos',['kaizen'  => $kaizen, 'type'  => 'main'])
                     </p>
                 </div>
                 <div class="min-w-0 p-4 bg-white rounded-lg shadow-xs dark:bg-gray-800"><!--card-->
