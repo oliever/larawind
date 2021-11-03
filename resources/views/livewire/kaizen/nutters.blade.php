@@ -31,7 +31,7 @@
         </div>
     </div>
 
-    <x-kaizen.session-message />
+    {{-- <x-kaizen.session-message /> --}}
 
     <form wire:submit.prevent="">
         @csrf
@@ -377,10 +377,12 @@
             </button>
             @endif
 
+            <x-action-message on="saved">
+                <div class="alert-toast fixed bottom-0 right-0 m-8 w-5/6 md:w-full max-w-sm">
+                    <input type="checkbox" class="hidden" id="footertoast">
 
-
-            <x-action-message class="ml-3 mt-2 text-purple-100 bg-purple-600 rounded-lg shadow-md focus:outline-none focus:shadow-outline-purple" on="saved">
-                {{ __('Saved.') }}
+                    <x-kaizen.session-message />
+                  </div>
 
             </x-action-message>
        </div>

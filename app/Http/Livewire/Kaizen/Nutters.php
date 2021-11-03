@@ -156,20 +156,22 @@ class Nutters extends Component
         info('---nutters_kaizen_saved---');
         info($this->kaizen);
 
+        session()->flash('success', ['title'=>'Kaizen Suggestion Form Saved!' , 'subtitle'=>'ID: '. str_pad($this->kaizen->id, 4,"0", STR_PAD_LEFT)]);
+
         $this->emit('saved');//to display action message
         $this->emit('kaizenAdded', $this->kaizen->id);//Listeners: 1. UploadPhotos
 
-        $message = 'Kaizen Form saved as draft: ' . $this->kaizen->id;
+        /* $message = 'Kaizen Form saved as draft: ' . $this->kaizen->id;
         if($this->kaizen->posted)
-            $message = 'Kaizen Form saved as Project: ' . $this->kaizen->id;
-       session()->flash('message', $message);
+            $message = 'Kaizen Form saved as Project: ' . $this->kaizen->id; */
+
        //return redirect()->to('/kaizen/' . $this->kaizen->id);
     }
 
-    private function formatCleave(){
+    /* private function formatCleave(){
         $this->kaizen->dollar_value = trim(str_replace("$", "", $this->kaizen->dollar_value)) == '' ? null : trim(str_replace("$", "", $this->kaizen->dollar_value));
         $this->kaizen->savings = trim(str_replace("$", "", $this->kaizen->savings)) == '' ? null : trim(str_replace("$", "", $this->kaizen->savings));
-    }
+    } */
 
     private function saveLocations(){
         //$this->kaizen->locations = [];
@@ -177,7 +179,6 @@ class Nutters extends Component
 
         $locations = [];
         foreach ($this->selectedLocations as $key => $location) {
-            info($location);
             if(!empty($location))
                 array_push($locations, $location['id']);
 

@@ -41,6 +41,7 @@
     <script  type="module">
         //import Turbolinks from 'turbolinks';
         //Turbolinks.start()
+
     </script>
 
     <!-- Scripts -->
@@ -62,6 +63,8 @@
 
                 {{ $slot }}
             </main>
+             <!--Footer Alert-->
+
             @include('layouts.footer')
         </div>
 

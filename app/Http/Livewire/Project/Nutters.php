@@ -136,7 +136,8 @@ class Nutters extends Component
         if($asPosted)
             $this->project->posted =Carbon::now();
 
-        $this->formatCleave();
+        //$this->formatCleave();
+        info($this->project);
         $this->project->save();
 
         $this->saveLocations();
@@ -144,20 +145,20 @@ class Nutters extends Component
         $this->emit('saved');//to display action message
         $this->emit('projectAdded', $this->project->id);
 
-        $message = 'Project Form saved as draft: ' . $this->project->id;
+        /* $message = 'Project Form saved as draft: ' . $this->project->id;
         if($this->project->posted)
-            $message = 'Project Form saved as Posted: ' . $this->project->id;
-        session()->flash('message', $message);
+            $message = 'Kaizen Project Form Saved! ' ; */
+        session()->flash('success', ['title'=>'Kaizen Project Form Saved!' , 'subtitle'=>'ID: '. str_pad($this->project->id, 4,"0", STR_PAD_LEFT)]);
        //return redirect()->to('/kaizen/' . $this->kaizen->id);
     }
 
-    private function formatCleave(){
-        $this->project->loss = trim(str_replace("$", "", $this->project->loss)) == '' ? null : trim(str_replace("$", "", $this->project->loss)) ;
-        $this->project->budget = trim(str_replace("$", "", $this->project->budget)) == '' ? null : trim(str_replace("$", "", $this->project->budget)) ;
-        $this->project->hours = trim(str_replace("$", "", $this->project->hours)) == '' ? null : trim(str_replace("$", "", $this->project->hours)) ;
-        $this->project->savings = trim(str_replace("$", "", $this->project->savings)) == '' ? null : trim(str_replace("$", "", $this->project->savings)) ;
-        $this->project->savings_actual = trim(str_replace("$", "", $this->project->savings_actual)) == '' ? null : trim(str_replace("$", "", $this->project->savings_actual)) ;
-    }
+    /* private function formatCleave(){
+        $this->project->loss = trim(str_replace("$", "", $this->project->loss)) == '' ? null : trim(str_replace(",", "",str_replace("$", "", $this->project->loss))) ;
+        $this->project->budget = trim(str_replace("$", "", $this->project->budget)) == '' ? null : trim(str_replace(",", "",str_replace("$", "", $this->project->budget))) ;
+        $this->project->hours = trim(str_replace("$", "", $this->project->hours)) == '' ? null : trim(str_replace(",", "",str_replace("$", "", $this->project->hours))) ;
+        $this->project->savings = trim(str_replace("$", "", $this->project->savings)) == '' ? null : trim(str_replace(",", "",str_replace("$", "", $this->project->savings)));
+        $this->project->savings_actual = trim(str_replace("$", "", $this->project->savings_actual)) == '' ? null : trim(str_replace(",", "",str_replace("$", "", $this->project->savings_actual))) ;
+    } */
 
     private function saveLocations(){
         info( 'saving locations...');
@@ -165,7 +166,7 @@ class Nutters extends Component
         $locations = [];
         foreach ($this->selectedLocations as $key => $location) {
             if(!empty($location))
-                array_push($locations, $location['id']);
+                array_push($locations, $location);
         }
         $this->project->locations()->sync($locations);
         $this->project->save();

@@ -31,7 +31,7 @@
         </div>
     </div>
 
-    <x-kaizen.session-message />
+    {{-- <x-kaizen.session-message /> --}}
 
     <form wire:submit.prevent="">
         @csrf
@@ -58,9 +58,9 @@
 
         <div class="grid gap-6 mb-8 md:grid-cols-1 xl:grid-cols-2">
             {{-- Left Column: Users Details --}}
-            <div class="min-w-0 p-4 bg-white rounded-lg shadow-xs dark:bg-gray-800"><!--card-->
+            <div class="min-w-0 p-4 bg-white rounded-lg shadow-md dark:bg-gray-800"><!--card-->
                 <p class="text-gray-600 dark:text-gray-400">
-                    <label class="block text-sm" >
+                    <label class="block text-sm mb-4" >
                         <span class="text-gray-700 dark:text-gray-400">Project Leader/Manager</span>
                         <select wire:model="project.manager_id" class="block w-full mt-1 text-sm dark:text-gray-300 dark:border-gray-600 dark:bg-gray-700 form-select focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:focus:shadow-outline-gray">
                             <option value="0" style="font-style: italic">Select Project Leader/Manager</option>
@@ -70,7 +70,7 @@
                         </select>
                     </label>
 
-                    <label class="block text-sm">
+                    <label class="block text-sm mb-4">
                         <span class="text-gray-700 dark:text-gray-400">Sponsor</span>
                         <select wire:model="project.sponsor_id" class="block w-full mt-1 text-sm dark:text-gray-300 dark:border-gray-600 dark:bg-gray-700 form-select focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:focus:shadow-outline-gray">
                             <option value="0" style="font-style: italic">Select Sponsor</option>
@@ -80,7 +80,7 @@
                         </select>
                     </label>
 
-                    <label class="block text-sm">
+                    <label class="block text-sm mb-4">
                         <span class="text-gray-700 dark:text-gray-400">Champion</span>
                         <select wire:model="project.champion_id" class="block w-full mt-1 text-sm dark:text-gray-300 dark:border-gray-600 dark:bg-gray-700 form-select focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:focus:shadow-outline-gray">
                             <option value="0" style="font-style: italic">Select Champion</option>
@@ -127,13 +127,15 @@
             </div>{{-- END Left Column: Users Details --}}
 
             {{-- Right Column: Project figures --}}
-            <div class="min-w-0 p-4 bg-white rounded-lg shadow-xs dark:bg-gray-800"><!--card-->
+            <div class="min-w-0 p-4 bg-white rounded-lg shadow-md dark:bg-gray-800"><!--card-->
                 <label class="mb-4 block text-sm">
                     <span class=" text-gray-700 dark:text-gray-400">
                         Identified Loss
                     </span>
-                    <input class="cleave-money required block w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:text-gray-300 dark:focus:shadow-outline-gray form-input"
-                        wire:model="project.loss" name="project.loss"/>
+                    <input class="cleave-money block w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:text-gray-300 dark:focus:shadow-outline-gray form-input"
+                        wire:model="project.loss"
+                        name="project.loss"
+                        placeholder="Identified Loss"/>
                 </label>
 
                 <label class="mb-4 block text-sm">
@@ -295,12 +297,12 @@
         <div class="grid gap-6 mb-8 md:grid-cols-1 xl:grid-cols-2">
             {{-- Left Column: Users Details --}}
 
-            <div class="min-w-0 p-4 bg-white rounded-lg shadow-xs dark:bg-gray-800"><!--card-->
+            <div class="min-w-0 p-4 bg-white rounded-lg shadow-md dark:bg-gray-800"><!--card-->
                 <h4 class="mb-4 font-semibold text-gray-600 dark:text-gray-300">
                     Project Approval
                 </h4>
 
-                <label class="block text-sm" >
+                <label class="block mb-4 text-sm" >
                     <span class="text-gray-700 dark:text-gray-400">Approving Project Leader/Manager</span>
                     <select wire:model="project.approved_manager_id" class="block w-full mt-1 text-sm dark:text-gray-300 dark:border-gray-600 dark:bg-gray-700 form-select focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:focus:shadow-outline-gray">
                         <option value="0" style="font-style: italic">Select Approving Project Leader/Manager</option>
@@ -310,7 +312,7 @@
                     </select>
                 </label>
 
-                <label class="block text-sm" >
+                <label class="block mb-4 text-sm" >
                     <span class="text-gray-700 dark:text-gray-400">Approving Sponsor</span>
                     <select wire:model="project.approved_sponsor_id" class="block w-full mt-1 text-sm dark:text-gray-300 dark:border-gray-600 dark:bg-gray-700 form-select focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:focus:shadow-outline-gray">
                         <option value="0" style="font-style: italic">Select Approving Sponsor</option>
@@ -320,8 +322,7 @@
                     </select>
                 </label>
 
-
-                <label class="block text-sm" >
+                <label class="block mb-4 text-sm" >
                     <span class="text-gray-700 dark:text-gray-400">Approving Champion</span>
                     <select wire:model="project.approved_champion_id" class="block w-full mt-1 text-sm dark:text-gray-300 dark:border-gray-600 dark:bg-gray-700 form-select focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:focus:shadow-outline-gray">
                         <option value="0" style="font-style: italic">Select Approving Champion</option>
@@ -332,7 +333,7 @@
                 </label>
             </div>
 
-            <div class="min-w-0 p-4 bg-white rounded-lg shadow-xs dark:bg-gray-800"><!--card-->
+            <div class="min-w-0 p-4 bg-white rounded-lg shadow-md dark:bg-gray-800"><!--card-->
                 <h4 class="mb-4 font-semibold text-gray-600 dark:text-gray-300">
                     Actual Savings
                 </h4>
@@ -382,18 +383,26 @@
             <button wire:click="submitProject" class="ml-4 px-4 py-2 text-sm font-medium leading-5 text-white transition-colors duration-150 bg-purple-600 border border-transparent rounded-lg active:bg-purple-600 hover:bg-purple-700 focus:outline-none focus:shadow-outline-purple">
                 {{ __('Save Kaizen Project') }}
             </button>
+            <x-action-message on="saved">
+                <div class="alert-toast fixed bottom-0 right-0 m-8 w-5/6 md:w-full max-w-sm">
+                    <input type="checkbox" class="hidden" id="footertoast">
 
+                    {{-- <label class="close cursor-pointer flex items-start justify-between w-full p-2 bg-green-500 h-24 rounded shadow-lg text-white" title="close" for="footertoast">
+                      Kaizen Project Saved.
 
-
-            <x-action-message class="ml-3 mt-2 text-xs text-purple-100 bg-purple-600 rounded-lg shadow-md focus:outline-none focus:shadow-outline-purple" on="saved">
-                {{ __('Saved.') }}
+                      <svg class="fill-current text-white" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 18 18">
+                        <path d="M14.53 4.53l-1.06-1.06L9 7.94 4.53 3.47 3.47 4.53 7.94 9l-4.47 4.47 1.06 1.06L9 10.06l4.47 4.47 1.06-1.06L10.06 9z"></path>
+                      </svg>
+                    </label> --}}
+                    <x-kaizen.session-message />
+                  </div>
 
             </x-action-message>
        </div>
 
     </form>
 
-    <div x-show="isSearchUserModalOpen" x-transition:enter="transition ease-out duration-150" x-transition:enter-start="opacity-0" x-transition:enter-end="opacity-100" x-transition:leave="transition ease-in duration-150" x-transition:leave-start="opacity-100" x-transition:leave-end="opacity-0" class="fixed inset-0 z-30 flex items-end bg-black bg-opacity-50 sm:items-center sm:justify-center">
+    {{-- <div x-show="isSearchUserModalOpen" x-transition:enter="transition ease-out duration-150" x-transition:enter-start="opacity-0" x-transition:enter-end="opacity-100" x-transition:leave="transition ease-in duration-150" x-transition:leave-start="opacity-100" x-transition:leave-end="opacity-0" class="fixed inset-0 z-30 flex items-end bg-black bg-opacity-50 sm:items-center sm:justify-center">
         <!-- Modal -->
         <div  x-transition:enter="transition ease-out duration-150" x-transition:enter-start="opacity-0 transform translate-y-1/2" x-transition:enter-end="opacity-100" x-transition:leave="transition ease-in duration-150" x-transition:leave-start="opacity-100" x-transition:leave-end="opacity-0  transform translate-y-1/2"  wire:keydown.escape="closeSearchUserModal" class="w-full px-6 py-4  bg-white rounded-t-lg dark:bg-gray-800 sm:rounded-lg sm:m-4 sm:max-w-xl" role="dialog" id="modal">
             <!-- Remove header if you don't want a close icon. Use modal body to place modal tile. -->
@@ -421,7 +430,7 @@
 
             </footer>
         </div>
-    </div>
+    </div> --}}
 
 </div>
 
@@ -446,7 +455,7 @@
             numeral: true,
             numeralThousandGroupStyle: 'thousand'
         });
-});
+    });
 
 </script>
 
