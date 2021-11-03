@@ -20,28 +20,56 @@
         <tr>
             <td colspan="6" class="section-header">KAIZEN CONTINUOUS IMPROVEMENT SUGGESTION FORM</td>
         </tr>
-        <tr >
-            <td colspan="2" style="padding: 10 0">Name: <strong>{{$kaizen->name}}</strong> </td>
+        <tr>
+            <td colspan="4"> <small>Kaizen Name:</small> <br> <strong>{{$kaizen->name}}</strong></td>
+            <td><small>Date Assigned:</small> <br> <strong>{{Carbon\Carbon::create($kaizen->date_assigned)->toFormattedDateString()}}</strong></td>
+            <td><small>Completion:</small> <br> <strong>{{$kaizen->completion}}%</strong></td>
         </tr>
         <tr>
-            <td style="padding-bottom: 10">
-                Team Members:<br>
-                @foreach ($kaizen->users as $member)
-                    <strong>{{ $member->name }}</strong><br>
-                @endforeach
+            <td colspan="6">
+                <table style="border: none">
+                    <tr>
+                        <td style="width: 120px"><span>
+                            <input style="vertical-align: middle" type="checkbox" @if($kaizen->just_do_it) checked @endif/>
+                            <span style="vertical-align: middle">Just Do It</span>
+                        </span></td>
+                        <td style="width: 150px"><span>
+                            <input style="vertical-align: middle" type="checkbox" @if($kaizen->rapid) checked @endif/>
+                            <span style="vertical-align: middle">Rapid Kaizen</span>
+                        </span></td>
+                        <td><span>
+                            <input style="vertical-align: middle" type="checkbox" @if($kaizen->head_office_input) checked @endif/>
+                            <span style="vertical-align: middle">Head Office Input</span>
+                        </span></td>
+                        <td><span>
+                            <input style="vertical-align: middle" type="checkbox" @if($kaizen->handled_at_location) checked @endif/>
+                            <span style="vertical-align: middle">Handle at Store Level</span>
+                        </span></td>
+                    </tr>
+                    <tr>
+                        <td colspan="2" style="text-align: center">
+                            <small>Team Members:</small><br>
+                            @foreach ($kaizen->users as $member)
+                                <strong>{{ $member->name }}</strong><br>
+                            @endforeach
+                        </td>
+                        <td colspan="2" style="text-align: center">
+                            <small>Stores:</small> <br>
+                            @if($kaizen->all_locations)
+                                <strong>All Stores</strong><br>
+                            @else
+                                @foreach ($kaizen->locations as $store)
+                                    <strong>{{ $store->name }}</strong><br>
+                                @endforeach
+                            @endif
+                        </td>
+                    </tr>
+                </table>
             </td>
-            <td style="padding-bottom: 10" >Stores: <br>
-                @if($kaizen->all_locations)
-                    <strong>All Stores</strong><br>
-                @else
-                    @foreach ($kaizen->locations as $store)
-                        <strong>{{ $store->name }}</strong><br>
-                    @endforeach
-                @endif
-
-            </td>
-            <td colspan="2">Date Assigned: <strong>{{Carbon\Carbon::create($kaizen->date_assigned)->toFormattedDateString()}}</strong></td>
         </tr>
+    </table>
+
+    <table style="border: none">
         <tr >
             <td colspan="6" class="section-header">AREAS AFFECTED</td>
         </tr>
@@ -68,6 +96,27 @@
                 <td colspan="4" style="padding-bottom: 20px;">
                     <i>Other:</i>  {{$kaizen->other_affected_area}}
                 </td>
+            </tr>
+        @endif
+
+        <tr>
+            <td colspan="4">
+                <table style="border: none; text-align: center;">
+                <tr>
+                    <td><small>Dollar Value:</small> <br> <strong>{{$kaizen->dollar_value}}</strong></td>
+                    <td><small>Savings:</small> <br> <strong>{{$kaizen->savings}}</strong></td>
+                    <td><small>Hours Saved:</small> <br> <strong>{{$kaizen->hours_saved}}</strong></td>
+                </tr></table>
+            </td>
+
+        </tr>
+
+        @if ($kaizen->head_office_input)
+            <tr>
+                <td colspan="4" class="input-header">Head Office Comments</td>
+            </tr>
+            <tr>
+                <td  colspan="4" style="padding-bottom: 20px;">{{$kaizen->head_office_comment}}</td>
             </tr>
         @endif
         <tr>
