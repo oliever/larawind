@@ -21,6 +21,8 @@ class CreateUsersTable extends Migration
             $table->string('password')->nullable();
             $table->rememberToken();
             $table->string('current_team_id')->nullable();
+            $table->integer('location_locked')->nullable();
+            $table->boolean('shared')->default(false);
             $table->text('profile_photo_path')->nullable();
             $table->timestamps();
             $table->softDeletes();

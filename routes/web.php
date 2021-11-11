@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\EmployeesController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\KaizenController;
 use App\Http\Controllers\ProjectController;
@@ -19,7 +20,7 @@ use App\Http\Controllers\ProjectController;
     return view('welcome');
 }); */
 
-Route::group(['middleware' => ['auth:sanctum', 'verified']], function () {
+Route::group(['middleware' => ['auth:sanctum', 'verified', 'employee.selected']], function () {
     Route::resource('users', \App\Http\Controllers\UsersController::class);
     //Route::post('upload', [\App\Http\Controllers\UploadController::class, 'upload']);
     //Route::resource('kaizen', App\Http\Controllers\KaizenController::class);
@@ -36,6 +37,10 @@ Route::group(['middleware' => ['auth:sanctum', 'verified']], function () {
     Route::get('/project/create', [ProjectController::class, 'create'])->name('project.create');
     Route::get('/project/{project}', [ProjectController::class, 'show'])->name('project.show');
     Route::get('/project/pdf/{project}', [ProjectController::class, 'pdf'])->name('project.pdf');
+
+    Route::get('/employee/select', [EmployeesController::class, 'selectList'])->name('employee.select');
+    Route::post('/employee/select', [EmployeesController::class, 'select'])->name('employee.select');
+
 
     //Route::view('/', '')->name('home');
     //Route::view('', 'dashboard')->name('dashboard');

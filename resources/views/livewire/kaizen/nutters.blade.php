@@ -57,7 +57,7 @@
                 {{-- column 2 --}}
                 <div class="grid gap-2 mb- grid-cols-2">
                     {{-- column 1 --}}
-                    <label class="block text-sm">
+                    <label class="block text-sm ml-10">
                         <span class="text-gray-700 dark:text-gray-400">Date Assigned</span>
                         @if ($kaizen->date_assigned)
                         <h4 class="mb-2 text-lg font-semibold text-gray-600 dark:text-gray-300">{{date('m/d/Y', strtotime($dateAssigned))}}</h4>

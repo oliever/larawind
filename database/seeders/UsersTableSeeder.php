@@ -16,6 +16,9 @@ class UsersTableSeeder extends Seeder
                 'email'          => 'admin@admin.com',
                 'password'       => bcrypt('password'),
                 'remember_token' => null,
+                'current_team_id'=> 1,
+                'location_locked'=> null,
+                'shared'         => false,
             ],
             [
                 'id'             => 2,
@@ -23,6 +26,9 @@ class UsersTableSeeder extends Seeder
                 'email'          => 'pogden@nutters.com',
                 'password'       => bcrypt('password'),
                 'remember_token' => null,
+                'current_team_id'=> 1,
+                'location_locked'=> null,
+                'shared'         => false,
             ],
             [
                 'id'             => 3,
@@ -30,6 +36,9 @@ class UsersTableSeeder extends Seeder
                 'email'          => 'headoffice@headoffice.com',
                 'password'       => bcrypt('password'),
                 'remember_token' => null,
+                'current_team_id'=> 1,
+                'location_locked'=> null,
+                'shared'         => false,
             ],
             [
                 'id'             => 4,
@@ -37,13 +46,19 @@ class UsersTableSeeder extends Seeder
                 'email'          => 'manager@manager.com',
                 'password'       => bcrypt('password'),
                 'remember_token' => null,
+                'current_team_id'=> 1,
+                'location_locked'=> 1,
+                'shared'         => false,
             ],
             [
                 'id'             => 5,
-                'name'           => 'User',
-                'email'          => 'user@user.com',
+                'name'           => 'Medicine Hat',
+                'email'          => 'emp@emp.com',
                 'password'       => bcrypt('password'),
                 'remember_token' => null,
+                'current_team_id'=> 1,
+                'location_locked'=> 1,
+                'shared'         => true,
             ],
 
         ];

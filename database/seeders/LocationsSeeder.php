@@ -161,6 +161,28 @@ class LocationsSeeder extends Seeder
                 'area_id'        => 99
             ],
             [
+                'id'             => 998,
+                'team_id'        => 1,
+                'code'           => "998",
+                'name'           => "Warehouse",
+                'active'         => true,
+                'created_at'     => Carbon::now(),
+                'is_area'        => false,
+                'is_corporate'   => true,
+                'area_id'        => 99
+            ],
+            [
+                'id'             => 997,
+                'team_id'        => 1,
+                'code'           => "997",
+                'name'           => "Specialty",
+                'active'         => true,
+                'created_at'     => Carbon::now(),
+                'is_area'        => false,
+                'is_corporate'   => true,
+                'area_id'        => 99
+            ],
+            [
                 'id'             => 99,
                 'team_id'        => 1,
                 'code'           => "99",

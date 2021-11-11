@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Kaizen;
+use App\Models\Employee;
 use App\Models\RefAffectedArea;
 use App\Models\Photo;
 use App\Models\Location;
@@ -38,14 +39,12 @@ class KaizenController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Request $request)
     {
-        /* $kaizen = Kaizen::create([
-            'user_id' => Auth::user()->id,
-            'location_id' => 1,
-
-        ]); */
-        return view('kaizen.create');
+        $employee = null;
+        if(auth()->user()->shared)
+            $employee = Employee::where('id', $request->cookie('selected_employee'))->first();
+        return view('kaizen.create',compact('employee'));
     }
 
     /**
@@ -65,10 +64,13 @@ class KaizenController extends Controller
      * @param  \App\Models\Kaizen  $kaizen
      * @return \Illuminate\Http\Response
      */
-    public function show(Kaizen $kaizen)
+    public function show(Request $request, Kaizen $kaizen)
     {
        /*  info($kaizen); */
-        return view('kaizen.show',compact('kaizen'));
+        if(auth()->user()->shared)
+            $employee = Employee::where('id', $request->cookie('selected_employee'))->first();
+        return view('kaizen.show',compact('employee','kaizen'));
+
     }
     public function pdf(Kaizen $kaizen)
     {

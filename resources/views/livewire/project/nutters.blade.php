@@ -56,38 +56,55 @@
         </div>
 
 
-        <div class="grid gap-6 mb-8 md:grid-cols-1 xl:grid-cols-2">
+        <div class="grid gap-6 mb-8 sm:grid-cols-1 lg:grid-cols-2 xl:grid-cols-2">
             {{-- Left Column: Users Details --}}
             <div class="min-w-0 p-4 bg-white rounded-lg shadow-md dark:bg-gray-800"><!--card-->
                 <p class="text-gray-600 dark:text-gray-400">
-                    <label class="block text-sm mb-4" >
-                        <span class="text-gray-700 dark:text-gray-400">Project Leader/Manager</span>
-                        <select wire:model="project.manager_id" class="block w-full mt-1 text-sm dark:text-gray-300 dark:border-gray-600 dark:bg-gray-700 form-select focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:focus:shadow-outline-gray">
-                            <option value="0" style="font-style: italic">Select Project Leader/Manager</option>
-                            @foreach ($users as $user)
-                                <option value="{{ $user->id }}">{{ $user->name}}</option>
-                            @endforeach
-                        </select>
+                    <label class="block text-sm" >
+                        <span class="mb-2 text-gray-700 dark:text-gray-400">Project Leader/Manager</span>
+                        <div wire:ignore class="mt-1 mb-4">
+                            <select id="project.manager_id" wire:model="project.manager_id"
+                                    class="select2x block w-full mt-1 text-sm dark:text-gray-300 dark:border-gray-600 dark:bg-gray-700 form-select focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:focus:shadow-outline-gray"
+                                    >
+                                <option value="0" style="font-style: italic">Select Project Leader/Manager</option>
+                                @foreach($employees as $employee)
+                                    <option value="{{ $employee->id }}">{{ $employee->name }}</option>
+                                @endforeach
+                            </select>
+                        </div>
+                        {{-- @error('product.categories')
+                        <div class="text-sm text-red-500 ml-1">
+                            {{ $message }}
+                        </div>
+                        @enderror --}}
                     </label>
 
-                    <label class="block text-sm mb-4">
+                    <label class="block text-sm" >
                         <span class="text-gray-700 dark:text-gray-400">Sponsor</span>
-                        <select wire:model="project.sponsor_id" class="block w-full mt-1 text-sm dark:text-gray-300 dark:border-gray-600 dark:bg-gray-700 form-select focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:focus:shadow-outline-gray">
-                            <option value="0" style="font-style: italic">Select Sponsor</option>
-                            @foreach ($users as $user)
-                                <option value="{{ $user->id }}">{{ $user->name}}</option>
-                            @endforeach
-                        </select>
+                        <div wire:ignore class="mt-1 mb-4">
+                            <select {{-- id="categories" --}} id="project.sponsor_id" wire:model="project.sponsor_id"
+                                    class="select2x block w-full mt-1 text-sm dark:text-gray-300 dark:border-gray-600 dark:bg-gray-700 form-select focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:focus:shadow-outline-gray"
+                                    >
+                                <option value="0" style="font-style: italic">Select Sponsor</option>
+                                @foreach($employees as $employee)
+                                    <option value="{{ $employee->id }}">{{ $employee->name }}</option>
+                                @endforeach
+                            </select>
+                        </div>
                     </label>
 
-                    <label class="block text-sm mb-4">
+                    <label class="block text-sm" >
                         <span class="text-gray-700 dark:text-gray-400">Champion</span>
-                        <select wire:model="project.champion_id" class="block w-full mt-1 text-sm dark:text-gray-300 dark:border-gray-600 dark:bg-gray-700 form-select focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:focus:shadow-outline-gray">
-                            <option value="0" style="font-style: italic">Select Champion</option>
-                            @foreach ($users as $user)
-                                <option value="{{ $user->id }}">{{ $user->name}}</option>
-                            @endforeach
-                        </select>
+                        <div wire:ignore class="mt-1 mb-4">
+                            <select {{-- id="categories" --}} id="project.champion_id" wire:model="project.champion_id"
+                                    class="select2x block w-full mt-1 text-sm dark:text-gray-300 dark:border-gray-600 dark:bg-gray-700 form-select focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:focus:shadow-outline-gray"
+                                    >
+                                <option value="0" style="font-style: italic">Select Champion</option>
+                                @foreach($employees as $employee)
+                                    <option value="{{ $employee->id }}">{{ $employee->name }}</option>
+                                @endforeach
+                            </select>
+                        </div>
                     </label>
 
                     <label class="mb-4 block text-sm">
@@ -297,40 +314,53 @@
         <div class="grid gap-6 mb-8 md:grid-cols-1 xl:grid-cols-2">
             {{-- Left Column: Users Details --}}
 
-            <div class="min-w-0 p-4 bg-white rounded-lg shadow-md dark:bg-gray-800"><!--card-->
+            <div class="min-w-0 p-4 bg-white rounded-lg shadow-md dark:bg-gray-800" ><!--card-->
                 <h4 class="mb-4 font-semibold text-gray-600 dark:text-gray-300">
                     Project Approval
                 </h4>
 
-                <label class="block mb-4 text-sm" >
+                <label class="block text-sm" >
                     <span class="text-gray-700 dark:text-gray-400">Approving Project Leader/Manager</span>
-                    <select wire:model="project.approved_manager_id" class="block w-full mt-1 text-sm dark:text-gray-300 dark:border-gray-600 dark:bg-gray-700 form-select focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:focus:shadow-outline-gray">
-                        <option value="0" style="font-style: italic">Select Approving Project Leader/Manager</option>
-                        @foreach ($users as $user)
-                            <option value="{{ $user->id }}">{{ $user->name}}</option>
-                        @endforeach
-                    </select>
+                    <div wire:ignore class="mt-1 mb-4" >
+                        <select id="project.approved_manager_id" wire:model="project.approved_manager_id"
+                                class="select2x block w-full mt-1 text-sm dark:text-gray-300 dark:border-gray-600 dark:bg-gray-700 form-select focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:focus:shadow-outline-gray"
+                                >
+                            <option value="0" style="font-style: italic">Select Approving Project Leader/Manager</option>
+                            @foreach($employees as $employee)
+                                <option value="{{ $employee->id }}">{{ $employee->name }}</option>
+                            @endforeach
+                        </select>
+                    </div>
                 </label>
 
-                <label class="block mb-4 text-sm" >
+                <label class="block text-sm" >
                     <span class="text-gray-700 dark:text-gray-400">Approving Sponsor</span>
-                    <select wire:model="project.approved_sponsor_id" class="block w-full mt-1 text-sm dark:text-gray-300 dark:border-gray-600 dark:bg-gray-700 form-select focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:focus:shadow-outline-gray">
-                        <option value="0" style="font-style: italic">Select Approving Sponsor</option>
-                        @foreach ($users as $user)
-                            <option value="{{ $user->id }}">{{ $user->name}}</option>
-                        @endforeach
-                    </select>
+                    <div wire:ignore class="mt-1 mb-4">
+                        <select id="project.approved_sponsor_id" wire:model="project.approved_sponsor_id"
+                                class="select2x block w-full mt-1 text-sm dark:text-gray-300 dark:border-gray-600 dark:bg-gray-700 form-select focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:focus:shadow-outline-gray"
+                                >
+                            <option value="0" style="font-style: italic">Select Approving Sponsor</option>
+                            @foreach($employees as $employee)
+                                <option value="{{ $employee->id }}">{{ $employee->name }}</option>
+                            @endforeach
+                        </select>
+                    </div>
                 </label>
 
-                <label class="block mb-4 text-sm" >
+                <label class="block text-sm">
                     <span class="text-gray-700 dark:text-gray-400">Approving Champion</span>
-                    <select wire:model="project.approved_champion_id" class="block w-full mt-1 text-sm dark:text-gray-300 dark:border-gray-600 dark:bg-gray-700 form-select focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:focus:shadow-outline-gray">
-                        <option value="0" style="font-style: italic">Select Approving Champion</option>
-                        @foreach ($users as $user)
-                            <option value="{{ $user->id }}">{{ $user->name}}</option>
-                        @endforeach
-                    </select>
+                    <div wire:ignore class="mt-1 mb-4" >
+                        <select   id="project.approved_champion_id" wire:model="project.approved_champion_id"
+                                class="select2x block w-full mt-1 text-sm dark:text-gray-300 dark:border-gray-600 dark:bg-gray-700 form-select focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:focus:shadow-outline-gray"
+                                >
+                            <option value="0" style="font-style: italic">Select Approving Champion</option>
+                            @foreach($employees as $employee)
+                                <option value="{{ $employee->id }}">{{ $employee->name }}</option>
+                            @endforeach
+                        </select>
+                    </div>
                 </label>
+
             </div>
 
             <div class="min-w-0 p-4 bg-white rounded-lg shadow-md dark:bg-gray-800"><!--card-->
@@ -348,12 +378,16 @@
                     <div>
                         <label class="block text-sm" >
                             <span class="text-gray-700 dark:text-gray-400">Validated By</span>
-                            <select wire:model="project.hours_actual_validated_id" class="block w-full mt-1 text-sm dark:text-gray-300 dark:border-gray-600 dark:bg-gray-700 form-select focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:focus:shadow-outline-gray">
-                                <option value="0" style="font-style: italic">Select Hours Saved Validator</option>
-                                @foreach ($users as $user)
-                                    <option value="{{ $user->id }}">{{ $user->name}}</option>
-                                @endforeach
-                            </select>
+                            <div wire:ignore class="mt-1 mb-4" >
+                                <select   id="project.hours_actual_validated_id" wire:model="project.hours_actual_validated_id"
+                                        class="select2x block w-full mt-1 text-sm dark:text-gray-300 dark:border-gray-600 dark:bg-gray-700 form-select focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:focus:shadow-outline-gray"
+                                        >
+                                    <option value="0" style="font-style: italic">Select Hours Saved Validator</option>
+                                    @foreach($employees as $employee)
+                                        <option value="{{ $employee->id }}">{{ $employee->name }}</option>
+                                    @endforeach
+                                </select>
+                            </div>
                         </label>
                     </div>
 
@@ -367,13 +401,18 @@
                     <div>
                         <label class="block text-sm" >
                             <span class="text-gray-700 dark:text-gray-400">Validated By</span>
-                            <select wire:model="project.savings_actual_validated_id" class="block w-full mt-1 text-sm dark:text-gray-300 dark:border-gray-600 dark:bg-gray-700 form-select focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:focus:shadow-outline-gray">
-                                <option value="0" style="font-style: italic">Select Dollar Savings Validator</option>
-                                @foreach ($users as $user)
-                                    <option value="{{ $user->id }}">{{ $user->name}}</option>
-                                @endforeach
-                            </select>
+                            <div wire:ignore class="mt-1 mb-4" >
+                                <select   id="project.savings_actual_validated_id" wire:model="project.savings_actual_validated_id"
+                                        class="select2x block w-full mt-1 text-sm dark:text-gray-300 dark:border-gray-600 dark:bg-gray-700 form-select focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:focus:shadow-outline-gray"
+                                        >
+                                    <option value="0" style="font-style: italic">Select Dollar Savings Validator</option>
+                                    @foreach($employees as $employee)
+                                        <option value="{{ $employee->id }}">{{ $employee->name }}</option>
+                                    @endforeach
+                                </select>
+                            </div>
                         </label>
+
                     </div>
                 </div>
             </div>
@@ -456,6 +495,88 @@
             numeralThousandGroupStyle: 'thousand'
         });
     });
+
+    $(document).ready(function() {
+        //$('#manager_id').select2();
+        /* $('#manager_id').select2({
+            theme: "dark-adminlte"
+        }); */
+
+        /* $('#savings_actual_validated_id').select2({
+            width: '100%'
+        }); */
+        /* $('#manager_id').on('change', function (e) {
+            var data = $('#manager_id').select2("val");
+            @this.set('project.manager_id', data);
+        }); */
+    });
+
+    /* $( "#dropdown" ).select2({
+        theme: "dark-adminlte"
+    }); */
+
+    /* function select2Alpine() {
+        console.log($(this.$refs.select));
+        console.log($( "#project.manager_id" ));
+
+        this.select2 = $( "#manager_id" ).select2();
+        this.select2.on("select2:select", (event) => {
+            this.selectedCity = event.target.value;
+            $( "#h_manager_id" ).val(event.target.value);
+        });
+        this.$watch("selectedCity", (value) => {
+            this.select2.val(value).trigger("change");
+        });
+
+        this.select2 = $( "#sponsor_id" ).select2();
+        this.select2.on("select2:select", (event) => {
+            this.selectedCity = event.target.value;
+        });
+        this.$watch("selectedCity", (value) => {
+            this.select2.val(value).trigger("change");
+        });
+    } */
+
+    //var selectid ="project.manager_id";
+    document.querySelectorAll('.select2').forEach(function(el) {
+        console.log(el.id);
+        initSelect2(el.id);
+    });
+
+    jQuery(document).ready(function(){
+        jQuery('body').css({position: 'fixed', width: '100%'});
+});
+
+function initSelect2(id){
+    document.addEventListener("livewire:load", () => {
+          /* let el = $('.select2') */
+
+          let el = $('select[id="'+id+'"]')
+          initSelect()
+          Livewire.hook('message.processed', (message, component) => {
+            initSelect()
+          })
+          el.on('change', function (e) {
+            @this.set(id, el.select2("val"))
+          })
+
+          function initSelect () {
+            el.select2({
+              placeholder: '{{__('Select employee')}}',
+              allowClear: false,
+              width: '100%',
+              closeOnSelect: false,
+              //theme: "dark-adminlte"
+            })
+          }
+
+        })
+}
+
+
+
+
+
 
 </script>
 

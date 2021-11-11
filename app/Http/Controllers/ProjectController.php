@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 
 use App\Models\Project;
+use App\Models\Employee;
 use App\Models\RefAffectedArea;
 use Illuminate\Support\Facades\App;
 
@@ -15,14 +16,17 @@ class ProjectController extends Controller
         return view('project.index');
     }
 
-    public function create()
+    public function create(Request $request)
     {
-        return view('project.create');
+        if(auth()->user()->shared)
+            $employee = Employee::where('id', $request->cookie('selected_employee'))->first();
+        return view('project.create',compact('employee'));
     }
-    public function show(Project $project)
+    public function show(Request $request, Project $project)
     {
-       /*  info($kaizen); */
-        return view('project.show',compact('project'));
+        if(auth()->user()->shared)
+            $employee = Employee::where('id', $request->cookie('selected_employee'))->first();
+        return view('project.show',compact('employee','project'));
     }
     public function pdf(Project $project)
     {

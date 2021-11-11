@@ -16,8 +16,9 @@ class CreateKaizensTable extends Migration
         Schema::create('kaizens', function (Blueprint $table) {
             $table->id();
             $table->text('name');
-            $table->foreignId('user_id')->index();
             $table->foreignId('team_id')->index();
+            $table->foreignId('user_id')->index();
+            $table->foreignId('employee_id')->nullable();
 
             $table->text('members')->nullable();
             $table->boolean('all_locations')->default(false);

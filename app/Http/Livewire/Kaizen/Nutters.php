@@ -13,6 +13,7 @@ use Laravel\Jetstream\Jetstream;
 
 class Nutters extends Component
 {
+    public $employee;
     public $kaizen;
     //public $stores;
     public $affectedAreas;
@@ -60,10 +61,14 @@ class Nutters extends Component
 
     ];
 
-    public function mount(Kaizen $kaizen = null)
+    public function mount($employee = null, Kaizen $kaizen = null)
     {
+        if(auth()->user()->shared)
+            $this->employee = $employee;
+        info($this->employee);
+
         $this->kaizen = $kaizen;
-        info("--Nutters::mount-- " . $this->kaizen->id);
+        info("--Nutters::mount kaizen-- " . $this->kaizen->id);
 
         if(!isset($this->kaizen['id'])){
             $this->kaizen = new Kaizen();
@@ -116,6 +121,9 @@ class Nutters extends Component
         $this->kaizen->just_do_it = $this->isJustDoIt;
         $this->kaizen->team_id = auth()->user()->currentTeam->id;
         $this->kaizen->user_id =  auth()->user()->id;
+        if(auth()->user()->shared){
+            $this->kaizen->employee_id = $this->employee->id;
+        }
 
         $this->kaizen->head_office_input = $this->kaizen->head_office_input ? true : false;
         $this->kaizen->handled_at_location = $this->kaizen->handled_at_location ? true : false;

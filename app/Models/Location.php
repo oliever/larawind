@@ -30,4 +30,8 @@ class Location extends Model
     {
         return $this->belongsToMany(Project::class,  'project_location' );
     }
+
+    public function employees(){
+        return $this->hasMany(Employee::class);
+    }
 }

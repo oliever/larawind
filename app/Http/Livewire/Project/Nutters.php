@@ -5,17 +5,21 @@ namespace App\Http\Livewire\Project;
 use Livewire\Component;
 use App\Models\Project;
 use App\Models\Location;
+use App\Models\Employee;
 use App\Models\RefAffectedArea;
 use App\Models\User;
 use DateTime;
 use Carbon\Carbon;
+use App\Models\Role;
 
 
 class Nutters extends Component
 {
+    public $employee;
     public $project;
     public $stores;
     public $users;
+    public $employees;
     public $affectedAreas;
     public $selectedAfftectedAreas = [];
     public $term;
@@ -80,10 +84,24 @@ class Nutters extends Component
         'project.savings_actual_validated_id' => '',
     ];
 
-    public function mount(Project $project = null)
+    public function mount($employee = null, Project $project = null)
     {
+        if(auth()->user()->shared)
+            $this->employee = $employee;
+        info($this->employee);
+
         $this->users = auth()->user()->currentTeam->allUsers();
         $this->project = $project;
+        info("--Nutters::mount project-- " . $this->project->id);
+        $locationLocked = Location::where('id', auth()->user()->location_locked)->first();
+        info($locationLocked);
+        //if(auth()->user()->locked_location)
+
+        $this->employees = Employee::get();
+        if($locationLocked){
+            $this->employees = $locationLocked->employees()->get();//Employee::where('location_id', $locationLocked->id)->get();
+        }
+
         //$this->selectedAfftectedAreas = explode(",", $kaizen->affected_areas);
 
         //$this->selectedLocations[] =  new Location();
@@ -117,6 +135,9 @@ class Nutters extends Component
     {
         $this->project->team_id = auth()->user()->currentTeam->id;
         $this->project->user_id =  auth()->user()->id;
+        if(auth()->user()->shared){
+            $this->project->employee_id = $this->employee->id;
+        }
 
         $this->project->affected_areas = implode(',', array_keys(array_filter($this->selectedAfftectedAreas)));
 
@@ -161,16 +182,18 @@ class Nutters extends Component
     } */
 
     private function saveLocations(){
-        info( 'saving locations...');
-
         $locations = [];
         foreach ($this->selectedLocations as $key => $location) {
-            if(!empty($location))
+            if($location instanceof Location){
+                if(!empty($location))
+                    array_push($locations, $location->id);
+            }
+            else
                 array_push($locations, $location);
         }
+        info( 'sync locations...');
         $this->project->locations()->sync($locations);
         $this->project->save();
-        info( $this->project->locations);
     }
 
     public function render()
