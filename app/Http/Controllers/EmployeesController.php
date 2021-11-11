@@ -4,24 +4,26 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Employee;
+use App\Models\Location;
 use Illuminate\Support\Facades\Cookie;
 
 class EmployeesController extends Controller
 {
     public function selectList(Request $request){
-        info($request);
-        if ($request->isMethod('post')){
-            info($request);
-            //Cookie::queue('selected_employee', $value, $minutes);
-            /* $response = $next($request);
-            return $response->withCookie(cookie()->forever('selected_employee', 'hello there')); */
-        }
+
+        $locationLocked = Location::where('id', auth()->user()->location_locked)->first();
+        info($locationLocked);
         $employees = Employee::get();
-        return view('employees.select', compact('employees', 'request'));
+        if($locationLocked)
+            $employees = $locationLocked->employees()->get();//Employee::where('location_id', $locationLocked->id)->get();
+
+        return view('employees.select', compact('locationLocked', 'employees', 'request'));
     }
 
     public function select(Request $request){
         Cookie::queue('selected_employee', $request['employee_id'], time() + (10 * 365 * 24 * 60 * 60));
-        return redirect()->route($request['current_route']);
+        if(\Illuminate\Support\Facades\Route::has($request['current_route']))
+            return redirect()->route($request['current_route']);
+        return redirect()->route('dashboard');
     }
 }

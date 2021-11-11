@@ -2,9 +2,15 @@
     <div class="flex items-center min-h-screen p-6 bg-gray-50 dark:bg-gray-900">
         <div class="flex-1 h-full max-w-4xl mx-auto overflow-hidden bg-white rounded-lg shadow-xl dark:bg-gray-800">
             <div class="container grid px-6 mx-auto">
-                <h2 class="my-6 text-2xl font-semibold text-gray-700 dark:text-gray-200">
-                    Select Employee
-                </h2>
+                <div class="flex justify-between">
+                    <div><h2 class="my-6 text-2xl font-semibold text-gray-700 dark:text-gray-200">
+                        Select Employee
+                    </h2></div>
+
+                    <div><h2 class="my-6 text-2xl font-semibold text-gray-700 dark:text-gray-200">
+                        Store: {{ $locationLocked->name }}
+                    </h2></div></div>
+
 
                 <div class="w-full mb-8 overflow-hidden rounded-lg shadow-xs">
                     <div class="w-full overflow-x-auto">
