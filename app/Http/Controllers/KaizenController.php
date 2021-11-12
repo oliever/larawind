@@ -67,6 +67,7 @@ class KaizenController extends Controller
     public function show(Request $request, Kaizen $kaizen)
     {
        /*  info($kaizen); */
+       $employee = null;
         if(auth()->user()->shared)
             $employee = Employee::where('id', $request->cookie('selected_employee'))->first();
         return view('kaizen.show',compact('employee','kaizen'));
