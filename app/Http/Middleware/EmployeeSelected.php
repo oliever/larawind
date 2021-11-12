@@ -20,15 +20,16 @@ class EmployeeSelected
      */
     public function handle(Request $request, Closure $next)
     {
-        info(Route::currentRouteName());
+        //info(Route::currentRouteName());
 
+        \Illuminate\Support\Facades\View::share('locationLocked', Location::where('id', auth()->user()->location_locked)->first());
         if(auth()->user()->shared){
             if($request->hasCookie('selected_employee')) {
                 /* info("App\Http\Middleware\EmployeeSelected selected_employee: ");
                 info(Employee::where('id', $request->cookie('selected_employee'))->first()); */
                 $employee = Employee::where('id', $request->cookie('selected_employee'))->first();
                 \Illuminate\Support\Facades\View::share('selectedEmployee', $employee);
-                \Illuminate\Support\Facades\View::share('locationLocked', Location::where('id', auth()->user()->location_locked)->first());
+
                 //$request->attributes->add(['selected_employee' => Employee::where('id', $request->cookie('selected_employee'))->first()]);
                 return $next($request);
             }else{

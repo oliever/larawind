@@ -3,12 +3,48 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Http\Requests\StoreEmployeeRequest;
 use App\Models\Employee;
 use App\Models\Location;
 use Illuminate\Support\Facades\Cookie;
+use Illuminate\Support\Facades\DB;
 
 class EmployeesController extends Controller
 {
+    public function index()
+    {
+        //abort_if(Gate::denies('user_access'), Response::HTTP_FORBIDDEN, '403 Forbidden');
+
+        $employees = Employee::where('location_id', auth()->user()->location_locked)->get();
+
+        return view('employees.index', compact('employees'));
+    }
+
+    public function create()
+    {
+        //abort_if(Gate::denies('user_access'), Response::HTTP_FORBIDDEN, '403 Forbidden');
+
+        return view('employees.create');
+    }
+
+    public function destroy(Employee $employee)
+    {
+        //abort_if(Gate::denies('user_access'), Response::HTTP_FORBIDDEN, '403 Forbidden');
+
+        $employee->delete();
+
+        return redirect()->route('employees.index');
+    }
+
+    public function store(StoreEmployeeRequest $request)
+    {
+        $employee = Employee::create($request->validated());
+        //DB::insert('insert into team_user (team_id, user_id, role) values (?, ?, ?)', [1, $user->id, 'editor']);
+        //$user->roles()->sync($request->input('roles', []));
+
+        return redirect()->route('employees.index');
+    }
+
     public function selectList(Request $request){
 
         $locationLocked = Location::where('id', auth()->user()->location_locked)->first();

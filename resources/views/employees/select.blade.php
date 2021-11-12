@@ -32,7 +32,7 @@
                                         <td class="px-4 py-3">
 
                                             <p class="text-xs text-gray-600 dark:text-gray-400">
-                                                <form class="inline-block" action="{{ route('employee.select', $employee) }}" method="POST" onsubmit="return confirm('Select {{$employee->name}}?');">
+                                                <form class="inline-block" action="{{ route('employees.select', $employee) }}" method="POST" onsubmit="return confirm('Select {{$employee->name}}?');">
                                                     <input type="hidden" name="_method" value="POST">
                                                     <input type="hidden" name="current_route" value="{{$request['current_route']}}">
                                                     <input type="hidden" name="employee_id" value="{{$employee->id}}">
