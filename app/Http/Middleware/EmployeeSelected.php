@@ -33,9 +33,16 @@ class EmployeeSelected
                 info(@"cookie_selected_employee: '{$cookie_selected_employee}'" );
 
                 $employee = Employee::where('id', $cookie_selected_employee)->first();
-                if(!$cookie_selected_employee)
+                if(!$cookie_selected_employee){
                     if(Route::currentRouteName()!='employees.select')
                         return redirect()->route('employees.select', ['current_route' => Route::currentRouteName()]);
+                }else if(!$employee){
+                    info('employee deleted: ' . $cookie_selected_employee);
+                    if(Route::currentRouteName()!='employees.select')
+                        return redirect()->route('employees.select', ['current_route' => Route::currentRouteName()]);
+                }
+
+
 
 
                 \Illuminate\Support\Facades\View::share('selectedEmployee', $employee);
