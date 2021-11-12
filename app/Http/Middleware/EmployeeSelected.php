@@ -20,21 +20,31 @@ class EmployeeSelected
      */
     public function handle(Request $request, Closure $next)
     {
-        //info(Route::currentRouteName());
-
-        \Illuminate\Support\Facades\View::share('locationLocked', Location::where('id', auth()->user()->location_locked)->first());
+        info("currentRouteName: " . Route::currentRouteName());
+        $lockedLocation = Location::where('id', auth()->user()->location_locked)->first();
+        info("User location: " . $lockedLocation->name);
+        \Illuminate\Support\Facades\View::share('locationLocked', $lockedLocation);
+        $redirectToEmployeeSelect = false;
         if(auth()->user()->shared){
             if($request->hasCookie('selected_employee')) {
                 /* info("App\Http\Middleware\EmployeeSelected selected_employee: ");
                 info(Employee::where('id', $request->cookie('selected_employee'))->first()); */
-                $employee = Employee::where('id', $request->cookie('selected_employee'))->first();
-                \Illuminate\Support\Facades\View::share('selectedEmployee', $employee);
+                $cookie_selected_employee = $request->cookie('selected_employee');
+                info(@"cookie_selected_employee: '{$cookie_selected_employee}'" );
 
+                $employee = Employee::where('id', $cookie_selected_employee)->first();
+                if(!$cookie_selected_employee)
+                    if(Route::currentRouteName()!='employees.select')
+                        return redirect()->route('employees.select', ['current_route' => Route::currentRouteName()]);
+
+
+                \Illuminate\Support\Facades\View::share('selectedEmployee', $employee);
+                //info("Selected Employee: " . $employee->name);
                 //$request->attributes->add(['selected_employee' => Employee::where('id', $request->cookie('selected_employee'))->first()]);
                 return $next($request);
             }else{
-                if(Route::currentRouteName()!='employee.select')
-                    return redirect()->route('employee.select', ['current_route' => Route::currentRouteName()]);
+                if(Route::currentRouteName()!='employees.select')
+                    return redirect()->route('employees.select', ['current_route' => Route::currentRouteName()]);
             }
         }
 

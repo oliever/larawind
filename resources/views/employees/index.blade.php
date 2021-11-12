@@ -24,24 +24,24 @@
                     </thead>
                     <tbody class="bg-white divide-y dark:divide-gray-700 dark:bg-gray-800">
 
-                    @foreach ($employees as $emploee)
+                    @foreach ($employees as $employee)
                         <tr>
                             <td class="px-4 py-3">
                                 <p class="text-xs text-gray-600 dark:text-gray-400">
-                                    {{ $emploee->id }}
+                                    {{ $employee->id }}
                                 </p>
                             </td>
 
                             <td class="px-4 py-3">
                                 <p class="text-xs text-gray-600 dark:text-gray-400">
-                                    {{ $emploee->name }}
+                                    {{ $employee->name }}
                                 </p>
                             </td>
 
 
-                            <td class="px-4 py-3">    <a href="{{ route('employees.show', $emploee->id) }}" class="text-blue-600 hover:text-blue-900 mb-2 mr-2">View</a>
-                                <a href="{{ route('employees.edit', $emploee->id) }}" class="text-indigo-600 hover:text-indigo-900 mb-2 mr-2">Edit</a>
-                                <form class="inline-block" action="{{ route('employees.destroy', $emploee->id) }}" method="POST" onsubmit="return confirm('Are you sure?');">
+                            <td class="px-4 py-3">    <a href="{{ route('employees.show', $employee->id) }}" class="text-blue-600 hover:text-blue-900 mb-2 mr-2">View</a>
+                                <a href="{{ route('employees.edit', $employee->id) }}" class="text-indigo-600 hover:text-indigo-900 mb-2 mr-2">Edit</a>
+                                <form class="inline-block" action="{{ route('employees.destroy', $employee->id) }}" method="POST" onsubmit="return confirm('Are you sure?');">
                                     <input type="hidden" name="_method" value="DELETE">
                                     <input type="hidden" name="_token" value="{{ csrf_token() }}">
                                     <input type="submit" value="Delete" class="px-2  text-sm font-medium leading-5 text-white transition-colors duration-150 bg-purple-600 border border-transparent rounded-md active:bg-purple-600 hover:bg-purple-700 focus:outline-none focus:shadow-outline-purple">

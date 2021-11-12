@@ -20,6 +20,13 @@ class EmployeesController extends Controller
         return view('employees.index', compact('employees'));
     }
 
+    public function show(Employee $employee)
+    {
+        //abort_if(Gate::denies('user_access'), Response::HTTP_FORBIDDEN, '403 Forbidden');
+
+        return view('employees.show', compact('employee'));
+    }
+
     public function create()
     {
         //abort_if(Gate::denies('user_access'), Response::HTTP_FORBIDDEN, '403 Forbidden');
