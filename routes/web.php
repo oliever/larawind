@@ -39,12 +39,13 @@ Route::group(['middleware' => ['auth:sanctum', 'verified', 'employee.selected']]
     Route::get('/project/pdf/{project}', [ProjectController::class, 'pdf'])->name('project.pdf');
 
     //Route::resource('employees', \App\Http\Controllers\EmployeesController::class);
+    Route::get('/employees/create', [EmployeesController::class, 'create'])->name('employees.create');
     Route::get('/employees/select', [EmployeesController::class, 'selectList'])->name('employees.select');
     Route::post('/employees/select', [EmployeesController::class, 'select'])->name('employees.select');
     Route::get('/employees', [EmployeesController::class, 'index'])->name('employees.index');
     Route::get('/employees/{employee}', [EmployeesController::class, 'show'])->name('employees.show');
     Route::get('/employees/edit/{employee}', [EmployeesController::class, 'edit'])->name('employees.edit');
-    Route::get('/employees/create', [EmployeesController::class, 'create'])->name('employees.create');
+
     Route::post('/employees/store', [EmployeesController::class, 'store'])->name('employees.store');
     Route::delete('/employees/destroy{employee}', [EmployeesController::class, 'destroy'])->name('employees.destroy');
 

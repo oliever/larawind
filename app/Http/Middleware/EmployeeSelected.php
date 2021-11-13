@@ -20,10 +20,11 @@ class EmployeeSelected
      */
     public function handle(Request $request, Closure $next)
     {
+        info("currentRouteName: " . Route::currentRouteName());
         if(!auth()->user()->location_locked)
             return $next($request);
 
-        info("currentRouteName: " . Route::currentRouteName());
+
         $lockedLocation = Location::where('id', auth()->user()->location_locked)->first();
         info("User location: " . $lockedLocation->name);
         \Illuminate\Support\Facades\View::share('locationLocked', $lockedLocation);
