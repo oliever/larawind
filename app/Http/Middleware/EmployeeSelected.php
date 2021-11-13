@@ -20,6 +20,9 @@ class EmployeeSelected
      */
     public function handle(Request $request, Closure $next)
     {
+        if(!auth()->user()->location_locked)
+            return $next($request);
+
         info("currentRouteName: " . Route::currentRouteName());
         $lockedLocation = Location::where('id', auth()->user()->location_locked)->first();
         info("User location: " . $lockedLocation->name);
