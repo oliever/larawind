@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Http\Requests\StoreEmployeeRequest;
+use App\Http\Requests\UpdateEmployeeRequest;
 use App\Models\Employee;
 use App\Models\Location;
 use Illuminate\Support\Facades\Cookie;
@@ -25,6 +26,28 @@ class EmployeesController extends Controller
         //abort_if(Gate::denies('user_access'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
         return view('employees.show', compact('employee'));
+    }
+
+    public function edit(Employee $employee)
+    {
+        //abort_if(Gate::denies('user_access'), Response::HTTP_FORBIDDEN, '403 Forbidden');
+
+        //$roles = Role::pluck('title', 'id');
+
+        //$user->load('roles');
+
+        return view('employees.edit', compact('employee',));
+    }
+
+    public function update(UpdateEmployeeRequest $request, Employee $employee)
+    {
+        info($request->validated());
+        $employee->update($request->validated());
+info('update');
+info($request);
+    info($employee);
+
+        return redirect()->route('employees.index');
     }
 
     public function create()
