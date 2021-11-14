@@ -18,12 +18,14 @@ class ProjectController extends Controller
 
     public function create(Request $request)
     {
+        $employee = null;
         if(auth()->user()->shared)
             $employee = Employee::where('id', $request->cookie('selected_employee'))->first();
         return view('project.create',compact('employee'));
     }
     public function show(Request $request, Project $project)
     {
+        $employee = null;
         if(auth()->user()->shared)
             $employee = Employee::where('id', $request->cookie('selected_employee'))->first();
         return view('project.show',compact('employee','project'));
