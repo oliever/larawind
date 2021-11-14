@@ -16,9 +16,9 @@ class EmployeesController extends Controller
     {
         //abort_if(Gate::denies('user_access'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
-        $employees = Employee::where('location_id', auth()->user()->location_locked)->get();
+        //$employees = null;//auth()->user()->employees()->get();
 
-        return view('employees.index', compact('employees'));
+        return view('employees.index');
     }
 
     public function show(Employee $employee)

@@ -90,4 +90,9 @@ class User extends Authenticatable
             }
         )->get();
     }
+
+    public function employees(){
+        return Employee::where('location_id', $this->location_locked)->where('status','active');
+
+    }
 }

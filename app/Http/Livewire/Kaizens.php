@@ -24,6 +24,7 @@ class Kaizens extends PowerGridComponent
     | Setup Table's general features
     |
     */
+
     public function setUp()
     {
         $this->showCheckBox()
@@ -41,7 +42,7 @@ class Kaizens extends PowerGridComponent
     */
     public function datasource(): ?Builder
     {
-        return Kaizen::query();
+        return Kaizen::with('users');
     }
 
     /*
@@ -80,6 +81,12 @@ class Kaizens extends PowerGridComponent
             return PowerGrid::eloquent()
             ->addColumn('id')
             ->addColumn('name')
+            ->addColumn('rapid', function (Kaizen $model) {
+                return ($model->rapid ? 'yes' : 'no');
+              })
+            ->addColumn('members', function (Kaizen $model) {
+                return implode (", ", $model->users()->pluck('name')->all());
+            })
             ->addColumn('user_id')
             ->addColumn('created_at_formatted', function(Kaizen $model) {
                 return Carbon::parse($model->created_at)->format('d/m/Y H:i:s');
@@ -96,11 +103,11 @@ class Kaizens extends PowerGridComponent
     */
     public function columns(): array
     {
+        $canEdit = true; //User has edit permission
         return [
             Column::add()
                 ->title(__('ID'))
-                ->field('id')
-                ->makeInputRange(),
+                ->field('id'),
 
             Column::add()
                 ->title(__('NAME'))
@@ -109,9 +116,15 @@ class Kaizens extends PowerGridComponent
                 ->searchable(),
 
             Column::add()
-                ->title(__('USER ID'))
-                ->field('user_id')
-                ->makeInputRange(),
+                ->title(__('MEMBERS'))
+                ->field('members')
+                ->searchable()
+                ->makeInputText('members'),
+
+            Column::add()
+                ->title(__('RAPID'))
+                ->field('rapid'),
+                //->makeBooleanFilter('rapid', 'yes', 'no'),
 
             Column::add()
                 ->title(__('CREATED AT'))
@@ -120,12 +133,6 @@ class Kaizens extends PowerGridComponent
                 ->sortable()
                 ->makeInputDatePicker('created_at'),
 
-            Column::add()
-                ->title(__('UPDATED AT'))
-                ->field('updated_at_formatted')
-                ->searchable()
-                ->sortable()
-                ->makeInputDatePicker('updated_at'),
 
         ]
 ;
@@ -139,23 +146,23 @@ class Kaizens extends PowerGridComponent
     |
     */
 
-    /*
+
     public function actions(): array
     {
        return [
            Button::add('edit')
                ->caption(__('Edit'))
-               ->class('bg-indigo-500 text-white')
-               ->route('kaizen.edit', ['kaizen' => 'id']),
+               ->class('bg-indigo-500 text-white p-1 rounded-md')
+               ->route('kaizen.show', ['kaizen' => 'id']),
 
-           Button::add('destroy')
+           /* Button::add('destroy')
                ->caption(__('Delete'))
                ->class('bg-red-500 text-white')
                ->route('kaizen.destroy', ['kaizen' => 'id'])
-               ->method('delete')
+               ->method('delete') */
         ];
     }
-    */
+
 
     /*
     |--------------------------------------------------------------------------

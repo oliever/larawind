@@ -100,6 +100,7 @@ class Nutters extends Component
         $this->employees = Employee::get();
         if($locationLocked){
             $this->employees = $locationLocked->employees()->get();//Employee::where('location_id', $locationLocked->id)->get();
+            info($this->employees);
         }
 
         //$this->selectedAfftectedAreas = explode(",", $kaizen->affected_areas);

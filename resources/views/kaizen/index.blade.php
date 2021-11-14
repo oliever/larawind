@@ -75,9 +75,9 @@
             </div>
         </div>
     </div>
-    <div class="container grid px-6 mx-auto">
+    {{-- <div class="container grid px-6 mx-auto">
         <livewire:kaizens/>
-    </div>
+    </div> --}}
 
     <div class="container grid px-6 mx-auto">
         <!--actual component start-->

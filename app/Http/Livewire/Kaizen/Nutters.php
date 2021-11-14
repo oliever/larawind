@@ -28,9 +28,10 @@ class Nutters extends Component
     public $isSearchUserModalOpen = false;
     public $isSearchLocationModalOpen = false;
     public $selectedUsers = [];
+    public $members = [];
     public $selectedLocations = [];
 
-    protected $listeners = ['usersCheckboxUpdated', 'locationsCheckboxUpdated'];
+    protected $listeners = ['employeesCheckboxUpdated', 'locationsCheckboxUpdated'];
 
     protected $rules = [
         'kaizen.name' => 'required|min:5',
@@ -96,15 +97,16 @@ class Nutters extends Component
             }
 
             $this->selectedLocations = $this->kaizen->locations()->get();
-            $this->selectedUsers = $this->kaizen->users()->get();
+            //$this->selectedUsers = $this->kaizen->users()->get();
+            $this->members = $this->kaizen->members()->get();
         }
     }
 
     public function locationsCheckboxUpdated($locations){
         $this->selectedLocations = $locations;
     }
-    public function usersCheckboxUpdated($users){
-        $this->selectedUsers = $users;
+    public function employeesCheckboxUpdated($members){
+        $this->members = $members;
     }
 
     public function saveAsDraft(){
@@ -158,7 +160,7 @@ class Nutters extends Component
         $this->kaizen->save();
 
         $this->kaizen->locations()->sync($this->selectedLocations);
-        $this->kaizen->users()->sync($this->selectedUsers);
+        $this->kaizen->members()->sync($this->members);
        // $this->saveLocations();
 
         info('---nutters_kaizen_saved---');

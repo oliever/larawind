@@ -28,7 +28,7 @@ class Employees extends Component
 
     public function mount()
     {
-        $this->employees = Employee::where('location_id', auth()->user()->location_locked)->get()->toArray();
+        $this->employees = auth()->user()->employees()->get()->toArray();//  Employee::where('location_id', auth()->user()->location_locked)->get()->toArray();
     }
 
     public function render()
