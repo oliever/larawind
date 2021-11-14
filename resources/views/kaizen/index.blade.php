@@ -76,6 +76,10 @@
         </div>
     </div>
     <div class="container grid px-6 mx-auto">
+        <livewire:kaizens/>
+    </div>
+
+    <div class="container grid px-6 mx-auto">
         <!--actual component start-->
         <div x-data="setup()">
             <ul class="flex justify-center items-center my-4">

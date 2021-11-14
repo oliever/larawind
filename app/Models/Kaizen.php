@@ -40,8 +40,8 @@ class Kaizen extends Model //implements HasMedia
         return static::all()->last();
     }
 
-    public function getCreatedAtAttribute($value)
+    /* public function getCreatedAtAttribute($value)
     {
         return 'nine';
-    }
+    } */
 }
