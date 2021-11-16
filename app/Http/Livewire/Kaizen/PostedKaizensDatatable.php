@@ -23,7 +23,7 @@ class PostedKaizensDatatable extends LivewireDatatable
     public function builder()
     {
         //return Kaizen::query()->whereNotNull('posted');
-        return Kaizen::with('members');
+        return Kaizen::with(['members','locations']);
     }
 
     public function columns()
@@ -39,8 +39,10 @@ class PostedKaizensDatatable extends LivewireDatatable
             Column::name('members.name')
             ->label('Members'),
 
-            BooleanColumn::name('just_do_it')
-            ->label('Just Do It'),
+            BooleanColumn::raw("IF (all_locations = 1, true, false)  AS All Stores"),
+
+            Column::name('locations.name')
+            ->label('Stores'),
 
             BooleanColumn::name('rapid')
             ->label('Rapid Kaizen'),
@@ -54,12 +56,9 @@ class PostedKaizensDatatable extends LivewireDatatable
             BooleanColumn::name('handled_at_location')
             ->label('Handle At Branch'),
 
-            BooleanColumn::name('before_after')
-            ->label('Before and AFter Report'),
-
             DateColumn::raw('posted')
                 ->label('Posted')
-                ->format('M j, Y'),
+            ->format('j M Y'),
                 //->format('M j, Y, g:i a'),
 
 

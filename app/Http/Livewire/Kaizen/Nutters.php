@@ -97,6 +97,8 @@ class Nutters extends Component
             }
 
             $this->selectedLocations = $this->kaizen->locations()->get();
+            if($this->kaizen->all_locations)
+                $this->selectedLocations = Location::where('area_id','>','0')->get();
             //$this->selectedUsers = $this->kaizen->users()->get();
             $this->members = $this->kaizen->members()->get();
         }
@@ -160,6 +162,9 @@ class Nutters extends Component
         $this->kaizen->save();
 
         $this->kaizen->locations()->sync($this->selectedLocations);
+        if($this->kaizen->all_locations)
+            $this->kaizen->locations()->sync([]);//empty upon saving
+
         $this->kaizen->members()->sync($this->members);
        // $this->saveLocations();
 
