@@ -26,7 +26,7 @@ class EmployeesCheckbox extends Component
 
     public function render()
     {
-        $employees = auth()->user()->employees()->get();
+        $employees = auth()->user()->employees()->where('status','active')->get();
         $label = 'Select members';
         if(count($this->selected) == count($employees))
             $label = "All members";
