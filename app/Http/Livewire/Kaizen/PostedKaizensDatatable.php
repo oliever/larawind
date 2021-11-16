@@ -22,7 +22,8 @@ class PostedKaizensDatatable extends LivewireDatatable
 
     public function builder()
     {
-        return Kaizen::query()->whereNotNull('posted');
+        //return Kaizen::query()->whereNotNull('posted');
+        return Kaizen::with('members');
     }
 
     public function columns()
@@ -34,6 +35,9 @@ class PostedKaizensDatatable extends LivewireDatatable
 
             Column::name('name')
             ->searchable(),
+
+            Column::name('members.name')
+            ->label('Members'),
 
             BooleanColumn::name('just_do_it')
             ->label('Just Do It'),
@@ -55,7 +59,9 @@ class PostedKaizensDatatable extends LivewireDatatable
 
             DateColumn::raw('posted')
                 ->label('Posted')
-                ->format('F j, Y, g:i a'),
+                ->format('M j, Y'),
+                //->format('M j, Y, g:i a'),
+
 
         ];
     }

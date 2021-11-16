@@ -75,9 +75,9 @@
             </div>
         </div>
     </div>
-    {{-- <div class="container grid px-6 mx-auto">
-        <livewire:kaizens/>
-    </div> --}}
+    <div class="container grid px-6 mx-auto">
+        {{-- <livewire:kaizens/> --}}
+    </div>
 
     <div class="container grid px-6 mx-auto">
         <!--actual component start-->
@@ -98,6 +98,9 @@
                             + {{ __('New Kaizen Suggestion') }}</button></a>
                     </h2>
                     <livewire:kaizen.posted-kaizens-datatable/>
+                    <div>
+
+                </div>
                 </div>
                 <div x-show="activeTab===1">
                     <h2 class="mt-6 text-2xl font-semibold text-gray-700 dark:text-gray-200 align-middle">
@@ -106,6 +109,10 @@
                             + {{ __('New Kaizen Project') }}</button></a>
                     </h2 >
                     <livewire:project.posted-projects-datatable/>
+                    {{-- <livewire:kaizens/> --}}
+                    <div>
+
+                </div>
                 </div>
             </div>
 

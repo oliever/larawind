@@ -29,7 +29,7 @@ class Kaizens extends PowerGridComponent
     {
         $this->showCheckBox()
             ->showPerPage()
-            ->showExportOption('download', ['excel', 'csv'])
+            //->showExportOption('download', ['excel', 'csv'])
             ->showSearchInput();
     }
 

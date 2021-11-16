@@ -41,7 +41,7 @@
 
 
         @livewireStyles
-        @powerGridStyles
+        {{-- @powerGridStyles--}}
         <script  type="module">
             //import Turbolinks from 'turbolinks';
             //Turbolinks.start()
@@ -77,7 +77,6 @@
 
         @livewireScripts
         @powerGridScripts
-
     </div>
 
 </body>

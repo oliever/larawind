@@ -92,7 +92,7 @@ class User extends Authenticatable
     }
 
     public function employees(){
-        return Employee::where('location_id', $this->location_locked)->where('status','active');
+        return Employee::where('location_id', $this->location_locked);//->where('status','active');
 
     }
 }

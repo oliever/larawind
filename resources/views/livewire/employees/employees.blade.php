@@ -37,7 +37,13 @@
                         @endif
                     @else
                         <div class="cursor-pointer" wire:click="editEmployeeField({{ $index }}, 'name')">
-                            <p class="text-sm text-gray-600 dark:text-gray-400">
+                            <p class="text-sm
+                            @if($employee['status'] === 'active')
+                            text-gray-600
+                            @else
+                            text-gray-300
+                            @endif
+                            dark:text-gray-400">
                                 {{ $employee['name'] }}
                             </p>
                         </div>

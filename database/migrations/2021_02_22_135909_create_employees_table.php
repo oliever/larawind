@@ -14,7 +14,7 @@ class CreateEmployeesTable extends Migration
     public function up()
     {
         Schema::create('employees', function (Blueprint $table) {
-            $table->increments('id');
+            $table->id();
             $table->string('location_id');
             $table->string('name');
             $table->string('status')->default('active');
@@ -31,6 +31,9 @@ class CreateEmployeesTable extends Migration
      */
     public function down()
     {
+        Schema::create('employees', function (Blueprint $table) {
+            $table->dropSoftDeletes();
+        });
         Schema::dropIfExists('employees');
     }
 }
