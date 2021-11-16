@@ -76,7 +76,7 @@
         {{-- @stack('modals') --}}
 
         @livewireScripts
-        @powerGridScripts
+       {{--  @powerGridScripts --}}
     </div>
 
 </body>
