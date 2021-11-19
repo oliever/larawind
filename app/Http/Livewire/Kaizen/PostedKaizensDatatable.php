@@ -33,6 +33,8 @@ class PostedKaizensDatatable extends LivewireDatatable
             ->linkTo('kaizen', 6)
             ->label('ID'),
 
+            BooleanColumn::raw("IF (approved is null, false, true)  AS Approved"),
+
             Column::name('name')
             ->searchable(),
 

@@ -1,5 +1,5 @@
-<x-app-layout title="Kaizen Suggestions">
-    <div class="container grid px-6 mx-auto">
+<x-app-layout title="Dashboard">
+    <div class="container grid px-6">
         <h2 class="my-6 text-2xl font-semibold text-gray-700 dark:text-gray-200">
             Dashboard
         </h2>
@@ -75,11 +75,11 @@
             </div>
         </div>
     </div>
-    <div class="container grid px-6 mx-auto">
-        {{-- <livewire:kaizens/> --}}
-    </div>
+    {{-- <div class="container grid px-6 mx-auto">
+        <livewire:kaizens/>
+    </div> --}}
 
-    <div class="container grid px-6 mx-auto">
+    <div class="container grid">
         <!--actual component start-->
         <div x-data="setup()">
             <ul class="flex justify-center items-center my-4">

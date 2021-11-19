@@ -52,6 +52,8 @@ Route::group(['middleware' => ['auth:sanctum', 'verified', 'employee.selected']]
 
 
 
+
+
     //Route::view('/', '')->name('home');
     //Route::view('', 'dashboard')->name('dashboard');
     Route::view('forms', 'forms')->name('forms');

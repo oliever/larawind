@@ -6,6 +6,51 @@
                     Kaizen Suggestion #{{$kaizen->id}}
                 </h2 >
                 <span class="mb-6 text-gray-700 dark:text-gray-400"">Submitted: {{\Carbon\Carbon::parse($kaizen->posted)->format('F j, Y, g:i a');}}</span>
+                <br>
+                @if (!$kaizen->approved)
+                    @if ($kaizen->rapid)
+                        @if(auth()->user()->type == "headoffice")
+                            <button wire:click="approve"
+                                class="flex items-center justify-between px-4 py-2 text-sm font-medium leading-5 text-white transition-colors duration-150 bg-green-600 border border-transparent rounded-lg active:bg-green-600 hover:bg-green-700 focus:outline-none focus:shadow-outline-green">
+                                <span class="pr-2">Approve Kaizen</span>
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4" />
+                                </svg>
+                            </button>
+                        @else
+                        <button
+                        class="flex items-center justify-between px-4 py-2 text-sm font-medium leading-5 text-gray-200 transition-colors duration-150 bg-gray-400 border border-transparent rounded-lg focus:outline-none focus:shadow-outline-gray">
+                        <span class="pr-2">Approve Kaizen</span>
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4" />
+                        </svg>
+                    </button>
+                        @endif
+                    @endif
+                    @if ($kaizen->just_do_it)
+                        @if(auth()->user()->type == "manager")
+                        <button wire:click="approve"
+                            class="flex items-center justify-between px-4 py-2 text-sm font-medium leading-5 text-white transition-colors duration-150 bg-green-600 border border-transparent rounded-lg active:bg-green-600 hover:bg-green-700 focus:outline-none focus:shadow-outline-green">
+                            <span class="pr-2">Approve Kaizen</span>
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4" />
+                            </svg>
+                        </button>
+                        @else
+                            <button
+                                class="flex items-center justify-between px-4 py-2 text-sm font-medium leading-5 text-gray-200 transition-colors duration-150 bg-gray-400 border border-transparent rounded-lg focus:outline-none focus:shadow-outline-gray">
+                                <span class="pr-2">Approve Kaizen</span>
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4" />
+                                </svg>
+                            </button>
+                            @endif
+                    @endif
+
+                @else
+                <span class="mb-6 text-gray-700 dark:text-gray-400"">Approved: {{\Carbon\Carbon::parse($kaizen->approved)->format('F j, Y, g:i a');}}</span>
+
+                @endif
             @elseif ($kaizen->id)
                 <h2 class="my-6 text-2xl font-semibold text-gray-700 dark:text-gray-200">
                     Kaizen Suggestion #{{$kaizen->id}} (Draft)
@@ -16,6 +61,7 @@
                 </h2>
             @endif
         </div>
+
         <div class="mt-8">
             @if ($kaizen->posted)
             <a href="/kaizen/pdf/{{$kaizen->id}}" target="_blank">
@@ -205,13 +251,24 @@
         </div>
 
         <div x-show="isHeadOfficeInput" x-transition:enter="transition ease-out duration-500" x-transition:enter-start="opacity-0 transform scale-90" x-transition:enter-end="opacity-100 transform scale-100" x-transition:leave="transition ease-in duration-200" x-transition:leave-start="opacity-100 transform scale-100" x-transition:leave-end="opacity-0 transform scale-90">
-            <div class="px-4 py-3 mb-8 bg-white rounded-lg shadow-md dark:bg-gray-800"><!--card-->
-                <label class="block mt-4 text-sm">
-                    <span class="text-gray-700 dark:text-gray-400"> Head Office Comment:</span>
-                    <textarea wire:model="kaizen.head_office_comment" class="block w-full mt-1 text-sm dark:text-gray-300 dark:border-gray-600 dark:bg-gray-700 form-textarea focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:focus:shadow-outline-gray"
-                    rows="3" placeholder=" Head Office Comment"></textarea>
-                </label>
-            </div>
+            @if (auth()->user()->type == "headoffice")
+                <div class="px-4 py-3 mb-8 bg-white rounded-lg shadow-md dark:bg-gray-800"><!--card-->
+                    <label class="block mt-4 text-sm">
+                        <span class="text-gray-700 dark:text-gray-400"> Head Office Comment:</span>
+                        <textarea wire:model="kaizen.head_office_comment" class="block w-full mt-1 text-sm dark:text-gray-300 dark:border-gray-600 dark:bg-gray-700 form-textarea focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:focus:shadow-outline-gray"
+                        rows="3" placeholder=" Head Office Comment"></textarea>
+                    </label>
+                </div>
+            @else
+                <div class="px-4 py-3 mb-8 bg-white rounded-lg shadow-md dark:bg-gray-800"><!--card-->
+                    <label class="block mt-4 text-sm">
+                        <span class="text-gray-700 dark:text-gray-400"> <i>Head Office Comment:</i> </span>
+                        <textarea wire:model="kaizen.head_office_comment" disabled class="block w-full mt-1 text-sm dark:text-gray-300 dark:border-gray-600 dark:bg-gray-700 form-textarea focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:focus:shadow-outline-gray"
+                        rows="3" placeholder=" Head Office Comment"></textarea>
+                    </label>
+                </div>
+            @endif
+
         </div>
 
         <div x-show="isJustDoIt" x-transition:enter="transition ease-out duration-500" x-transition:enter-start="opacity-0 transform scale-90" x-transition:enter-end="opacity-100 transform scale-100" x-transition:leave="transition ease-in duration-200" x-transition:leave-start="opacity-100 transform scale-100" x-transition:leave-end="opacity-0 transform scale-90">

@@ -45,6 +45,8 @@ class CreateKaizensTable extends Migration
             $table->longText('expected_result')->nullable();//Just do it
 
             $table->dateTime('posted', $precision = 0)->nullable();
+            $table->dateTime('approved')->nullable();
+            $table->integer('approved_by')->nullable();
 
             //Before and After report
             $table->boolean('before_after')->default(false);

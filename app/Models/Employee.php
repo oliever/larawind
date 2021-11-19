@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use App\Models\RewardTransaction;
 
 class Employee extends Model
 {
@@ -15,4 +16,8 @@ class Employee extends Model
     protected $fillable = [
         'name', 'location_id'
     ];
+
+    public function rewardTransactions(){
+        return $this->hasMany(RewardTransaction::class);
+    }
 }

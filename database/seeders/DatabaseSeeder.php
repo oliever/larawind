@@ -26,6 +26,8 @@ class DatabaseSeeder extends Seeder
             TeamsTableSeeder::class,
             TeamUserSeeder::class,
             EmployeeSeeder::class,
+            RewardSeeder::class,
+            RewardProgramSeeder::class,
         ]);
     }
 }

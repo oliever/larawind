@@ -2,14 +2,18 @@
 
 namespace App\Http\Livewire\Kaizen;
 
+
+use DateTime;
+use Carbon\Carbon;
+
+use Laravel\Jetstream\Jetstream;
 use Livewire\Component;
+
 use App\Models\Kaizen;
 use App\Models\Location;
 use App\Models\User;
 use App\Models\RefAffectedArea;
-use DateTime;
-use Carbon\Carbon;
-use Laravel\Jetstream\Jetstream;
+use App\Services\RewardService;
 
 class Nutters extends Component
 {
@@ -152,7 +156,7 @@ class Nutters extends Component
 
 
         if($asProject)
-            $this->kaizen->posted =Carbon::now();
+            $this->kaizen->posted = Carbon::now();
 
         if(count($this->selectedLocations) == count(Location::where('area_id', null)->with('children')->get()[0]->children))
             $this->kaizen->all_locations = 1;
@@ -183,6 +187,13 @@ class Nutters extends Component
        //return redirect()->to('/kaizen/' . $this->kaizen->id);
     }
 
+    public function approve(){
+        $this->kaizen->approved = Carbon::now();
+        $this->kaizen->approved_by = auth()->user()->id;
+        //$this->kaizen->save();
+        RewardService::kaizenApproved($this->kaizen);
+        $this->emit('saved');//to display action message
+    }
     /* private function formatCleave(){
         $this->kaizen->dollar_value = trim(str_replace("$", "", $this->kaizen->dollar_value)) == '' ? null : trim(str_replace("$", "", $this->kaizen->dollar_value));
         $this->kaizen->savings = trim(str_replace("$", "", $this->kaizen->savings)) == '' ? null : trim(str_replace("$", "", $this->kaizen->savings));
