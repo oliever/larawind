@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\RewardsController;
 use App\Http\Controllers\EmployeesController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\KaizenController;
@@ -50,7 +51,7 @@ Route::group(['middleware' => ['auth:sanctum', 'verified', 'employee.selected']]
     Route::post('/employees/store', [EmployeesController::class, 'store'])->name('employees.store');
     Route::delete('/employees/destroy{employee}', [EmployeesController::class, 'destroy'])->name('employees.destroy');
 
-
+    Route::get('/rewards', [RewardsController::class, 'index'])->name('rewards.index');
 
 
 

@@ -49,6 +49,7 @@ class EmployeeSelected
 
 
                 \Illuminate\Support\Facades\View::share('selectedEmployee', $employee);
+                $request->merge(array("selectedEmployee" => $employee));
                 //info("Selected Employee: " . $employee->name);
                 //$request->attributes->add(['selected_employee' => Employee::where('id', $request->cookie('selected_employee'))->first()]);
                 return $next($request);

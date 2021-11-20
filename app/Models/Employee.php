@@ -20,4 +20,6 @@ class Employee extends Model
     public function rewardTransactions(){
         return $this->hasMany(RewardTransaction::class);
     }
+
+
 }
