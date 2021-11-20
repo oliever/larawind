@@ -20,6 +20,17 @@
                                 <input type="hidden" name="location_id" id="location_id" value="{{ $locationLocked->id }}" />
                             </div>
 
+                            <div class="px-4 py-5 bg-white sm:p-6">
+                                <label for="level" class="block font-medium text-sm text-gray-700">Employee Level</label>
+                                <select name="level" id="level" class="form-multiselect block rounded-md shadow-sm mt-1 block w-full">
+                                    <option value="store_staff">Store Staff</option>
+                                    <option value="store_manager">Store Manager</option>
+                                </select>
+                                @error('level')
+                                    <p class="text-sm text-red-600">{{ $message }}</p>
+                                @enderror
+                            </div>
+
                             {{-- <div class="px-4 py-5 bg-white sm:p-6">
                                 <label for="email" class="block font-medium text-sm text-gray-700">Email</label>
                                 <input type="email" name="email" id="email" class="form-input rounded-md shadow-sm mt-1 block w-full"

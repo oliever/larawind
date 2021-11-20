@@ -20,43 +20,63 @@ class EmployeeSelected
      */
     public function handle(Request $request, Closure $next)
     {
-        info("currentRouteName: " . Route::currentRouteName());
+        info("currentRouteName: " . Route::currentRouteName());/*
         if(!auth()->user()->location_locked)
-            return $next($request);
+            return $next($request); */
 
         $lockedLocation = Location::where('id', auth()->user()->location_locked)->first();
-        info("User location: " . $lockedLocation->name);
+        //info("User location: " . $lockedLocation->name);
         \Illuminate\Support\Facades\View::share('locationLocked', $lockedLocation);
-        $redirectToEmployeeSelect = false;
+
         if(auth()->user()->shared){
+            $redirectToEmployeeSelect = false;
             if($request->hasCookie('selected_employee')) {
+
                 /* info("App\Http\Middleware\EmployeeSelected selected_employee: ");
                 info(Employee::where('id', $request->cookie('selected_employee'))->first()); */
                 $cookie_selected_employee = $request->cookie('selected_employee');
                 info(@"cookie_selected_employee: '{$cookie_selected_employee}'" );
 
                 $employee = Employee::where('id', $cookie_selected_employee)->first();
-                if(!$cookie_selected_employee){
-                    if(Route::currentRouteName()!='employees.select')
-                        return redirect()->route('employees.select', ['current_route' => Route::currentRouteName()]);
-                }else if(!$employee){
-                    info('employee deleted: ' . $cookie_selected_employee);
-                    if(Route::currentRouteName()!='employees.select')
-                        return redirect()->route('employees.select', ['current_route' => Route::currentRouteName()]);
+                info($employee);
+                /* 1. Check if employee exists */
+                if(!$employee){
+                    info(" employee not found: {$cookie_selected_employee}");
+                    $redirectToEmployeeSelect = true;
                 }
+                else{
+                    if($employee->status == 'inactive'){/* 2. Check if active */
+                        info(" employee is inactive");
+                        $redirectToEmployeeSelect = true;
+                    }else if(auth()->user()->level != $employee->level){/* 3. check if same level */
+                        info(" user level: " .auth()->user()->level . " != employee level: ".$employee->level);
+                        if(!auth()->user()->level == 'store_staff')
+                            $redirectToEmployeeSelect = true;
+                    }
 
-
-
+                    if(auth()->user()->location_locked){/* 4. check if same location */
+                        if((auth()->user()->location_locked != $employee->location_id)){
+                            info(" user locked location: " . auth()->user()->location_locked . " != employee location: " .  $employee->location_id);
+                            $redirectToEmployeeSelect = true;
+                        }
+                    }
+                }
 
                 \Illuminate\Support\Facades\View::share('selectedEmployee', $employee);
                 $request->merge(array("selectedEmployee" => $employee));
                 //info("Selected Employee: " . $employee->name);
                 //$request->attributes->add(['selected_employee' => Employee::where('id', $request->cookie('selected_employee'))->first()]);
-                return $next($request);
+                //return $next($request);
             }else{
-                if(Route::currentRouteName()!='employees.select')
-                    return redirect()->route('employees.select', ['current_route' => Route::currentRouteName()]);
+
+                    $redirectToEmployeeSelect = true;
             }
+
+            if($redirectToEmployeeSelect && Route::currentRouteName()!='employees.select'){
+                info("redirect to employee.select");
+                return redirect()->route('employees.select', ['current_route' => Route::currentRouteName()]);
+            }
+
         }
 
         return $next($request);

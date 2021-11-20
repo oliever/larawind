@@ -14,6 +14,10 @@ class StoreEmployeeRequest extends FormRequest
                 'string',
                 'required',
             ],
+            'level'     => [
+                'string',
+                'required',
+            ],
             'location_id'     => [
                 'string',
                 'required',

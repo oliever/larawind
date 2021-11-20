@@ -17,7 +17,9 @@ class CreateEmployeesTable extends Migration
             $table->id();
             $table->string('location_id');
             $table->string('name');
+            $table->string('level');//headoffice, store_manager, store_staff
             $table->string('status')->default('active');
+            $table->integer('user_id')->nullable();//if employee is locked to a user
             $table->string('email')->unique()->nullable();
             $table->timestamps();
             $table->softDeletes();

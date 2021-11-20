@@ -9,7 +9,7 @@
                 <br>
                 @if (!$kaizen->approved)
                     @if ($kaizen->rapid)
-                        @if(auth()->user()->type == "headoffice")
+                        @if(auth()->user()->level == "headoffice")
                             <button wire:click="approve"
                                 class="flex items-center justify-between px-4 py-2 text-sm font-medium leading-5 text-white transition-colors duration-150 bg-green-600 border border-transparent rounded-lg active:bg-green-600 hover:bg-green-700 focus:outline-none focus:shadow-outline-green">
                                 <span class="pr-2">Approve Kaizen</span>
@@ -28,7 +28,7 @@
                         @endif
                     @endif
                     @if ($kaizen->just_do_it)
-                        @if(auth()->user()->type == "manager")
+                        @if(auth()->user()->level == "store_manager")
                         <button wire:click="approve"
                             class="flex items-center justify-between px-4 py-2 text-sm font-medium leading-5 text-white transition-colors duration-150 bg-green-600 border border-transparent rounded-lg active:bg-green-600 hover:bg-green-700 focus:outline-none focus:shadow-outline-green">
                             <span class="pr-2">Approve Kaizen</span>
@@ -251,7 +251,7 @@
         </div>
 
         <div x-show="isHeadOfficeInput" x-transition:enter="transition ease-out duration-500" x-transition:enter-start="opacity-0 transform scale-90" x-transition:enter-end="opacity-100 transform scale-100" x-transition:leave="transition ease-in duration-200" x-transition:leave-start="opacity-100 transform scale-100" x-transition:leave-end="opacity-0 transform scale-90">
-            @if (auth()->user()->type == "headoffice")
+            @if (auth()->user()->level == "headoffice")
                 <div class="px-4 py-3 mb-8 bg-white rounded-lg shadow-md dark:bg-gray-800"><!--card-->
                     <label class="block mt-4 text-sm">
                         <span class="text-gray-700 dark:text-gray-400"> Head Office Comment:</span>

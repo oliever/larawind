@@ -43,9 +43,6 @@ class EmployeesController extends Controller
     {
         info($request->validated());
         $employee->update($request->validated());
-info('update');
-info($request);
-    info($employee);
 
         return redirect()->route('employees.index');
     }

@@ -19,6 +19,7 @@ class Employees extends Component
     protected $rules = [
         'employees.*.name' => ['required'],
         'employees.*.status' => ['required'],
+        'employees.*.level' => ['required'],
     ];
 
     protected $validationAttributes = [

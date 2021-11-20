@@ -14,7 +14,7 @@ class Employee extends Model
     use SearchTrait;
 
     protected $fillable = [
-        'name', 'location_id'
+        'name', 'location_id', 'level'
     ];
 
     public function rewardTransactions(){
