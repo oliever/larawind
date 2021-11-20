@@ -47,7 +47,7 @@ class RewardService extends Component
             [
                 'employee_id' => $member->id,
                 'transaction_type' => 'earn_points',
-                'program_id' => $program->id,
+                'reward_program_id' => $program->id,
                 'event_type' => $eventType,
                 'event_type_id'  => $eventId,
                 'points' => $program->points,
