@@ -34,8 +34,8 @@ class UsersTableSeeder extends Seeder
             ],
             [
                 'id'             => 3,
-                'name'           => 'HeadOffice',
-                'email'          => 'headoffice@nutters.com',
+                'name'           => 'Head Office Staff',
+                'email'          => 'ho.staff@nutters.com',
                 'level'             => 'headoffice_staff',
                 'password'       => bcrypt('password'),
                 'remember_token' => null,
