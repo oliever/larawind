@@ -17,7 +17,7 @@ class CreateRewardTransactionsTable extends Migration
             $table->id();
             $table->foreignId('employee_id')->index();
             $table->string('transaction_type');
-            $table->string('program_id')->nullable();
+            $table->string('reward_program_id')->nullable();
             $table->string('event_type');
             $table->integer('event_type_id');
             $table->integer('points');
