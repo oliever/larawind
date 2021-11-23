@@ -98,6 +98,7 @@
                             + {{ __('New Kaizen Suggestion') }}</button></a>
                     </h2>
                     <livewire:kaizen.posted-kaizens-datatable/>
+                    {{-- <livewire:kaizen-table/> --}}
                     <div>
 
                 </div>

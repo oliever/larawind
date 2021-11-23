@@ -73,12 +73,24 @@ class EmployeesController extends Controller
     }
 
     public function selectList(Request $request){
-
         $locationLocked = Location::where('id', auth()->user()->location_locked)->first();
-        info($locationLocked);
-        $employees = Employee::get();
+        if(auth()->user()->level == "store_manager"){
+            $managers = Employee::where(['location_id'=>auth()->user()->location_locked, 'level'=>'store_manager'])->get();
+            if($managers){
+                Cookie::queue('selected_employee', $managers[0]->id, time() + (10 * 365 * 24 * 60 * 60));
+                if(\Illuminate\Support\Facades\Route::has($request['current_route']))
+                    return redirect()->route($request['current_route']);
+                return redirect()->route('dashboard');
+            }
+        }
+
+        $employees = [];
         if($locationLocked)
-            $employees = $locationLocked->employees()->get();//Employee::where('location_id', $locationLocked->id)->get();
+            if(auth()->user()->level == 'store_staff')
+                $employees = $locationLocked->employees()->where('level','store_staff')->get();
+            else if(auth()->user()->level == 'headoffice_staff')
+                $employees = $locationLocked->employees()->where('level','headoffice_staff')->get();
+
 
         return view('employees.select', compact('locationLocked', 'employees', 'request'));
     }

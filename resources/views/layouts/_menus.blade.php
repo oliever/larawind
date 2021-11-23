@@ -54,7 +54,7 @@
         </li>
 
         @if(auth()->user()->location_locked)
-            @if(auth()->user()->shared)
+            @if(auth()->user()->shared && (auth()->user()->level == 'store_staff' || auth()->user()->level == 'headoffice_staff'))
                 <li class="relative px-6 py-3">
                     <a data-turbolinks-action="replace"
                     class="inline-flex items-center w-full text-sm dark:text-gray-400 text-gray-800 transition-colors duration-150 hover:text-gray-800

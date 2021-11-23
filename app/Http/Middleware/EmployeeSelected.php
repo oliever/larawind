@@ -50,7 +50,7 @@ class EmployeeSelected
                         $redirectToEmployeeSelect = true;
                     }else if(auth()->user()->level != $employee->level){/* 3. check if same level */
                         info(" user level: " .auth()->user()->level . " != employee level: ".$employee->level);
-                        if(!auth()->user()->level == 'store_staff')
+                        if(auth()->user()->level == 'store_staff')
                             $redirectToEmployeeSelect = true;
                     }
 

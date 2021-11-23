@@ -21,7 +21,8 @@
         "livewire/livewire": "^2.0",
         "mailjet/laravel-mailjet": "^3.0",
         "mediconesystems/livewire-datatables": "^0.5.2",
-        "power-components/livewire-powergrid": "^1.4"
+        "power-components/livewire-powergrid": "^1.4",
+        "rappasoft/laravel-livewire-tables": "^1.21"
     },
     "require-dev": {
         "facade/ignition": "^2.5",

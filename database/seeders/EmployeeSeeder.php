@@ -57,11 +57,13 @@ class EmployeeSeeder extends Seeder
             ['location_id'=>'997','name'           => preg_replace('!\s+!', ' ', (ucwords(strtolower("SHERI LYNN BRUSKY")))),'level' => 'store_staff'],
             ['location_id'=>'997','name'           => preg_replace('!\s+!', ' ', (ucwords(strtolower("RENA MARIE BROWN")))),'level' => 'store_staff'],
             ['location_id'=>'997','name'           => preg_replace('!\s+!', ' ', (ucwords(strtolower("DEBRA BUECKERT")))),'level' => 'store_staff'],
+
             //Regular stores
+            //Medicine Hat
+            ['location_id'=>'1','name'           => preg_replace('!\s+!', ' ', (ucwords(strtolower("CHRISTINA DAWN MILLS")))),'level' => 'store_manager'],/*  */
             ['location_id'=>'1','name'           => preg_replace('!\s+!', ' ', (ucwords(strtolower("JENNIFER MCKENZIE")))),'level' => 'store_staff'],
             ['location_id'=>'1','name'           => preg_replace('!\s+!', ' ', (ucwords(strtolower("MICHELLE CRESSMAN")))),'level' => 'store_staff'],
             ['location_id'=>'1','name'           => preg_replace('!\s+!', ' ', (ucwords(strtolower("BERNICE	PEACOCK")))),'level' => 'store_staff'],
-            ['location_id'=>'1','name'           => preg_replace('!\s+!', ' ', (ucwords(strtolower("CHRISTINA DAWN MILLS")))),'level' => 'store_staff'],
             ['location_id'=>'1','name'           => preg_replace('!\s+!', ' ', (ucwords(strtolower("MICHELLE MENZIES")))),'level' => 'store_staff'],
             ['location_id'=>'1','name'           => preg_replace('!\s+!', ' ', (ucwords(strtolower("ZOE 	MUDRACK")))),'level' => 'store_staff'],
             ['location_id'=>'1','name'           => preg_replace('!\s+!', ' ', (ucwords(strtolower("LORNA	FAVEL")))),'level' => 'store_staff'],
@@ -77,9 +79,11 @@ class EmployeeSeeder extends Seeder
             ['location_id'=>'1','name'           => preg_replace('!\s+!', ' ', (ucwords(strtolower("CAITLIN 	CAMPBELL")))),'level' => 'store_staff'],
             ['location_id'=>'1','name'           => preg_replace('!\s+!', ' ', (ucwords(strtolower("LIELT 	SAMKET YESHIGETA")))),'level' => 'store_staff'],
             ['location_id'=>'1','name'           => preg_replace('!\s+!', ' ', (ucwords(strtolower("CHARLI	DAVIDSON")))),'level' => 'store_staff'],
+
+            //Red Deer
+            ['location_id'=>'3','name'           => preg_replace('!\s+!', ' ', (ucwords(strtolower("CARLA 	MACKENZIE")))),'level' => 'store_manager'],/*  */
             ['location_id'=>'3','name'           => preg_replace('!\s+!', ' ', (ucwords(strtolower("AMBER 	LAVOIE")))),'level' => 'store_staff'],
             ['location_id'=>'3','name'           => preg_replace('!\s+!', ' ', (ucwords(strtolower("DIANE 	ERICHSEN")))),'level' => 'store_staff'],
-            ['location_id'=>'3','name'           => preg_replace('!\s+!', ' ', (ucwords(strtolower("CARLA 	MACKENZIE")))),'level' => 'store_staff'],
             ['location_id'=>'3','name'           => preg_replace('!\s+!', ' ', (ucwords(strtolower("CHRISTINE 	BARNES")))),'level' => 'store_staff'],
             ['location_id'=>'3','name'           => preg_replace('!\s+!', ' ', (ucwords(strtolower("CLEO	TETTEH")))),'level' => 'store_staff'],
             ['location_id'=>'3','name'           => preg_replace('!\s+!', ' ', (ucwords(strtolower("RILEY	SUTHERLAND")))),'level' => 'store_staff'],
@@ -93,13 +97,18 @@ class EmployeeSeeder extends Seeder
             ['location_id'=>'3','name'           => preg_replace('!\s+!', ' ', (ucwords(strtolower("NEIL ALLAN JR.	YOUNG")))),'level' => 'store_staff'],
             ['location_id'=>'3','name'           => preg_replace('!\s+!', ' ', (ucwords(strtolower("TINA	JACKSON")))),'level' => 'store_staff'],
             ['location_id'=>'3','name'           => preg_replace('!\s+!', ' ', (ucwords(strtolower("SHAUN	KUHL")))),'level' => 'store_staff'],
+
+            //Camrose
+            ['location_id'=>'45','name'           => preg_replace('!\s+!', ' ', (ucwords(strtolower("JODY 	MCDOUGALL")))),'level' => 'store_manager'],/*  */
             ['location_id'=>'45','name'           => preg_replace('!\s+!', ' ', (ucwords(strtolower("SHELBY 	BIANIC")))),'level' => 'store_staff'],
             ['location_id'=>'45','name'           => preg_replace('!\s+!', ' ', (ucwords(strtolower("YVONNE 	ROBINSON")))),'level' => 'store_staff'],
             ['location_id'=>'45','name'           => preg_replace('!\s+!', ' ', (ucwords(strtolower("LEANNE SUSAN	WALTER")))),'level' => 'store_staff'],
-            ['location_id'=>'45','name'           => preg_replace('!\s+!', ' ', (ucwords(strtolower("JODY 	MCDOUGALL")))),'level' => 'store_staff'],
             ['location_id'=>'45','name'           => preg_replace('!\s+!', ' ', (ucwords(strtolower("ELIZABETH 	SEMENIUK")))),'level' => 'store_staff'],
             ['location_id'=>'45','name'           => preg_replace('!\s+!', ' ', (ucwords(strtolower("GRACE 	PEREIRA")))),'level' => 'store_staff'],
             ['location_id'=>'45','name'           => preg_replace('!\s+!', ' ', (ucwords(strtolower("Nola	Smith")))),'level' => 'store_staff'],
+
+            //Canmore
+            ['location_id'=>'44','name'           => preg_replace('!\s+!', ' ', (ucwords(strtolower("ANNETTE 	BRONSCH")))),'level' => 'store_manager'],/*  */
             ['location_id'=>'44','name'           => preg_replace('!\s+!', ' ', (ucwords(strtolower("DANIEL	FITZPATRICK")))),'level' => 'store_staff'],
             ['location_id'=>'44','name'           => preg_replace('!\s+!', ' ', (ucwords(strtolower("CONSTANZA 	COFRE ESPINOZA")))),'level' => 'store_staff'],
             ['location_id'=>'44','name'           => preg_replace('!\s+!', ' ', (ucwords(strtolower("JARED 	SKIRROW")))),'level' => 'store_staff'],
@@ -109,53 +118,67 @@ class EmployeeSeeder extends Seeder
             ['location_id'=>'44','name'           => preg_replace('!\s+!', ' ', (ucwords(strtolower("KAYLA CRYSTAL	DESROSIERS")))),'level' => 'store_staff'],
             ['location_id'=>'44','name'           => preg_replace('!\s+!', ' ', (ucwords(strtolower("MARIBEL 	SORIANO")))),'level' => 'store_staff'],
             ['location_id'=>'44','name'           => preg_replace('!\s+!', ' ', (ucwords(strtolower("CINDY 	KELLY")))),'level' => 'store_staff'],
-            ['location_id'=>'44','name'           => preg_replace('!\s+!', ' ', (ucwords(strtolower("ANNETTE 	BRONSCH")))),'level' => 'store_staff'],
             ['location_id'=>'44','name'           => preg_replace('!\s+!', ' ', (ucwords(strtolower("IZABELA 	VOJSOVICOVA")))),'level' => 'store_staff'],
             ['location_id'=>'44','name'           => preg_replace('!\s+!', ' ', (ucwords(strtolower("MAYA 	SESHIA")))),'level' => 'store_staff'],
-            ['location_id'=>'5','name'           => preg_replace('!\s+!', ' ', (ucwords(strtolower("JEROME 	KOEBEL")))),'level' => 'store_staff'],
+
+            //Moose Jaw
+            ['location_id'=>'5','name'           => preg_replace('!\s+!', ' ', (ucwords(strtolower("JEROME 	KOEBEL")))),'level' => 'store_manager'],/*  */
             ['location_id'=>'5','name'           => preg_replace('!\s+!', ' ', (ucwords(strtolower("MARLENE 	MOULD")))),'level' => 'store_staff'],
             ['location_id'=>'5','name'           => preg_replace('!\s+!', ' ', (ucwords(strtolower("YSALINE	DEPLASSE")))),'level' => 'store_staff'],
             ['location_id'=>'5','name'           => preg_replace('!\s+!', ' ', (ucwords(strtolower("JENNA 	DAVY")))),'level' => 'store_staff'],
             ['location_id'=>'5','name'           => preg_replace('!\s+!', ' ', (ucwords(strtolower("DARLA 	ENDICOTT")))),'level' => 'store_staff'],
             ['location_id'=>'5','name'           => preg_replace('!\s+!', ' ', (ucwords(strtolower("ELIJAH	NICHVALODOFF")))),'level' => 'store_staff'],
+
+            //Swift Current
+            ['location_id'=>'47','name'           => preg_replace('!\s+!', ' ', (ucwords(strtolower("BECKY 	THEISE")))),'level' => 'store_manager'],/*  */
             ['location_id'=>'47','name'           => preg_replace('!\s+!', ' ', (ucwords(strtolower("MARIAH 	PENNER")))),'level' => 'store_staff'],
             ['location_id'=>'47','name'           => preg_replace('!\s+!', ' ', (ucwords(strtolower("TANIA 	ZACHARIAS")))),'level' => 'store_staff'],
             ['location_id'=>'47','name'           => preg_replace('!\s+!', ' ', (ucwords(strtolower("BARBARA	McCUAIG")))),'level' => 'store_staff'],
-            ['location_id'=>'47','name'           => preg_replace('!\s+!', ' ', (ucwords(strtolower("BECKY 	THEISE")))),'level' => 'store_staff'],
             ['location_id'=>'47','name'           => preg_replace('!\s+!', ' ', (ucwords(strtolower("CASSANDRA 	BLYTH")))),'level' => 'store_staff'],
             ['location_id'=>'47','name'           => preg_replace('!\s+!', ' ', (ucwords(strtolower("ESTHER 	RATZLAFF")))),'level' => 'store_staff'],
             ['location_id'=>'47','name'           => preg_replace('!\s+!', ' ', (ucwords(strtolower("HALEY	FORFAR")))),'level' => 'store_staff'],
-            ['location_id'=>'48','name'           => preg_replace('!\s+!', ' ', (ucwords(strtolower("MONTANA	KYLIUK")))),'level' => 'store_staff'],
+
+            //Saskatoon
+            ['location_id'=>'48','name'           => preg_replace('!\s+!', ' ', (ucwords(strtolower("MONTANA	KYLIUK")))),'level' => 'store_manager'],/*  */
             ['location_id'=>'48','name'           => preg_replace('!\s+!', ' ', (ucwords(strtolower("HAILEY 	LAFFERTY")))),'level' => 'store_staff'],
             ['location_id'=>'48','name'           => preg_replace('!\s+!', ' ', (ucwords(strtolower("JENNIFER 	LENHART")))),'level' => 'store_staff'],
             ['location_id'=>'48','name'           => preg_replace('!\s+!', ' ', (ucwords(strtolower("Leah 	Haas")))),'level' => 'store_staff'],
             ['location_id'=>'48','name'           => preg_replace('!\s+!', ' ', (ucwords(strtolower("DELPHINE 	MARYNIAK")))),'level' => 'store_staff'],
             ['location_id'=>'48','name'           => preg_replace('!\s+!', ' ', (ucwords(strtolower("RENAE 	BROOMAN")))),'level' => 'store_staff'],
+
+            //Okotoks
+            ['location_id'=>'38','name'           => preg_replace('!\s+!', ' ', (ucwords(strtolower("CARLEENA 	YATES")))),'level' => 'store_manager'],/*  */
             ['location_id'=>'38','name'           => preg_replace('!\s+!', ' ', (ucwords(strtolower("ALISON 	REYNOLDS")))),'level' => 'store_staff'],
             ['location_id'=>'38','name'           => preg_replace('!\s+!', ' ', (ucwords(strtolower("Nicole Dawn	Toren")))),'level' => 'store_staff'],
             ['location_id'=>'38','name'           => preg_replace('!\s+!', ' ', (ucwords(strtolower("LAURA 	PATON")))),'level' => 'store_staff'],
             ['location_id'=>'38','name'           => preg_replace('!\s+!', ' ', (ucwords(strtolower("AFTON 	MCELROY")))),'level' => 'store_staff'],
             ['location_id'=>'38','name'           => preg_replace('!\s+!', ' ', (ucwords(strtolower("MARGARET 	BOWEN")))),'level' => 'store_staff'],
             ['location_id'=>'38','name'           => preg_replace('!\s+!', ' ', (ucwords(strtolower("MICHAEL 	CAMPBELL")))),'level' => 'store_staff'],
-            ['location_id'=>'38','name'           => preg_replace('!\s+!', ' ', (ucwords(strtolower("CARLEENA 	YATES")))),'level' => 'store_staff'],
             ['location_id'=>'38','name'           => preg_replace('!\s+!', ' ', (ucwords(strtolower("REBECCA 	MEISL")))),'level' => 'store_staff'],
             ['location_id'=>'38','name'           => preg_replace('!\s+!', ' ', (ucwords(strtolower("LINDA	FLOREN")))),'level' => 'store_staff'],
             ['location_id'=>'38','name'           => preg_replace('!\s+!', ' ', (ucwords(strtolower("Asia	Grant-Eshleman")))),'level' => 'store_staff'],
             ['location_id'=>'38','name'           => preg_replace('!\s+!', ' ', (ucwords(strtolower("CATHIE	WINTER")))),'level' => 'store_staff'],
-            ['location_id'=>'28','name'           => preg_replace('!\s+!', ' ', (ucwords(strtolower("JONATHAN	BOWLEY")))),'level' => 'store_staff'],
+
+            //Jasper
+            ['location_id'=>'28','name'           => preg_replace('!\s+!', ' ', (ucwords(strtolower("JONATHAN	BOWLEY")))),'level' => 'store_manager'],/*  */
             ['location_id'=>'28','name'           => preg_replace('!\s+!', ' ', (ucwords(strtolower("ALETHEIA 	CHACONAS")))),'level' => 'store_staff'],
             ['location_id'=>'28','name'           => preg_replace('!\s+!', ' ', (ucwords(strtolower("RIKKE 	LIISBERG-LARSEN")))),'level' => 'store_staff'],
             ['location_id'=>'28','name'           => preg_replace('!\s+!', ' ', (ucwords(strtolower("SAGE 	DUGUAY")))),'level' => 'store_staff'],
             ['location_id'=>'28','name'           => preg_replace('!\s+!', ' ', (ucwords(strtolower("Cassidy 	STAINTON")))),'level' => 'store_staff'],
             ['location_id'=>'28','name'           => preg_replace('!\s+!', ' ', (ucwords(strtolower("LYNDSEY 	HUSSEY")))),'level' => 'store_staff'],
             ['location_id'=>'28','name'           => preg_replace('!\s+!', ' ', (ucwords(strtolower("JASON	PATIENCE")))),'level' => 'store_staff'],
+
+            //Lloydminster
+            ['location_id'=>'10','name'           => preg_replace('!\s+!', ' ', (ucwords(strtolower("VANESSA 	PALABRICA")))),'level' => 'store_manager'],/*  */
             ['location_id'=>'10','name'           => preg_replace('!\s+!', ' ', (ucwords(strtolower("RANDALL 	SMITH")))),'level' => 'store_staff'],
             ['location_id'=>'10','name'           => preg_replace('!\s+!', ' ', (ucwords(strtolower("MINEKO 	STRUEBY")))),'level' => 'store_staff'],
             ['location_id'=>'10','name'           => preg_replace('!\s+!', ' ', (ucwords(strtolower("MARNIE 	SOUTER")))),'level' => 'store_staff'],
             ['location_id'=>'10','name'           => preg_replace('!\s+!', ' ', (ucwords(strtolower("RACHEL 	BRAND")))),'level' => 'store_staff'],
-            ['location_id'=>'10','name'           => preg_replace('!\s+!', ' ', (ucwords(strtolower("VANESSA 	PALABRICA")))),'level' => 'store_staff'],
             ['location_id'=>'10','name'           => preg_replace('!\s+!', ' ', (ucwords(strtolower("ELAINE 	GRAHAM")))),'level' => 'store_staff'],
             ['location_id'=>'10','name'           => preg_replace('!\s+!', ' ', (ucwords(strtolower("AMROELEN 	HERRERA")))),'level' => 'store_staff'],
+
+            //Airdrie
+            ['location_id'=>'50','name'           => preg_replace('!\s+!', ' ', (ucwords(strtolower("EDDIE 	GANUELAS")))),'level' => 'store_manager'],/*  */
             ['location_id'=>'50','name'           => preg_replace('!\s+!', ' ', (ucwords(strtolower("SHELLEY	JOHNSON")))),'level' => 'store_staff'],
             ['location_id'=>'50','name'           => preg_replace('!\s+!', ' ', (ucwords(strtolower("CHRISTOPHER 	JORGENSEN")))),'level' => 'store_staff'],
             ['location_id'=>'50','name'           => preg_replace('!\s+!', ' ', (ucwords(strtolower("Chandra 	Baeuchle")))),'level' => 'store_staff'],
@@ -163,8 +186,9 @@ class EmployeeSeeder extends Seeder
             ['location_id'=>'50','name'           => preg_replace('!\s+!', ' ', (ucwords(strtolower("DANIELLE 	SABOURIN")))),'level' => 'store_staff'],
             ['location_id'=>'50','name'           => preg_replace('!\s+!', ' ', (ucwords(strtolower("Shelley 	Carefoot")))),'level' => 'store_staff'],
             ['location_id'=>'50','name'           => preg_replace('!\s+!', ' ', (ucwords(strtolower("HOLLY 	REDDIN")))),'level' => 'store_staff'],
-            ['location_id'=>'50','name'           => preg_replace('!\s+!', ' ', (ucwords(strtolower("EDDIE 	GANUELAS")))),'level' => 'store_staff'],
-            ['location_id'=>'6','name'           => preg_replace('!\s+!', ' ', (ucwords(strtolower("DAN 	MCINTYRE")))),'level' => 'store_staff'],
+
+            //Lethbridge
+            ['location_id'=>'6','name'           => preg_replace('!\s+!', ' ', (ucwords(strtolower("DAN 	MCINTYRE")))),'level' => 'store_manager'],/*  */
             ['location_id'=>'6','name'           => preg_replace('!\s+!', ' ', (ucwords(strtolower("FRANCES	POPE")))),'level' => 'store_staff'],
             ['location_id'=>'6','name'           => preg_replace('!\s+!', ' ', (ucwords(strtolower("HEATHER 	STRAIN")))),'level' => 'store_staff'],
             ['location_id'=>'6','name'           => preg_replace('!\s+!', ' ', (ucwords(strtolower("HAIDI 	NAVARRO")))),'level' => 'store_staff'],
