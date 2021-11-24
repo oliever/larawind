@@ -32,7 +32,7 @@
                         @yield('message')
                     </div>
                     <div class="ml-4 text-sm align-center text-gray-500 uppercase tracking-wider">
-                        <a href="/">Back to Home</a>
+                        <a href="/">Go Back</a>
                     </div>
                 </div>
 

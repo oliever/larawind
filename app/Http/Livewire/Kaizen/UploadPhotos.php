@@ -26,8 +26,10 @@ class UploadPhotos extends Component
 
     public function mount(Kaizen $kaizen = null){
         $this->kaizen = $kaizen;
+        info("UploadPhotos::mount");
+        info($this->kaizen);
         /* info($this->type);
-        info($this->kaizen); */
+         */
         //$this->rapidCauses = RapidCause::where(['kaizen_id'=>$kaizen->id])->get();
         foreach(Photo::where(['type'=>$this->type, 'model'=>get_class(new Kaizen()), 'model_id'=>$kaizen->id])->get() as $savedPhoto){
             $this->savedPhotos[$savedPhoto->id] = $savedPhoto;

@@ -38,7 +38,7 @@ class RewardService extends Component
         $member = Employee::find($memberId);
         $lastRewardTransaction = $member->rewardTransactions()->orderBy('created_at', 'desc')->first();
         //info($lastRewardTransaction);
-        $balance = 0;
+        $balance = $program->points;
         if($lastRewardTransaction)
             $balance = $lastRewardTransaction->balance + $program->points;
 

@@ -70,13 +70,13 @@ class Nutters extends Component
     {
         if(auth()->user()->shared)
             $this->employee = $employee;
-        info($this->employee);
 
         $this->kaizen = $kaizen;
         info("--Nutters::mount kaizen-- " . $this->kaizen->id);
 
         if(!isset($this->kaizen['id'])){
             $this->kaizen = new Kaizen();
+            $this->kaizen->tempId = bin2hex(random_bytes(10));
             $this->isJustDoIt = true;
             $this->isRapid = false;
             $this->kaizen->rapid = false;

@@ -35,10 +35,8 @@ class EmployeeSelected
                 /* info("App\Http\Middleware\EmployeeSelected selected_employee: ");
                 info(Employee::where('id', $request->cookie('selected_employee'))->first()); */
                 $cookie_selected_employee = $request->cookie('selected_employee');
-                info(@"cookie_selected_employee: '{$cookie_selected_employee}'" );
 
                 $employee = Employee::where('id', $cookie_selected_employee)->first();
-                info($employee);
                 /* 1. Check if employee exists */
                 if(!$employee){
                     info(" employee not found: {$cookie_selected_employee}");
@@ -50,8 +48,7 @@ class EmployeeSelected
                         $redirectToEmployeeSelect = true;
                     }else if(auth()->user()->level != $employee->level){/* 3. check if same level */
                         info(" user level: " .auth()->user()->level . " != employee level: ".$employee->level);
-                        if(auth()->user()->level == 'store_staff')
-                            $redirectToEmployeeSelect = true;
+                        $redirectToEmployeeSelect = true;//redirect all levels - managers users will default to manager employee
                     }
 
                     if(auth()->user()->location_locked){/* 4. check if same location */
