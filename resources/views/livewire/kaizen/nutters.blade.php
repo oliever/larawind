@@ -324,13 +324,17 @@
             </div>
         </div>
 
-        <h4 class="mb-2 text-lg font-semibold text-gray-600 dark:text-gray-300">
-            Photos
-        </h4>
-        <div class="px-4 py-3 mb-8 bg-white rounded-lg shadow-md dark:bg-gray-800 justify-center flex"><!--card-->
-            {{-- <livewire:kaizen.upload-photos :kaizen="$kaizen"> --}}
-            @livewire('kaizen.upload-photos',['kaizen'  => $kaizen, 'type'  => 'main'])
-        </div>
+        @if (!$hasBeforeAfter)
+            <h4 class="mb-2 text-lg font-semibold text-gray-600 dark:text-gray-300">
+                Photos
+            </h4>
+            <div class="px-4 py-3 mb-8 bg-white rounded-lg shadow-md dark:bg-gray-800 justify-center flex"><!--card-->
+                {{-- <livewire:kaizen.upload-photos :kaizen="$kaizen"> --}}
+                @livewire('kaizen.upload-photo',['kaizen'  => $kaizen, 'type'  => 'main'])
+            </div>
+
+        @endif
+
 
         <div x-show="hasBeforeAfter" x-transition:enter="transition ease-out duration-500" x-transition:enter-start="opacity-0 transform scale-90" x-transition:enter-end="opacity-100 transform scale-100" x-transition:leave="transition ease-in duration-200" x-transition:leave-start="opacity-100 transform scale-100" x-transition:leave-end="opacity-0 transform scale-90">
             <hr style="border-top: 1px dashed #444; padding: 10px">
@@ -343,7 +347,8 @@
                         Before Photos
                     </h4>
                     <p class="text-gray-600 dark:text-gray-400">
-                        @livewire('kaizen.upload-photos',['kaizen'  => $kaizen, 'type'  => 'main'])
+                        {{-- @livewire('kaizen.upload-photos',['kaizen'  => $kaizen, 'type'  => 'main']) --}}
+                        @livewire('kaizen.upload-photo',['kaizen'  => $kaizen, 'type'  => 'main'])
                     </p>
                 </div>
                 <div class="min-w-0 p-4 bg-white rounded-lg shadow-xs dark:bg-gray-800"><!--card-->
@@ -351,7 +356,8 @@
                         After Photos
                     </h4>
                     <p>
-                        @livewire('kaizen.upload-photos',['kaizen'  => $kaizen, 'type'  => 'after'])
+                        {{-- @livewire('kaizen.upload-photos',['kaizen'  => $kaizen, 'type'  => 'after']) --}}
+                        @livewire('kaizen.upload-photo',['kaizen'  => $kaizen, 'type'  => 'after'])
                     </p>
                 </div>
             </div>

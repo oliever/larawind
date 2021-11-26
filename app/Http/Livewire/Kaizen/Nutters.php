@@ -35,7 +35,7 @@ class Nutters extends Component
     public $members = [];
     public $selectedLocations = [];
 
-    protected $listeners = ['employeesCheckboxUpdated', 'locationsCheckboxUpdated'];
+    protected $listeners = ['employeesCheckboxUpdated', 'locationsCheckboxUpdated', 'photoUploaded'];
 
     protected $rules = [
         'kaizen.name' => 'required|min:5',
@@ -76,7 +76,7 @@ class Nutters extends Component
 
         if(!isset($this->kaizen['id'])){
             $this->kaizen = new Kaizen();
-            $this->kaizen->tempId = bin2hex(random_bytes(10));
+            $this->kaizen->temp_id = bin2hex(random_bytes(10));
             $this->isJustDoIt = true;
             $this->isRapid = false;
             $this->kaizen->rapid = false;
@@ -108,6 +108,9 @@ class Nutters extends Component
         }
     }
 
+    public function photoUploaded(){
+        info('photoUploaded');
+    }
     public function locationsCheckboxUpdated($locations){
         $this->selectedLocations = $locations;
     }
