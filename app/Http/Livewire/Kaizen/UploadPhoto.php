@@ -133,11 +133,11 @@ class UploadPhoto extends Component
             Storage::move("photos/thumbnail/{$oldFilename}", "photos/thumbnail/{$savedPhoto->filename}");
         }
 
-        if($this->photos){
+        /* if($this->photos){
             foreach($this->photos as $index => $photo){
                 $this->savePhoto($photo);
             }
-        }
+        } */
     }
 
     public function render()

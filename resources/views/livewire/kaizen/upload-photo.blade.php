@@ -37,7 +37,7 @@
                             placeholder="Caption" />
             <input class="required bloc  text-xs dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:text-gray-300 dark:focus:shadow-outline-gray form-input"
                             wire:model="tempId"
-                            name="tempId"
+                            name="tempId" type="hidden"
                             placeholder="tempId" />
             @endif
 
