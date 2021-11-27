@@ -52,8 +52,8 @@ class CreateKaizensTable extends Migration
             $table->boolean('before_after')->default(false);
             $table->longText('comments_before')->nullable();//Just do it
             $table->longText('comments_after')->nullable();//Just do it
-            $table->foreignId('validating_user_id')->nullable()->index();
-            $table->foreignId('approving_user_id')->nullable()->index();
+            $table->foreignId('validating_employee_id')->nullable()->index();
+            $table->foreignId('approving_employee_id')->nullable()->index();
             $table->longText('benefits')->nullable();
 
             $table->softDeletes();

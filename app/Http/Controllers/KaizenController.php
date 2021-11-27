@@ -78,12 +78,18 @@ class KaizenController extends Controller
         $data['affectedAreas'] = array_chunk(RefAffectedArea::where(['team_id'=>auth()->user()->currentTeam->id])->get()->toArray(),4);
         $data['selectedAffectedAreas'] = array_fill_keys(explode(",", $kaizen->affected_areas),'checked');
 
+        $data['mainPhotos']= [];
         foreach(Photo::where(['type'=>'main', 'model'=>get_class(new Kaizen()), 'model_id'=>$kaizen->id])->get() as $savedPhoto){
-            $data['photos'][$savedPhoto->id] = $savedPhoto;
+            $data['mainPhotos'][$savedPhoto->id] = $savedPhoto;
         }
 
-        if(isset($data['photos']))
-            $data['photos'] = array_chunk($data['photos'], 2);
+        $data['afterPhotos']= [];
+        foreach(Photo::where(['type'=>'after', 'model'=>get_class(new Kaizen()), 'model_id'=>$kaizen->id])->get() as $savedPhoto){
+            $data['afterPhotos'][$savedPhoto->id] = $savedPhoto;
+        }
+
+        /* if(isset($data['photos']))
+            $data['photos'] = array_chunk($data['photos'], 2);//chunk into 2 for layout
         else
             $data['photos'] = [];
 
@@ -94,7 +100,7 @@ class KaizenController extends Controller
         $data['after_photos'] = [];
         foreach(Photo::where(['type'=>'after', 'model'=>get_class(new Kaizen()), 'model_id'=>$kaizen->id])->get() as $savedPhoto){
             $data['after_photos'][$savedPhoto->id] = $savedPhoto;
-        }
+        } */
 
         $selectedUsers = [];
         foreach(explode(",", $kaizen->members) as $key=>$value){

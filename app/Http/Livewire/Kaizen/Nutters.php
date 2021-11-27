@@ -10,6 +10,7 @@ use Laravel\Jetstream\Jetstream;
 use Livewire\Component;
 
 use App\Models\Kaizen;
+use App\Models\Employee;
 use App\Models\Location;
 use App\Models\User;
 use App\Models\RefAffectedArea;
@@ -20,6 +21,7 @@ class Nutters extends Component
     public $employee;
     public $kaizen;
     //public $stores;
+    public $employees;
     public $affectedAreas;
     public $isRapid = false;
     public $isJustDoIt = true;
@@ -34,6 +36,8 @@ class Nutters extends Component
     public $selectedUsers = [];
     public $members = [];
     public $selectedLocations = [];
+
+
 
     protected $listeners = ['employeesCheckboxUpdated', 'locationsCheckboxUpdated', 'photoUploaded'];
 
@@ -61,8 +65,8 @@ class Nutters extends Component
         'kaizen.benefits' => '',
         'kaizen.rapid_problem' => '',
 
-        'kaizen.validating_user_id' => '',
-        'kaizen.approving_user_id' => '',
+        'kaizen.validating_employee_id' => '',
+        'kaizen.approving_employee_id' => '',
 
     ];
 
@@ -73,6 +77,12 @@ class Nutters extends Component
 
         $this->kaizen = $kaizen;
         info("--Nutters::mount kaizen-- " . $this->kaizen->id);
+        $locationLocked = Location::where('id', auth()->user()->location_locked)->first();
+
+        $this->employees = Employee::get();
+        if($locationLocked){
+            $this->employees = $locationLocked->employees()->get();//Employee::where('location_id', $locationLocked->id)->get();
+        }
 
         if(!isset($this->kaizen['id'])){
             $this->kaizen = new Kaizen();

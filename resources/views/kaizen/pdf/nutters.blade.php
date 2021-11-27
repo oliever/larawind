@@ -49,7 +49,7 @@
                     <tr>
                         <td colspan="2" style="text-align: center">
                             <small>Team Members:</small><br>
-                            @foreach ($kaizen->users as $member)
+                            @foreach ($kaizen->members()->get() as $member)
                                 <strong>{{ $member->name }}</strong><br>
                             @endforeach
                         </td>
@@ -139,47 +139,56 @@
         <tr>
             <td  colspan="4" style="padding-bottom: 20px;">{{$kaizen->expected_result}}</td>
         </tr>
-        <tr> <td colspan="4" class="section-header"  >PHOTOS</td></tr>
 
-        @foreach($photos as $photo)
-        <tr>
-            @foreach($photo as $photoInner)
-            <td colspan="2">
-                <img style="width: 300px; padding: 10 15" class="mt-4" src="photos/{{ $photoInner['filename'] }}">
-            </td>
-            @endforeach
-        </tr>
-        @endforeach
-
-        @if ($kaizen->before_after)
-            <tr> <td colspan="4" class="section-header">BEFORE AND AFTER REPORT</td></tr>
+    </table>
+    @if (!$kaizen->before_after)
+        <div class="page-break"></div>
+        <table>
+            <tr> <td colspan="4" class="section-header"  >PHOTOS</td></tr>
+            @foreach(array_chunk($mainPhotos, 2) as $photo)
             <tr>
-                <td colspan="2" class="input-header">Before Photos</td>
-                <td colspan="2" class="input-header">After Photos</td>
+                @foreach($photo as $photoInner)
+                <td colspan="2">
+                    <img style="width: 300px; padding: 10 15" class="mt-4" src="photos/{{ $photoInner['filename'] }}">
+                </td>
+                @endforeach
+            </tr>
+            @endforeach
+        </table>
+    @endif
+
+
+    @if ($kaizen->before_after)
+        <div class="page-break"></div>
+        <table>
+            <tr> <td colspan="4" class="section-header">BEFORE AND AFTER REPORT</td></tr>
+            <tr> <td colspan="4" class="section-header"  >Before Photos</td></tr>
+            @foreach(array_chunk($mainPhotos, 2) as $photo)
+            <tr>
+                @foreach($photo as $photoInner)
+                <td colspan="2">
+                    <img style="width: 300px; padding: 10 15" class="mt-4" src="photos/{{ $photoInner['filename'] }}">
+                </td>
+                @endforeach
+            </tr>
+            @endforeach
+            <tr> <td colspan="4" class="section-header"  >After Photos</td></tr>
+            @foreach(array_chunk($afterPhotos, 2) as $photo)
+            <tr>
+                @foreach($photo as $photoInner)
+                <td colspan="2">
+                    <img style="width: 300px; padding: 10 15" class="mt-4" src="photos/{{ $photoInner['filename'] }}">
+                </td>
+                @endforeach
+            </tr>
+            @endforeach
+            <tr>
+                <td colspan="2" class="input-header">Before Comments</td>
+                <td colspan="2" class="input-header">After Comments</td>
             </tr>
             <tr>
-                <td colspan="2">
-                    <table>
-                        <tr>
-                            @foreach($before_photos as $photo)
-                            <td colspan="2" style="text-align: center">
-                                <img style="width: 300px; padding: 10px" class="mt-4" src="photos/{{ $photo['filename'] }}">
-                            </td>
-                            @endforeach
-                        </tr>
-                    </table>
-                </td>
-                <td colspan="2">
-                    <table>
-                        <tr>
-                            @foreach($after_photos as $photo)
-                            <td colspan="2" style="text-align: center">
-                                <img style="width: 300px; padding: 10px" class="mt-4" src="photos/{{ $photo['filename'] }}">
-                            </td>
-                            @endforeach
-                        </tr>
-                    </table>
-                </td>
+                <td colspan="2">{{$kaizen->comments_before}}</td>
+                <td colspan="2">{{$kaizen->comments_after}}</td>
             </tr>
             <tr>
                 <td colspan="4" class="input-header">Benefits</td>
@@ -187,8 +196,8 @@
             <tr>
                 <td  colspan="4">{{$kaizen->benefits}}</td>
             </tr>
-        @endif
-    </table>
+        </table>
+    @endif
 
 </div>
 

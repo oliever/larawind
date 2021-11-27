@@ -88,19 +88,15 @@ class Nutters extends Component
     {
         if(auth()->user()->shared)
             $this->employee = $employee;
-        info($this->employee);
 
         $this->users = auth()->user()->currentTeam->allUsers();
         $this->project = $project;
         info("--Nutters::mount project-- " . $this->project->id);
         $locationLocked = Location::where('id', auth()->user()->location_locked)->first();
-        info($locationLocked);
-        //if(auth()->user()->locked_location)
 
         $this->employees = Employee::get();
         if($locationLocked){
             $this->employees = $locationLocked->employees()->get();//Employee::where('location_id', $locationLocked->id)->get();
-            info($this->employees);
         }
 
         //$this->selectedAfftectedAreas = explode(",", $kaizen->affected_areas);

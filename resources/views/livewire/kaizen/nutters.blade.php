@@ -394,12 +394,12 @@
                             Person Validating
                         </span>
                         <select
-                        wire:model="kaizen.validating_user_id"
-                        id="kaizen.validating_user_id"
+                        wire:model="kaizen.validating_employee_id"
+                        id="kaizen.validating_employee_id"
                         class="block w-full mt-1 text-sm dark:text-gray-300 dark:border-gray-600 dark:bg-gray-700 form-select focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:focus:shadow-outline-gray">
-                            <option></option>
-                            @foreach(auth()->user()->currentTeam->allUsers() as $user)
-                                <option value="{{ $user->id }}">{{ $user->name }}</option>
+                            <option style="font-style: italic">Select Person Validating</option>
+                            @foreach($employees as $employee)
+                                <option value="{{ $employee->id }}">{{ $employee->name }}</option>
                             @endforeach
                         </select>
                     </div>
@@ -408,12 +408,12 @@
                             Person Approving
                         </span>
                         <select
-                        wire:model="kaizen.approving_user_id"
-                        id="kaizen.approving_user_id"
+                        wire:model="kaizen.approving_employee_id"
+                        id="kaizen.approving_employee_id"
                         class="block w-full mt-1 text-sm dark:text-gray-300 dark:border-gray-600 dark:bg-gray-700 form-select focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:focus:shadow-outline-gray">
-                            <option></option>
-                            @foreach(auth()->user()->currentTeam->allUsers() as $user)
-                                <option value="{{ $user->id }}">{{ $user->name }}</option>
+                            <option style="font-style: italic">Select Person Approving</option>
+                            @foreach($employees as $employee)
+                                <option value="{{ $employee->id }}">{{ $employee->name }}</option>
                             @endforeach
                         </select>
                     </div>
