@@ -32,7 +32,7 @@ class Employees extends Component
         if(auth()->user()->level == "headoffice_manager")
         $this->employees = Employee::with('location')->get();
         else
-        $this->employees = auth()->user()->employees()->get()->toArray();//  Employee::where('location_id', auth()->user()->location_locked)->get()->toArray();
+        $this->employees = auth()->user()->employees()->with('location')->get();//  Employee::where('location_id', auth()->user()->location_locked)->get()->toArray();
     }
 
     public function render()
