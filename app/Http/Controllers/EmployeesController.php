@@ -9,6 +9,8 @@ use App\Models\Employee;
 use App\Models\Location;
 use Illuminate\Support\Facades\Cookie;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Session;
 
 class EmployeesController extends Controller
 {
@@ -90,7 +92,9 @@ class EmployeesController extends Controller
                 return redirect()->route('dashboard');
             }
             else{
-                dd('Manager not found!');
+                Session::flush();
+                $request->session()->flash('message', 'No manager found!');
+                return redirect()->route('login');
             }
         }
 

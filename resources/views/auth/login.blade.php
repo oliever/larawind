@@ -11,6 +11,9 @@
                         <h1 class="mb-4 text-xl font-semibold text-gray-700 dark:text-gray-200">
                             Login
                         </h1>
+                        @if(Session::has('message'))
+                            <p class="mt-3 text-sm text-red-600">{{ Session::get('message') }}</p>
+                        @endif
                         @if ($errors->any())
                         <div class="mb-4">
                             <div class="font-medium text-red-600">Whoops! Something went wrong.</div>
