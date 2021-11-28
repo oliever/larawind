@@ -10,6 +10,8 @@
             </th>
             <th class="px-4 py-3">   Name
             </th>
+            <th class="px-4 py-3">   Location
+            </th>
             <th class="px-4 py-3">   Level
             </th>
             <th class="px-4 py-3">   Status
@@ -50,6 +52,11 @@
                             </p>
                         </div>
                     @endif
+                </td>
+                <td class="px-4 py-3" >
+                    <p class="text-xs text-gray-600 dark:text-gray-400" >
+                        {{ $employee->location->name; }}
+                    </p>
                 </td>
                 <td>
                     <span>

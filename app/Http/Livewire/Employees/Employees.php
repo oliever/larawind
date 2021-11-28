@@ -29,6 +29,9 @@ class Employees extends Component
 
     public function mount()
     {
+        if(auth()->user()->level == "headoffice_manager")
+        $this->employees = Employee::with('location')->get();
+        else
         $this->employees = auth()->user()->employees()->get()->toArray();//  Employee::where('location_id', auth()->user()->location_locked)->get()->toArray();
     }
 
@@ -58,7 +61,7 @@ class Employees extends Component
 
         $employee = $this->employees[$employeeIndex] ?? NULL;
         if (!is_null($employee)) {
-            optional(Employee::find($employee['id']))->update($employee);
+            optional(Employee::find($employee['id']))->update($employee->toArray());
         }
         $this->editedEmployeeIndex = null;
         $this->editedEmployeeField = null;
