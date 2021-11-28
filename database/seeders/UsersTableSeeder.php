@@ -34,6 +34,17 @@ class UsersTableSeeder extends Seeder
             ],
             [
                 'id'             => 3,
+                'name'           => 'Head Office Manager',
+                'email'          => 'ho.manager@nutters.com',
+                'level'             => 'headoffice_manager',
+                'password'       => bcrypt('password'),
+                'remember_token' => null,
+                'current_team_id'=> 1,
+                'location_locked'=> 999,
+                'shared'         => true,
+            ],
+            [
+                'id'             => 4,
                 'name'           => 'Head Office Staff',
                 'email'          => 'ho.staff@nutters.com',
                 'level'             => 'headoffice_staff',
@@ -45,7 +56,7 @@ class UsersTableSeeder extends Seeder
             ],
             /* Medhat */
             [
-                'id'             => 4,
+                'id'             => 5,
                 'name'           => 'Medicine Hat Manager',
                 'email'          => 'medhat.manager@nutters.com',
                 'level'             => 'store_manager',
@@ -56,7 +67,7 @@ class UsersTableSeeder extends Seeder
                 'shared'         => true,
             ],
             [
-                'id'             => 5,
+                'id'             => 6,
                 'name'           => 'Medicine Hat Staff',
                 'email'          => 'medhat.staff@nutters.com',
                 'level'             => 'store_staff',
@@ -68,7 +79,7 @@ class UsersTableSeeder extends Seeder
             ],
             /* Red Deer */
             [
-                'id'             => 6,
+                'id'             => 7,
                 'name'           => 'Red Deer Manager',
                 'email'          => 'reddeer.manager@nutters.com',
                 'level'             => 'store_manager',
@@ -79,7 +90,7 @@ class UsersTableSeeder extends Seeder
                 'shared'         => true,
             ],
             [
-                'id'             => 7,
+                'id'             => 8,
                 'name'           => 'Red Deer Staff',
                 'email'          => 'reddeer.staff@nutters.com',
                 'level'             => 'store_staff',

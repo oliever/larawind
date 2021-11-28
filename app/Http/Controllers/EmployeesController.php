@@ -49,8 +49,10 @@ class EmployeesController extends Controller
     public function create()
     {
         //abort_if(Gate::denies('user_access'), Response::HTTP_FORBIDDEN, '403 Forbidden');
-
-        return view('employees.create');
+        if(auth()->user()->level == "ho_staff" || auth()->user()->level == "store_staff")
+            abort('403');
+        $stores = Location::whereNotNull('area_id')->get();
+        return view('employees.create', compact('stores'));
     }
 
     public function destroy(Employee $employee)
@@ -72,14 +74,23 @@ class EmployeesController extends Controller
     }
 
     public function selectList(Request $request){
+
         $locationLocked = Location::where('id', auth()->user()->location_locked)->first();
-        if(auth()->user()->level == "store_manager"){
-            $managers = Employee::where(['location_id'=>auth()->user()->location_locked, 'level'=>'store_manager'])->get();
-            if($managers){
+        if(auth()->user()->level == "store_manager" || auth()->user()->level == "headoffice_manager"){
+
+            $managers = [];
+            if(auth()->user()->level == "store_manager")
+                $managers = Employee::where(['location_id'=>auth()->user()->location_locked, 'level'=>'store_manager'])->get();
+            if(auth()->user()->level == "headoffice_manager")
+                $managers = Employee::where(['location_id'=>auth()->user()->location_locked, 'level'=>'headoffice_manager'])->get();
+            if(count($managers)>0){
                 Cookie::queue('selected_employee', $managers[0]->id, time() + (10 * 365 * 24 * 60 * 60));
                 if(\Illuminate\Support\Facades\Route::has($request['current_route']))
                     return redirect()->route($request['current_route']);
                 return redirect()->route('dashboard');
+            }
+            else{
+                dd('Manager not found!');
             }
         }
 

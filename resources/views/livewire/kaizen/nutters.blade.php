@@ -9,7 +9,7 @@
                 <br>
                 @if (!$kaizen->approved)
                     @if ($kaizen->rapid)
-                        @if(auth()->user()->level == "headoffice")
+                        @if(auth()->user()->level == "headoffice_staff" || auth()->user()->level == "headoffice_manager")
                             <button wire:click="approve"
                                 class="flex items-center justify-between px-4 py-2 text-sm font-medium leading-5 text-white transition-colors duration-150 bg-green-600 border border-transparent rounded-lg active:bg-green-600 hover:bg-green-700 focus:outline-none focus:shadow-outline-green">
                                 <span class="pr-2">Approve Kaizen</span>

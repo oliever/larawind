@@ -10,6 +10,22 @@
                     <form method="post" action="{{ route('employees.store') }}">
                         @csrf
                         <div class="shadow overflow-hidden sm:rounded-md">
+                            @if(auth()->user()->level == "headoffice_manager")
+                                <div class="px-4 py-5 bg-white sm:p-6">
+                                    <label for="location_id" class="block font-medium text-sm text-gray-700">Store</label>
+                                    <select name="location_id" id="location_id" class="form-multiselect block rounded-md shadow-sm mt-1 block w-full">
+                                        <option value=""><i>Select Store</i> </option>
+                                        @foreach ($stores as $store)
+                                            <option value="{{$store->id}}">{{$store->name}}</option>
+                                        @endforeach
+                                    </select>
+                                    @error('level')
+                                        <p class="text-sm text-red-600">{{ $message }}</p>
+                                    @enderror
+                                </div>
+                            @else
+                            <input type="hidden" name="location_id" id="location_id" value="{{ $locationLocked->id }}" />
+                            @endif
                             <div class="px-4 py-5 bg-white sm:p-6">
                                 <label for="name" class="block font-medium text-sm text-gray-700">Name</label>
                                 <input type="text" name="name" id="name" class="form-input rounded-md shadow-sm mt-1 block w-full"
@@ -17,14 +33,14 @@
                                 @error('name')
                                     <p class="text-sm text-red-600">{{ $message }}</p>
                                 @enderror
-                                <input type="hidden" name="location_id" id="location_id" value="{{ $locationLocked->id }}" />
+
                             </div>
 
                             <div class="px-4 py-5 bg-white sm:p-6">
                                 <label for="level" class="block font-medium text-sm text-gray-700">Employee Level</label>
                                 <select name="level" id="level" class="form-multiselect block rounded-md shadow-sm mt-1 block w-full">
                                     <option value="store_staff">Store Staff</option>
-                                    <option value="store_manager">Store Manager</option>
+                                    {{-- <option value="store_manager">Store Manager</option> --}}
                                 </select>
                                 @error('level')
                                     <p class="text-sm text-red-600">{{ $message }}</p>
