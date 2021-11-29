@@ -86,6 +86,7 @@ class EmployeesController extends Controller
             if(auth()->user()->level == "headoffice_manager")
                 $managers = Employee::where(['location_id'=>auth()->user()->location_locked, 'level'=>'headoffice_manager'])->get();
             if(count($managers)>0){
+                info('selected manager: ' . $managers[0]->name);
                 Cookie::queue('selected_employee', $managers[0]->id, time() + (10 * 365 * 24 * 60 * 60));
                 if(\Illuminate\Support\Facades\Route::has($request['current_route']))
                     return redirect()->route($request['current_route']);

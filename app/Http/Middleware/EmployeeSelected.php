@@ -20,6 +20,8 @@ class EmployeeSelected
      */
     public function handle(Request $request, Closure $next)
     {
+        //always select
+
         info("currentRouteName: " . Route::currentRouteName());/*
         if(!auth()->user()->location_locked)
             return $next($request); */
@@ -68,6 +70,10 @@ class EmployeeSelected
 
                     $redirectToEmployeeSelect = true;
             }
+
+            //always select
+            //if(auth()->user()->level != "store_staff" || auth()->user()->level != "headoffice_staff")
+               // $redirectToEmployeeSelect = true;
 
             if($redirectToEmployeeSelect && Route::currentRouteName()!='employees.select'){
                 info("redirect to employee.select");
