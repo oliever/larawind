@@ -35,10 +35,16 @@ class Kaizen extends Model //implements HasMedia
         return $this->belongsToMany(User::class, 'kaizen_user');
     }
 
+    public function employee()//creator
+    {
+        return $this->belongsTo(Employee::class);
+    }
+
     public function members()//
     {
         return $this->belongsToMany(Employee::class, 'kaizen_employee');
     }
+
 
     public static function last()
     {

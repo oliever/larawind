@@ -7,50 +7,25 @@
                 </h2 >
                 <span class="mb-6 text-gray-700 dark:text-gray-400"">Submitted: {{\Carbon\Carbon::parse($kaizen->posted)->format('F j, Y, g:i a');}}</span>
                 <br>
-                @if (!$kaizen->approved)
-                    @if ($kaizen->rapid)
-                        @if(auth()->user()->level == "headoffice_staff" || auth()->user()->level == "headoffice_manager")
-                            <button wire:click="approve"
-                                class="flex items-center justify-between px-4 py-2 text-sm font-medium leading-5 text-white transition-colors duration-150 bg-green-600 border border-transparent rounded-lg active:bg-green-600 hover:bg-green-700 focus:outline-none focus:shadow-outline-green">
-                                <span class="pr-2">Approve Kaizen</span>
-                                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4" />
-                                </svg>
-                            </button>
-                        @else
-                        <button
-                        class="flex items-center justify-between px-4 py-2 text-sm font-medium leading-5 text-gray-200 transition-colors duration-150 bg-gray-400 border border-transparent rounded-lg focus:outline-none focus:shadow-outline-gray">
-                        <span class="pr-2">Approve Kaizen</span>
-                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4" />
-                        </svg>
-                    </button>
-                        @endif
-                    @endif
-                    @if ($kaizen->just_do_it)
-                        @if(auth()->user()->level == "store_manager")
+                <span class="mb-6 text-gray-700 dark:text-gray-400"">Submitted by: {{$kaizen->employee->name}}</span>
+                <br>
+                @if ($kaizen->approved)
+                    <span class="mb-6 text-gray-700 dark:text-gray-400"">Approved: {{\Carbon\Carbon::parse($kaizen->approved)->format('F j, Y, g:i a');}}</span>
+                @else
+                    @if ($canApprove)
                         <button wire:click="approve"
-                            class="flex items-center justify-between px-4 py-2 text-sm font-medium leading-5 text-white transition-colors duration-150 bg-green-600 border border-transparent rounded-lg active:bg-green-600 hover:bg-green-700 focus:outline-none focus:shadow-outline-green">
+                    @else
+                        <button disabled
+                    @endif
+                        class="disabled:opacity-50 flex items-center justify-between px-4 py-2 text-sm font-medium leading-5 text-white transition-colors duration-150 bg-green-600 border border-transparent rounded-lg active:bg-green-600 hover:bg-green-700 focus:outline-none focus:shadow-outline-green">
                             <span class="pr-2">Approve Kaizen</span>
                             <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4" />
                             </svg>
                         </button>
-                        @else
-                            <button
-                                class="flex items-center justify-between px-4 py-2 text-sm font-medium leading-5 text-gray-200 transition-colors duration-150 bg-gray-400 border border-transparent rounded-lg focus:outline-none focus:shadow-outline-gray">
-                                <span class="pr-2">Approve Kaizen</span>
-                                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4" />
-                                </svg>
-                            </button>
-                            @endif
-                    @endif
-
-                @else
-                <span class="mb-6 text-gray-700 dark:text-gray-400"">Approved: {{\Carbon\Carbon::parse($kaizen->approved)->format('F j, Y, g:i a');}}</span>
-
                 @endif
+
+
             @elseif ($kaizen->id)
                 <h2 class="my-6 text-2xl font-semibold text-gray-700 dark:text-gray-200">
                     Kaizen Suggestion #{{$kaizen->id}} (Draft)
@@ -64,15 +39,21 @@
 
         <div class="mt-8">
             @if ($kaizen->posted)
-            <a href="/kaizen/pdf/{{$kaizen->id}}" target="_blank">
-                <button
-                class="flex items-center justify-between px-4 py-2 text-sm font-medium leading-5 text-white transition-colors duration-150 bg-purple-600 border border-transparent rounded-lg active:bg-purple-600 hover:bg-purple-700 focus:outline-none focus:shadow-outline-purple">
-                    <span class="pr-2">Print</span>
-                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 17h2a2 2 0 002-2v-4a2 2 0 00-2-2H5a2 2 0 00-2 2v4a2 2 0 002 2h2m2 4h6a2 2 0 002-2v-4a2 2 0 00-2-2H9a2 2 0 00-2 2v4a2 2 0 002 2zm8-12V5a2 2 0 00-2-2H9a2 2 0 00-2 2v4h10z" />
-                    </svg>
-                </button>
-            </a>
+                @if ($protected)
+                <a href="#">
+                    <button disabled
+                @else
+                <a href="/kaizen/pdf/{{$kaizen->id}}" target="_blank">
+                    <button
+                @endif
+
+                    class="disabled:opacity-50 flex items-center justify-between px-4 py-2 text-sm font-medium leading-5 text-white transition-colors duration-150 bg-purple-600 border border-transparent rounded-lg active:bg-purple-600 hover:bg-purple-700 focus:outline-none focus:shadow-outline-purple">
+                        <span class="pr-2">Print</span>
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 17h2a2 2 0 002-2v-4a2 2 0 00-2-2H5a2 2 0 00-2 2v4a2 2 0 002 2h2m2 4h6a2 2 0 002-2v-4a2 2 0 00-2-2H9a2 2 0 00-2 2v4a2 2 0 002 2zm8-12V5a2 2 0 00-2-2H9a2 2 0 00-2 2v4h10z" />
+                        </svg>
+                    </button>
+                </a>
             @endif
         </div>
     </div>
@@ -80,6 +61,7 @@
     {{-- <x-kaizen.session-message /> --}}
 
     <form wire:submit.prevent="">
+    <fieldset @if ($protected) disabled @endif >
         @csrf
         <h4 class="mb-2 text-lg font-semibold text-gray-600 dark:text-gray-300">
             General Info
@@ -90,7 +72,7 @@
                 <div>
                     <label class="block text-sm">
                         <span class="text-gray-700 dark:text-gray-400">Kaizen Name</span>
-                        <input class="required block w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:text-gray-300 dark:focus:shadow-outline-gray form-input"
+                        <input class="disabled required block w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:text-gray-300 dark:focus:shadow-outline-gray form-input"
                             wire:model="kaizen.name"
                             name="kaizen.name"
                             placeholder="Kaizen Name" />
@@ -423,17 +405,24 @@
 
         <div class="flex justify-center mb-8">
             @if ($kaizen->posted)
-            <button wire:click="submitKaizen"  class="ml-4 px-4 py-2 text-sm font-medium leading-5 text-white transition-colors duration-150 bg-purple-600 border border-transparent rounded-lg active:bg-purple-600 hover:bg-purple-700 focus:outline-none focus:shadow-outline-purple">
-                {{ __('Update') }}
-            </button>
+                @if ($protected)
+                    <button disabled
+                @else
+                    <button wire:click="submitKaizen"
+                @endif
+                    class="disabled:opacity-50 ml-4 px-4 py-2 text-sm font-medium leading-5 text-white transition-colors duration-150 bg-purple-600 border border-transparent rounded-lg active:bg-purple-600 hover:bg-purple-700 focus:outline-none focus:shadow-outline-purple">
+                        {{ __('Update') }}
+                    </button>
 
-            <button x-show="!hasBeforeAfter" wire:click="createBeforeAfter"  class="ml-4 px-4 py-2 text-sm font-medium leading-5 text-white transition-colors duration-150 bg-purple-600 border border-transparent rounded-lg active:bg-purple-600 hover:bg-purple-700 focus:outline-none focus:shadow-outline-purple">
+                @if ($protected)
+                    <button disabled
+                @else
+                    <button wire:click="createBeforeAfter"
+                @endif
+                x-show="!hasBeforeAfter"   class="disabled:opacity-50 ml-4 px-4 py-2 text-sm font-medium leading-5 text-white transition-colors duration-150 bg-purple-600 border border-transparent rounded-lg active:bg-purple-600 hover:bg-purple-700 focus:outline-none focus:shadow-outline-purple">
                 {{ __('Create Before and After Report') }}
             </button>
             @else
-            {{-- <button wire:click="saveAsDraft" class="px-4 py-2 text-sm font-medium leading-5 text-white transition-colors duration-150 bg-purple-600 border border-transparent rounded-lg active:bg-purple-600 hover:bg-purple-700 focus:outline-none focus:shadow-outline-purple">
-                {{ __('Save as Draft') }}
-            </button> --}}
 
             <button wire:click="submitKaizen" class="ml-4 px-4 py-2 text-sm font-medium leading-5 text-white transition-colors duration-150 bg-purple-600 border border-transparent rounded-lg active:bg-purple-600 hover:bg-purple-700 focus:outline-none focus:shadow-outline-purple">
                 {{ __('Save Suggestion Form') }}
@@ -445,11 +434,11 @@
                     <input type="checkbox" class="hidden" id="footertoast">
 
                     <x-kaizen.session-message />
-                  </div>
+                </div>
 
             </x-action-message>
-       </div>
-
+        </div>
+    </fieldset>
     </form>
 
     {{-- Image Zoom Modal --}}

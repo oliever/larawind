@@ -15,7 +15,7 @@
     <form wire:submit.prevent="save" >
         <div class="flex flex-col items-center">
             <label
-                class="w-64 flex flex-col items-center rounded-md shadow-md
+                class="disabled:opacity-50 w-64 flex flex-col items-center rounded-md shadow-md
                 cursor-pointer bg-purple-600  hover:bg-purple-700 text-white  ease-linear transition-all duration-150 ">
                 <div class="inline-flex items-center">
                     <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">

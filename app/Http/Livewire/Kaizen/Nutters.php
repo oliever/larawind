@@ -37,7 +37,8 @@ class Nutters extends Component
     public $members = [];
     public $selectedLocations = [];
 
-
+    public $canApprove = false;
+    public $protected = true;
 
     protected $listeners = ['employeesCheckboxUpdated', 'locationsCheckboxUpdated', 'photoUploaded'];
 
@@ -72,8 +73,7 @@ class Nutters extends Component
 
     public function mount($employee = null, Kaizen $kaizen = null)
     {
-        if(auth()->user()->shared)
-            $this->employee = $employee;
+        $this->employee = $employee;
 
         $this->kaizen = $kaizen;
         info("--Nutters::mount kaizen-- " . $this->kaizen->id);
@@ -96,7 +96,7 @@ class Nutters extends Component
             $this->kaizen->handled_at_location = false;
             $this->hasBeforeAfter = false;
 
-
+            $this->protected = false;
         }
         else{
             //info(date('Y-m-d', strtotime($this->kaizen->date_assigned)));
@@ -115,7 +115,48 @@ class Nutters extends Component
                 $this->selectedLocations = Location::where('area_id','>','0')->get();
             //$this->selectedUsers = $this->kaizen->users()->get();
             $this->members = $this->kaizen->members()->get();
+
+            $this->setProtected();
+
+            if($this->kaizen->rapid){
+                //if(auth()->user()->level == "headoffice_staff" || auth()->user()->level == "headoffice_manager")
+                if(auth()->user()->level == "headoffice_admin")
+                    $this->canApprove = true;
+            }else if($this->kaizen->just_do_it){
+                if(auth()->user()->level == "store_manager")
+                    $this->canApprove = true;
+            }
+
         }
+        //$this->protected = false;
+    }
+
+    private function setProtected(){
+        //check if admin
+        if(auth()->user()->level == "headoffice_admin")
+            $this->protected = false;
+
+        //check if manager
+        if(auth()->user()->level == "store_manager")
+            $this->protected = false;
+
+        //check employee selected is the creator
+        if($this->kaizen->employee_id == $this->employee->id)
+            $this->protected = false;
+
+        //check employee selected is a member
+        foreach ($this->kaizen->members()->get() as $key => $employee) {
+            if($this->employee->id == $employee->id){
+                $this->protected = false;
+                break;
+            }
+
+        }
+
+        info("kaizen {$this->kaizen->id} protected: {$this->protected}");
+        info(auth()->user()->level .": ".auth()->user()->level);
+        info("selected employee: {$this->employee->name} ({$this->employee->id})");
+        info($this->kaizen->members()->select('id')->get());
     }
 
     public function photoUploaded(){

@@ -26,6 +26,11 @@ class EmployeeSeeder extends Seeder
             ['location_id'=>'999','name'           => preg_replace('!\s+!', ' ', (ucwords(strtolower("LAURA HILLIS")))),'level' => 'headoffice_staff'],
             ['location_id'=>'999','name'           => preg_replace('!\s+!', ' ', (ucwords(strtolower("CECILE SEEBECK")))),'level' => 'headoffice_staff'],
             ['location_id'=>'999','name'           => preg_replace('!\s+!', ' ', (ucwords(strtolower("BRANDI PEDERSON")))),'level' => 'headoffice_staff'],
+            ['location_id'=>'999','name'           => "Paul Ogden",'level' => 'headoffice_admin'],
+            ['location_id'=>'999','name'           => "Brad Winsor",'level' => 'headoffice_admin'],
+            ['location_id'=>'999','name'           => "Paul Clewes",'level' => 'headoffice_admin'],
+            ['location_id'=>'999','name'           => "Manpreet Brar",'level' => 'headoffice_admin'],
+            ['location_id'=>'999','name'           => "Tammy Grue",'level' => 'headoffice_admin'],
         ];
         Employee::insert($nutters_headoffice_staff);
 

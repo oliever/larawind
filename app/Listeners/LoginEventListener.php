@@ -30,8 +30,8 @@ class LoginEventListener
     }
 
     public function onUserLogin($event) {
-
-        Cookie::queue(Cookie::forget('selected_employee'));
+        if(auth()->user()->level != "headoffice_admin")
+            Cookie::queue(Cookie::forget('selected_employee'));
     }
 
     public function onUserLogout($event) {

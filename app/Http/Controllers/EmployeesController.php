@@ -78,7 +78,7 @@ class EmployeesController extends Controller
     public function selectList(Request $request){
 
         $locationLocked = Location::where('id', auth()->user()->location_locked)->first();
-        if(auth()->user()->level == "store_manager" || auth()->user()->level == "headoffice_manager"){
+        if(auth()->user()->level == "store_manager"){
 
             $managers = [];
             if(auth()->user()->level == "store_manager")
@@ -101,11 +101,7 @@ class EmployeesController extends Controller
 
         $employees = [];
         if($locationLocked)
-            if(auth()->user()->level == 'store_staff')
-                $employees = $locationLocked->employees()->where('level','store_staff')->get();
-            else if(auth()->user()->level == 'headoffice_staff')
-                $employees = $locationLocked->employees()->where('level','headoffice_staff')->get();
-
+            $employees = $locationLocked->employees()->where('level',auth()->user()->level)->get();
 
         return view('employees.select', compact('locationLocked', 'employees', 'request'));
     }

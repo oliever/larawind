@@ -13,7 +13,7 @@ class UsersTableSeeder extends Seeder
             [
                 'id'             => 1,
                 'name'           => 'Admin',
-                'email'          => 'admin@admin.com',
+                'email'          => 'kaizen.admin@nutters.com',
                 'level'          => 'admin',
                 'password'       => bcrypt('password'),
                 'remember_token' => null,
@@ -23,20 +23,9 @@ class UsersTableSeeder extends Seeder
             ],
             [
                 'id'             => 2,
-                'name'           => 'Paul Odgen',
-                'email'          => 'pogden@nutters.com',
-                'level'          => 'admin',
-                'password'       => bcrypt('password'),
-                'remember_token' => null,
-                'current_team_id'=> 1,
-                'location_locked'=> 999,
-                'shared'         => false,
-            ],
-            [
-                'id'             => 3,
-                'name'           => 'Head Office Manager',
-                'email'          => 'ho.manager@nutters.com',
-                'level'             => 'headoffice_manager',
+                'name'           => 'Head Office Admin',
+                'email'          => 'ho.admin@nutters.com',
+                'level'             => 'headoffice_admin',
                 'password'       => bcrypt('password'),
                 'remember_token' => null,
                 'current_team_id'=> 1,
@@ -44,7 +33,7 @@ class UsersTableSeeder extends Seeder
                 'shared'         => true,
             ],
             [
-                'id'             => 4,
+                'id'             => 3,
                 'name'           => 'Head Office Staff',
                 'email'          => 'ho.staff@nutters.com',
                 'level'             => 'headoffice_staff',
@@ -56,7 +45,7 @@ class UsersTableSeeder extends Seeder
             ],
             /* Medhat */
             [
-                'id'             => 5,
+                'id'             => 4,
                 'name'           => 'Medicine Hat Manager',
                 'email'          => 'medhat.manager@nutters.com',
                 'level'             => 'store_manager',
@@ -67,7 +56,7 @@ class UsersTableSeeder extends Seeder
                 'shared'         => true,
             ],
             [
-                'id'             => 6,
+                'id'             => 5,
                 'name'           => 'Medicine Hat Staff',
                 'email'          => 'medhat.staff@nutters.com',
                 'level'             => 'store_staff',
@@ -79,7 +68,7 @@ class UsersTableSeeder extends Seeder
             ],
             /* Red Deer */
             [
-                'id'             => 7,
+                'id'             => 6,
                 'name'           => 'Red Deer Manager',
                 'email'          => 'reddeer.manager@nutters.com',
                 'level'             => 'store_manager',
@@ -90,7 +79,7 @@ class UsersTableSeeder extends Seeder
                 'shared'         => true,
             ],
             [
-                'id'             => 8,
+                'id'             => 7,
                 'name'           => 'Red Deer Staff',
                 'email'          => 'reddeer.staff@nutters.com',
                 'level'             => 'store_staff',
