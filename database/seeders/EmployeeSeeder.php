@@ -10,6 +10,7 @@ class EmployeeSeeder extends Seeder
     public function run()
     {
         $nutters_headoffice_staff = [
+            ['location_id'=>'999','name'           => 'Manpreet Brar','level' => 'super_admin'],
             ['location_id'=>'999','name'           => 'Donald Cranston','level' => 'headoffice_staff'],
             ['location_id'=>'999','name'           => preg_replace('!\s+!', ' ', (ucwords(strtolower("LYNN CRANSTON")))),'level' => 'headoffice_staff'],
             ['location_id'=>'999','name'           => preg_replace('!\s+!', ' ', (ucwords(strtolower("MELISSA KUNTZ")))),'level' => 'headoffice_staff'],
