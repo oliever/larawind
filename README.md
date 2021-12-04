@@ -41,3 +41,18 @@ If you like my work [Buy me a coffee](https://www.buymeacoffee.com/miten5)
 - [Laravel Jetstream](https://jetstream.laravel.com/1.x/introduction.html)
 - [Tailwind CSS](https://tailwindcss.com/)
 - [Windmill Dashboard](https://windmill-dashboard.vercel.app/)
+
+
+### TODOs
+
+## Notifications
+
+1. New kaizens added - send notification to store manager and HO admins
+2. Kaizen Completed -  send notification to store manager and HO admins
+3. kaizen added/updated - send notification to HO aadmins if "Head Office" is checked
+4. 
+
+## Kaizen Protection
+
+1. Before/After - protect kaizen when "approved by" is filled. - HO Admins and Userp Admins can edit
+
