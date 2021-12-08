@@ -59,17 +59,19 @@
                     </p>
                 </td>
                 <td>
-                    <span>
-                        @if ($employee['level'] == 'store_staff')
+                    <p class="text-xs text-gray-600 dark:text-gray-400" >
+                        @if ($employee['level'] == 'super_admin')
+                            Super Admin
+                        @elseif ($employee['level'] == 'store_staff')
                             Store Staff
                         @elseif ($employee['level'] == 'store_manager')
                             Store Manager
                         @elseif ($employee['level'] == 'headoffice_staff')
                             Headoffice Staff
-                        @elseif ($employee['level'] == 'headoffice_manager')
-                            Headoffice Manager
+                        @elseif ($employee['level'] == 'headoffice_admin')
+                            Headoffice Admin
                         @endif
-                    </span>
+                    </p>
                 </td>
                 <td class="px-4 py-3">
                     <select name="" id="" wire:model="employees.{{ $index }}.status" wire:change="changeStatus({{ $index }})">

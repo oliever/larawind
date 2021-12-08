@@ -22,12 +22,8 @@ class User extends Authenticatable
 
     use SoftDeletes;
     use SearchTrait;
+    use Notifiable;
 
-    /**
-     * The attributes that are mass assignable.
-     *
-     * @var array
-     */
     protected $fillable = [
         'name', 'email', 'password',
     ];

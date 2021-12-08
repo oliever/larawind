@@ -15,6 +15,7 @@ use App\Models\Location;
 use App\Models\User;
 use App\Models\RefAffectedArea;
 use App\Services\RewardService;
+use App\Notifications\KaizenCreated;
 
 class Nutters extends Component
 {
@@ -239,6 +240,8 @@ class Nutters extends Component
             $message = 'Kaizen Form saved as Project: ' . $this->kaizen->id; */
 
        //return redirect()->to('/kaizen/' . $this->kaizen->id);
+
+       auth()->user()->notify(new KaizenCreated($this->kaizen));
     }
 
     public function approve(){
