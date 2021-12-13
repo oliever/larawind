@@ -47,7 +47,10 @@
             "App\\": "app/",
             "Database\\Factories\\": "database/factories/",
             "Database\\Seeders\\": "database/seeders/"
-        }
+        },
+        "files":[
+            "app/View/Helpers//TranslationHelper.php"
+        ]
     },
     "autoload-dev": {
         "psr-4": {

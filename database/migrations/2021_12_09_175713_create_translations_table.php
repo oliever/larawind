@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateSystemSettingsTable extends Migration
+class CreateTranslationsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,13 +13,12 @@ class CreateSystemSettingsTable extends Migration
      */
     public function up()
     {
-        Schema::create('system_settings', function (Blueprint $table) {
+        Schema::create('translations', function (Blueprint $table) {
             $table->id();
             $table->integer('team_id');
-            $table->string('code', 30);
-            $table->string('section', 30)->default("general");
-            $table->text('value')->nullable();
-            $table->text('alt')->nullable();
+            $table->string('section', 30);
+            $table->string('field', 30);
+            $table->string('value');
             $table->timestamps();
         });
     }
@@ -31,6 +30,6 @@ class CreateSystemSettingsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('system_settings');
+        Schema::dropIfExists('translations');
     }
 }

@@ -16,6 +16,7 @@ class DatabaseSeeder extends Seeder
         // User::factory(10)->create();
         //Team::factory(2)->create();
         $this->call([
+            TranslationSeeder::class,
             UsersTableSeeder::class,
             RolesTableSeeder::class,
             LocationsSeeder::class,
@@ -28,6 +29,7 @@ class DatabaseSeeder extends Seeder
             EmployeeSeeder::class,
             RewardSeeder::class,
             RewardProgramSeeder::class,
+
         ]);
     }
 }

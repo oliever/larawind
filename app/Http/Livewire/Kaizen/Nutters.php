@@ -12,13 +12,14 @@ use Livewire\Component;
 use App\Models\Kaizen;
 use App\Models\Employee;
 use App\Models\Location;
-use App\Models\User;
+use App\Models\Translation;
 use App\Models\RefAffectedArea;
 use App\Services\RewardService;
 use App\Notifications\KaizenCreated;
 
 class Nutters extends Component
 {
+    public $t;//translations
     public $employee;
     public $kaizen;
     //public $stores;
@@ -74,6 +75,9 @@ class Nutters extends Component
 
     public function mount($employee = null, Kaizen $kaizen = null)
     {
+        //info(auth()->user()->currentTeam->id);
+        $this->t = Translation::where(['team_id'=> auth()->user()->currentTeam->id,'section'=>'kaizen_general'])->get()->keyBy('field')->toArray();
+      // info($this->t);
         $this->employee = $employee;
 
         $this->kaizen = $kaizen;

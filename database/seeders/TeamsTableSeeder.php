@@ -18,7 +18,13 @@ class TeamsTableSeeder extends Seeder
             ],
             [
                 'id'             => 2,
-                'name'           => 'ABC',
+                'name'           => 'Company 1',
+                'user_id'        => 1,
+                'personal_team'  => 1,
+            ],
+            [
+                'id'             => 3,
+                'name'           => 'Company 2',
                 'user_id'        => 1,
                 'personal_team'  => 1,
             ],

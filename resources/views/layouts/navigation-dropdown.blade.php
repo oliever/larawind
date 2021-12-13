@@ -180,7 +180,7 @@
 
                             <!-- Team Switcher -->
                             <div class="block px-4 py-2 text-xs text-gray-400">
-                                {{ __('Switch Teams') }}
+                                {{ __('Switch Companies') }}
                             </div>
 
                             @foreach (Auth::user()->allTeams() as $team)

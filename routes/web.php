@@ -5,6 +5,7 @@ use App\Http\Controllers\EmployeesController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\KaizenController;
 use App\Http\Controllers\ProjectController;
+use App\Http\Controllers\SystemSettingsController;
 
 /*
 |--------------------------------------------------------------------------
@@ -53,6 +54,7 @@ Route::group(['middleware' => ['auth:sanctum', 'verified', 'employee.selected']]
 
     Route::get('/rewards', [RewardsController::class, 'index'])->name('rewards.index');
 
+    Route::get('/system-settings', [SystemSettingsController::class, 'index'])->name('system-settings.index');
 
 
     //Route::view('/', '')->name('home');

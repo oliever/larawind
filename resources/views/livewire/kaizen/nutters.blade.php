@@ -71,11 +71,13 @@
                 {{-- column 1 --}}
                 <div>
                     <label class="block text-sm">
-                        <span class="text-gray-700 dark:text-gray-400">Kaizen Name</span>
+                        <span class="text-gray-700 dark:text-gray-400">
+                            {{ t('kaizen_general','name') }}
+                        </span>
                         <input class="disabled required block w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:text-gray-300 dark:focus:shadow-outline-gray form-input"
                             wire:model="kaizen.name"
                             name="kaizen.name"
-                            placeholder="Kaizen Name" />
+                            placeholder="{{ t('kaizen_general','name') }}" />
                     </label>
                     @error('kaizen.name')
                         <p class="text-sm text-red-600">{{ $message }}</p>
@@ -86,7 +88,7 @@
                 <div class="grid gap-2 mb- grid-cols-2">
                     {{-- column 1 --}}
                     <label class="block text-sm ml-10">
-                        <span class="text-gray-700 dark:text-gray-400">Date Assigned</span>
+                        <span class="text-gray-700 dark:text-gray-400">{{ t('kaizen_general','date_assigned') }}</span>
                         @if ($kaizen->date_assigned)
                         <h4 class="mb-2 text-lg font-semibold text-gray-600 dark:text-gray-300">{{date('m/d/Y', strtotime($dateAssigned))}}</h4>
                         @else
@@ -99,7 +101,7 @@
                     {{-- column 2 --}}
                     <label class="block text-sm">
                         <span class="text-gray-700 dark:text-gray-400">
-                            Completion
+                            {{ t('kaizen_general','completion') }}
                         </span>
                         <select
                         wire:model="kaizen.completion"
@@ -127,7 +129,7 @@
                         <input wire:model="isJustDoIt" @click="isJustDoIt=!isJustDoIt; isRapid=!isRapid" id="isJustDoIt" type="checkbox"
                                 class="text-purple-600 form-checkbox focus:border-purple-400 outline-black focus:shadow-outline-purple dark:focus:shadow-outline-gray" style="border-color:purple" />
                         <span class="ml-2">
-                            Just Do It
+                            {{ t('kaizen_general','just_do_it') }}
                         </span>
                     </label>
                 </div>
@@ -136,7 +138,7 @@
                         <input wire:model="isRapid" @click="isRapid=!isRapid; isJustDoIt=!isJustDoIt" id="isRapid" type="checkbox"
                                 class="text-purple-600 form-checkbox focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:focus:shadow-outline-gray" style="border-color:purple"/>
                         <span class="ml-2">
-                            Rapid Kaizen
+                            {{ t('kaizen_general','rapid') }}{{-- Rapid Kaizen --}}
                         </span>
                     </label>
                 </div>
@@ -146,7 +148,7 @@
                                 wire:model="kaizen.head_office_input"
                                 class="text-purple-600 form-checkbox focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:focus:shadow-outline-gray" style="border-color:purple"/>
                         <span class="ml-2">
-                            Head Office Input
+                            {{ t('kaizen_general','head_office_input') }}{{-- Head Office Input --}}
                         </span>
                     </label>
                 </div>
@@ -156,7 +158,7 @@
                                 wire:model="kaizen.handled_at_location"
                                 class="text-purple-600 form-checkbox focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:focus:shadow-outline-gray" style="border-color:purple"/>
                         <span class="ml-2">
-                            Handled at Store Level
+                            {{ t('kaizen_general','handled_at_location') }}{{-- Handled at Store Level --}}
                         </span>
                     </label>
                 </div>
@@ -207,25 +209,25 @@
         <div class="px-4 py-3 mb-8 bg-white rounded-lg shadow-md dark:bg-gray-800 md:grid-cols-1 xl:grid-cols-3"><!--card-->
             <div class="grid gap-2 mb- md:grid-cols-1 xl:grid-cols-3">
                 <div>
-                    <span class="text-gray-700 dark:text-gray-400">Dollar Value</span>
+                    <span class="text-gray-700 dark:text-gray-400">{{ t('kaizen_general','dollar_value') }}{{-- Dollar Value --}}</span>
                     <input class="cleave-money block w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:text-gray-300 dark:focus:shadow-outline-gray form-input"
                         wire:model="kaizen.dollar_value"
                         name="kaizen.dollar_value"
-                        placeholder="Dollar value"/>
+                        placeholder="{{ t('kaizen_general','dollar_value') }}"/>
                 </div>
                 <div>
-                    <span class="text-gray-700 dark:text-gray-400">Savings</span>
+                    <span class="text-gray-700 dark:text-gray-400">{{ t('kaizen_general','savings') }}{{-- Savings --}}</span>
                     <input class="cleave-money block w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:text-gray-300 dark:focus:shadow-outline-gray form-input"
                         wire:model="kaizen.savings"
                         name="kaizen.savings"
-                        placeholder="Savings"/>
+                        placeholder="{{ t('kaizen_general','savings') }}"/>
                 </div>
                 <div>
-                    <span class="text-gray-700 dark:text-gray-400">Hours Saved</span>
+                    <span class="text-gray-700 dark:text-gray-400">{{ t('kaizen_general','hours_saved') }}{{-- Hours Saved --}}</span>
                     <input class="required block w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:text-gray-300 dark:focus:shadow-outline-gray form-input"
                         wire:model="kaizen.hours_saved"
                         name="kaizen.hours_saved"
-                        placeholder="Hours Saved" type="number"/>
+                        placeholder="{{ t('kaizen_general','hours_saved') }}" type="number"/>
                 </div>
             </div>
 
@@ -236,17 +238,17 @@
             @if (auth()->user()->level == "headoffice")
                 <div class="px-4 py-3 mb-8 bg-white rounded-lg shadow-md dark:bg-gray-800"><!--card-->
                     <label class="block mt-4 text-sm">
-                        <span class="text-gray-700 dark:text-gray-400"> Head Office Comment:</span>
+                        <span class="text-gray-700 dark:text-gray-400">{{ t('kaizen_general','head_office_comment') }} {{-- Head Office Comment: --}}</span>
                         <textarea wire:model="kaizen.head_office_comment" class="block w-full mt-1 text-sm dark:text-gray-300 dark:border-gray-600 dark:bg-gray-700 form-textarea focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:focus:shadow-outline-gray"
-                        rows="3" placeholder=" Head Office Comment"></textarea>
+                        rows="3" placeholder="{{ t('kaizen_general','head_office_comment') }}"></textarea>
                     </label>
                 </div>
             @else
                 <div class="px-4 py-3 mb-8 bg-white rounded-lg shadow-md dark:bg-gray-800"><!--card-->
                     <label class="block mt-4 text-sm">
-                        <span class="text-gray-700 dark:text-gray-400"> <i>Head Office Comment:</i> </span>
+                        <span class="text-gray-700 dark:text-gray-400"> <i>{{ t('kaizen_general','head_office_comment') }}</i> </span>
                         <textarea wire:model="kaizen.head_office_comment" disabled class="block w-full mt-1 text-sm dark:text-gray-300 dark:border-gray-600 dark:bg-gray-700 form-textarea focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:focus:shadow-outline-gray"
-                        rows="3" placeholder=" Head Office Comment"></textarea>
+                        rows="3" placeholder="{{ t('kaizen_general','head_office_comment') }}"></textarea>
                     </label>
                 </div>
             @endif
@@ -257,34 +259,34 @@
             <div class="px-4 py-3 mb-8 bg-white rounded-lg shadow-md dark:bg-gray-800"><!--card-->
                 <div class="grid gap-2 mb-2 md:grid-cols-1 xl:grid-cols-2">
                     <label class="block mt-4 text-sm">
-                        <span class="text-gray-700 dark:text-gray-400">Reason For Kaizen:</span>
+                        <span class="text-gray-700 dark:text-gray-400">{{ t('kaizen_just_do_it','reason') }}</span>
                         <textarea wire:model="kaizen.reason" class="block w-full mt-1 text-sm dark:text-gray-300 dark:border-gray-600 dark:bg-gray-700 form-textarea focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:focus:shadow-outline-gray"
-                        rows="3" placeholder="Reason For Kaizen"></textarea>
+                        rows="3" placeholder="{{ t('kaizen_just_do_it','reason') }}"></textarea>
                     </label>
 
                     <label class="block mt-4 text-sm">
-                        <span class="text-gray-700 dark:text-gray-400">Problem:</span>
+                        <span class="text-gray-700 dark:text-gray-400">{{ t('kaizen_just_do_it','problem') }}</span>
                         <textarea wire:model="kaizen.problem" class="block w-full mt-1 text-sm dark:text-gray-300 dark:border-gray-600 dark:bg-gray-700 form-textarea focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:focus:shadow-outline-gray"
-                        rows="3" placeholder="Problem"></textarea>
+                        rows="3" placeholder="{{ t('kaizen_just_do_it','problem') }}"></textarea>
                     </label>
                 </div>
                 <div class="grid gap-2 mb-6 md:grid-cols-1 xl:grid-cols-2">
                     <label class="block mt-4 text-sm">
-                        <span class="text-gray-700 dark:text-gray-400">Causes:</span>
+                        <span class="text-gray-700 dark:text-gray-400">{{ t('kaizen_just_do_it','causes') }}</span>
                         <textarea wire:model="kaizen.causes" class="block w-full mt-1 text-sm dark:text-gray-300 dark:border-gray-600 dark:bg-gray-700 form-textarea focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:focus:shadow-outline-gray"
-                        rows="3" placeholder="Causes"></textarea>
+                        rows="3" placeholder="{{ t('kaizen_just_do_it','causes') }}"></textarea>
                     </label>
 
                     <label class="block mt-4 text-sm">
-                        <span class="text-gray-700 dark:text-gray-400">Solution:</span>
+                        <span class="text-gray-700 dark:text-gray-400">{{ t('kaizen_just_do_it','solution') }}</span>
                         <textarea wire:model="kaizen.solution" class="block w-full mt-1 text-sm dark:text-gray-300 dark:border-gray-600 dark:bg-gray-700 form-textarea focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:focus:shadow-outline-gray"
-                        rows="3" placeholder="Solution"></textarea>
+                        rows="3" placeholder="{{ t('kaizen_just_do_it','solution') }}"></textarea>
                     </label>
                 </div>
                 <label class="block mt-4 text-sm">
-                    <span class="text-gray-700 dark:text-gray-400">Expected Results:</span>
+                    <span class="text-gray-700 dark:text-gray-400">{{ t('kaizen_just_do_it','expected_result') }}</span>
                     <textarea wire:model="kaizen.expected_result" class="block w-full mt-1 text-sm dark:text-gray-300 dark:border-gray-600 dark:bg-gray-700 form-textarea focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:focus:shadow-outline-gray"
-                    rows="3" placeholder="Expected Results"></textarea>
+                    rows="3" placeholder="{{ t('kaizen_just_do_it','expected_result') }}"></textarea>
                 </label>
             </div>
         </div>
@@ -296,9 +298,9 @@
             </h4>
             <div class="px-4 py-2 mb-8 bg-white rounded-lg shadow-md dark:bg-gray-800"><!--card-->
                 <label class="block mt-4 mb-6 text-sm">
-                    <span class="text-gray-700 dark:text-gray-400">Problem Description:</span>
+                    <span class="text-gray-700 dark:text-gray-400">{{ t('kaizen_rapid','rapid_problem') }}{{-- Problem Description" --}}</span>
                     <textarea wire:model="kaizen.rapid_problem" class="block w-full mt-1 text-sm dark:text-gray-300 dark:border-gray-600 dark:bg-gray-700 form-textarea focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:focus:shadow-outline-gray"
-                    rows="3" placeholder="Problem Description"></textarea>
+                    rows="3" placeholder="{{ t('kaizen_rapid','rapid_problem') }}""></textarea>
                 </label>
 
                 <livewire:kaizen.rapid-causes :kaizen="$kaizen">
