@@ -84,7 +84,7 @@ class UsersTableSeeder extends Seeder
             [
                 'name'           => 'Medicine Hat Staff',
                 'email'          => 'medicinehat.staff@nutters.ca',
-                'level'             => 'store_staff',
+                'level'             => 'location_staff',
                 'password'       => bcrypt('password'),
                 'remember_token' => null,
                 'current_team_id'=> 1,
@@ -105,7 +105,7 @@ class UsersTableSeeder extends Seeder
             [
                 'name'           => 'Red Deer Staff',
                 'email'          => 'reddeer.staff@nutters.ca',
-                'level'             => 'store_staff',
+                'level'             => 'location_staff',
                 'password'       => bcrypt('password'),
                 'remember_token' => null,
                 'current_team_id'=> 1,
@@ -126,7 +126,7 @@ class UsersTableSeeder extends Seeder
             [
                 'name'           => 'Moose Jaw Staff',
                 'email'          => 'moosejaw.staff@nutters.ca',
-                'level'             => 'store_staff',
+                'level'             => 'location_staff',
                 'password'       => bcrypt('password'),
                 'remember_token' => null,
                 'current_team_id'=> 1,
@@ -147,7 +147,7 @@ class UsersTableSeeder extends Seeder
             [
                 'name'           => 'Lethbridge Staff',
                 'email'          => 'lethbridge.staff@nutters.ca',
-                'level'             => 'store_staff',
+                'level'             => 'location_staff',
                 'password'       => bcrypt('password'),
                 'remember_token' => null,
                 'current_team_id'=> 1,
@@ -168,7 +168,7 @@ class UsersTableSeeder extends Seeder
             [
                 'name'           => 'Lloydminster Staff',
                 'email'          => 'lloydminster.staff@nutters.ca',
-                'level'             => 'store_staff',
+                'level'             => 'location_staff',
                 'password'       => bcrypt('password'),
                 'remember_token' => null,
                 'current_team_id'=> 1,
@@ -189,7 +189,7 @@ class UsersTableSeeder extends Seeder
             [
                 'name'           => 'Jasper Staff',
                 'email'          => 'jasper.staff@nutters.ca',
-                'level'             => 'store_staff',
+                'level'             => 'location_staff',
                 'password'       => bcrypt('password'),
                 'remember_token' => null,
                 'current_team_id'=> 1,
@@ -210,7 +210,7 @@ class UsersTableSeeder extends Seeder
             [
                 'name'           => 'Okotoks Staff',
                 'email'          => 'okotoks.staff@nutters.ca',
-                'level'             => 'store_staff',
+                'level'             => 'location_staff',
                 'password'       => bcrypt('password'),
                 'remember_token' => null,
                 'current_team_id'=> 1,
@@ -231,7 +231,7 @@ class UsersTableSeeder extends Seeder
             [
                 'name'           => 'Canmore Staff',
                 'email'          => 'canmore.staff@nutters.ca',
-                'level'             => 'store_staff',
+                'level'             => 'location_staff',
                 'password'       => bcrypt('password'),
                 'remember_token' => null,
                 'current_team_id'=> 1,
@@ -252,7 +252,7 @@ class UsersTableSeeder extends Seeder
             [
                 'name'           => 'Camrose Staff',
                 'email'          => 'camrose.staff@nutters.ca',
-                'level'             => 'store_staff',
+                'level'             => 'location_staff',
                 'password'       => bcrypt('password'),
                 'remember_token' => null,
                 'current_team_id'=> 1,
@@ -273,7 +273,7 @@ class UsersTableSeeder extends Seeder
             [
                 'name'           => 'Swift Current Staff',
                 'email'          => 'swiftcurrent.staff@nutters.ca',
-                'level'             => 'store_staff',
+                'level'             => 'location_staff',
                 'password'       => bcrypt('password'),
                 'remember_token' => null,
                 'current_team_id'=> 1,
@@ -294,7 +294,7 @@ class UsersTableSeeder extends Seeder
             [
                 'name'           => 'Saskatoon Staff',
                 'email'          => 'saskatoon.staff@nutters.ca',
-                'level'             => 'store_staff',
+                'level'             => 'location_staff',
                 'password'       => bcrypt('password'),
                 'remember_token' => null,
                 'current_team_id'=> 1,
@@ -315,7 +315,7 @@ class UsersTableSeeder extends Seeder
             [
                 'name'           => 'Airdrie Staff',
                 'email'          => 'airdrie.staff@nutters.ca',
-                'level'             => 'store_staff',
+                'level'             => 'location_staff',
                 'password'       => bcrypt('password'),
                 'remember_token' => null,
                 'current_team_id'=> 1,

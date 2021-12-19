@@ -72,7 +72,7 @@ class EmployeeSelected
             }
 
             //always select
-            //if(auth()->user()->level != "store_staff" || auth()->user()->level != "headoffice_staff")
+            //if(auth()->user()->level != "location_staff" || auth()->user()->level != "headoffice_staff")
                // $redirectToEmployeeSelect = true;
 
             if($redirectToEmployeeSelect && Route::currentRouteName()!='employees.select'){

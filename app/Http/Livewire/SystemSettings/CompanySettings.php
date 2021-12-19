@@ -1,17 +1,19 @@
 <?php
 
-namespace App\Http\Livewire;
+namespace App\Http\Livewire\SystemSettings;
 
 use Livewire\Component;
 use App\Models\Translation;
 
-class Translations extends Component
+class CompanySettings extends Component
 {
     public $editedItemIndex = null;
     public $editedItemField = null;
     public $translations = [];
+    public $team = null;
 
     protected $rules = [
+        'team.name' => 'required|min:5',
         'translations.*.value' => ['required'],
     ];
 
@@ -21,12 +23,20 @@ class Translations extends Component
 
     public function mount(){
         $this->translations = Translation::where('team_id',auth()->user()->currentTeam->id)->get()->toArray();
+        $this->team = auth()->user()->currentTeam;
     }
     public function render()
     {
-        return view('livewire.translations', [
-            'translations' => $this->translations
-        ]);
+        return view('livewire.system-settings.company-settings');
+    }
+
+    public function save()
+    {
+        $this->validate();
+        $this->team->save();
+        session()->flash('success', ['title'=>'Company settings saved.' , 'subtitle'=>'']);
+
+        $this->emit('saved');//to display action message
     }
 
     public function editItem($itemIndex)

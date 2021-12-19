@@ -3,6 +3,7 @@
 namespace App\Http\Livewire;
 
 use App\Models\Location;
+use App\Models\Translation;
 use Illuminate\Support\Str;
 use Livewire\Component;
 
@@ -29,10 +30,10 @@ class LocationsCheckbox extends Component
 
     public function render()
     {
-        $label = 'Select stores';
+        $label = 'Select ' . t('kaizen_general','location');
         if(isset($this->selectArea[99])){
             if($this->selectArea[99])
-                $label = 'All stores';
+                $label = 'All '. Str::plural(t('kaizen_general','location'));
             else if(count($this->selected)){
                 $location = Location::where('id', $this->selected[0])->first();
                 if($location)

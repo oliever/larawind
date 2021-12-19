@@ -50,7 +50,7 @@
         <tr>
             <td colspan="3" >Stores: <br>
                 @if($project->all_locations)
-                    <strong>All Stores</strong>
+                    <strong>All {{ Str::plural(t('kaizen_general','location'))}}</strong>
                 @else
                     @foreach ($project->locations()->get() as $store)
                         <strong style="margin-left: 10px;">{{ $store->name }}</strong><br>

@@ -13,6 +13,7 @@
                     {{ __('Add a new team member to your team, allowing them to collaborate with you.') }}
                 </x-slot>
 
+
                 <x-slot name="form">
                     <div class="col-span-6">
                         <div class="max-w-xl text-sm text-gray-600 dark:text-gray-200">

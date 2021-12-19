@@ -62,7 +62,7 @@
                     <p class="text-xs text-gray-600 dark:text-gray-400" >
                         @if ($employee['level'] == 'super_admin')
                             Super Admin
-                        @elseif ($employee['level'] == 'store_staff')
+                        @elseif ($employee['level'] == 'location_staff')
                             Store Staff
                         @elseif ($employee['level'] == 'store_manager')
                             Store Manager

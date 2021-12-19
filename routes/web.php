@@ -55,6 +55,7 @@ Route::group(['middleware' => ['auth:sanctum', 'verified', 'employee.selected']]
     Route::get('/rewards', [RewardsController::class, 'index'])->name('rewards.index');
 
     Route::get('/system-settings', [SystemSettingsController::class, 'index'])->name('system-settings.index');
+    Route::get('/system-settings/change-team', [SystemSettingsController::class, 'changeTeam'])->name('system-settings.change-team');
 
 
     //Route::view('/', '')->name('home');

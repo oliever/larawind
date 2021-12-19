@@ -39,7 +39,7 @@
                             <div class="px-4 py-5 bg-white sm:p-6">
                                 <label for="level" class="block font-medium text-sm text-gray-700">Employee Level</label>
                                 <select name="level" id="level" class="form-multiselect block rounded-md shadow-sm mt-1 block w-full">
-                                    <option value="store_staff">Store Staff</option>
+                                    <option value="location_staff">Store Staff</option>
                                     {{-- <option value="store_manager">Store Manager</option> --}}
                                 </select>
                                 @error('level')

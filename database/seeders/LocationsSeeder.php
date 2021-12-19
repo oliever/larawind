@@ -15,7 +15,7 @@ class LocationsSeeder extends Seeder
      */
     public function run()
     {
-        $locations = [
+        $nuttersLocations = [
 
             [
                 'id'             => 1,
@@ -195,6 +195,22 @@ class LocationsSeeder extends Seeder
             ],
         ];
 
-        Location::insert($locations);
+        Location::insert($nuttersLocations);
+
+        $arMetalsLocations = [
+            [
+                'id'             => 100,
+                'team_id'        => 2,
+                'code'           => "100",
+                'name'           => 'AR Metals Head Office',
+                'active'         => true,
+                'created_at'     => Carbon::now(),
+                'is_area'        => false,
+                'is_corporate'   => true,
+                'area_id'        => 199
+            ],
+        ];
+
+        Location::insert($arMetalsLocations);
     }
 }

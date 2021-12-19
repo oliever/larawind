@@ -2,6 +2,9 @@
     <a class="ml-6   text-gray-800 dark:text-gray-200" href="/dashboard">
        <span class="text-md">{{ config('app.name') }}</span> | <span class="font-bold text-xl">{{ auth()->user()->currentTeam->name }}</span>
     </a>
+    @if(auth()->user()->level == 'super_admin')
+        <a class="text-xs underline" href="{{route('system-settings.change-team')}}">Change</a>
+    @endif
     <ul class="mt-6">
         <li class="relative px-6 py-3">
             {!! request()->routeIs('dashboard') ? '<span class="absolute inset-y-0 left-0 w-1 bg-purple-600 rounded-tr-lg rounded-br-lg" aria-hidden="true"></span>' : '' !!}
@@ -54,7 +57,7 @@
         </li>
 
         @if(auth()->user()->location_locked)
-            @if(auth()->user()->shared && (auth()->user()->level == 'store_staff' || auth()->user()->level == 'headoffice_staff'))
+            @if(auth()->user()->shared && (auth()->user()->level == 'location_staff' || auth()->user()->level == 'headoffice_staff'))
                 <li class="relative px-6 py-3">
                     <a data-turbolinks-action="replace"
                     class="inline-flex items-center w-full text-sm dark:text-gray-400 text-gray-800 transition-colors duration-150 hover:text-gray-800
@@ -114,10 +117,21 @@
                 class="inline-flex items-center w-full text-sm dark:text-gray-400 text-gray-800 transition-colors duration-150 hover:text-gray-800
                 dark:hover:text-gray-200 "
                 href="{{route('system-settings.index')}}">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                    <path d="M5 4a1 1 0 00-2 0v7.268a2 2 0 000 3.464V16a1 1 0 102 0v-1.268a2 2 0 000-3.464V4zM11 4a1 1 0 10-2 0v1.268a2 2 0 000 3.464V16a1 1 0 102 0V8.732a2 2 0 000-3.464V4zM16 3a1 1 0 011 1v7.268a2 2 0 010 3.464V16a1 1 0 11-2 0v-1.268a2 2 0 010-3.464V4a1 1 0 011-1z" />
+                </svg>
+                    <span class="ml-4">{{ __('Company Settings') }}</span>
+                </a>
+            </li>
+            <li class="relative px-6 py-3">
+                <a data-turbolinks-action="replace"
+                class="inline-flex items-center w-full text-sm dark:text-gray-400 text-gray-800 transition-colors duration-150 hover:text-gray-800
+                dark:hover:text-gray-200 "
+                href="{{route('system-settings.change-team')}}">
                 <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
                 </svg>
-                    <span class="ml-4">{{ __('Company Settings') }}</span>
+                    <span class="ml-4">{{ __('Change Company') }}</span>
                 </a>
             </li>
         @endif

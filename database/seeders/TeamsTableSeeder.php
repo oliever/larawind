@@ -18,7 +18,7 @@ class TeamsTableSeeder extends Seeder
             ],
             [
                 'id'             => 2,
-                'name'           => 'Company 1',
+                'name'           => 'AR Metals',
                 'user_id'        => 1,
                 'personal_team'  => 1,
             ],

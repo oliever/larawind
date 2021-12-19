@@ -1,7 +1,7 @@
 <div>
     <label class="flex items-center dark:text-gray-400">
 
-        <input type="checkbox" wire:model="selectArea.99" value="99" id="select-location_all" class="inline-block mr-2"/><label for="select-location_all">All Stores</label>
+        <input type="checkbox" wire:model="selectArea.99" value="99" id="select-location_all" class="inline-block mr-2"/><label for="select-location_all">All {{ Str::plural(t('kaizen_general','location'))}}</label>
 
     </label>
     <div class="flex flex-col mb-4" x-data="{show: false}">

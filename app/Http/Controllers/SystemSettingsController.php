@@ -34,4 +34,10 @@ class SystemSettingsController extends Controller
                 ]);
         }
     }
+
+    public function changeTeam(Request $request){
+        abort_if(auth()->user()->level != "super_admin", Response::HTTP_FORBIDDEN, '403 Forbidden');
+        $teams = Team::get();
+        return view('system-settings.change-team', compact('teams'));
+    }
 }

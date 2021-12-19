@@ -14,11 +14,16 @@
 
                     <div class="mx-auto">
                         <div x-show="activeTab===0">
-                            <h1 class="mt-6 text-2xl py-4 font-semibold text-gray-700 dark:text-gray-200">Field Labels</h1>
-                            <livewire:translations>
+                            <h1 class="mt-6 text-2xl py-4 font-semibold text-gray-700 dark:text-gray-200">Company Settings ({{auth()->user()->currentTeam->name}})</h1>
+                            <livewire:system-settings.company-settings>
                         </div>
                         <div x-show="activeTab===1">
-                            <h1 class="mt-6 text-2xl py-4 font-semibold text-gray-700 dark:text-gray-200">Other Settings</h1>
+                            <h1 class="mt-6 text-2xl py-4 font-semibold text-gray-700 dark:text-gray-200">Field Labels</h1>
+                            <livewire:system-settings.translations>
+                        </div>
+                        <div x-show="activeTab===2">
+                            <h1 class="mt-6 text-2xl py-4 font-semibold text-gray-700 dark:text-gray-200">Affected Areas</h1>
+                            <livewire:system-settings.affected-areas>
                         </div>
                     </div>
 
@@ -32,9 +37,9 @@
         return {
           activeTab: 0,
           tabs: [
+              "Company Settings ({{auth()->user()->currentTeam->name}})",
               "Field Labels",
-
-              "Other Settings",
+              "Affected Areas",
           ]
         };
       };
