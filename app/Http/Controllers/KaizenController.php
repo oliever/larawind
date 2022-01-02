@@ -109,9 +109,17 @@ class KaizenController extends Controller
         }
         $data['team_members'] = $selectedUsers;
 
+        $showCustomFields = false;
+        if( !empty($kaizen->custom_field_01) || !empty($kaizen->custom_field_02) || !empty($kaizen->custom_field_03) || !empty($kaizen->custom_field_04))
+            $showCustomFields = true;
+        $data['showCustomFields'] = $showCustomFields;
+        info($data['showCustomFields']);
+
         $pdf = App::make('dompdf.wrapper');
         $pdf->loadView('kaizen.pdf.nutters', $data);
         $format = '%s_%s_%s.pdf';
+
+
         return $pdf->stream(sprintf($format, $kaizen->id, $kaizen->name, $kaizen->posted_at));
     }
 

@@ -57,6 +57,14 @@ class CreateProjectsTable extends Migration
             $table->text('savings_actual')->nullable();
             $table->integer('savings_actual_validated_id')->nullable();
 
+            $table->text('custom_field_value_1')->nullable();
+            $table->text('custom_field_label_1')->nullable();
+            $table->text('custom_field_value_2')->nullable();
+            $table->text('custom_field_label_2')->nullable();
+            $table->text('custom_field_value_3')->nullable();
+            $table->text('custom_field_label_3')->nullable();
+            $table->text('custom_field_value_4')->nullable();
+            $table->text('custom_field_label_4')->nullable();
 
             $table->dateTime('posted', $precision = 0)->nullable();
             $table->softDeletes();

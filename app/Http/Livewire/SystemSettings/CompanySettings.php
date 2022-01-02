@@ -4,29 +4,32 @@ namespace App\Http\Livewire\SystemSettings;
 
 use Livewire\Component;
 use App\Models\Translation;
+use App\Models\SystemSetting;
 
 class CompanySettings extends Component
 {
     public $editedItemIndex = null;
     public $editedItemField = null;
-    public $translations = [];
     public $team = null;
+    public $customSectionPositionKaizen = null;
+    public $customSectionPositionProject = null;
 
     protected $rules = [
         'team.name' => 'required|min:5',
-        'translations.*.value' => ['required'],
+        'customSectionPositionKaizen.value' => 'required|min:5',
+        'customSectionPositionProject.value' => 'required|min:5',
     ];
 
     protected $validationAttributes = [
-        'translations.*.value' => 'Field Label',
     ];
 
     public function mount(){
-        $this->translations = Translation::where('team_id',auth()->user()->currentTeam->id)->get()->toArray();
+        $this->systemSettings = SystemSetting::where('team_id',auth()->user()->currentTeam->id)->get()->toArray();
+        $this->customSectionPositionKaizen = SystemSetting::where(['team_id'=>auth()->user()->currentTeam->id, 'code'=>'custom_section_position_kaizen'])->first();
+        $this->customSectionPositionProject = SystemSetting::where(['team_id'=>auth()->user()->currentTeam->id, 'code'=>'custom_section_position_project'])->first();
         $this->team = auth()->user()->currentTeam;
     }
-    public function render()
-    {
+    public function render(){
         return view('livewire.system-settings.company-settings');
     }
 
@@ -34,6 +37,8 @@ class CompanySettings extends Component
     {
         $this->validate();
         $this->team->save();
+        $this->customSectionPositionKaizen->save();
+        $this->customSectionPositionProject->save();
         session()->flash('success', ['title'=>'Company settings saved.' , 'subtitle'=>'']);
 
         $this->emit('saved');//to display action message
@@ -49,15 +54,5 @@ class CompanySettings extends Component
         $this->editedItemField = $productIndex . '.' . $fieldName;
     }
 
-    public function saveItem($itemIndex)
-    {
-        $this->validate();
 
-        $item = $this->translations[$itemIndex] ?? NULL;
-        if (!is_null($item)) {
-            optional(Translation::find($item['id']))->update($item);
-        }
-        $this->editedItemIndex = null;
-        $this->editedItemField = null;
-    }
 }

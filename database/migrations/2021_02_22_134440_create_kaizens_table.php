@@ -56,6 +56,15 @@ class CreateKaizensTable extends Migration
             $table->foreignId('approving_employee_id')->nullable()->index();
             $table->longText('benefits')->nullable();
 
+            $table->text('custom_field_01')->nullable();
+            $table->text('custom_field_01_label')->nullable();
+            $table->text('custom_field_02')->nullable();
+            $table->text('custom_field_02_label')->nullable();
+            $table->text('custom_field_03')->nullable();
+            $table->text('custom_field_03_label')->nullable();
+            $table->text('custom_field_04')->nullable();
+            $table->text('custom_field_04_label')->nullable();
+
             $table->softDeletes();
             $table->timestamps();
         });

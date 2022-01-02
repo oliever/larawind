@@ -119,8 +119,29 @@
                 <td  colspan="4" style="padding-bottom: 20px;">{{$kaizen->head_office_comment}}</td>
             </tr>
         @endif
+
+        @if ( settingsValue('custom_section_position_kaizen') == "before_reason" &&  $showCustomFields )
+            <tr>
+                <td colspan="2" class="input-header">{{$kaizen->custom_field_01_label}}</td>
+                <td colspan="2" class="input-header">{{$kaizen->custom_field_02_label}}</td>
+            </tr>
+            <tr>
+                <td  colspan="2">{{$kaizen->custom_field_01}}</td><td  colspan="2">{{$kaizen->custom_field_02}}</td>
+            </tr>
+            <tr>
+                <td colspan="2" class="input-header">{{$kaizen->custom_field_03_label}}</td>
+                <td colspan="2" class="input-header">{{$kaizen->custom_field_04_label}}</td>
+            </tr>
+            <tr>
+                <td  colspan="2">{{$kaizen->custom_field_03}}</td><td  colspan="2">{{$kaizen->custom_field_04}}</td>
+            </tr>
+            <tr>
+                <td><br/></td>
+            </tr>
+        @endif
+
         <tr>
-            <td colspan="2" class="input-header">Reason For kaizen</td>
+            <td colspan="2" class="input-header">Reason For kaizen </td>
             <td colspan="2" class="input-header">Problem</td>
         </tr>
         <tr>
@@ -139,6 +160,27 @@
         <tr>
             <td  colspan="4" style="padding-bottom: 20px;">{{$kaizen->expected_result}}</td>
         </tr>
+
+        @if ( settingsValue('custom_section_position_kaizen') == "after_reason" &&  $showCustomFields )
+            <tr>
+                <td><br/></td>
+            </tr>
+            <tr>
+                <td colspan="2" class="input-header">{{$kaizen->custom_field_01_label}}</td>
+                <td colspan="2" class="input-header">{{$kaizen->custom_field_02_label}}</td>
+            </tr>
+            <tr>
+                <td  colspan="2">{{$kaizen->custom_field_01}}</td><td  colspan="2">{{$kaizen->custom_field_02}}</td>
+            </tr>
+            <tr>
+                <td colspan="2" class="input-header">{{$kaizen->custom_field_03_label}}</td>
+                <td colspan="2" class="input-header">{{$kaizen->custom_field_04_label}}</td>
+            </tr>
+            <tr>
+                <td  colspan="2">{{$kaizen->custom_field_03}}</td><td  colspan="2">{{$kaizen->custom_field_04}}</td>
+            </tr>
+        @endif
+
 
     </table>
     @if (!$kaizen->before_after)
