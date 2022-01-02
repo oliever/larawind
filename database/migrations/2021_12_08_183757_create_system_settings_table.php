@@ -16,10 +16,9 @@ class CreateSystemSettingsTable extends Migration
         Schema::create('system_settings', function (Blueprint $table) {
             $table->id();
             $table->integer('team_id');
-            $table->string('code', 30);
-            $table->string('section', 30)->default("general");
+            $table->string('code', 50);
             $table->text('value')->nullable();
-            $table->text('alt')->nullable();
+            $table->text('value_2')->nullable();
             $table->timestamps();
         });
     }

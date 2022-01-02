@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\SystemSetting;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 
@@ -18,7 +19,9 @@ class SystemSettingsController extends Controller
         abort_if(auth()->user()->level != "super_admin", Response::HTTP_FORBIDDEN, '403 Forbidden');
         $this->seedTranslations();
         $translations = Translation::where('team_id',auth()->user()->currentTeam->id)->get()->toArray();
-        return view('system-settings.index', compact('translations'));
+        $systemSettings = SystemSetting::where('team_id',auth()->user()->currentTeam->id)->get()->toArray();
+        info($systemSettings);
+        return view('system-settings.index', compact('translations','systemSettings'));
     }
 
     private function seedTranslations(){

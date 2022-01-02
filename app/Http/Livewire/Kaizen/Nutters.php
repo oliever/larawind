@@ -71,6 +71,11 @@ class Nutters extends Component
         'kaizen.validating_employee_id' => '',
         'kaizen.approving_employee_id' => '',
 
+        'kaizen.custom_field_01' => '',
+        'kaizen.custom_field_02' => '',
+        'kaizen.custom_field_03' => '',
+        'kaizen.custom_field_04' => '',
+
     ];
 
     public function mount($employee = null, Kaizen $kaizen = null)
@@ -188,9 +193,10 @@ class Nutters extends Component
         $this->kaizen->just_do_it = $this->isJustDoIt;
         $this->kaizen->team_id = auth()->user()->currentTeam->id;
         $this->kaizen->user_id =  auth()->user()->id;
-        if(auth()->user()->shared){
+        /* if(auth()->user()->shared){
             $this->kaizen->employee_id = $this->employee->id;
-        }
+        } */
+        $this->kaizen->employee_id = $this->employee->id;
 
         $this->kaizen->head_office_input = $this->kaizen->head_office_input ? true : false;
         $this->kaizen->handled_at_location = $this->kaizen->handled_at_location ? true : false;
@@ -211,8 +217,10 @@ class Nutters extends Component
         $this->validate();
 
         // Execution doesn't reach here if validation fails.
-
-
+        $this->kaizen->custom_field_01_label = t('kaizen_custom_field','custom_field_01');
+        $this->kaizen->custom_field_02_label = t('kaizen_custom_field','custom_field_02');
+        $this->kaizen->custom_field_03_label = t('kaizen_custom_field','custom_field_03');
+        $this->kaizen->custom_field_04_label = t('kaizen_custom_field','custom_field_04');
 
         if($asProject)
             $this->kaizen->posted = Carbon::now();
@@ -245,7 +253,8 @@ class Nutters extends Component
 
        //return redirect()->to('/kaizen/' . $this->kaizen->id);
 
-       auth()->user()->notify(new KaizenCreated($this->kaizen));
+       //auth()->user()->notify(new KaizenCreated($this->kaizen));
+       $this->emit('saved');//to display action message
     }
 
     public function approve(){

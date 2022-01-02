@@ -18,7 +18,7 @@ class UsersTableSeeder extends Seeder
                 'remember_token' => null,
                 'current_team_id'=> 1,
                 'location_locked'=> 999,
-                'shared'         => false,
+                'shared'         => true,
             ],
             [
                 'name'           => 'Paul Ogden',

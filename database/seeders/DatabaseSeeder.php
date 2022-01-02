@@ -16,6 +16,7 @@ class DatabaseSeeder extends Seeder
         // User::factory(10)->create();
         //Team::factory(2)->create();
         $this->call([
+            SystemSettingSeeder::class,
             TranslationSeeder::class,
             UsersTableSeeder::class,
             RolesTableSeeder::class,

@@ -20,7 +20,7 @@ class Translations extends Component
     ];
 
     public function mount(){
-        $this->translations = Translation::where('team_id',auth()->user()->currentTeam->id)->get()->toArray();
+        $this->translations = Translation::where('team_id',auth()->user()->currentTeam->id)->orderBy('created_at')->get()->toArray();
     }
     public function render()
     {
