@@ -133,7 +133,7 @@ class Nutters extends Component
                 if(auth()->user()->level == "headoffice_admin")
                     $this->canApprove = true;
             }else if($this->kaizen->just_do_it){
-                if(auth()->user()->level == "store_manager")
+                if(auth()->user()->level == "location_manager")
                     $this->canApprove = true;
             }
 
@@ -147,7 +147,7 @@ class Nutters extends Component
             $this->protected = false;
 
         //check if manager
-        if(auth()->user()->level == "store_manager")
+        if(auth()->user()->level == "location_manager")
             $this->protected = false;
 
         //check employee selected is the creator

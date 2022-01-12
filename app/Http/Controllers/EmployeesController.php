@@ -19,6 +19,7 @@ class EmployeesController extends Controller
         //abort_if(Gate::denies('user_access'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
         //$employees = null;//auth()->user()->employees()->get();
+        $locations = Location::with('employees')->where('team_id',auth()->user()->currentTeam->id)->get();
 
         return view('employees.index');
     }
@@ -78,11 +79,11 @@ class EmployeesController extends Controller
     public function selectList(Request $request){
 
         $locationLocked = Location::where('id', auth()->user()->location_locked)->first();
-        if(auth()->user()->level == "store_manager"){
+        if(auth()->user()->level == "location_manager"){
 
             $managers = [];
-            if(auth()->user()->level == "store_manager")
-                $managers = Employee::where(['location_id'=>auth()->user()->location_locked, 'level'=>'store_manager'])->get();
+            if(auth()->user()->level == "location_manager")
+                $managers = Employee::where(['location_id'=>auth()->user()->location_locked, 'level'=>'location_manager'])->get();
             if(auth()->user()->level == "headoffice_manager")
                 $managers = Employee::where(['location_id'=>auth()->user()->location_locked, 'level'=>'headoffice_manager'])->get();
             if(count($managers)>0){

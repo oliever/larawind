@@ -27,3 +27,11 @@ class Employee extends Model
 
 
 }
+
+abstract class EmployeeLevels
+{
+    const headoffice_admin = "headoffice_admin";
+    const headoffice_staff = "headoffice_staff";
+    const location_manager = "location_manager";
+    const location_staff = "location_staff";
+}

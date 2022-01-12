@@ -40,7 +40,7 @@
                                 <label for="level" class="block font-medium text-sm text-gray-700">Employee Level</label>
                                 <select name="level" id="level" class="form-multiselect block rounded-md shadow-sm mt-1 block w-full">
                                     <option value="location_staff">Store Staff</option>
-                                    {{-- <option value="store_manager">Store Manager</option> --}}
+                                    {{-- <option value="location_manager">Store Manager</option> --}}
                                 </select>
                                 @error('level')
                                     <p class="text-sm text-red-600">{{ $message }}</p>
