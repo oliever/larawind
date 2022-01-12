@@ -2,6 +2,13 @@
     {{-- <div class="mb-4 px-4 py-3 leading-normal text-blue-700 bg-blue-100 rounded-lg" role="alert">
         Click "Edit", modify that line data and click "Save".
     </div> --}}
+    <select name="" id="" wire:model="selectedLocation">
+        @foreach ($locations as $location)
+            <option value="{{ $location->id }}">{{ $location->name }}</option>
+        @endforeach
+
+    </select>
+
     <table class="w-full whitespace-no-wrap">
         <thead>
         <tr class="text-xs font-semibold tracking-wide text-left text-gray-500 uppercase border-b dark:border-gray-700 bg-gray-50 dark:text-gray-400 dark:bg-gray-800">
@@ -32,9 +39,8 @@
                 <td class="px-4 py-3" style="max-width: 100px">
                     @if ($editedEmployeeIndex === $index || $editedEmployeeField === $index . '.name')
                         <input type="text"
-                               @click.away="$wire.editedEmployeeField === '{{ $index }}.name' ? $wire.saveEmployee({{ $index }}) : null"
-                               wire:model.defer="employees.{{ $index }}.name"
-                               class="mt-2 text-sm sm:text-base pl-2 pr-4 rounded-lg border w-full py-2 focus:outline-none focus:border-blue-400 {{ $errors->has('employees.' . $index . '.name') ? 'border-red-500' : 'border-gray-400' }}"
+                            @click.away="$wire.editedEmployeeField === '{{ $index }}.name' ? $wire.saveEmployee({{ $index }}) : null"
+                            wire:model.defer="employees.{{ $index }}.name" class="mt-2 text-sm sm:text-base pl-2 pr-4 rounded-lg border w-full py-2 focus:outline-none focus:border-blue-400 {{ $errors->has('employees.' . $index . '.name') ? 'border-red-500' : 'border-gray-400' }}"
                         />
                         @if ($errors->has('employees.' . $index . '.name'))
                             <div class="text-red-500">{{ $errors->first('employees.' . $index . '.name') }}</div>
@@ -64,7 +70,7 @@
                             Super Admin
                         @elseif ($employee['level'] == 'location_staff')
                             Store Staff
-                        @elseif ($employee['level'] == 'store_manager')
+                        @elseif ($employee['level'] == 'location_manager')
                             Store Manager
                         @elseif ($employee['level'] == 'headoffice_staff')
                             Headoffice Staff

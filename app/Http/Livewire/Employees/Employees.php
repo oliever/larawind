@@ -3,6 +3,7 @@
 namespace App\Http\Livewire\Employees;
 
 use App\Models\Employee;
+use App\Models\Location;
 use Livewire\Component;
 
 class Employees extends Component
@@ -10,6 +11,8 @@ class Employees extends Component
     public $editedEmployeeIndex = null;
     public $editedEmployeeField = null;
     public $employees = [];
+    public $locations = [];
+    public $selectedLocation = null;
 
     public $designTemplate = 'tailwind';
 
@@ -20,6 +23,7 @@ class Employees extends Component
         'employees.*.name' => ['required'],
         'employees.*.status' => ['required'],
         'employees.*.level' => ['required'],
+        'selectedLocation' => [],
     ];
 
     protected $validationAttributes = [
@@ -29,14 +33,21 @@ class Employees extends Component
 
     public function mount()
     {
-        if(auth()->user()->level == "headoffice_manager")
+        $this->locations = Location::where('team_id',auth()->user()->currentTeam->id)->get();
+        $this->selectedLocation = $this->locations[0]->id;
+        info($this->selectedLocation);
+        $this->employees = Employee::where('location_id', $this->selectedLocation)->get();
+
+       /*  if(auth()->user()->level == "headoffice_manager")
         $this->employees = Employee::with('location')->get();
         else
-        $this->employees = auth()->user()->employees()->with('location')->get();//  Employee::where('location_id', auth()->user()->location_locked)->get()->toArray();
+        $this->employees = auth()->user()->employees()->with('location')->get();//  Employee::where('location_id', auth()->user()->location_locked)->get()->toArray(); */
     }
 
     public function render()
     {
+        info($this->selectedLocation);
+        $this->employees = Employee::where('location_id', $this->selectedLocation)->get();
         return view('livewire.employees.employees', [
             'employees' => $this->employees
         ]);
