@@ -66,7 +66,7 @@ class EmployeeSeeder extends Seeder
 
             //Regular stores
             //Medicine Hat
-            ['location_id'=>'1','name'           => preg_replace('!\s+!', ' ', (ucwords(strtolower("CHRISTINA DAWN MILLS")))),'level' => 'store_manager'],/*  */
+            ['location_id'=>'1','name'           => preg_replace('!\s+!', ' ', (ucwords(strtolower("CHRISTINA DAWN MILLS")))),'level' => 'location_manager'],/*  */
             ['location_id'=>'1','name'           => preg_replace('!\s+!', ' ', (ucwords(strtolower("JENNIFER MCKENZIE")))),'level' => 'location_staff'],
             ['location_id'=>'1','name'           => preg_replace('!\s+!', ' ', (ucwords(strtolower("MICHELLE CRESSMAN")))),'level' => 'location_staff'],
             ['location_id'=>'1','name'           => preg_replace('!\s+!', ' ', (ucwords(strtolower("BERNICE	PEACOCK")))),'level' => 'location_staff'],
@@ -87,7 +87,7 @@ class EmployeeSeeder extends Seeder
             ['location_id'=>'1','name'           => preg_replace('!\s+!', ' ', (ucwords(strtolower("CHARLI	DAVIDSON")))),'level' => 'location_staff'],
 
             //Red Deer
-            ['location_id'=>'3','name'           => preg_replace('!\s+!', ' ', (ucwords(strtolower("CARLA 	MACKENZIE")))),'level' => 'store_manager'],/*  */
+            ['location_id'=>'3','name'           => preg_replace('!\s+!', ' ', (ucwords(strtolower("CARLA 	MACKENZIE")))),'level' => 'location_manager'],/*  */
             ['location_id'=>'3','name'           => preg_replace('!\s+!', ' ', (ucwords(strtolower("AMBER 	LAVOIE")))),'level' => 'location_staff'],
             ['location_id'=>'3','name'           => preg_replace('!\s+!', ' ', (ucwords(strtolower("DIANE 	ERICHSEN")))),'level' => 'location_staff'],
             ['location_id'=>'3','name'           => preg_replace('!\s+!', ' ', (ucwords(strtolower("CHRISTINE 	BARNES")))),'level' => 'location_staff'],
@@ -105,7 +105,7 @@ class EmployeeSeeder extends Seeder
             ['location_id'=>'3','name'           => preg_replace('!\s+!', ' ', (ucwords(strtolower("SHAUN	KUHL")))),'level' => 'location_staff'],
 
             //Camrose
-            ['location_id'=>'45','name'           => preg_replace('!\s+!', ' ', (ucwords(strtolower("JODY 	MCDOUGALL")))),'level' => 'store_manager'],/*  */
+            ['location_id'=>'45','name'           => preg_replace('!\s+!', ' ', (ucwords(strtolower("JODY 	MCDOUGALL")))),'level' => 'location_manager'],/*  */
             ['location_id'=>'45','name'           => preg_replace('!\s+!', ' ', (ucwords(strtolower("SHELBY 	BIANIC")))),'level' => 'location_staff'],
             ['location_id'=>'45','name'           => preg_replace('!\s+!', ' ', (ucwords(strtolower("YVONNE 	ROBINSON")))),'level' => 'location_staff'],
             ['location_id'=>'45','name'           => preg_replace('!\s+!', ' ', (ucwords(strtolower("LEANNE SUSAN	WALTER")))),'level' => 'location_staff'],
@@ -114,7 +114,7 @@ class EmployeeSeeder extends Seeder
             ['location_id'=>'45','name'           => preg_replace('!\s+!', ' ', (ucwords(strtolower("Nola	Smith")))),'level' => 'location_staff'],
 
             //Canmore
-            ['location_id'=>'44','name'           => preg_replace('!\s+!', ' ', (ucwords(strtolower("ANNETTE 	BRONSCH")))),'level' => 'store_manager'],/*  */
+            ['location_id'=>'44','name'           => preg_replace('!\s+!', ' ', (ucwords(strtolower("ANNETTE 	BRONSCH")))),'level' => 'location_manager'],/*  */
             ['location_id'=>'44','name'           => preg_replace('!\s+!', ' ', (ucwords(strtolower("DANIEL	FITZPATRICK")))),'level' => 'location_staff'],
             ['location_id'=>'44','name'           => preg_replace('!\s+!', ' ', (ucwords(strtolower("CONSTANZA 	COFRE ESPINOZA")))),'level' => 'location_staff'],
             ['location_id'=>'44','name'           => preg_replace('!\s+!', ' ', (ucwords(strtolower("JARED 	SKIRROW")))),'level' => 'location_staff'],
@@ -128,7 +128,7 @@ class EmployeeSeeder extends Seeder
             ['location_id'=>'44','name'           => preg_replace('!\s+!', ' ', (ucwords(strtolower("MAYA 	SESHIA")))),'level' => 'location_staff'],
 
             //Moose Jaw
-            ['location_id'=>'5','name'           => preg_replace('!\s+!', ' ', (ucwords(strtolower("JEROME 	KOEBEL")))),'level' => 'store_manager'],/*  */
+            ['location_id'=>'5','name'           => preg_replace('!\s+!', ' ', (ucwords(strtolower("JEROME 	KOEBEL")))),'level' => 'location_manager'],/*  */
             ['location_id'=>'5','name'           => preg_replace('!\s+!', ' ', (ucwords(strtolower("MARLENE 	MOULD")))),'level' => 'location_staff'],
             ['location_id'=>'5','name'           => preg_replace('!\s+!', ' ', (ucwords(strtolower("YSALINE	DEPLASSE")))),'level' => 'location_staff'],
             ['location_id'=>'5','name'           => preg_replace('!\s+!', ' ', (ucwords(strtolower("JENNA 	DAVY")))),'level' => 'location_staff'],
@@ -136,7 +136,7 @@ class EmployeeSeeder extends Seeder
             ['location_id'=>'5','name'           => preg_replace('!\s+!', ' ', (ucwords(strtolower("ELIJAH	NICHVALODOFF")))),'level' => 'location_staff'],
 
             //Swift Current
-            ['location_id'=>'47','name'           => preg_replace('!\s+!', ' ', (ucwords(strtolower("BECKY 	THEISE")))),'level' => 'store_manager'],/*  */
+            ['location_id'=>'47','name'           => preg_replace('!\s+!', ' ', (ucwords(strtolower("BECKY 	THEISE")))),'level' => 'location_manager'],/*  */
             ['location_id'=>'47','name'           => preg_replace('!\s+!', ' ', (ucwords(strtolower("MARIAH 	PENNER")))),'level' => 'location_staff'],
             ['location_id'=>'47','name'           => preg_replace('!\s+!', ' ', (ucwords(strtolower("TANIA 	ZACHARIAS")))),'level' => 'location_staff'],
             ['location_id'=>'47','name'           => preg_replace('!\s+!', ' ', (ucwords(strtolower("BARBARA	McCUAIG")))),'level' => 'location_staff'],
@@ -145,7 +145,7 @@ class EmployeeSeeder extends Seeder
             ['location_id'=>'47','name'           => preg_replace('!\s+!', ' ', (ucwords(strtolower("HALEY	FORFAR")))),'level' => 'location_staff'],
 
             //Saskatoon
-            ['location_id'=>'48','name'           => preg_replace('!\s+!', ' ', (ucwords(strtolower("MONTANA	KYLIUK")))),'level' => 'store_manager'],/*  */
+            ['location_id'=>'48','name'           => preg_replace('!\s+!', ' ', (ucwords(strtolower("MONTANA	KYLIUK")))),'level' => 'location_manager'],/*  */
             ['location_id'=>'48','name'           => preg_replace('!\s+!', ' ', (ucwords(strtolower("HAILEY 	LAFFERTY")))),'level' => 'location_staff'],
             ['location_id'=>'48','name'           => preg_replace('!\s+!', ' ', (ucwords(strtolower("JENNIFER 	LENHART")))),'level' => 'location_staff'],
             ['location_id'=>'48','name'           => preg_replace('!\s+!', ' ', (ucwords(strtolower("Leah 	Haas")))),'level' => 'location_staff'],
@@ -153,7 +153,7 @@ class EmployeeSeeder extends Seeder
             ['location_id'=>'48','name'           => preg_replace('!\s+!', ' ', (ucwords(strtolower("RENAE 	BROOMAN")))),'level' => 'location_staff'],
 
             //Okotoks
-            ['location_id'=>'38','name'           => preg_replace('!\s+!', ' ', (ucwords(strtolower("CARLEENA 	YATES")))),'level' => 'store_manager'],/*  */
+            ['location_id'=>'38','name'           => preg_replace('!\s+!', ' ', (ucwords(strtolower("CARLEENA 	YATES")))),'level' => 'location_manager'],/*  */
             ['location_id'=>'38','name'           => preg_replace('!\s+!', ' ', (ucwords(strtolower("ALISON 	REYNOLDS")))),'level' => 'location_staff'],
             ['location_id'=>'38','name'           => preg_replace('!\s+!', ' ', (ucwords(strtolower("Nicole Dawn	Toren")))),'level' => 'location_staff'],
             ['location_id'=>'38','name'           => preg_replace('!\s+!', ' ', (ucwords(strtolower("LAURA 	PATON")))),'level' => 'location_staff'],
@@ -166,7 +166,7 @@ class EmployeeSeeder extends Seeder
             ['location_id'=>'38','name'           => preg_replace('!\s+!', ' ', (ucwords(strtolower("CATHIE	WINTER")))),'level' => 'location_staff'],
 
             //Jasper
-            ['location_id'=>'28','name'           => preg_replace('!\s+!', ' ', (ucwords(strtolower("JONATHAN	BOWLEY")))),'level' => 'store_manager'],/*  */
+            ['location_id'=>'28','name'           => preg_replace('!\s+!', ' ', (ucwords(strtolower("JONATHAN	BOWLEY")))),'level' => 'location_manager'],/*  */
             ['location_id'=>'28','name'           => preg_replace('!\s+!', ' ', (ucwords(strtolower("ALETHEIA 	CHACONAS")))),'level' => 'location_staff'],
             ['location_id'=>'28','name'           => preg_replace('!\s+!', ' ', (ucwords(strtolower("RIKKE 	LIISBERG-LARSEN")))),'level' => 'location_staff'],
             ['location_id'=>'28','name'           => preg_replace('!\s+!', ' ', (ucwords(strtolower("SAGE 	DUGUAY")))),'level' => 'location_staff'],
@@ -175,7 +175,7 @@ class EmployeeSeeder extends Seeder
             ['location_id'=>'28','name'           => preg_replace('!\s+!', ' ', (ucwords(strtolower("JASON	PATIENCE")))),'level' => 'location_staff'],
 
             //Lloydminster
-            ['location_id'=>'10','name'           => preg_replace('!\s+!', ' ', (ucwords(strtolower("VANESSA 	PALABRICA")))),'level' => 'store_manager'],/*  */
+            ['location_id'=>'10','name'           => preg_replace('!\s+!', ' ', (ucwords(strtolower("VANESSA 	PALABRICA")))),'level' => 'location_manager'],/*  */
             ['location_id'=>'10','name'           => preg_replace('!\s+!', ' ', (ucwords(strtolower("RANDALL 	SMITH")))),'level' => 'location_staff'],
             ['location_id'=>'10','name'           => preg_replace('!\s+!', ' ', (ucwords(strtolower("MINEKO 	STRUEBY")))),'level' => 'location_staff'],
             ['location_id'=>'10','name'           => preg_replace('!\s+!', ' ', (ucwords(strtolower("MARNIE 	SOUTER")))),'level' => 'location_staff'],
@@ -184,7 +184,7 @@ class EmployeeSeeder extends Seeder
             ['location_id'=>'10','name'           => preg_replace('!\s+!', ' ', (ucwords(strtolower("AMROELEN 	HERRERA")))),'level' => 'location_staff'],
 
             //Airdrie
-            ['location_id'=>'50','name'           => preg_replace('!\s+!', ' ', (ucwords(strtolower("EDDIE 	GANUELAS")))),'level' => 'store_manager'],/*  */
+            ['location_id'=>'50','name'           => preg_replace('!\s+!', ' ', (ucwords(strtolower("EDDIE 	GANUELAS")))),'level' => 'location_manager'],/*  */
             ['location_id'=>'50','name'           => preg_replace('!\s+!', ' ', (ucwords(strtolower("SHELLEY	JOHNSON")))),'level' => 'location_staff'],
             ['location_id'=>'50','name'           => preg_replace('!\s+!', ' ', (ucwords(strtolower("CHRISTOPHER 	JORGENSEN")))),'level' => 'location_staff'],
             ['location_id'=>'50','name'           => preg_replace('!\s+!', ' ', (ucwords(strtolower("Chandra 	Baeuchle")))),'level' => 'location_staff'],
@@ -194,7 +194,7 @@ class EmployeeSeeder extends Seeder
             ['location_id'=>'50','name'           => preg_replace('!\s+!', ' ', (ucwords(strtolower("HOLLY 	REDDIN")))),'level' => 'location_staff'],
 
             //Lethbridge
-            ['location_id'=>'6','name'           => preg_replace('!\s+!', ' ', (ucwords(strtolower("DAN 	MCINTYRE")))),'level' => 'store_manager'],/*  */
+            ['location_id'=>'6','name'           => preg_replace('!\s+!', ' ', (ucwords(strtolower("DAN 	MCINTYRE")))),'level' => 'location_manager'],/*  */
             ['location_id'=>'6','name'           => preg_replace('!\s+!', ' ', (ucwords(strtolower("FRANCES	POPE")))),'level' => 'location_staff'],
             ['location_id'=>'6','name'           => preg_replace('!\s+!', ' ', (ucwords(strtolower("HEATHER 	STRAIN")))),'level' => 'location_staff'],
             ['location_id'=>'6','name'           => preg_replace('!\s+!', ' ', (ucwords(strtolower("HAIDI 	NAVARRO")))),'level' => 'location_staff'],
@@ -209,72 +209,70 @@ class EmployeeSeeder extends Seeder
         ];
         Employee::insert($nutters_location_staff);
 
-        $armetals_headoffice_staff = [
-            ['location_id'=>'100','name'           => "Gedam G. Adhanom",'level' => 'headoffice_staff'],
-            ['location_id'=>'100','name'           => "Dawoud Salih Ahmeddin",'level' => 'headoffice_staff'],
-            ['location_id'=>'100','name'           => "Darshan Singh Bath",'level' => 'headoffice_staff'],
-            ['location_id'=>'100','name'           => "Arnel Caelian",'level' => 'headoffice_staff'],
-            ['location_id'=>'100','name'           => "Patrick Caelian",'level' => 'headoffice_staff'],
-            ['location_id'=>'100','name'           => "Reyan S Comporal",'level' => 'headoffice_staff'],
-            ['location_id'=>'100','name'           => "Christian Sanchez Degamo",'level' => 'headoffice_staff'],
-            ['location_id'=>'100','name'           => "Hardev S. Dhillon",'level' => 'headoffice_staff'],
-            ['location_id'=>'100','name'           => "Brad R. Doherty",'level' => 'headoffice_staff'],
-            ['location_id'=>'100','name'           => "Vinh Tan Duong",'level' => 'headoffice_staff'],
-            ['location_id'=>'100','name'           => "Sherwin I Ferrer",'level' => 'headoffice_staff'],
-            ['location_id'=>'100','name'           => "Eduardo Segundo Gatica Ponce",'level' => 'headoffice_staff'],
-            ['location_id'=>'100','name'           => "Benjamin O. Guillemer",'level' => 'headoffice_staff'],
-            ['location_id'=>'100','name'           => "Dalal Hamid Habila",'level' => 'headoffice_staff'],
-            ['location_id'=>'100','name'           => "Hamed Turkai Hamed",'level' => 'headoffice_staff'],
-            ['location_id'=>'100','name'           => "Hai phuoc Huynh",'level' => 'headoffice_staff'],
-            ['location_id'=>'100','name'           => "Lut Huynh",'level' => 'headoffice_staff'],
-            ['location_id'=>'100','name'           => "Tam Huynh",'level' => 'headoffice_staff'],
-            ['location_id'=>'100','name'           => "Tam Xuan Huynh",'level' => 'headoffice_staff'],
-            ['location_id'=>'100','name'           => "Wilfredo Lopez Icmat",'level' => 'headoffice_staff'],
-            ['location_id'=>'100','name'           => "Amarjit Kalirai",'level' => 'headoffice_staff'],
-            ['location_id'=>'100','name'           => "Vipan Kumar",'level' => 'headoffice_staff'],
-            ['location_id'=>'100','name'           => "Viet Hung Le",'level' => 'headoffice_staff'],
-            ['location_id'=>'100','name'           => "Mark Leonard",'level' => 'headoffice_staff'],
-            ['location_id'=>'100','name'           => "Zhi Jian Kent Li",'level' => 'headoffice_staff'],
-            ['location_id'=>'100','name'           => "Greg Ssu-Ting Liu",'level' => 'headoffice_staff'],
-            ['location_id'=>'100','name'           => "Danny Lok",'level' => 'headoffice_staff'],
-            ['location_id'=>'100','name'           => "Andy Yan Ng",'level' => 'headoffice_staff'],
-            ['location_id'=>'100','name'           => "Cuong Van Ngo",'level' => 'headoffice_staff'],
-            ['location_id'=>'100','name'           => "Thanh Son Ngo",'level' => 'headoffice_staff'],
-            ['location_id'=>'100','name'           => "Huong Nguyen",'level' => 'headoffice_staff'],
-            ['location_id'=>'100','name'           => "Khang Nguyen",'level' => 'headoffice_staff'],
-            ['location_id'=>'100','name'           => "Quang Chi Nguyen",'level' => 'headoffice_staff'],
-            ['location_id'=>'100','name'           => "Thuan Phong Nguyen",'level' => 'headoffice_staff'],
-            ['location_id'=>'100','name'           => "Van Xin Nguyen",'level' => 'headoffice_staff'],
-            ['location_id'=>'100','name'           => "Thai Xuan Phan",'level' => 'headoffice_staff'],
-            ['location_id'=>'100','name'           => "Lixiong Qiu",'level' => 'headoffice_staff'],
-            ['location_id'=>'100','name'           => "Divyanshu Ratti",'level' => 'headoffice_staff'],
-            ['location_id'=>'100','name'           => "Thein Min Soe",'level' => 'headoffice_staff'],
-            ['location_id'=>'100','name'           => "Marvin Soliven",'level' => 'headoffice_staff'],
-            ['location_id'=>'100','name'           => "Sukhbinder S Toor",'level' => 'headoffice_staff'],
-            ['location_id'=>'100','name'           => "Quang Xuan Tran",'level' => 'headoffice_staff'],
-            ['location_id'=>'100','name'           => "Thanh V Tran",'level' => 'headoffice_staff'],
-            ['location_id'=>'100','name'           => "Dom Paulo Uyboco",'level' => 'headoffice_staff'],
-            ['location_id'=>'100','name'           => "Rene Ventura",'level' => 'headoffice_staff'],
-            ['location_id'=>'100','name'           => "Cuong Chi Vo",'level' => 'headoffice_staff'],
-            ['location_id'=>'100','name'           => "Brad Wilson",'level' => 'headoffice_staff'],
-            ['location_id'=>'100','name'           => "Ming Wu",'level' => 'headoffice_staff'],
-            ['location_id'=>'100','name'           => "Gecong Yang",'level' => 'headoffice_staff'],
-            ['location_id'=>'100','name'           => "Frank Colarossi",'level' => 'headoffice_staff'],
-            ['location_id'=>'100','name'           => "Rick Ghazaleh",'level' => 'headoffice_staff'],
-            ['location_id'=>'100','name'           => "Chun Yan Hu",'level' => 'headoffice_staff'],
-            ['location_id'=>'100','name'           => "Ruel M. Benigno",'level' => 'headoffice_staff'],
-            ['location_id'=>'100','name'           => "Satinder Brar",'level' => 'headoffice_staff'],
-            ['location_id'=>'100','name'           => "Randolph Singson",'level' => 'headoffice_staff'],
-            ['location_id'=>'100','name'           => "Mohammad Yama",'level' => 'headoffice_staff'],
-            ['location_id'=>'100','name'           => "Hui Ting Cherrie Li",'level' => 'headoffice_staff'],
-            ['location_id'=>'100','name'           => "Marguerite Bansard",'level' => 'headoffice_staff'],
-            ['location_id'=>'100','name'           => "Lalaine Arias",'level' => 'headoffice_staff'],
-            ['location_id'=>'100','name'           => "Jeison Eccel",'level' => 'headoffice_staff'],
-            ['location_id'=>'100','name'           => "Ramnik Chahal",'level' => 'headoffice_staff'],
+        $armetals_location_staff = [
+            ['location_id'=>'101','name'           => "Gedam G. Adhanom",'level' => 'location_staff'],
+            ['location_id'=>'101','name'           => "Dawoud Salih Ahmeddin",'level' => 'location_staff'],
+            ['location_id'=>'101','name'           => "Darshan Singh Bath",'level' => 'location_staff'],
+            ['location_id'=>'101','name'           => "Arnel Caelian",'level' => 'location_staff'],
+            ['location_id'=>'101','name'           => "Patrick Caelian",'level' => 'location_staff'],
+            ['location_id'=>'101','name'           => "Reyan S Comporal",'level' => 'location_staff'],
+            ['location_id'=>'101','name'           => "Christian Sanchez Degamo",'level' => 'location_staff'],
+            ['location_id'=>'101','name'           => "Hardev S. Dhillon",'level' => 'location_staff'],
+            ['location_id'=>'101','name'           => "Brad R. Doherty",'level' => 'location_staff'],
+            ['location_id'=>'101','name'           => "Vinh Tan Duong",'level' => 'location_staff'],
+            ['location_id'=>'101','name'           => "Sherwin I Ferrer",'level' => 'location_staff'],
+            ['location_id'=>'101','name'           => "Eduardo Segundo Gatica Ponce",'level' => 'location_staff'],
+            ['location_id'=>'101','name'           => "Benjamin O. Guillemer",'level' => 'location_staff'],
+            ['location_id'=>'101','name'           => "Dalal Hamid Habila",'level' => 'location_staff'],
+            ['location_id'=>'101','name'           => "Hamed Turkai Hamed",'level' => 'location_staff'],
+            ['location_id'=>'101','name'           => "Hai phuoc Huynh",'level' => 'location_staff'],
+            ['location_id'=>'101','name'           => "Lut Huynh",'level' => 'location_staff'],
+            ['location_id'=>'101','name'           => "Tam Huynh",'level' => 'location_staff'],
+            ['location_id'=>'101','name'           => "Tam Xuan Huynh",'level' => 'location_staff'],
+            ['location_id'=>'101','name'           => "Wilfredo Lopez Icmat",'level' => 'location_staff'],
+            ['location_id'=>'101','name'           => "Amarjit Kalirai",'level' => 'location_staff'],
+            ['location_id'=>'101','name'           => "Vipan Kumar",'level' => 'location_staff'],
+            ['location_id'=>'101','name'           => "Viet Hung Le",'level' => 'location_staff'],
+            ['location_id'=>'101','name'           => "Mark Leonard",'level' => 'location_staff'],
+            ['location_id'=>'101','name'           => "Zhi Jian Kent Li",'level' => 'location_staff'],
+            ['location_id'=>'101','name'           => "Greg Ssu-Ting Liu",'level' => 'location_staff'],
+            ['location_id'=>'101','name'           => "Danny Lok",'level' => 'location_staff'],
+            ['location_id'=>'101','name'           => "Andy Yan Ng",'level' => 'location_staff'],
+            ['location_id'=>'101','name'           => "Cuong Van Ngo",'level' => 'location_staff'],
+            ['location_id'=>'101','name'           => "Thanh Son Ngo",'level' => 'location_staff'],
+            ['location_id'=>'101','name'           => "Huong Nguyen",'level' => 'location_staff'],
+            ['location_id'=>'101','name'           => "Khang Nguyen",'level' => 'location_staff'],
+            ['location_id'=>'101','name'           => "Quang Chi Nguyen",'level' => 'location_staff'],
+            ['location_id'=>'101','name'           => "Thuan Phong Nguyen",'level' => 'location_staff'],
+            ['location_id'=>'101','name'           => "Van Xin Nguyen",'level' => 'location_staff'],
+            ['location_id'=>'101','name'           => "Thai Xuan Phan",'level' => 'location_staff'],
+            ['location_id'=>'101','name'           => "Lixiong Qiu",'level' => 'location_staff'],
+            ['location_id'=>'101','name'           => "Divyanshu Ratti",'level' => 'location_staff'],
+            ['location_id'=>'101','name'           => "Thein Min Soe",'level' => 'location_staff'],
+            ['location_id'=>'101','name'           => "Marvin Soliven",'level' => 'location_staff'],
+            ['location_id'=>'101','name'           => "Sukhbinder S Toor",'level' => 'location_staff'],
+            ['location_id'=>'101','name'           => "Quang Xuan Tran",'level' => 'location_staff'],
+            ['location_id'=>'101','name'           => "Thanh V Tran",'level' => 'location_staff'],
+            ['location_id'=>'101','name'           => "Dom Paulo Uyboco",'level' => 'location_staff'],
+            ['location_id'=>'101','name'           => "Rene Ventura",'level' => 'location_staff'],
+            ['location_id'=>'101','name'           => "Cuong Chi Vo",'level' => 'location_staff'],
+            ['location_id'=>'101','name'           => "Brad Wilson",'level' => 'location_staff'],
+            ['location_id'=>'101','name'           => "Ming Wu",'level' => 'location_staff'],
+            ['location_id'=>'101','name'           => "Gecong Yang",'level' => 'location_staff'],
+            ['location_id'=>'101','name'           => "Frank Colarossi",'level' => 'location_staff'],
+            ['location_id'=>'101','name'           => "Rick Ghazaleh",'level' => 'location_staff'],
+            ['location_id'=>'101','name'           => "Chun Yan Hu",'level' => 'location_staff'],
+            ['location_id'=>'101','name'           => "Ruel M. Benigno",'level' => 'location_staff'],
+            ['location_id'=>'101','name'           => "Satinder Brar",'level' => 'location_staff'],
+            ['location_id'=>'101','name'           => "Randolph Singson",'level' => 'location_staff'],
+            ['location_id'=>'101','name'           => "Mohammad Yama",'level' => 'location_staff'],
+            ['location_id'=>'101','name'           => "Hui Ting Cherrie Li",'level' => 'location_staff'],
+            ['location_id'=>'101','name'           => "Marguerite Bansard",'level' => 'location_staff'],
+            ['location_id'=>'101','name'           => "Lalaine Arias",'level' => 'location_staff'],
+            ['location_id'=>'101','name'           => "Jeison Eccel",'level' => 'location_staff'],
+            ['location_id'=>'101','name'           => "Ramnik Chahal",'level' => 'location_staff'],
 
         ];
-        Employee::insert($armetals_headoffice_staff);
-
-
+        Employee::insert($armetals_location_staff);
     }
 }
