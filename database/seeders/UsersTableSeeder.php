@@ -9,7 +9,7 @@ class UsersTableSeeder extends Seeder
 {
     public function run()
     {
-        $users = [
+        $nutters_headoffice_users = [
             [
                 'name'           => 'Manpreet Brar',
                 'email'          => 'manpreet@equicapita.com',
@@ -22,8 +22,8 @@ class UsersTableSeeder extends Seeder
             ],
             [
                 'name'           => 'Paul Ogden',
-                'email'          => 'pogden@nutters.comv',
-                'level'             => 'headoffice_admin',
+                'email'          => 'pogden@nutters.com',
+                'level'          => 'headoffice_admin',
                 'password'       => bcrypt('password'),
                 'remember_token' => null,
                 'current_team_id'=> 1,
@@ -33,7 +33,7 @@ class UsersTableSeeder extends Seeder
             [
                 'name'           => 'Brad Winsor',
                 'email'          => 'bwinsor@nutters.com',
-                'level'             => 'headoffice_admin',
+                'level'          => 'headoffice_admin',
                 'password'       => bcrypt('password'),
                 'remember_token' => null,
                 'current_team_id'=> 1,
@@ -70,11 +70,16 @@ class UsersTableSeeder extends Seeder
                 'location_locked'=> 999,
                 'shared'         => true,
             ],
+        ];
+        User::insert($nutters_headoffice_users);
+
+        $nutters_location_users = [
+
             /* Medhat */
             [
                 'name'           => 'Medicine Hat Manager',
                 'email'          => 'medicinehat.mgr@nutters.ca',
-                'level'             => 'store_manager',
+                'level'             => 'location_manager',
                 'password'       => bcrypt('password'),
                 'remember_token' => null,
                 'current_team_id'=> 1,
@@ -95,7 +100,7 @@ class UsersTableSeeder extends Seeder
             [
                 'name'           => 'Red Deer Manager',
                 'email'          => 'reddeer.mgr@nutters.ca',
-                'level'             => 'store_manager',
+                'level'             => 'location_manager',
                 'password'       => bcrypt('password'),
                 'remember_token' => null,
                 'current_team_id'=> 1,
@@ -116,7 +121,7 @@ class UsersTableSeeder extends Seeder
             [
                 'name'           => 'Moose Jaw Manager',
                 'email'          => 'moosejaw.mgr@nutters.ca',
-                'level'             => 'store_manager',
+                'level'             => 'location_manager',
                 'password'       => bcrypt('password'),
                 'remember_token' => null,
                 'current_team_id'=> 1,
@@ -137,7 +142,7 @@ class UsersTableSeeder extends Seeder
             [
                 'name'           => 'Lethbridge Manager',
                 'email'          => 'lethbridge.mgr@nutters.ca',
-                'level'             => 'store_manager',
+                'level'             => 'location_manager',
                 'password'       => bcrypt('password'),
                 'remember_token' => null,
                 'current_team_id'=> 1,
@@ -158,7 +163,7 @@ class UsersTableSeeder extends Seeder
             [
                 'name'           => 'Lloydminster Manager',
                 'email'          => 'lloydminster.mgr@nutters.ca',
-                'level'             => 'store_manager',
+                'level'             => 'location_manager',
                 'password'       => bcrypt('password'),
                 'remember_token' => null,
                 'current_team_id'=> 1,
@@ -179,7 +184,7 @@ class UsersTableSeeder extends Seeder
             [
                 'name'           => 'Jasper Manager',
                 'email'          => 'jasper.mgr@nutters.ca',
-                'level'             => 'store_manager',
+                'level'             => 'location_manager',
                 'password'       => bcrypt('password'),
                 'remember_token' => null,
                 'current_team_id'=> 1,
@@ -200,7 +205,7 @@ class UsersTableSeeder extends Seeder
             [
                 'name'           => 'Okotoks Manager',
                 'email'          => 'okotoks.mgr@nutters.ca',
-                'level'             => 'store_manager',
+                'level'             => 'location_manager',
                 'password'       => bcrypt('password'),
                 'remember_token' => null,
                 'current_team_id'=> 1,
@@ -221,7 +226,7 @@ class UsersTableSeeder extends Seeder
             [
                 'name'           => 'Canmore Manager',
                 'email'          => 'canmore.mgr@nutters.ca',
-                'level'             => 'store_manager',
+                'level'             => 'location_manager',
                 'password'       => bcrypt('password'),
                 'remember_token' => null,
                 'current_team_id'=> 1,
@@ -242,7 +247,7 @@ class UsersTableSeeder extends Seeder
             [
                 'name'           => 'Camrose Manager',
                 'email'          => 'camrose.mgr@nutters.ca',
-                'level'             => 'store_manager',
+                'level'             => 'location_manager',
                 'password'       => bcrypt('password'),
                 'remember_token' => null,
                 'current_team_id'=> 1,
@@ -263,7 +268,7 @@ class UsersTableSeeder extends Seeder
             [
                 'name'           => 'Swift Current Manager',
                 'email'          => 'swiftcurrent.mgr@nutters.ca',
-                'level'             => 'store_manager',
+                'level'             => 'location_manager',
                 'password'       => bcrypt('password'),
                 'remember_token' => null,
                 'current_team_id'=> 1,
@@ -284,7 +289,7 @@ class UsersTableSeeder extends Seeder
             [
                 'name'           => 'Saskatoon Manager',
                 'email'          => 'saskatoon.mgr@nutters.ca',
-                'level'             => 'store_manager',
+                'level'             => 'location_manager',
                 'password'       => bcrypt('password'),
                 'remember_token' => null,
                 'current_team_id'=> 1,
@@ -305,7 +310,7 @@ class UsersTableSeeder extends Seeder
             [
                 'name'           => 'Airdrie Manager',
                 'email'          => 'airdrie.mgr@nutters.ca',
-                'level'             => 'store_manager',
+                'level'             => 'location_manager',
                 'password'       => bcrypt('password'),
                 'remember_token' => null,
                 'current_team_id'=> 1,
@@ -325,8 +330,21 @@ class UsersTableSeeder extends Seeder
 
 
         ];
+        User::insert($nutters_location_users);
 
-        User::insert($users);
+        $ar_metals_location_users = [
+            [
+                'name'           => 'AR Metals Staff',
+                'email'          => 'staff@armetals.ca',
+                'level'          => 'location_staff',
+                'password'       => bcrypt('password'),
+                'remember_token' => null,
+                'current_team_id'=> 2,
+                'location_locked'=> 101,
+                'shared'         => true,
+            ],
+        ];
+        User::insert($ar_metals_location_users);
     }
 }
 
