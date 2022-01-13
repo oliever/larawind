@@ -24,6 +24,8 @@ class DatabaseSeeder extends Seeder
             PermissionsTableSeeder::class,
             PermissionRoleTableSeeder::class,
             RefAffectedAreasSeeder::class,
+            AffectedAreasSeeder::class,
+            DepartmentSeeder::class,
             RoleUserTableSeeder::class,
             TeamsTableSeeder::class,
             TeamUserSeeder::class,

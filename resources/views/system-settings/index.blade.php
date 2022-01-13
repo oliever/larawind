@@ -25,6 +25,10 @@
                             <h1 class="mt-6 text-2xl py-4 font-semibold text-gray-700 dark:text-gray-200">Affected Areas</h1>
                             <livewire:system-settings.affected-areas>
                         </div>
+                        <div x-show="activeTab===3">
+                            <h1 class="mt-6 text-2xl py-4 font-semibold text-gray-700 dark:text-gray-200">Departments</h1>
+                            <livewire:system-settings.manage-departments>
+                        </div>
                     </div>
 
                 </div>
@@ -40,6 +44,7 @@
               "Company Settings ({{auth()->user()->currentTeam->name}})",
               "Field Labels",
               "Affected Areas",
+              "Departments",
           ]
         };
       };

@@ -14,72 +14,36 @@ class DepartmentSeeder extends Seeder
      */
     public function run()
     {
-        $departments = [
+        $arMetalsDepartments = [
             [
-                'id'             => 2,
-                'name'           => '',
+                'team_id'        => 2,
+                'name'           => 'Administration',
             ],
             [
-                'id'             => 3,
-                'name'           => '',
+                'team_id'        => 2,
+                'name'           => 'General Production',
             ],
             [
-                'id'             => 4,
-                'name'           => '',
+                'team_id'        => 2,
+                'name'           => 'Maintenance',
             ],
             [
-                'id'             => 5,
-                'name'           => '',
+                'team_id'        => 2,
+                'name'           => 'Muffler Shields',
             ],
             [
-                'id'             => 7,
-                'name'           => '',
+                'team_id'        => 2,
+                'name'           => 'Polish',
             ],
             [
-                'id'             => 8,
-                'name'           => '',
+                'team_id'        => 2,
+                'name'           => 'Shipping',
             ],
             [
-                'id'             => 9,
-                'name'           => '',
-            ],
-            [
-                'id'             => 10,
-                'name'           => '',
-            ],
-            [
-                'id'             => 11,
-                'name'           => '',
-            ],
-            [
-                'id'             => 12,
-                'name'           => '',
-            ],
-            [
-                'id'             => 13,
-                'name'           => '',
-            ],
-            [
-                'id'             => 14,
-                'name'           => '',
-            ],
-            [
-                'id'             => 15,
-                'name'           => '',
-            ],
-            [
-                'id'             => 16,
-                'name'           => '',
-            ],
-            [
-                'id'             => 17,
-                'name'           => '',
-            ],
-            [
-                'id'             => 18,
-                'name'           => '',
+                'team_id'        => 2,
+                'name'           => 'Welders',
             ],
         ];
-        Department::insert($departments);
+        Department::insert($arMetalsDepartments);
     }
 }

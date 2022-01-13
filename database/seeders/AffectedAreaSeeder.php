@@ -3,11 +3,9 @@
 namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
-use Carbon\Carbon;
+use App\Models\AffectedArea;
 
-use App\Models\RefAffectedArea;
-
-class RefAffectedAreasSeeder extends Seeder
+class AffectedAreaSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -16,7 +14,7 @@ class RefAffectedAreasSeeder extends Seeder
      */
     public function run()
     {
-        $refAffectedAreas = [
+        $nuttersAffectedAreas = [
             [
                 'team_id'        => 1,
                 'name'           => 'People'
@@ -76,6 +74,27 @@ class RefAffectedAreasSeeder extends Seeder
 
         ];
 
-        RefAffectedArea::insert($refAffectedAreas);
+        AffectedArea::insert($nuttersAffectedAreas);
+
+        $arMetalsAffectedAreas = [
+            [
+                'team_id'        => 2,
+                'name'           => 'People'
+            ],
+            [
+                'team_id'        => 2,
+                'name'           => 'Safety'
+            ],
+            [
+                'team_id'        => 2,
+                'name'           => 'Cost/buying'
+            ],
+            [
+                'team_id'        => 2,
+                'name'           => 'Policy/Procedure'
+            ],
+        ];
+
+        AffectedArea::insert($arMetalsAffectedAreas);
     }
 }
