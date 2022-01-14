@@ -169,9 +169,11 @@
                     <span class="">&nbsp;</span>
                     <label class="block text-sm"><livewire:employees-checkbox :selectedEmployees="$members"> </label>
                 </div>
-                <div class="ml-8 mt-8" style="width: 250px;">
-                    <label class="block text-sm"><livewire:locations-checkbox :selectedLocations="$selectedLocations"></label>
-                </div>
+                @if (auth()->user()->currentTeam->id == 1)
+                    <div class="ml-8 mt-8" style="width: 250px;">
+                        <label class="block text-sm"><livewire:locations-checkbox :selectedLocations="$selectedLocations"></label>
+                    </div>
+                @endif
             </div>
         </div>
 

@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Kaizen;
 use App\Models\Employee;
-use App\Models\RefAffectedArea;
+use App\Models\AffectedArea;
 use App\Models\Photo;
 use App\Models\Location;
 use App\Models\User;
@@ -75,7 +75,7 @@ class KaizenController extends Controller
     public function pdf(Kaizen $kaizen)
     {
         $data['kaizen'] = $kaizen;
-        $data['affectedAreas'] = array_chunk(RefAffectedArea::where(['team_id'=>auth()->user()->currentTeam->id])->get()->toArray(),4);
+        $data['affectedAreas'] = array_chunk(AffectedArea::where(['team_id'=>auth()->user()->currentTeam->id])->get()->toArray(),4);
         $data['selectedAffectedAreas'] = array_fill_keys(explode(",", $kaizen->affected_areas),'checked');
 
         $data['mainPhotos']= [];

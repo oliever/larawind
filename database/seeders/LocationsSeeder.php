@@ -198,22 +198,22 @@ class LocationsSeeder extends Seeder
         Location::insert($nuttersLocations);
 
         $arMetalsLocations = [
-            /* [
+            [
                 'id'             => 100,
                 'team_id'        => 2,
                 'code'           => "100",
-                'name'           => 'AR Metals Admin Office',
+                'name'           => 'Administration',
                 'active'         => true,
                 'created_at'     => Carbon::now(),
                 'is_area'        => false,
                 'is_corporate'   => true,
                 'area_id'        => 199
-            ], */
+            ],
             [
                 'id'             => 101,
                 'team_id'        => 2,
                 'code'           => "101",
-                'name'           => 'AR Metals',
+                'name'           => 'Shop Floor',
                 'active'         => true,
                 'created_at'     => Carbon::now(),
                 'is_area'        => false,

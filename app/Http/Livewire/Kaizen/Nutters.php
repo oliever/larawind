@@ -13,7 +13,7 @@ use App\Models\Kaizen;
 use App\Models\Employee;
 use App\Models\Location;
 use App\Models\Translation;
-use App\Models\RefAffectedArea;
+use App\Models\AffectedArea;
 use App\Services\RewardService;
 use App\Notifications\KaizenCreated;
 
@@ -305,7 +305,7 @@ class Nutters extends Component
     }
 
     private function getAffectedAreas(){
-        return RefAffectedArea::where(['team_id'=>auth()->user()->currentTeam->id])->get();
+        return AffectedArea::where(['team_id'=>auth()->user()->currentTeam->id])->get();
 
     }
 

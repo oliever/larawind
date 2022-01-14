@@ -15,7 +15,7 @@ class SystemSettingSeeder extends Seeder
     public function run()
     {
         //Nutters
-        $systemmSettings1 = [
+        $systemmSettings_nutters = [
             [
                 'team_id'   =>  1,
                 'code'      =>  'custom_section_position_kaizen',
@@ -28,6 +28,22 @@ class SystemSettingSeeder extends Seeder
             ]
         ];
 
-        SystemSetting::insert($systemmSettings1);
+        SystemSetting::insert($systemmSettings_nutters);
+
+        //AR Metals
+        $systemmSettings_arMetals = [
+            [
+                'team_id'   =>  2,
+                'code'      =>  'custom_section_position_kaizen',
+                'value'     =>  'before_reason'//hidden, before_reason, after_reason
+            ],
+            [
+                'team_id'   =>  2,
+                'code'      =>  'custom_section_position_project',
+                'value'     =>  'before_reason'//hidden, before_reason, after_reason
+            ]
+        ];
+
+        SystemSetting::insert($systemmSettings_arMetals);
     }
 }

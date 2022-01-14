@@ -7,8 +7,6 @@ use App\Models\Kaizen;
 use App\Models\Employee;
 use App\Models\RewardProgram;
 use App\Models\RewardTransaction;
-use App\Models\User;
-use App\Models\RefAffectedArea;
 use DateTime;
 use Carbon\Carbon;
 use Laravel\Jetstream\Jetstream;

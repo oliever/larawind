@@ -3,7 +3,7 @@
 namespace App\Http\Livewire\SystemSettings;
 
 use Livewire\Component;
-use App\Models\RefAffectedArea;
+use App\Models\AffectedArea;
 
 class AffectedAreas extends Component
 {
@@ -17,14 +17,14 @@ class AffectedAreas extends Component
 
     public function mount(){
 
-        foreach(RefAffectedArea::where(['team_id'=>auth()->user()->currentTeam->id])->get() as $affectedArea){
+        foreach(AffectedArea::where(['team_id'=>auth()->user()->currentTeam->id])->get() as $affectedArea){
             $this->affectedAreas[$affectedArea->id] = $affectedArea;
         }
     }
 
     public function addAffectedArea(){
 
-        $affectedArea = RefAffectedArea::make();
+        $affectedArea = AffectedArea::make();
         $this->affectedAreas[] = $affectedArea ;
 /*
         foreach ($this->affectedAreas as $key => $value) {
@@ -38,7 +38,7 @@ class AffectedAreas extends Component
         //info($this->affectedAreas[$index]['name']);
         if(!empty( $this->affectedAreas[$index]['name'])){
             $this->affectedAreas[$index]['team_id']= auth()->user()->currentTeam->id;
-            $affectedArea = RefAffectedArea::create(
+            $affectedArea = AffectedArea::create(
                 $this->affectedAreas[$index]
             );
             $affectedArea->save();
@@ -56,7 +56,7 @@ class AffectedAreas extends Component
 
     public function removeAffectedArea($index){
         info("removeAffectedArea {$index}");
-        $affectedArea = RefAffectedArea::find($this->affectedAreas[$index]['id']);
+        $affectedArea = AffectedArea::find($this->affectedAreas[$index]['id']);
         $affectedArea->delete();
         session()->flash('success', ['title'=>'Affected Area deleted.' , 'subtitle'=>' '. $this->affectedAreas[$index]['name']]);
         unset($this->affectedAreas[$index]);

@@ -14,7 +14,7 @@
         <div>
             <input type="checkbox" wire:model="selected" value="{{ $employee->id }}" id="select-employee_{{ $employee->id }}" class="inline-block mr-2 ml-4"/><label for="select-employee_{{ $employee->id }}">{{ $employee->name }}</label>
         </div>
-        @endforeach`
+        @endforeach
     </div>
     @error('selected')
         <div class="text-sm text-red-500 ml-1">
