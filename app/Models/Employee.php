@@ -30,6 +30,7 @@ class Employee extends Model
 
 abstract class EmployeeLevels
 {
+    const super_admin = "super_admin";
     const headoffice_admin = "headoffice_admin";
     const headoffice_staff = "headoffice_staff";
     const location_manager = "location_manager";

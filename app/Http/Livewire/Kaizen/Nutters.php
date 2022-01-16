@@ -24,11 +24,11 @@ class Nutters extends Component
     public $kaizen;
     //public $stores;
     public $employees;
-    public $affectedAreas;
+    public $affectedAreas = [];
+    public $departments = [];
     public $isRapid = false;
     public $isJustDoIt = true;
     public $hasBeforeAfter = false;
-    public $selectedAfftectedAreas = [];
     public $shown = false;
 
     public $dateAssigned;
@@ -42,7 +42,7 @@ class Nutters extends Component
     public $canApprove = false;
     public $protected = true;
 
-    protected $listeners = ['employeesCheckboxUpdated', 'locationsCheckboxUpdated', 'photoUploaded'];
+    protected $listeners = ['employeesCheckboxUpdated', 'locationsCheckboxUpdated', 'photoUploaded', 'affectedAreasCheckboxUpdated', 'departmentsCheckboxUpdated'];
 
     protected $rules = [
         'kaizen.name' => 'required|min:5',
@@ -115,16 +115,16 @@ class Nutters extends Component
             $this->isJustDoIt = $this->kaizen->just_do_it;
             $this->isRapid = $this->kaizen->rapid;
             $this->hasBeforeAfter = $this->kaizen->before_after;
-            foreach(explode(",", $kaizen->affected_areas) as $key=>$value){
-                //replace keys (index) with values from db
-                $this->selectedAfftectedAreas[$value] = $value;
-            }
 
             $this->selectedLocations = $this->kaizen->locations()->get();
             if($this->kaizen->all_locations)
                 $this->selectedLocations = Location::where('area_id','>','0')->get();
             //$this->selectedUsers = $this->kaizen->users()->get();
             $this->members = $this->kaizen->members()->get();
+
+            $this->affectedAreas = $this->kaizen->affectedAreas()->get();
+
+            $this->departments = $this->kaizen->departments()->get();
 
             $this->setProtected();
 
@@ -179,15 +179,23 @@ class Nutters extends Component
         $this->members = $members;
     }
 
+    public function affectedAreasCheckboxUpdated($affectedAreas){
+        $this->affectedAreas = $affectedAreas;
+    }
+
+    public function departmentsCheckboxUpdated($departments){
+        $this->departments = $departments;
+    }
+
     public function saveAsDraft(){
         $this->save();
     }
 
     public function submitKaizen(){
-        $this->save(true);
+        $this->save();
     }
 
-    private function save($asProject = false)
+    private function save()
     {
         $this->kaizen->rapid = $this->isRapid;
         $this->kaizen->just_do_it = $this->isJustDoIt;
@@ -197,6 +205,7 @@ class Nutters extends Component
             $this->kaizen->employee_id = $this->employee->id;
         } */
         $this->kaizen->employee_id = $this->employee->id;
+        info($this->employee);
 
         $this->kaizen->head_office_input = $this->kaizen->head_office_input ? true : false;
         $this->kaizen->handled_at_location = $this->kaizen->handled_at_location ? true : false;
@@ -204,12 +213,6 @@ class Nutters extends Component
 
         if($this->dateAssigned)
             $this->kaizen->date_assigned = date('Y-m-d', strtotime($this->dateAssigned));
-
-        //info($this->selectedAfftectedAreas);
-        $this->kaizen->affected_areas = implode(',', array_keys(array_filter($this->selectedAfftectedAreas)));
-        //info($this->kaizen->affected_areas);
-       /*  if(!$this->kaizen->all_locations)
-            $this->kaizen->all_locations = 0; */
 
         if(!$this->kaizen->completion)
             $this->kaizen->completion = 0;
@@ -222,8 +225,7 @@ class Nutters extends Component
         $this->kaizen->custom_field_03_label = t('kaizen_custom_field','custom_field_03');
         $this->kaizen->custom_field_04_label = t('kaizen_custom_field','custom_field_04');
 
-        if($asProject)
-            $this->kaizen->posted = Carbon::now();
+        $this->kaizen->posted = Carbon::now();
 
         if(count($this->selectedLocations) == count(Location::where('area_id', null)->with('children')->get()[0]->children))
             $this->kaizen->all_locations = 1;
@@ -237,13 +239,17 @@ class Nutters extends Component
             $this->kaizen->locations()->sync([]);//empty upon saving
 
         $this->kaizen->members()->sync($this->members);
-       // $this->saveLocations();
+
+        $this->kaizen->affectedAreas()->sync($this->affectedAreas);
+
+        $this->kaizen->departments()->sync($this->departments);
 
         info('---nutters_kaizen_saved---');
         info($this->kaizen);
 
         session()->flash('success', ['title'=>'Kaizen Suggestion Form Saved!' , 'subtitle'=>'ID: '. str_pad($this->kaizen->id, 4,"0", STR_PAD_LEFT)]);
 
+        $this->emit('saved');//to display action message
         $this->emit('saved');//to display action message
         $this->emit('kaizenAdded', $this->kaizen->id);//Listeners: 1. UploadPhotos
 
@@ -264,25 +270,6 @@ class Nutters extends Component
         RewardService::kaizenApproved($this->kaizen);
         $this->emit('saved');//to display action message
     }
-    /* private function formatCleave(){
-        $this->kaizen->dollar_value = trim(str_replace("$", "", $this->kaizen->dollar_value)) == '' ? null : trim(str_replace("$", "", $this->kaizen->dollar_value));
-        $this->kaizen->savings = trim(str_replace("$", "", $this->kaizen->savings)) == '' ? null : trim(str_replace("$", "", $this->kaizen->savings));
-    } */
-
-    private function saveLocations(){
-        //$this->kaizen->locations = [];
-        info( 'saving locations...');
-
-        $locations = [];
-        foreach ($this->selectedLocations as $key => $location) {
-            if(!empty($location))
-                array_push($locations, $location['id']);
-
-        }
-        $this->kaizen->locations()->sync($locations);
-        $this->kaizen->save();
-        info( $this->kaizen->locations);
-    }
 
     public function createBeforeAfter()
     {
@@ -292,21 +279,8 @@ class Nutters extends Component
     }
     public function render()
     {
-        //$this->stores = $this->getStores();
-        $this->affectedAreas = $this->getAffectedAreas();
-
-
         return view('livewire.kaizen.nutters');
     }
 
-    private function getStores()
-    {
-        return Location::get()->sortBy('name');
-    }
-
-    private function getAffectedAreas(){
-        return AffectedArea::where(['team_id'=>auth()->user()->currentTeam->id])->get();
-
-    }
 
 }

@@ -21,29 +21,39 @@ class Project extends Model
         return $this->belongsToMany(Location::class, 'project_location');
     }
 
+    public function affectedAreas()//
+    {
+        return $this->belongsToMany(AffectedArea::class, 'project_affected_area');
+    }
+
+    public function departments()//
+    {
+        return $this->belongsToMany(Department::class, 'project_department');
+    }
+
     public function manager(){
-        return $this->hasOne(User::class, 'id', 'manager_id');
+        return $this->hasOne(Employee::class, 'id', 'manager_id');
     }
     public function sponsor(){
-        return $this->hasOne(User::class, 'id', 'sponsor_id');
+        return $this->hasOne(Employee::class, 'id', 'sponsor_id');
     }
     public function champion(){
-        return $this->hasOne(User::class, 'id', 'champion_id');
+        return $this->hasOne(Employee::class, 'id', 'champion_id');
     }
     public function approvedManager(){
-        return $this->hasOne(User::class, 'id', 'approved_manager_id');
+        return $this->hasOne(Employee::class, 'id', 'approved_manager_id');
     }
     public function approvedSponsor(){
-        return $this->hasOne(User::class, 'id', 'approved_sponsor_id');
+        return $this->hasOne(Employee::class, 'id', 'approved_sponsor_id');
     }
     public function approvedChampion(){
-        return $this->hasOne(User::class, 'id', 'approved_champion_id');
+        return $this->hasOne(Employee::class, 'id', 'approved_champion_id');
     }
 
     public function actuAlHoursValidator(){
-        return $this->hasOne(User::class, 'id', 'hours_actual_validated_id');
+        return $this->hasOne(Employee::class, 'id', 'hours_actual_validated_id');
     }
     public function actualSavingsValidator(){
-        return $this->hasOne(User::class, 'id', 'savings_actual_validated_id');
+        return $this->hasOne(Employee::class, 'id', 'savings_actual_validated_id');
     }
 }

@@ -30,7 +30,6 @@ class CreateProjectsTable extends Migration
             $table->text('locations')->nullable();
             $table->boolean('capex')->default(false)->nullable();;
 
-            $table->text('affected_areas')->nullable();
             $table->text('other_affected_area')->nullable();
 
             $table->text('loss')->nullable();

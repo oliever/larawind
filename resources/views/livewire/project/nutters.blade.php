@@ -117,29 +117,57 @@
                             placeholder="Primary Team" />
                     </label>
 
-                    <label class="mb-4 block text-sm">
+                    <div class="grid gap-6 md:grid-cols-1 xl:grid-cols-2">
+                        @if (auth()->user()->currentTeam->id == 1)
+                            <label class="mb-4 block text-sm">
+                                <div class="" >
+                                    <label class="block text-sm"><livewire:locations-checkbox :selectedLocations="$selectedLocations"></label>
+                                </div>
+                            </label>
+                        @else
+                        <label class="mb-4 block text-sm">
+                            <div class="" >
+                                <label class="block text-sm"><livewire:departments-checkbox :kaizen="$project"></label>
+                            </div>
+                        </label>
+                        @endif
+                        <label class="mb-4 block text-sm">
+                            <span class="text-gray-700 dark:text-gray-400">
+                                Capex/Non Capex
+                            </span>
+                            <select
+                            wire:model="project.capex"
+                            id="project.capex"
+                            class="block w-full mt-1 text-sm dark:text-gray-300 dark:border-gray-600 dark:bg-gray-700 form-select focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:focus:shadow-outline-gray">
+                                <option></option>
+                                <option value="1">Capex</option>
+                                <option value="0">Non-Capex</option>
+                            </select>
+                            @error('project.capex')
+                                <p class="text-sm text-red-600">{{ $message }}</p>
+                            @enderror
+                        </label>
+                    </div>
 
-                        <div class="" >
-                            <label class="block text-sm"><livewire:locations-checkbox :selectedLocations="$selectedLocations"></label>
-                        </div>
-                    </label>
 
-                    <label class="mb-4 block text-sm">
-                        <span class="text-gray-700 dark:text-gray-400">
-                            Capex/Non Capex
-                        </span>
-                        <select
-                        wire:model="project.capex"
-                        id="project.capex"
-                        class="block w-full mt-1 text-sm dark:text-gray-300 dark:border-gray-600 dark:bg-gray-700 form-select focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:focus:shadow-outline-gray">
-                            <option></option>
-                            <option value="1">Capex</option>
-                            <option value="0">Non-Capex</option>
-                        </select>
-                        @error('project.capex')
-                            <p class="text-sm text-red-600">{{ $message }}</p>
-                        @enderror
-                    </label>
+                    <div class="grid gap-6 md:grid-cols-1 xl:grid-cols-2">
+
+                        <label class="mb-4 block text-sm">
+                            <div class="" >
+                                <label class="block text-sm"><livewire:affected-areas-checkbox :kaizen="$project"></label>
+                            </div>
+                        </label>
+                        <label class="mb-4 block text-sm">
+                            <span class="text-gray-700 dark:text-gray-400">
+                                Other Affected Area
+                            </span>
+                            <input class="required block w-full  text-xs dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:text-gray-300 dark:focus:shadow-outline-gray form-input"
+                                    wire:model="project.other_affected_area"
+                                    name="project.other_affected_area"
+                                    placeholder="Other Affected Area" />
+                        </label>
+
+                    </div>
                 </p>
             </div>{{-- END Left Column: Users Details --}}
 
@@ -243,35 +271,6 @@
 
         </div>{{-- END xl:grid-cols-2 --}}
 
-        <h4 class="mb-2 text-lg font-semibold text-gray-600 dark:text-gray-300">
-            Affected Areas
-        </h4>
-        <div class="px-4 py-3 mb-8 bg-white rounded-lg shadow-md dark:bg-gray-800"><!--card-->
-            <div class="grid gap-2 mb-2 md:grid-cols-3 xl:grid-cols-6">
-                @foreach($affectedAreas as $affectedArea)
-                    <div class="flex mt-2 text-sm">
-                        <label class="flex items-center dark:text-gray-400">
-                            <input type="checkbox"
-                                value="{{ $affectedArea->id }}"
-                                wire:model="selectedAfftectedAreas.{{$affectedArea->id}}" class="text-purple-600 form-checkbox focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:focus:shadow-outline-gray" style="border-color:purple"/>
-                            <span class="ml-2">
-                                {{ $affectedArea->name }} {{-- ({{$affectedArea->id}}) --}}
-                            </span>
-                        </label>
-                    </div>
-                @endforeach
-                <div class="flex mt-2 text-sm col-span-3">
-                    <label class="flex pr-2 items-center dark:text-gray-400">
-                        Other
-                    </label>
-                    <input class="required block w-full  text-xs dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:text-gray-300 dark:focus:shadow-outline-gray form-input"
-                            wire:model="project.other_affected_area"
-                            name="project.other_affected_area"
-                            placeholder="Other Affected Area" />
-                </div>
-            </div>
-
-        </div><!--Affected Aread-->
 
         <div class="px-4 py-3 mb-8 bg-white rounded-lg shadow-md dark:bg-gray-800"><!--card-->
             <h4 class="mb-4 font-semibold text-gray-600 dark:text-gray-300">

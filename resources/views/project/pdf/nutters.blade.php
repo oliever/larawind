@@ -48,6 +48,7 @@
             </td>
         </tr>
         <tr>
+            @if (auth()->user()->currentTeam->id == 1)
             <td colspan="3" >Stores: <br>
                 @if($project->all_locations)
                     <strong>All {{ Str::plural(t('kaizen_general','location'))}}</strong>
@@ -58,6 +59,9 @@
                 @endif
 
             </td>
+            @else
+            <td colspan="3" ></td>
+            @endif
             <td style="width: 29%">
                 <table>
                     <tr><td>Start Date: <strong style="float: right">{{$project->start->format('M d, Y')}}</strong></td></tr>
@@ -98,6 +102,31 @@
         </tr>
 
     </table>
+    @if (auth()->user()->currentTeam->id == 2)
+        <table style="border: none">
+            <tr>
+                <td colspan="4" class="section-header"><strong>Departments</strong></td>
+            </tr>
+            @foreach($departments as $department)
+                <tr>
+                    @foreach($department as $departmentInner)
+                    <td style="width: 25%">
+                        <span>
+                            <input style="vertical-align: middle" type="checkbox"
+                            @isset($selectedDepartments[$departmentInner['id']])
+                            checked
+                            @endisset
+                            />
+                            <span style="vertical-align: middle">
+                                {{ $departmentInner['name']}}
+                            </span>
+                        </span>
+                    </td>
+                    @endforeach
+                </tr>
+            @endforeach
+        </table>
+    @endif
     <table style="border: none">
         <tr>
             <td colspan="4" class="section-header"><strong>AFFECTED AREAS</strong></td>
@@ -153,7 +182,7 @@
         </tr>
     </table>
 
-    <table style="font-size: 0.9em">
+    <table style="font-size: 0.8em">
         <tr>
             <td>
                 <table style="border: none">

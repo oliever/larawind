@@ -15,6 +15,7 @@ class CreateEmployeesTable extends Migration
     {
         Schema::create('employees', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('team_id')->index();
             $table->string('location_id');
             $table->string('name');
             $table->string('level');//headoffice, location_manager, location_staff

@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Models\Project;
 use App\Models\Employee;
 use App\Models\AffectedArea;
+use App\Models\Department;
 use Illuminate\Support\Facades\App;
 
 class ProjectController extends Controller
@@ -34,7 +35,10 @@ class ProjectController extends Controller
     {
         $data['project'] = $project;
         $data['affectedAreas'] = array_chunk(AffectedArea::where(['team_id'=>auth()->user()->currentTeam->id])->get()->toArray(),4);
-        $data['selectedAffectedAreas'] = array_fill_keys(explode(",", $project->affected_areas),'checked');
+        $data['selectedAffectedAreas'] = array_fill_keys($project->affectedAreas()->pluck('id')->toArray(),'checked');
+
+        $data['departments'] = array_chunk(Department::where(['team_id'=>auth()->user()->currentTeam->id])->get()->toArray(),4);
+        $data['selectedDepartments'] = array_fill_keys($project->departments()->pluck('id')->toArray(),'checked');
 
         $pdf = App::make('dompdf.wrapper');
         $pdf->loadView('project.pdf.nutters', $data);

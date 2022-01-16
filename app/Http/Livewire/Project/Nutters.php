@@ -20,37 +20,21 @@ class Nutters extends Component
     public $stores;
     public $users;
     public $employees;
-    public $affectedAreas;
-    public $selectedAfftectedAreas = [];
+    public $affectedAreas = [];
+    public $departments = [];
     public $term;
     public $usersResults = [];
 
     public $isSearchUserModalOpen = false;
     public $searchType;/* manager, sponsor, champion, ap_manager, ap_sponsor, ap_champion, hours_actual_validator, savings_actual_validator*/
 
-    /* public $selectedManagers = [];
-    public $selectedSponsors = [];
-    public $selectedChampions = [];
-    public $selectedApManagers = [];
-    public $selectedApSponsors = [];
-    public $selectedApChampions = [];
-    public $selectedHoursActualValidators = [];
-    public $selectedSavingsActualValidators = []; */
 
     public $isSearchLocationModalOpen = false;
     public $selectedLocations = [];
 
-    /* public $hasManager;
-    public $hasSponsor;
-    public $hasChampion;
-    public $hasApManager;
-    public $hasApSponsor;
-    public $hasApChampion;
-    public $hasHoursActualValidator;
-    public $hasSavingsActualValidator; */
 
     /* protected $listeners = ['userSelected','locationSelected']; */
-    protected $listeners = ['locationsCheckboxUpdated'];
+    protected $listeners = ['locationsCheckboxUpdated','affectedAreasCheckboxUpdated', 'departmentsCheckboxUpdated'];
 
     protected $rules = [
         'project.description' => 'required|min:5',
@@ -99,25 +83,27 @@ class Nutters extends Component
             $this->employees = $locationLocked->employees()->get();//Employee::where('location_id', $locationLocked->id)->get();
         }
 
-        //$this->selectedAfftectedAreas = explode(",", $kaizen->affected_areas);
-
-        //$this->selectedLocations[] =  new Location();
-
        if(!isset($this->project['id'])){
             $this->project = new Project();
         }
         else{
-            foreach(explode(",", $project->affected_areas) as $key=>$value){
-                //replace keys (index) with values from db
-                $this->selectedAfftectedAreas[$value] = $value;
-            }
+
 
             $this->selectedLocations = $this->project->locations()->get();
+            $this->affectedAreas = $this->project->affectedAreas()->get();
         }
     }
 
     public function locationsCheckboxUpdated($locations){
         $this->selectedLocations = $locations;
+    }
+
+    public function affectedAreasCheckboxUpdated($affectedAreas){
+        $this->affectedAreas = $affectedAreas;
+    }
+
+    public function departmentsCheckboxUpdated($departments){
+        $this->departments = $departments;
     }
 
     public function saveAsDraft(){
@@ -135,8 +121,6 @@ class Nutters extends Component
         if(auth()->user()->shared){
             $this->project->employee_id = $this->employee->id;
         }
-
-        $this->project->affected_areas = implode(',', array_keys(array_filter($this->selectedAfftectedAreas)));
 
         info('saving project');
 
@@ -160,6 +144,9 @@ class Nutters extends Component
 
         $this->saveLocations();
 
+        $this->project->affectedAreas()->sync($this->affectedAreas);
+        $this->project->departments()->sync($this->departments);
+
         $this->emit('saved');//to display action message
         $this->emit('projectAdded', $this->project->id);
 
@@ -170,13 +157,6 @@ class Nutters extends Component
        //return redirect()->to('/kaizen/' . $this->kaizen->id);
     }
 
-    /* private function formatCleave(){
-        $this->project->loss = trim(str_replace("$", "", $this->project->loss)) == '' ? null : trim(str_replace(",", "",str_replace("$", "", $this->project->loss))) ;
-        $this->project->budget = trim(str_replace("$", "", $this->project->budget)) == '' ? null : trim(str_replace(",", "",str_replace("$", "", $this->project->budget))) ;
-        $this->project->hours = trim(str_replace("$", "", $this->project->hours)) == '' ? null : trim(str_replace(",", "",str_replace("$", "", $this->project->hours))) ;
-        $this->project->savings = trim(str_replace("$", "", $this->project->savings)) == '' ? null : trim(str_replace(",", "",str_replace("$", "", $this->project->savings)));
-        $this->project->savings_actual = trim(str_replace("$", "", $this->project->savings_actual)) == '' ? null : trim(str_replace(",", "",str_replace("$", "", $this->project->savings_actual))) ;
-    } */
 
     private function saveLocations(){
         $locations = [];
@@ -198,7 +178,6 @@ class Nutters extends Component
 
         $this->users = $this->getUsers();
         $this->stores = $this->getStores();
-        $this->affectedAreas = $this->getAffectedAreas();
         /* sleep(1);
         $usersResults = User::search($this->term)->get(); */
         //info($usersResults);
@@ -208,11 +187,6 @@ class Nutters extends Component
     private function getStores()
     {
         return Location::get()->sortBy('name');
-    }
-
-    private function getAffectedAreas(){
-        return AffectedArea::where(['team_id'=>auth()->user()->currentTeam->id])->get();
-
     }
 
     private function getUsers(){

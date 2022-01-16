@@ -35,7 +35,7 @@ class LocationsCheckbox extends Component
             if($this->selectArea[99])
                 $label = 'All '. Str::plural(t('kaizen_general','location'));
             else if(count($this->selected)){
-                $location = Location::where('id', $this->selected[0])->first();
+                $location = Location::where(['team_id'=>auth()->user()->currentTeam->id,'id'=> $this->selected[0]])->first();
                 if($location)
                     $label = $location->name;
             }
@@ -68,7 +68,6 @@ class LocationsCheckbox extends Component
             $this->selectArea[99] = false;//TODO: find parent instead of 99
         }
         $this->emit('locationsCheckboxUpdated',$this->selected);
-        info($this->selected);
     }
 
     public function save()

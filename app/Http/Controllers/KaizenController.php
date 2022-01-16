@@ -41,7 +41,7 @@ class KaizenController extends Controller
     public function create(Request $request)
     {
         $employee = null;
-        if(auth()->user()->shared)
+        //if(auth()->user()->shared)
             $employee = Employee::where('id', $request->cookie('selected_employee'))->first();
         return view('kaizen.create',compact('employee'));
     }
@@ -67,7 +67,7 @@ class KaizenController extends Controller
     {
        /*  info($kaizen); */
        $employee = null;
-        if(auth()->user()->shared)
+        //if(auth()->user()->shared)
             $employee = Employee::where('id', $request->cookie('selected_employee'))->first();
         return view('kaizen.show',compact('employee','kaizen'));
 
@@ -76,7 +76,7 @@ class KaizenController extends Controller
     {
         $data['kaizen'] = $kaizen;
         $data['affectedAreas'] = array_chunk(AffectedArea::where(['team_id'=>auth()->user()->currentTeam->id])->get()->toArray(),4);
-        $data['selectedAffectedAreas'] = array_fill_keys(explode(",", $kaizen->affected_areas),'checked');
+        $data['selectedAffectedAreas'] = array_fill_keys($kaizen->affectedAreas()->pluck('id')->toArray(),'checked');
 
         $data['mainPhotos']= [];
         foreach(Photo::where(['type'=>'main', 'model'=>get_class(new Kaizen()), 'model_id'=>$kaizen->id])->get() as $savedPhoto){

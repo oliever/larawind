@@ -1,4 +1,4 @@
-<div class="container grid px-6 mx-auto" x-data="{isJustDoIt:@entangle('isJustDoIt'), isRapid:@entangle('isRapid'),hasBeforeAfter:@entangle('hasBeforeAfter'),isHeadOfficeInput: @entangle('kaizen.head_office_input'), isSearchUserModalOpen:  @entangle('isSearchUserModalOpen'), selectedUsers:  @entangle('selectedUsers'), isSearchLocationModalOpen:  @entangle('isSearchLocationModalOpen'), selectedLocations:  @entangle('selectedLocations')}">
+<div class="container grid px-6 mx-auto" x-data="{isJustDoIt:@entangle('isJustDoIt'), isRapid:@entangle('isRapid'),hasBeforeAfter:@entangle('hasBeforeAfter'),isHeadOfficeInput: @entangle('kaizen.head_office_input'), isSearchUserModalOpen:  @entangle('isSearchUserModalOpen'), selectedUsers:  @entangle('selectedUsers'), isSearchLocationModalOpen:  @entangle('isSearchLocationModalOpen')}">
     <div class="flex justify-between mb-8">
         <div>
             @if ($kaizen->posted)
@@ -164,7 +164,13 @@
                 </div>
             </div>
 
-            <div class="grid  mb-2 justify-items-center  grid-cols-2">
+
+            <div class="grid  mb-2 justify-items-center md:grid-cols-1
+                @if (auth()->user()->currentTeam->id == 1){{-- TODO: change to config --}}
+                    xl:grid-cols-3">
+                @else
+                    xl:grid-cols-3">
+                @endif
                 <div class="ml-8 mt-8 " style="width: 250px; ">
                     <span class="">&nbsp;</span>
                     <label class="block text-sm"><livewire:employees-checkbox :selectedEmployees="$members"> </label>
@@ -173,40 +179,19 @@
                     <div class="ml-8 mt-8" style="width: 250px;">
                         <label class="block text-sm"><livewire:locations-checkbox :selectedLocations="$selectedLocations"></label>
                     </div>
+                @else
+                    <div class="ml-8 mt-8" style="width: 250px;">
+                        <label class="block text-sm"><livewire:departments-checkbox :kaizen="$kaizen"></label>
+                    </div>
                 @endif
+                <div class="ml-8 mt-8" style="width: 250px;">
+                    <label class="block text-sm"><livewire:affected-areas-checkbox :kaizen="$kaizen"></label>
+                </div>
             </div>
         </div>
 
 
-        <h4 class="mb-2 text-lg font-semibold text-gray-600 dark:text-gray-300">
-            Affected Areas
-        </h4>
-        <div class="px-4 py-3 mb-8 bg-white rounded-lg shadow-md dark:bg-gray-800"><!--card-->
-            <div class="grid gap-2 mb-2 md:grid-cols-3 xl:grid-cols-6">
-                @foreach($affectedAreas as $affectedArea)
-                    <div class="flex mt-2 text-sm">
-                        <label class="flex items-center dark:text-gray-400">
-                            <input type="checkbox"
-                                value="{{ $affectedArea->id }}"
-                                wire:model="selectedAfftectedAreas.{{$affectedArea->id}}" class="text-purple-600 form-checkbox focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:focus:shadow-outline-gray" style="border-color:purple"/>
-                            <span class="ml-2">
-                                {{ $affectedArea->name }} {{-- ({{$affectedArea->id}}) --}}
-                            </span>
-                        </label>
-                    </div>
-                @endforeach
-                <div class="flex mt-2 text-sm col-span-3">
-                    <label class="flex pr-2 items-center dark:text-gray-400">
-                        Other
-                    </label>
-                    <input class="required block w-full  text-xs dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:text-gray-300 dark:focus:shadow-outline-gray form-input"
-                            wire:model="kaizen.other_affected_area"
-                            name="kaizen.other_affected_area"
-                            placeholder="Other Affected Area" />
-                </div>
-            </div>
 
-        </div><!--Affected Aread-->
 
         <div class="px-4 py-3 mb-8 bg-white rounded-lg shadow-md dark:bg-gray-800 md:grid-cols-1 xl:grid-cols-3"><!--card-->
             <div class="grid gap-2 mb- md:grid-cols-1 xl:grid-cols-3">

@@ -35,7 +35,7 @@ class CreateKaizensTable extends Migration
             $table->text('savings')->nullable();//HO user only
             $table->text('hours_saved')->nullable();//HO user only
 
-            $table->text('affected_areas')->nullable();
+            //$table->text('affected_areas')->nullable();
             $table->text('other_affected_area')->nullable();
 
             $table->longText('reason')->nullable();//Just do it

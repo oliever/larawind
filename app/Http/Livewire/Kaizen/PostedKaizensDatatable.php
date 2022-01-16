@@ -23,7 +23,7 @@ class PostedKaizensDatatable extends LivewireDatatable
     public function builder()
     {
         //return Kaizen::query()->whereNotNull('posted');
-        return Kaizen::with(['members','locations']);
+        return Kaizen::with(['members','locations'])->where('team_id',auth()->user()->currentTeam->id);
     }
 
     public function columns()

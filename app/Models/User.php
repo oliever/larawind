@@ -88,7 +88,23 @@ class User extends Authenticatable
     }
 
     public function employees(){
-        return Employee::where('location_id', $this->location_locked);//->where('status','active');
+        $teamId = auth()->user()->currentTeam->id;
+        $query = Employee::where('location_id', $this->location_locked);
+        switch (auth()->user()->level) {
+            case EmployeeLevels::super_admin:
+                $query = Employee::where(['team_id' => $teamId, 'status'=>'active']);
+                break;
+            case EmployeeLevels::headoffice_admin :
+                $query = Employee::where(['team_id' => $teamId, 'status'=>'active']);
+                break;
+            default:
+                $query = Employee::where('location_id', $this->location_locked);
+                break;
+        }
+
+        return $query->where('status','active');
+
+
 
     }
 }

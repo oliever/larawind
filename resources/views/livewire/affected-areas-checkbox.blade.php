@@ -1,7 +1,8 @@
 <div>
     <label class="flex items-center dark:text-gray-400">
 
-        <input type="checkbox" wire:model="selectArea.99" value="99" id="select-location_all" class="inline-block mr-2"/><label for="select-location_all">All {{ Str::plural(t('kaizen_general','location'))}}</label>
+        <input type="checkbox" wire:model="selectAll" value="1" id="select-all_checkbox" class="inline-block mr-2"/>
+        <label for="select-all_checkbox">All Affected Areas</label>
 
     </label>
     <div class="flex flex-col mb-4" x-data="{show: false}">
@@ -16,16 +17,13 @@
         </button>
         <div x-show.transition="show"  @click.away="show = !show" @keydown.escape="show = !show"
             class="relative z-20 -mt-1 flex flex-col w-full px-4 py-4 whitespace-nowrap border border-gray-200 rounded text-gray-700 dark:text-gray-400 bg-white dark:border-gray-600 dark:bg-gray-700">
-            @foreach($locations as $location)
-                {{-- <div>
-                    <input type="checkbox" wire:model="selectArea.{{ $location->id }}" value="{{ $location->id }}" id="select-location_{{ $location->id }}" class="inline-block mr-2"/><label for="select-location_{{ $location->id }}">{{ $location->name }}</label>
-                </div> --}}
+            @foreach($affectedAreas as $affectedArea)
 
-                @foreach($location->children as $children)
-                    <div>
-                        <input type="checkbox" wire:model="selected" value="{{ $children->id }}" id="select-location_{{ $children->id }}" class="inline-block mr-2 ml-4"/><label for="select-location_{{ $children->id }}">{{ $children->name }} {{-- ({{ $children->id }}) --}}</label>
-                    </div>
-                @endforeach
+                <div>
+                    <input type="checkbox" wire:model="selected" value="{{ $affectedArea->id }}"
+                    id="select-affectedArea_{{ $affectedArea->id }}" class="inline-block mr-2 ml-4"/>
+                    <label for="select-affectedArea_{{ $affectedArea->id }}">{{ $affectedArea->name }} {{-- ({{ $affectedArea->id }}) --}}</label>
+                </div>
             @endforeach
         </div>
         @error('selected')
