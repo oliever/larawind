@@ -36,10 +36,10 @@ class ManageDepartments extends Component
             );
             $department->save();
             $this->departments[$index] = $department ;
-            session()->flash('success', ['title'=>'Affected Area saved.' , 'subtitle'=>' '. $this->departments[$index]['name']]);
+            session()->flash('success', ['title'=>'Department saved.' , 'subtitle'=>' '. $this->departments[$index]['name']]);
             $this->emit('saved');
         }else{
-            session()->flash('failed', ['title'=>'Affected Area name is required.' , 'subtitle'=>' '. $index]);
+            session()->flash('failed', ['title'=>'Department name is required.' , 'subtitle'=>' '. $index]);
             $this->emit('saved');
         }
 
@@ -51,7 +51,7 @@ class ManageDepartments extends Component
         info("removeDepartment {$index}");
         $department = Department::find($this->departments[$index]['id']);
         $department->delete();
-        session()->flash('success', ['title'=>'Affected Area deleted.' , 'subtitle'=>' '. $this->departments[$index]['name']]);
+        session()->flash('success', ['title'=>'Department deleted.' , 'subtitle'=>' '. $this->departments[$index]['name']]);
         unset($this->departments[$index]);
         $this->emit('saved');
     }

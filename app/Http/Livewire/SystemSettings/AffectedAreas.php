@@ -49,8 +49,6 @@ class AffectedAreas extends Component
             session()->flash('failed', ['title'=>'Affected Area name is required.' , 'subtitle'=>' '. $index]);
             $this->emit('saved');
         }
-
-
     }
 
 

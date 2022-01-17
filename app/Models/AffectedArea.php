@@ -12,6 +12,7 @@ class AffectedArea extends Model
     use SoftDeletes;
 
     protected $fillable = [
+        'team_id',
         'name'
     ];
 }
