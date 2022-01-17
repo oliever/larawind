@@ -40,12 +40,21 @@
         function setup() {
         return {
           activeTab: 0,
-          tabs: [
-              "Company Settings ({{auth()->user()->currentTeam->name}})",
-              "Field Labels",
-              "Affected Areas",
-              "Departments",
-          ]
+        @if (auth()->user()->currentTeam->id == 2)
+            tabs: [
+                "Company Settings ({{auth()->user()->currentTeam->name}})",
+                "Field Labels",
+                "Affected Areas",
+                "Departments",
+            ]
+        @else
+            tabs: [
+                "Company Settings ({{auth()->user()->currentTeam->name}})",
+                "Field Labels",
+                "Affected Areas",
+            ]
+        @endif
+
         };
       };
     </script>
