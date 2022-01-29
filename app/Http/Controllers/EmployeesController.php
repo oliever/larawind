@@ -55,7 +55,7 @@ class EmployeesController extends Controller
         //abort_if(Gate::denies('user_access'), Response::HTTP_FORBIDDEN, '403 Forbidden');
         if(auth()->user()->level == "headoffice_staff" || auth()->user()->level == "location_staff")
             abort('403');
-        $stores = Location::whereNotNull('area_id')->get();
+        $stores = Location::where('team_id',auth()->user()->currentTeam->id)->whereNotNull('area_id')->get();
         return view('employees.create', compact('stores','location'));
     }
 
