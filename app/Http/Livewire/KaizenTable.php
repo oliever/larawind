@@ -10,6 +10,7 @@ use App\Models\Kaizen;
 class KaizenTable extends DataTableComponent
 {
 
+    public bool $perPageAll = true;
     public $columnSearch = [
         'name' => null,
     ];
@@ -21,10 +22,11 @@ class KaizenTable extends DataTableComponent
             Column::make('Name')
             ->sortable()
             ->searchable()
-            ->asHtml()/*
-            ->secondaryHeader(function() {
+            ->asHtml(),
+           /*  ->secondaryHeader(function() {
                 return view('tables.cells.input-search', ['field' => 'name', 'columnSearch' => $this->columnSearch]);
-            }) */,
+            }), */
+            Column::make('Assiged','date_assigned')->sortable()->addClass('md:hidden')->addClass('xl:table-cell'),
         ];
     }
 

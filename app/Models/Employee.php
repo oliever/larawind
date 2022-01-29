@@ -14,7 +14,7 @@ class Employee extends Model
     use SearchTrait;
 
     protected $fillable = [
-        'name', 'location_id', 'level'
+        'team_id', 'name', 'location_id', 'level'
     ];
 
     public function rewardTransactions(){
@@ -24,8 +24,6 @@ class Employee extends Model
     public function location(){
         return $this->belongsTo(Location::class);
     }
-
-
 }
 
 abstract class EmployeeLevels

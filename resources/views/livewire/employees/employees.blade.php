@@ -2,12 +2,21 @@
     {{-- <div class="mb-4 px-4 py-3 leading-normal text-blue-700 bg-blue-100 rounded-lg" role="alert">
         Click "Edit", modify that line data and click "Save".
     </div> --}}
-    <select name="" id="" wire:model="selectedLocation">
-        @foreach ($locations as $location)
-            <option value="{{ $location->id }}">{{ $location->name }}</option>
-        @endforeach
+    <div class="px-4 py-3 mb-8 bg-white rounded-lg shadow-md dark:bg-gray-800 md:grid-cols-1 xl:grid-cols-3"><!--card-->
+        <span class="text-gray-700 dark:text-gray-400 pr-4">{{ t('kaizen_general','location') }}</span>
+        <select class="p-1" name="" id="" wire:model="selectedLocation">
+            @foreach ($locations as $location)
+                <option value="{{ $location->id }}">{{ $location->name }}</option>
+            @endforeach
 
-    </select>
+        </select>
+        @if(auth()->user()->level == "super_admin" || auth()->user()->level == "headoffice_admin" || auth()->user()->level == "location_manager")
+            <a href="{{route('employees.create')}}/{{$selectedLocation}}"> <button class="p-1 ml-3 text-sm font-medium leading-5 text-white transition-colors duration-150 bg-purple-600 border border-transparent rounded-md active:bg-purple-600 hover:bg-purple-700 focus:outline-none focus:shadow-outline-purple">
+                + {{ __('Add Employee') }}
+            </button></a>
+        @endif
+    </div>
+
 
     <table class="w-full whitespace-no-wrap">
         <thead>

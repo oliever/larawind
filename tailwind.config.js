@@ -3,7 +3,9 @@ const plugin = require('tailwindcss/plugin')
 const Color = require('color')
 
 module.exports = {
-    purge: ['./storage/framework/views/*.php', './resources/views/**/*.blade.php'],
+    purge: ['./storage/framework/views/*.php', './resources/views/**/*.blade.php',
+        './vendor/rappasoft/laravel-livewire-tables/resources/views/tailwind/**/*.blade.php',
+    ],
 
     theme: {
         themeVariants: ['dark'],

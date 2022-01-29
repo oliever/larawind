@@ -24,6 +24,7 @@ class Nutters extends Component
     public $departments = [];
     public $term;
     public $usersResults = [];
+    public $members = [];
 
     public $isSearchUserModalOpen = false;
     public $searchType;/* manager, sponsor, champion, ap_manager, ap_sponsor, ap_champion, hours_actual_validator, savings_actual_validator*/
@@ -34,7 +35,7 @@ class Nutters extends Component
 
 
     /* protected $listeners = ['userSelected','locationSelected']; */
-    protected $listeners = ['locationsCheckboxUpdated','affectedAreasCheckboxUpdated', 'departmentsCheckboxUpdated'];
+    protected $listeners = ['locationsCheckboxUpdated','affectedAreasCheckboxUpdated', 'departmentsCheckboxUpdated','employeesCheckboxUpdated'];
 
     protected $rules = [
         'project.description' => 'required|min:5',
@@ -78,22 +79,25 @@ class Nutters extends Component
         info("--Nutters::mount project-- " . $this->project->id);
         $locationLocked = Location::where('id', auth()->user()->location_locked)->first();
 
-        $this->employees = Employee::get();
+        /* $this->employees = Employee::get();
         if($locationLocked){
             $this->employees = $locationLocked->employees()->get();//Employee::where('location_id', $locationLocked->id)->get();
-        }
+        } */
+        $this->employees = auth()->user()->employees()->where(['team_id'=>auth()->user()->currentTeam->id,'status'=>'active'])->get();/*employees() already filters by role*/
 
        if(!isset($this->project['id'])){
             $this->project = new Project();
         }
         else{
-
-
             $this->selectedLocations = $this->project->locations()->get();
             $this->affectedAreas = $this->project->affectedAreas()->get();
+            $this->members = $this->project->members()->get();
         }
     }
 
+    public function employeesCheckboxUpdated($members){
+        $this->members = $members;
+    }
     public function locationsCheckboxUpdated($locations){
         $this->selectedLocations = $locations;
     }
@@ -146,6 +150,7 @@ class Nutters extends Component
 
         $this->project->affectedAreas()->sync($this->affectedAreas);
         $this->project->departments()->sync($this->departments);
+        $this->project->members()->sync($this->members);
 
         $this->emit('saved');//to display action message
         $this->emit('projectAdded', $this->project->id);

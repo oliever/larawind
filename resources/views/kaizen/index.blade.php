@@ -1,5 +1,6 @@
 <x-app-layout title="Dashboard">
     <div class="container grid px-6">
+        {{-- <livewire:kaizen-table/> --}}
         <h2 class="my-6 text-2xl font-semibold text-gray-700 dark:text-gray-200">
             Dashboard
         </h2>
@@ -79,7 +80,10 @@
         <livewire:kaizens/>
     </div> --}}
 
+
+
     <div class="container grid">
+
         <!--actual component start-->
         <div x-data="setup()">
             <ul class="flex justify-center items-center my-4">
@@ -167,4 +171,8 @@
         </h4>
         <livewire:project.draft-projects-datatable/>
     </div> --}}
+
+    <style>
+         [x-cloak] { display: none !important; }
+    </style>
 </x-app-layout>

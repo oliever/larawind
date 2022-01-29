@@ -49,13 +49,14 @@ class EmployeesController extends Controller
         return redirect()->route('employees.index');
     }
 
-    public function create()
+    public function create(Location $location = null)
     {
+
         //abort_if(Gate::denies('user_access'), Response::HTTP_FORBIDDEN, '403 Forbidden');
-        if(auth()->user()->level == "ho_staff" || auth()->user()->level == "location_staff")
+        if(auth()->user()->level == "headoffice_staff" || auth()->user()->level == "location_staff")
             abort('403');
         $stores = Location::whereNotNull('area_id')->get();
-        return view('employees.create', compact('stores'));
+        return view('employees.create', compact('stores','location'));
     }
 
     public function destroy(Employee $employee)
@@ -69,7 +70,7 @@ class EmployeesController extends Controller
 
     public function store(StoreEmployeeRequest $request)
     {
-        $employee = Employee::create($request->validated());
+        $employee = Employee::create(array_merge($request->validated(),['team_id' => auth()->user()->currentTeam->id]));
         //DB::insert('insert into team_user (team_id, user_id, role) values (?, ?, ?)', [1, $user->id, 'editor']);
         //$user->roles()->sync($request->input('roles', []));
 
@@ -84,8 +85,8 @@ class EmployeesController extends Controller
             $managers = [];
             if(auth()->user()->level == "location_manager")
                 $managers = Employee::where(['location_id'=>auth()->user()->location_locked, 'level'=>'location_manager'])->get();
-            if(auth()->user()->level == "headoffice_manager")
-                $managers = Employee::where(['location_id'=>auth()->user()->location_locked, 'level'=>'headoffice_manager'])->get();
+            if(auth()->user()->level == "headoffice_admin")
+                $managers = Employee::where(['location_id'=>auth()->user()->location_locked, 'level'=>'headoffice_admin'])->get();
             if(count($managers)>0){
                 info('selected manager: ' . $managers[0]->name);
                 Cookie::queue('selected_employee', $managers[0]->id, time() + (10 * 365 * 24 * 60 * 60));

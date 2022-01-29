@@ -40,6 +40,10 @@ class Project extends Model
     public function champion(){
         return $this->hasOne(Employee::class, 'id', 'champion_id');
     }
+    public function members()
+    {
+        return $this->belongsToMany(Employee::class, 'project_employee');
+    }
     public function approvedManager(){
         return $this->hasOne(Employee::class, 'id', 'approved_manager_id');
     }

@@ -38,7 +38,7 @@ class Employees extends Component
         info($this->selectedLocation);
         $this->employees = Employee::where('location_id', $this->selectedLocation)->get();
 
-       /*  if(auth()->user()->level == "headoffice_manager")
+       /*  if(auth()->user()->level == "headoffice_admin")
         $this->employees = Employee::with('location')->get();
         else
         $this->employees = auth()->user()->employees()->with('location')->get();//  Employee::where('location_id', auth()->user()->location_locked)->get()->toArray(); */

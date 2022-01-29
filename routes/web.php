@@ -41,7 +41,7 @@ Route::group(['middleware' => ['auth:sanctum', 'verified', 'employee.selected']]
     Route::get('/project/pdf/{project}', [ProjectController::class, 'pdf'])->name('project.pdf');
 
     //Route::resource('employees', \App\Http\Controllers\EmployeesController::class);
-    Route::get('/employees/create', [EmployeesController::class, 'create'])->name('employees.create');
+    Route::get('/employees/create/{location?}', [EmployeesController::class, 'create'])->name('employees.create');
     Route::get('/employees/select', [EmployeesController::class, 'selectList'])->name('employees.select');
     Route::post('/employees/select', [EmployeesController::class, 'select'])->name('employees.select');
     Route::get('/employees', [EmployeesController::class, 'index'])->name('employees.index');

@@ -111,10 +111,13 @@
                         <span class="text-gray-700 dark:text-gray-400">
                             Primary Team
                         </span>
-                        <input class="required block w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:text-gray-300 dark:focus:shadow-outline-gray form-input"
+                        {{-- <input class="required block w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:text-gray-300 dark:focus:shadow-outline-gray form-input"
                             wire:model="project.primary_team"
                             name="project.primary_team"
-                            placeholder="Primary Team" />
+                            placeholder="Primary Team" /> --}}
+                        <div class="">
+                            <label class="block text-sm"><livewire:employees-checkbox :selectedEmployees="$members"> </label>
+                        </div>
                     </label>
 
                     <div class="grid gap-6 md:grid-cols-1 xl:grid-cols-2">

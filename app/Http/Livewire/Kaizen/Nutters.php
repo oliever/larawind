@@ -129,7 +129,7 @@ class Nutters extends Component
             $this->setProtected();
 
             if($this->kaizen->rapid){
-                //if(auth()->user()->level == "headoffice_staff" || auth()->user()->level == "headoffice_manager")
+                //if(auth()->user()->level == "headoffice_staff" || auth()->user()->level == "headoffice_admin")
                 if(auth()->user()->level == "headoffice_admin")
                     $this->canApprove = true;
             }else if($this->kaizen->just_do_it){
