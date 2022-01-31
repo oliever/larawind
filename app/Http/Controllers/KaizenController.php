@@ -5,8 +5,10 @@ namespace App\Http\Controllers;
 use App\Models\Kaizen;
 use App\Models\Employee;
 use App\Models\AffectedArea;
+use App\Models\Department;
 use App\Models\Photo;
 use App\Models\Location;
+use App\Models\MachineCenter;
 use App\Models\User;
 
 use Illuminate\Support\Facades\Auth;
@@ -75,6 +77,13 @@ class KaizenController extends Controller
     public function pdf(Kaizen $kaizen)
     {
         $data['kaizen'] = $kaizen;
+
+        $data['departments'] = array_chunk(Department::where(['team_id'=>auth()->user()->currentTeam->id])->get()->toArray(),4);
+        $data['selectedDepartments'] = array_fill_keys($kaizen->departments()->pluck('id')->toArray(),'checked');
+
+        $data['machineCenters'] = array_chunk(MachineCenter::where(['team_id'=>auth()->user()->currentTeam->id])->get()->toArray(),4);
+        $data['selectedMachineCenters'] = array_fill_keys($kaizen->machineCenters()->pluck('id')->toArray(),'checked');
+
         $data['affectedAreas'] = array_chunk(AffectedArea::where(['team_id'=>auth()->user()->currentTeam->id])->get()->toArray(),4);
         $data['selectedAffectedAreas'] = array_fill_keys($kaizen->affectedAreas()->pluck('id')->toArray(),'checked');
 

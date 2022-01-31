@@ -70,6 +70,51 @@
     </table>
 
     <table style="border: none">
+        @if ($kaizen->team_id == 2)
+            <tr >
+                <td colspan="6" class="section-header">DEPARTMENTS</td>
+            </tr>
+            @foreach($departments as $department)
+                <tr>
+                    @foreach($department as $departmentsInner)
+                    <td style="width: 25%">
+                        <span>
+                            <input style="vertical-align: middle" type="checkbox"
+                            @isset($selectedDepartments[$departmentsInner['id']])
+                            checked
+                            @endisset
+                            />
+                            <span style="vertical-align: middle">
+                                {{ $departmentsInner['name']}}
+                            </span>
+                        </span>
+                    </td>
+                    @endforeach
+                </tr>
+            @endforeach
+
+            <tr >
+                <td colspan="6" class="section-header">MACHINE CENTERS</td>
+            </tr>
+            @foreach($machineCenters as $machineCenter)
+                <tr>
+                    @foreach($machineCenter as $machineCentersInner)
+                    <td style="width: 25%">
+                        <span>
+                            <input style="vertical-align: middle" type="checkbox"
+                            @isset($selectedMachineCenters[$machineCentersInner['id']])
+                            checked
+                            @endisset
+                            />
+                            <span style="vertical-align: middle">
+                                {{ $machineCentersInner['name']}}
+                            </span>
+                        </span>
+                    </td>
+                    @endforeach
+                </tr>
+            @endforeach
+        @endif
         <tr >
             <td colspan="6" class="section-header">AREAS AFFECTED</td>
         </tr>

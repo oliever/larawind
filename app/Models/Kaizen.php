@@ -55,6 +55,11 @@ class Kaizen extends Model //implements HasMedia
         return $this->belongsToMany(Department::class, 'kaizen_department');
     }
 
+    public function machineCenters()//
+    {
+        return $this->belongsToMany(MachineCenter::class, 'kaizen_machinecenter');
+    }
+
     public static function last()
     {
         return static::all()->last();

@@ -169,7 +169,7 @@
                 @if (auth()->user()->currentTeam->id == 1){{-- TODO: change to config --}}
                     xl:grid-cols-3">
                 @else
-                    xl:grid-cols-3">
+                    xl:grid-cols-4">
                 @endif
                 <div class="ml-8 mt-8 " style="width: 250px; ">
                     <span class="">&nbsp;</span>
@@ -182,6 +182,9 @@
                 @else
                     <div class="ml-8 mt-8" style="width: 250px;">
                         <label class="block text-sm"><livewire:departments-checkbox :kaizen="$kaizen"></label>
+                    </div>
+                    <div class="ml-8 mt-8" style="width: 250px;">
+                        <label class="block text-sm"><livewire:machine-centers-checkbox :kaizen="$kaizen"></label>
                     </div>
                 @endif
                 <div class="ml-8 mt-8" style="width: 250px;">
