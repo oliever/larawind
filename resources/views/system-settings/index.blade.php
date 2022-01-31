@@ -1,4 +1,4 @@
-<x-app-layout title="Tables">
+<x-app-layout title="{{auth()->user()->currentTeam->name}} Settings">
     <div class="container grid px-6 mx-auto">
         <div class="w-full mb-8 overflow-hidden rounded-lg shadow-xs">
             <div class="w-full overflow-x-auto">
@@ -29,6 +29,11 @@
                             <h1 class="mt-6 text-2xl py-4 font-semibold text-gray-700 dark:text-gray-200">Departments</h1>
                             <livewire:system-settings.manage-departments>
                         </div>
+                        <div x-show="activeTab===4">
+                            <h1 class="mt-6 text-2xl py-4 font-semibold text-gray-700 dark:text-gray-200">Machine Centers</h1>
+                            <livewire:system-settings.machine-centers>
+                        </div>
+
                     </div>
 
                 </div>
@@ -46,6 +51,7 @@
                 "Field Labels",
                 "Affected Areas",
                 "Departments",
+                "Machine Centers",
             ]
         @else
             tabs: [

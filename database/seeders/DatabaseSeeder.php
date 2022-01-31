@@ -31,7 +31,7 @@ class DatabaseSeeder extends Seeder
             EmployeeSeeder::class,
             RewardSeeder::class,
             RewardProgramSeeder::class,
-
+            MachineCenterSeeder::class,
         ]);
     }
 }

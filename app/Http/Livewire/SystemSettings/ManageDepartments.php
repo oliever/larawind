@@ -42,10 +42,7 @@ class ManageDepartments extends Component
             session()->flash('failed', ['title'=>'Department name is required.' , 'subtitle'=>' '. $index]);
             $this->emit('saved');
         }
-
-
     }
-
 
     public function removeDepartment($index){
         info("removeDepartment {$index}");
