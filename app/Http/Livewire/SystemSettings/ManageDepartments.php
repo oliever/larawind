@@ -46,11 +46,14 @@ class ManageDepartments extends Component
 
     public function removeDepartment($index){
         info("removeDepartment {$index}");
-        $department = Department::find($this->departments[$index]['id']);
-        $department->delete();
-        session()->flash('success', ['title'=>'Department deleted.' , 'subtitle'=>' '. $this->departments[$index]['name']]);
-        unset($this->departments[$index]);
-        $this->emit('saved');
+        if(isset($this->departments[$index])){
+            $department = Department::find($this->departments[$index]['id']);
+            $department->delete();
+            session()->flash('success', ['title'=>'Department deleted.' , 'subtitle'=>' '. $this->departments[$index]['name']]);
+            unset($this->departments[$index]);
+            $this->emit('saved');
+        }
+
     }
 
 

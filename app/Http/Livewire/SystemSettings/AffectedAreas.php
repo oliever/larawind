@@ -54,11 +54,14 @@ class AffectedAreas extends Component
 
     public function removeAffectedArea($index){
         info("removeAffectedArea {$index}");
-        $affectedArea = AffectedArea::find($this->affectedAreas[$index]['id']);
-        $affectedArea->delete();
-        session()->flash('success', ['title'=>'Affected Area deleted.' , 'subtitle'=>' '. $this->affectedAreas[$index]['name']]);
-        unset($this->affectedAreas[$index]);
-        $this->emit('saved');
+        if(isset($this->affectedAreas[$index])){
+            $affectedArea = AffectedArea::find($this->affectedAreas[$index]['id']);
+            $affectedArea->delete();
+            session()->flash('success', ['title'=>'Affected Area deleted.' , 'subtitle'=>' '. $this->affectedAreas[$index]['name']]);
+            unset($this->affectedAreas[$index]);
+            $this->emit('saved');
+        }
+
     }
 
 

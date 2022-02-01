@@ -43,11 +43,13 @@ class MachineCenters extends Component
 
     public function removeMachineCenter($index){
         info("removeMachineCenter {$index}");
-        $machineCenter = MachineCenter::find($this->machineCenters[$index]['id']);
-        $machineCenter->delete();
-        session()->flash('success', ['title'=>'MachineCenter deleted.' , 'subtitle'=>' '. $this->machineCenters[$index]['name']]);
-        unset($this->machineCenters[$index]);
-        $this->emit('saved');
+        if(isset($this->machineCenters[$index])){
+            $machineCenter = MachineCenter::find($this->machineCenters[$index]['id']);
+            $machineCenter->delete();
+            session()->flash('success', ['title'=>'MachineCenter deleted.' , 'subtitle'=>' '. $this->machineCenters[$index]['name']]);
+            unset($this->machineCenters[$index]);
+            $this->emit('saved');
+        }
     }
 
     public function render()
