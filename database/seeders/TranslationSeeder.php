@@ -35,7 +35,7 @@ class TranslationSeeder extends Seeder
             case 'dashboard':
                 return [
                     ['team_id'=>1 ,'created_at'=>carbon::now(),'section'=>'dashboard','field'=>    'top_location_kaizen', 'value'=>   'Top Stores (Kaizen)'],
-                    ['team_id'=>1 ,'created_at'=>carbon::now(),'section'=>'dashboard','field'=>    'top_location_project', 'value'=>   'Top Stores (Project'],
+                    ['team_id'=>1 ,'created_at'=>carbon::now(),'section'=>'dashboard','field'=>    'top_location_project', 'value'=>   'Top Stores (Project)'],
                 ];
                 break;
             case 'kaizen_general':

@@ -20,6 +20,6 @@ class boolean extends Component
      */
     public function render()
     {
-        return view('components.icons.boolean_' . $this->type);
+        return view('components.icons.boolean-' . $this->type);
     }
 }
