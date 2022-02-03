@@ -24,7 +24,7 @@ class CreateProjectsTable extends Migration
             $table->integer('manager_id')->nullable();
             $table->integer('sponsor_id')->nullable();
             $table->integer('champion_id')->nullable();
-            $table->text('primary_team')->nullable();
+            /* $table->text('primary_team')->nullable(); */
             $table->boolean('all_locations')->default(false);
             $table->dateTime('equicapita_support', $precision = 0)->nullable();
             $table->text('locations')->nullable();
@@ -36,6 +36,12 @@ class CreateProjectsTable extends Migration
             $table->text('budget')->nullable();
             $table->text('hours')->nullable();
             $table->text('savings')->nullable();
+
+            $table->text('material_savings_dollar')->nullable();
+            $table->text('machine_hours_savings')->nullable();
+            $table->text('other_savings_name')->nullable();
+            $table->text('other_savings_dollar')->nullable();
+
             $table->dateTime('start', $precision = 0)->nullable();
             $table->dateTime('end', $precision = 0)->nullable();
             $table->text('status')->nullable();

@@ -176,39 +176,79 @@
 
             {{-- Right Column: Project figures --}}
             <div class="min-w-0 p-4 bg-white rounded-lg shadow-md dark:bg-gray-800"><!--card-->
-                <label class="mb-4 block text-sm">
-                    <span class=" text-gray-700 dark:text-gray-400">
-                        Identified Loss
-                    </span>
-                    <input class="cleave-money block w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:text-gray-300 dark:focus:shadow-outline-gray form-input"
-                        wire:model="project.loss"
-                        name="project.loss"
-                        placeholder="Identified Loss"/>
-                </label>
+                <div class="grid gap-6 md:grid-cols-1 xl:grid-cols-2">
+                    <label class="mb-4 block text-sm">
+                        <span class=" text-gray-700 dark:text-gray-400">
+                            Identified Loss
+                        </span>
+                        <input class="cleave-money block w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:text-gray-300 dark:focus:shadow-outline-gray form-input"
+                            wire:model="project.loss"
+                            name="project.loss"
+                            placeholder="Identified Loss"/>
+                    </label>
 
-                <label class="mb-4 block text-sm">
-                    <span class="text-gray-700 dark:text-gray-400">
-                        Available Budget
-                    </span>
-                    <input class="cleave-money required block w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:text-gray-300 dark:focus:shadow-outline-gray form-input"
-                        wire:model="project.budget" name="project.budget"  />
-                </label>
+                    <label class="mb-4 block text-sm">
+                        <span class="text-gray-700 dark:text-gray-400">
+                            Available Budget
+                        </span>
+                        <input class="cleave-money required block w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:text-gray-300 dark:focus:shadow-outline-gray form-input"
+                            wire:model="project.budget" name="project.budget"  />
+                    </label>
+                </div>
 
-                <label class="mb-4 block text-sm">
-                    <span class="text-gray-700 dark:text-gray-400">
-                        Potential Hours
-                    </span>
-                    <input type="number" class="required block w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:text-gray-300 dark:focus:shadow-outline-gray form-input"
-                        wire:model="project.hours" name="project.hours"/>
-                </label>
+                <div class="grid gap-6 md:grid-cols-1 xl:grid-cols-2">
+                    <label class="mb-4 block text-sm">
+                        <span class="text-gray-700 dark:text-gray-400">
+                            Potential Hours
+                        </span>
+                        <input type="number" class="required block w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:text-gray-300 dark:focus:shadow-outline-gray form-input"
+                            wire:model="project.hours" name="project.hours"/>
+                    </label>
 
-                <label class="mb-4 block text-sm">
-                    <span class="text-gray-700 dark:text-gray-400">
-                        Potential Savings
-                    </span>
-                    <input class="cleave-money required block w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:text-gray-300 dark:focus:shadow-outline-gray form-input"
-                        wire:model="project.savings" name="project.savings" />
-                </label>
+                    <label class="mb-4 block text-sm">
+                        <span class="text-gray-700 dark:text-gray-400">
+                            Potential Savings
+                        </span>
+                        <input class="cleave-money required block w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:text-gray-300 dark:focus:shadow-outline-gray form-input"
+                            wire:model="project.savings" name="project.savings" />
+                    </label>
+                </div>
+
+                <div class="grid gap-6 md:grid-cols-1 xl:grid-cols-2">
+                    <label class="mb-4 block text-sm">
+                        <span class="text-gray-700 dark:text-gray-400">
+                            Material Savings (Dollar)
+                        </span>
+                        <input class="cleave-money required block w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:text-gray-300 dark:focus:shadow-outline-gray form-input"
+                            wire:model="project.material_savings_dollar" name="project.material_savings_dollar" />
+                    </label>
+
+                    <label class="mb-4 block text-sm">
+                        <span class="text-gray-700 dark:text-gray-400">
+                            Machine Hour Savings
+                        </span>
+                        <input type="number" class="required block w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:text-gray-300 dark:focus:shadow-outline-gray form-input"
+                            wire:model="project.machine_hours_savings" name="project.machine_hours_savings"/>
+                    </label>
+                </div>
+
+                <div class="grid gap-6 md:grid-cols-1 xl:grid-cols-2">
+                    <label class="mb-4 block text-sm">
+                        <span class="text-gray-700 dark:text-gray-400">
+                            Other Savings (Name)
+                        </span>
+                        <input class="required block w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:text-gray-300 dark:focus:shadow-outline-gray form-input"
+                            wire:model="project.other_savings_name" name="project.other_savings_name"/>
+                    </label>
+
+                    <label class="mb-4 block text-sm">
+                        <span class="text-gray-700 dark:text-gray-400">
+                            Other Savings (Dollar)
+                        </span>
+                        <input class="cleave-money required block w-full mt-1 text-sm dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:text-gray-300 dark:focus:shadow-outline-gray form-input"
+                            wire:model="project.other_savings_dollar" name="project.other_savings_dollar" />
+                    </label>
+                </div>
 
                 <div class="grid gap-6 md:grid-cols-1 xl:grid-cols-2">
                     <label class="mb-4 block text-sm">

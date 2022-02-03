@@ -9,99 +9,84 @@
 <center ><i>--- Under construction ---</i></center>
 </div>
 <div>
-    <table style="border: none">
+    <table style="border: solid 1px">
         <tr>
-            <td colspan="4" class="section-header"><strong> KAIZEN PROJECT FORM</strong></td>
+            <td colspan="2" class="section-header"><strong> KAIZEN PROJECT FORM</strong></td>
         </tr>
-        <tr >
-            <td colspan="3" >Description: <strong>{{$project->description}}</strong> </td>
-            <td style="width: 30%">Date: <strong style="float: right">{{Carbon\Carbon::create($project->posted)->toFormattedDateString()}}</strong></td>
-        </tr>
+        <tr>
+            <td style="vertical-align: top; width: 55%;">
+                <table style="border: solid 1px">
+                    <tr><td>Description: <strong>{{$project->description}}</strong></td></tr>
+                    <tr><td>Project Leader/Manager: <strong>{{$project->manager ? $project->manager->name : ""}}</strong></td></tr>
+                    <tr><td>Sponsor: <strong>{{$project->sponsor ? $project->sponsor->name  : ""}}</strong></td></tr>
+                    <tr><td>Champion: <strong>{{$project->champion ? $project->champion->name  : ""}}</strong></td></tr>
+                    <tr><td>Primary team:<br>
+                        @foreach ($project->members()->get() as $member)
+                            <strong style="margin-left: 10px;">{{ $member->name }}</strong><br>
+                        @endforeach</td></tr>
+                    @if (auth()->user()->currentTeam->id == 1)
+                    <tr>
+                        <td colspan="3" >Stores: <br>
+                            @if($project->all_locations)
+                                <strong style="margin-left: 10px;">All {{ Str::plural(t('kaizen_general','location'))}}</strong>
+                            @else
+                                @foreach ($project->locations()->get() as $store)
+                                    <strong style="margin-left: 10px;">{{ $store->name }}</strong><br>
+                                @endforeach
+                            @endif
 
-        <tr>
-            <td colspan="3">
-                Project Leader/Manager: <strong>{{$project->manager ? $project->manager->name : ""}}</strong>
+                        </td>
+                    </tr>
+                    @endif
+                </table>
             </td>
-            <td>
-                Identified Loss: <strong style="float: right">{{ $project->loss ? '$ '. $project->loss: "" }}</strong>
-            </td>
-        </tr>
-        <tr>
-            <td  colspan="3">Sponsor: <strong>{{$project->sponsor ? $project->sponsor->name  : ""}}</strong></td>
-            <td>
-                Available Budget: <strong style="float: right">{{ $project->budget ? '$ '. $project->budget: "" }}</strong>
-            </td>
-        </tr>
-        <tr>
-            <td colspan="3">Champion: <strong>{{$project->champion ? $project->champion->name  : ""}}</strong></td>
-            <td>
-                Potential Hours: <strong style="float: right">{{ $project->hours ? $project->hours . ' hrs' : ""}}</strong>
-            </td>
-        </tr>
-
-        <tr>
-            <td colspan="3">
-                Primary team: <strong>{{$project->primary_team}}</strong>
-            </td>
-            <td>
-                Potential Savings: <strong style="float: right">{{ $project->savings ? '$ '. $project->savings: "" }}</strong>
-            </td>
-        </tr>
-        <tr>
-            @if (auth()->user()->currentTeam->id == 1)
-            <td colspan="3" >Stores: <br>
-                @if($project->all_locations)
-                    <strong>All {{ Str::plural(t('kaizen_general','location'))}}</strong>
-                @else
-                    @foreach ($project->locations()->get() as $store)
-                        <strong style="margin-left: 10px;">{{ $store->name }}</strong><br>
-                    @endforeach
-                @endif
-
-            </td>
-            @else
-            <td colspan="3" ></td>
-            @endif
-            <td style="width: 29%">
-                <table>
+            <td style="vertical-align: top;">
+                <table style="border: solid 1px">
+                    <tr><td>Date: <strong style="float: right">{{Carbon\Carbon::create($project->posted)->toFormattedDateString()}}</strong></td></tr>
+                    <tr><td>Identified Loss: <strong style="float: right">{{ $project->loss ? $project->loss: "" }}</strong></td></tr>
+                    <tr><td>Available Budget: <strong style="float: right">{{ $project->budget ? $project->budget: "" }}</strong></td></tr>
+                    <tr><td>Potential Hours: <strong style="float: right">{{ $project->hours ? $project->hours . ' hrs' : ""}}</strong></td></tr>
+                    <tr><td>Potential Savings: <strong style="float: right">{{ $project->savings ? $project->savings: "" }}</strong></td></tr>
+                    <tr><td>Material Savings ($): <strong style="float: right">{{ $project->material_savings_dollar ? $project->material_savings_dollar: "" }}</strong></td></tr>
+                    <tr><td>Machine Hours Savings: <strong style="float: right">{{ $project->machine_hours_savings ? $project->machine_hours_savings: "" }}</strong></td></tr>
+                    <tr><td>Other Savings (Name): <strong style="float: right">{{ $project->other_savings_name ? $project->other_savings_name: "" }}</strong></td></tr>
+                    <tr><td>Other Savings ($): <strong style="float: right">{{ $project->other_savings_dollar ? $project->other_savings_dollar: "" }}</strong></td></tr>
                     <tr><td>Start Date: <strong style="float: right">{{$project->start->format('M d, Y')}}</strong></td></tr>
                     <tr><td>End Date: <strong style="float: right">{{$project->end->format('M d, Y')}}</strong></td></tr>
                 </table>
-
             </td>
-            {{-- <td style="width: 29%">
-                Start Date: <strong>{{Carbon\Carbon::create($project->start)->toFormattedDateString()}}</strong>
-            </td>
-            <td>
-                End Date: <strong>{{Carbon\Carbon::create($project->end)->toFormattedDateString()}}</strong>
-            </td> --}}
         </tr>
-
         <tr>
             <td colspan="2">
-                <input style="vertical-align: middle" type="checkbox"
-                @if ($project->capex)
-                checked
-                @endif
-                />
-                <span style="vertical-align: middle; margin-right: 10px" >Capex</span>
+                <table style="border: solid 1px">
+                    <tr>
+                        <td style="width: 40%">
+                            <input style="vertical-align: middle" type="checkbox"
+                            @if ($project->capex)
+                            checked
+                            @endif
+                            />
+                            <span style="vertical-align: middle; margin-right: 10px" >Capex</span>
 
-                <input style="vertical-align: middle" type="checkbox"
-                @if (!$project->capex)
-                checked
-                @endif
-                />
-                <span style="vertical-align: middle">Non-capex</span>
-            </td>
-            <td>
-                Status: <strong>{{$project->status}}</strong>
-            </td>
-            <td>
-                Completion: <strong>{{$project->completion}} %</strong>
+                            <input style="vertical-align: middle" type="checkbox"
+                            @if (!$project->capex)
+                            checked
+                            @endif
+                            />
+                            <span style="vertical-align: middle">Non-capex</span>
+                        </td>
+                        <td style="width: 20%">
+                            Status: <strong>{{$project->status}}</strong>
+                        </td>
+                        <td style="text-align: right">
+                            Completion: <strong>{{$project->completion}} %</strong>
+                        </td>
+                    </tr>
+                </table>
             </td>
         </tr>
-
     </table>
+
     @if (auth()->user()->currentTeam->id == 2)
         <table style="border: none">
             <tr>
@@ -204,7 +189,7 @@
                         <td >Validated By: <strong style="float: right">{{$project->actuAlHoursValidator ? $project->actuAlHoursValidator->name : ""}}</strong></td>
                     </tr>
                     <tr>
-                        <td>Dollar Savings: <strong style="float: right; padding-right: 10px">{{$project->savings_actual ? '$ '. $project->savings_actual : ""}}</strong></td>
+                        <td>Dollar Savings: <strong style="float: right; padding-right: 10px">{{$project->savings_actual ? $project->savings_actual : ""}}</strong></td>
                         <td>Validated By: <strong style="float: right">{{$project->actuAlsavingsValidator ? $project->actuAlsavingsValidator->name : ""}}</strong></td>
                     </tr>
                 </table>
