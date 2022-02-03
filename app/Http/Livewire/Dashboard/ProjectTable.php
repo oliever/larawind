@@ -2,11 +2,11 @@
 
 namespace App\Http\Livewire\Dashboard;
 
+use App\Models\Project;
 use Livewire\Component;
-use App\Models\Kaizen;
 use Livewire\WithPagination;
 
-class KaizenTable extends Component
+class ProjectTable extends Component
 {
     use WithPagination;
 
@@ -19,9 +19,9 @@ class KaizenTable extends Component
 
     public function render()
     {
-        return view('livewire.dashboard.kaizen-table', [
-            'kaizens' => Kaizen::where('team_id',auth()->user()->currentTeam->id)
-                                    ->where('name', 'like', '%'.$this->search.'%')
+        return view('livewire.dashboard.project-table', [
+            'projects' => Project::where('team_id',auth()->user()->currentTeam->id)
+                                    ->where('description', 'like', '%'.$this->search.'%')
                                     ->orderBy('id')->paginate(10)
         ]);
     }

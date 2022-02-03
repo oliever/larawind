@@ -24,8 +24,6 @@
                         <a href="{{route('kaizen.create')}}"><button class="px-3  text-sm font-medium leading-5 text-white transition-colors duration-150 bg-purple-600 border border-transparent rounded-md active:bg-purple-600 hover:bg-purple-700 focus:outline-none focus:shadow-outline-purple">
                             + {{ __('New Kaizen Suggestion') }}</button></a>
                     </h2>
-
-
                     <livewire:dashboard.kaizen-table/>
                     <div>
 
@@ -37,6 +35,7 @@
                         <a href="{{route('project.create')}}"> <button class="px-3  text-sm font-medium leading-5 text-white transition-colors duration-150 bg-purple-600 border border-transparent rounded-md active:bg-purple-600 hover:bg-purple-700 focus:outline-none focus:shadow-outline-purple">
                             + {{ __('New Kaizen Project') }}</button></a>
                     </h2 >
+                    <livewire:dashboard.project-table/>
                     <div>
 
                 </div>
