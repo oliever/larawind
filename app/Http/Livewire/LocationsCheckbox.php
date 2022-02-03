@@ -22,7 +22,7 @@ class LocationsCheckbox extends Component
         foreach ($selectedLocations as $value) {
             $this->selected[] = strval($value->id);
         }
-        $this->locations = Location::where('area_id', null)->with('children')->get();
+        $this->locations = Location::where('team_id',auth()->user()->currentTeam->id)->where('area_id', null)->with('children')->get();
         if(count($this->locations[0]->children) === count($this->selected)){
             $this->selectArea[99] = true;//TODO: find parent instead of 99
         }
