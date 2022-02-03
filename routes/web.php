@@ -1,11 +1,13 @@
 <?php
 
+use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\RewardsController;
 use App\Http\Controllers\EmployeesController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\KaizenController;
 use App\Http\Controllers\ProjectController;
 use App\Http\Controllers\SystemSettingsController;
+use SebastianBergmann\CodeCoverage\Report\Html\Dashboard;
 
 /*
 |--------------------------------------------------------------------------
@@ -26,9 +28,8 @@ Route::group(['middleware' => ['auth:sanctum', 'verified', 'employee.selected']]
     Route::resource('users', \App\Http\Controllers\UsersController::class);
     //Route::post('upload', [\App\Http\Controllers\UploadController::class, 'upload']);
     //Route::resource('kaizen', App\Http\Controllers\KaizenController::class);
-
-    Route::get('/', [KaizenController::class, 'index'])->name('dashboard');
-    Route::get('/dashboard', [KaizenController::class, 'index'])->name('dashboard');
+    Route::get('/', [DashboardController::class, 'index'])->name('dashboard');
+    Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
 
     Route::get('/kaizen/', [KaizenController::class, 'index'])->name('kaizen.index');
     Route::get('/kaizen/create', [KaizenController::class, 'create'])->name('kaizen.create');

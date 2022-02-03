@@ -1,8 +1,5 @@
-<div class="container grid px-6">
-    {{-- <livewire:kaizen-table/> --}}
-    <h2 class="my-6 text-2xl font-semibold text-gray-700 dark:text-gray-200">
-        Dashboard
-    </h2>
+<div class="container grid">
+
     <!-- Cards -->
     <div class="grid gap-6 mb-8 md:grid-cols-3 xl:grid-cols-6">
         <!-- Card -->
