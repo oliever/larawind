@@ -15,12 +15,14 @@ class TranslationSeeder extends Seeder
      */
     public function run()
     {
+        Translation::insert(TranslationSeeder::defaults('dashboard'));
         Translation::insert(TranslationSeeder::defaults('kaizen_general'));
         Translation::insert(TranslationSeeder::defaults('kaizen_just_do_it'));
         Translation::insert(TranslationSeeder::defaults('kaizen_rapid'));
         Translation::insert(TranslationSeeder::defaults('kaizen_custom_field'));
         Translation::insert(TranslationSeeder::defaults('project_custom_field'));
 
+        Translation::insert(TranslationSeeder::arMetals('dashboard'));
         Translation::insert(TranslationSeeder::arMetals('kaizen_general'));
         Translation::insert(TranslationSeeder::arMetals('kaizen_just_do_it'));
         Translation::insert(TranslationSeeder::arMetals('kaizen_rapid'));
@@ -30,6 +32,12 @@ class TranslationSeeder extends Seeder
 
     public static function defaults($section){//Nutters
         switch ($section) {
+            case 'dashboard':
+                return [
+                    ['team_id'=>1 ,'created_at'=>carbon::now(),'section'=>'dashboard','field'=>    'top_location_kaizen', 'value'=>   'Top Stores (Kaizen)'],
+                    ['team_id'=>1 ,'created_at'=>carbon::now(),'section'=>'dashboard','field'=>    'top_location_project', 'value'=>   'Top Stores (Project'],
+                ];
+                break;
             case 'kaizen_general':
                 return [
                     ['team_id'=>1 ,'created_at'=>carbon::now(),'section'=>'kaizen_general','field'=>    'location',             'value'=>   'Store'],
@@ -84,6 +92,12 @@ class TranslationSeeder extends Seeder
 
     public static function arMetals($section){//2
         switch ($section) {
+            case 'dashboard':
+                return [
+                    ['team_id'=>2 ,'created_at'=>carbon::now(),'section'=>'dashboard','field'=>    'top_location_kaizen', 'value'=>   'Top Locations (Kaizen)'],
+                    ['team_id'=>2 ,'created_at'=>carbon::now(),'section'=>'dashboard','field'=>    'top_location_project', 'value'=>   'Top Locations (Project)'],
+                ];
+                break;
             case 'kaizen_general':
                 return [
                     ['team_id'=>2 ,'created_at'=>carbon::now(),'section'=>'kaizen_general','field'=>    'location',             'value'=>   'Machine Center'],

@@ -9,7 +9,7 @@
             </div>
             <div>
                 <p class="mb-2 text-sm font-medium text-gray-600 dark:text-gray-400">
-                    Top Stores (Kaizen)
+                    {{t('dashboard','top_location_kaizen')}}
                 </p>
                 <p class="text-lg font-semibold text-gray-700 dark:text-gray-200">
                     @foreach ($data['top_kaizen_stores'] as $top_kaizen_store)
@@ -27,7 +27,7 @@
             </div>
             <div>
                 <p class="mb-2 text-sm font-medium text-gray-600 dark:text-gray-400">
-                    Top Stores (Projects)
+                    {{t('dashboard','top_location_project')}}
                 </p>
                 <p class="text-lg font-semibold text-gray-700 dark:text-gray-200">
                     @foreach ($data['top_project_stores'] as $top_project_store)
