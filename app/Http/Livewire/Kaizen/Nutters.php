@@ -234,10 +234,11 @@ class Nutters extends Component
 
         $this->kaizen->posted = Carbon::now();
 
-        if(count($this->selectedLocations) == count(Location::where('team_id',auth()->user()->currentTeam->id)->where('area_id', null)->with('children')->get()[0]->children))
-            $this->kaizen->all_locations = 1;
-        else
-            $this->kaizen->all_locations = 0;
+        $this->kaizen->all_locations = 0;
+        if(auth()->user()->currentTeam->id != 2)
+            if(count($this->selectedLocations) == count(Location::where('team_id',auth()->user()->currentTeam->id)->where('area_id', null)->with('children')->get()[0]->children))
+                $this->kaizen->all_locations = 1;
+
 
 
             //dd($this->selectedLocations);
