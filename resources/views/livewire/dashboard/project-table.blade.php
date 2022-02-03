@@ -9,7 +9,7 @@
                     <th class="px-4 py-3 w-6">Members</th>
                     <th class="px-4 py-3 w-6">Locations</th>
                     <th class="px-4 py-3 w-2">Completion</th>
-                    <th class="px-4 py-3 w-2">Posted</th>
+                    <th class="px-4 py-3">Posted</th>
                 </tr>
             </thead>
             <tbody class="bg-white divide-y text-left dark:divide-gray-700 dark:bg-gray-800">
