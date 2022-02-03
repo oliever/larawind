@@ -14,6 +14,7 @@ use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\App;
+use Symfony\Component\HttpFoundation\Response;
 
 class KaizenController extends Controller
 {
@@ -67,7 +68,7 @@ class KaizenController extends Controller
      */
     public function show(Request $request, Kaizen $kaizen)
     {
-       /*  info($kaizen); */
+       abort_if($kaizen->team_id != auth()->user()->currentTeam->id, Response::HTTP_FORBIDDEN, '403 Forbidden');
        $employee = null;
         //if(auth()->user()->shared)
             $employee = Employee::where('id', $request->cookie('selected_employee'))->first();

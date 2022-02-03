@@ -5,7 +5,7 @@
     <span class="flex items-center col-span-3">
         {!! __('Showing') !!}
         {{ $paginator->firstItem() }}-{{ $paginator->lastItem() }}
-        {!! __('of') !!} 
+        {!! __('of') !!}
         {{ $paginator->total() }}
     </span>
 
@@ -15,7 +15,7 @@
         <nav aria-label="Table navigation">
             <ul class="inline-flex items-center">
                 <li>
-                    <button 
+                    <button
                         class="px-3 py-1 rounded-md rounded-l-lg focus:outline-none focus:shadow-outline-purple"
                         aria-label="Previous"
 
@@ -55,7 +55,7 @@
                                 </li>
                             @else
                                 <li>
-                                    <button 
+                                    <button
                                         @click="window.location='{{ $url }}'"
                                         aria-label="{{ __('Go to page :page', ['page' => $page]) }}"
                                         class="px-3 py-1 rounded-md focus:outline-none focus:shadow-outline-purple">
