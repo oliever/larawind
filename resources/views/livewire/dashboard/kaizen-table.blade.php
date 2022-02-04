@@ -72,16 +72,16 @@
                         </td>
                         <td class="px-4 py-3">
                             @if ($kaizen->head_office_input)
-                                <x-icons.boolean type="yes"/>
+                                <x-icons.check"/>
                             @else
-                                <x-icons.boolean type="no"/>
+                                <x-icons.ex/>
                             @endif
                         </td>
                         <td class="px-4 py-3 w-2">
                             @if ($kaizen->handle_at_location)
-                                <x-icons.boolean type="yes"/>
+                                <x-icons.check/>
                             @else
-                                <x-icons.boolean type="no"/>
+                                <x-icons.ex/>
                             @endif
                         </td>
                     </tr>
