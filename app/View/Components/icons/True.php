@@ -4,7 +4,7 @@ namespace App\View\Components\icons;
 
 use Illuminate\View\Component;
 
-class Ex extends Component
+class True extends Component
 {
     /**
      * Create a new component instance.
@@ -23,6 +23,6 @@ class Ex extends Component
      */
     public function render()
     {
-        return view('components.icons.ex');
+        return view('components.icons.true');
     }
 }
