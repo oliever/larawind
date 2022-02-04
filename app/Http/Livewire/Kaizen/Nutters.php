@@ -119,7 +119,7 @@ class Nutters extends Component
 
             $this->selectedLocations = $this->kaizen->locations()->get();
             if($this->kaizen->all_locations)
-                $this->selectedLocations = Location::where('area_id','>','0')->get();
+                $this->selectedLocations = Location::where('team_id',auth()->user()->currentTeam->id)->where('area_id','>','0')->get();
             //$this->selectedUsers = $this->kaizen->users()->get();
             $this->members = $this->kaizen->members()->get();
 
