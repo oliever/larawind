@@ -4,7 +4,7 @@ namespace App\View\Components\icons;
 
 use Illuminate\View\Component;
 
-class boolean extends Component
+class Boolean extends Component
 {
     public $type;
 
@@ -20,6 +20,6 @@ class boolean extends Component
      */
     public function render()
     {
-        return view('components.icons.boolean-' . $this->type);
+        return view('components.icons.boolean-yes');
     }
 }
