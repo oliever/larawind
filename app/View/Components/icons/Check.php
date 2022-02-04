@@ -4,13 +4,16 @@ namespace App\View\Components\icons;
 
 use Illuminate\View\Component;
 
-class Boolean extends Component
+class Check extends Component
 {
-    public $type;
-
-    public function __construct($type)
+    /**
+     * Create a new component instance.
+     *
+     * @return void
+     */
+    public function __construct()
     {
-        $this->type = $type;
+        //
     }
 
     /**
@@ -20,6 +23,6 @@ class Boolean extends Component
      */
     public function render()
     {
-        return view('components.icons.boolean-yes');
+        return view('components.icons.check');
     }
 }

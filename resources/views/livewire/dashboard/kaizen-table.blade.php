@@ -21,9 +21,9 @@
                         <td class="px-4 py-3"><p class="">{{ $kaizen->id }}</p></td>
                         <td class="px-4 py-3">
                             @if ($kaizen->approved)
-                                <x-icons.boolean type="yes" />
+                                <x-icons.check/>
                             @else
-                                <x-icons.boolean type="no" />
+                                <x-icons.ex/>
                             @endif
                         </td>
                         <td class="px-4 py-3">
