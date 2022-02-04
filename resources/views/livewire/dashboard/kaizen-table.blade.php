@@ -21,9 +21,9 @@
                         <td class="px-4 py-3"><p class="">{{ $kaizen->id }}</p></td>
                         <td class="px-4 py-3">
                             @if ($kaizen->approved)
-                                <x-icons.true/>
+                                <x-icons.true-icon/>
                             @else
-                                <x-icons.false/>
+                                <x-icons.false-icon/>
                             @endif
                         </td>
                         <td class="px-4 py-3">
@@ -72,16 +72,16 @@
                         </td>
                         <td class="px-4 py-3">
                             @if ($kaizen->head_office_input)
-                                <x-icons.true"/>
+                                <x-icons.true-icon/>
                             @else
-                                <x-icons.false/>
+                                <x-icons.false-icon/>
                             @endif
                         </td>
                         <td class="px-4 py-3 w-2">
                             @if ($kaizen->handle_at_location)
-                                <x-icons.true/>
+                                <x-icons.true-icon/>
                             @else
-                                <x-icons.false/>
+                                <x-icons.false-icon/>
                             @endif
                         </td>
                     </tr>

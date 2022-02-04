@@ -4,7 +4,7 @@ namespace App\View\Components\icons;
 
 use Illuminate\View\Component;
 
-class False extends Component
+class FalseIcon extends Component
 {
     /**
      * Create a new component instance.
@@ -23,6 +23,6 @@ class False extends Component
      */
     public function render()
     {
-        return view('components.icons.false');
+        return view('components.icons.false-icon');
     }
 }
