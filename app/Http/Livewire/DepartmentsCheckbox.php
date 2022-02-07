@@ -18,31 +18,33 @@ class DepartmentsCheckbox extends Component
 
     public function mount( $kaizen )
     {
-        $this->selected =$kaizen->departments()->pluck('id')->toArray();
+        //$this->selected =$kaizen->departments()->pluck('id')->toArray();
         $this->departments = Department::where(['team_id'=>auth()->user()->currentTeam->id])->get();
     }
 
+    public function updatedSelectAll($value)
+    {
+        if($value)
+            $this->selected = Department::where(['team_id'=>auth()->user()->currentTeam->id])->pluck('id');
+        else
+            $this->selected = [];
+    }
+
+   public function updatedSelected($value){
+        info($value);
+    }
     public function updated($key, $value)
     {
-        /* info('updated');
-        info('key: ' .$key);
-        info( $value);
-        info( $this->selected); */
-        if('selectAll' == $key){
-            if($value)
-                $this->selected = Department::where(['team_id'=>auth()->user()->currentTeam->id])->pluck('id')->toArray();
-            else
-                $this->selected = [];
-        }else{
-            info('yo');
-            info($this->selected);
-        }
-        $this->emit('departmentsCheckboxUpdated',$this->selected);
+       // info($key);
+        //info($value);
+        //$this->emit('departmentsCheckboxUpdated',$this->selected);
     }
 
     public function render()
     {
-        $this->selectAll = count($this->selected) === count($this->departments);
+        //info($this->selected);
+        //info(Department::where(['team_id'=>auth()->user()->currentTeam->id])->pluck('id'));
+        $this->selectAll = count($this->selected) === count(Department::where(['team_id'=>auth()->user()->currentTeam->id])->pluck('id'));
         $this->label = "Departments";
         if($this->selectAll)
             $this->label = "All Departments";

@@ -61,13 +61,15 @@ class KaizenController extends Controller
     }
     public function pdf(Kaizen $kaizen)
     {
+        abort_if($kaizen->team_id != auth()->user()->currentTeam->id, Response::HTTP_FORBIDDEN, '403 Forbidden');
         $data['kaizen'] = $kaizen;
 
         $data['departments'] = array_chunk(Department::where(['team_id'=>auth()->user()->currentTeam->id])->get()->toArray(),4);
         $data['selectedDepartments'] = array_fill_keys($kaizen->departments()->pluck('id')->toArray(),'checked');
 
-        $data['machineCenters'] = array_chunk(MachineCenter::where(['team_id'=>auth()->user()->currentTeam->id])->get()->toArray(),4);
-        $data['selectedMachineCenters'] = array_fill_keys($kaizen->machineCenters()->pluck('id')->toArray(),'checked');
+        $selectedMachineCenters = $kaizen->machineCenters()->pluck('id')->toArray();
+        $data['machineCenters'] = array_chunk(MachineCenter::whereIn('id', $selectedMachineCenters)->where(['team_id'=>auth()->user()->currentTeam->id])->get()->toArray(),4);
+        $data['selectedMachineCenters'] = array_fill_keys($selectedMachineCenters,'checked');
 
         $data['affectedAreas'] = array_chunk(AffectedArea::where(['team_id'=>auth()->user()->currentTeam->id])->get()->toArray(),4);
         $data['selectedAffectedAreas'] = array_fill_keys($kaizen->affectedAreas()->pluck('id')->toArray(),'checked');

@@ -69,15 +69,15 @@
         </tr>
     </table>
 
-    <table style="border: none">
-        @if ($kaizen->team_id == 2)
+    @if ($kaizen->team_id == 2)
+        <table style="border: none">
             <tr >
                 <td colspan="6" class="section-header">DEPARTMENTS</td>
             </tr>
             @foreach($departments as $department)
-                <tr>
+                <tr >
                     @foreach($department as $departmentsInner)
-                    <td style="width: 25%">
+                    <td style="width: 25%;">
                         <span>
                             <input style="vertical-align: middle" type="checkbox"
                             @isset($selectedDepartments[$departmentsInner['id']])
@@ -106,7 +106,7 @@
                             checked
                             @endisset
                             />
-                            <span style="vertical-align: middle">
+                            <span style="vertical-align: middle; font-size: 11px">
                                 {{ $machineCentersInner['name']}}
                             </span>
                         </span>
@@ -114,7 +114,11 @@
                     @endforeach
                 </tr>
             @endforeach
-        @endif
+        </table>
+    @endif
+
+    <table style="border: none">
+
         <tr >
             <td colspan="6" class="section-header">AREAS AFFECTED</td>
         </tr>
@@ -143,7 +147,8 @@
                 </td>
             </tr>
         @endif
-
+    </table>
+    <table style="border: none">
         <tr>
             <td colspan="4">
                 <table style="border: none; text-align: center;">
@@ -155,7 +160,8 @@
             </td>
 
         </tr>
-
+    </table>
+    <table style="border: none">
         @if ($kaizen->head_office_input)
             <tr>
                 <td colspan="4" class="input-header">Head Office Comments</td>
@@ -164,8 +170,11 @@
                 <td  colspan="4" style="padding-bottom: 20px;">{{$kaizen->head_office_comment}}</td>
             </tr>
         @endif
+    </table>
 
-        @if ( settingsValue('custom_section_position_kaizen') == "before_reason" &&  $showCustomFields )
+    @if ( settingsValue('custom_section_position_kaizen') == "before_reason" &&  $showCustomFields )
+        <table style="border: none">
+
             <tr>
                 <td colspan="2" class="input-header">{{$kaizen->custom_field_01_label}}</td>
                 <td colspan="2" class="input-header">{{$kaizen->custom_field_02_label}}</td>
@@ -183,8 +192,10 @@
             <tr>
                 <td><br/></td>
             </tr>
-        @endif
 
+        </table>
+    @endif
+    <table style="border: none">
         <tr>
             <td colspan="2" class="input-header">Reason For kaizen </td>
             <td colspan="2" class="input-header">Problem</td>
@@ -205,9 +216,10 @@
         <tr>
             <td  colspan="4" style="padding-bottom: 20px;">{{$kaizen->expected_result}}</td>
         </tr>
-
+    </table>
+    <table style="border: none">
         @if ( settingsValue('custom_section_position_kaizen') == "after_reason" &&  $showCustomFields )
-            <tr>
+                <tr>
                 <td><br/></td>
             </tr>
             <tr>
@@ -225,8 +237,6 @@
                 <td  colspan="2">{{$kaizen->custom_field_03}}</td><td  colspan="2">{{$kaizen->custom_field_04}}</td>
             </tr>
         @endif
-
-
     </table>
     @if (!$kaizen->before_after)
         <div class="page-break"></div>

@@ -47,6 +47,10 @@ class AffectedAreasCheckbox extends Component
         $this->label = "Affected Areas";
         if($this->selectAll)
             $this->label = "All Affected Areas";
+        else if(isset($this->selected[0])){
+            $selectedAA = AffectedArea::where(['id'=>$this->selected[0]])->first();
+            $this->label = $selectedAA->name;
+        }
         return view('livewire.affected-areas-checkbox');
     }
 }

@@ -46,6 +46,11 @@ class MachineCentersCheckbox extends Component
         $this->label = "Machine Centers";
         if($this->selectAll)
             $this->label = "All Machine Centers";
+        else if(isset($this->selected[0])){
+            $selectedMC = MachineCenter::where(['id'=>$this->selected[0]])->first();
+            $this->label = $selectedMC->name;
+        }
+
         return view('livewire.machinecenters-checkbox');
     }
 }

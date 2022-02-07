@@ -1,7 +1,7 @@
 <div>
     <label class="flex items-center dark:text-gray-400">
 
-        <input type="checkbox" wire:model="selectAll" value="1" id="select-all_checkbox" class="inline-block mr-2"/>
+        <input type="checkbox" wire:model="selectAll" id="select-all_checkbox" class="inline-block mr-2"/>
         <label for="select-all_checkbox">All Departments</label>
 
     </label>
