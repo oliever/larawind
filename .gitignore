@@ -11,3 +11,17 @@ Homestead.json
 Homestead.yaml
 npm-debug.log
 yarn-error.log
+.user.ini
+.htaccess
+php.ini
+resources/lang/vendor/livewire-powergrid/ca/datatable.php
+resources/lang/vendor/livewire-powergrid/de/datatable.php
+resources/lang/vendor/livewire-powergrid/en/datatable.php
+resources/lang/vendor/livewire-powergrid/es/datatable.php
+resources/lang/vendor/livewire-powergrid/fa/datatable.php
+resources/lang/vendor/livewire-powergrid/id/datatable.php
+resources/lang/vendor/livewire-powergrid/it/datatable.php
+resources/lang/vendor/livewire-powergrid/ms_MY/datatable.php
+resources/lang/vendor/livewire-powergrid/pt_BR/datatable.php
+resources/lang/vendor/livewire-powergrid/tr/datatable.php
+resources/lang/vendor/livewire-powergrid/yr/datatable.php
