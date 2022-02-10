@@ -18,15 +18,15 @@
             <tbody class="bg-white divide-y text-left dark:divide-gray-700 dark:bg-gray-800">
                 @foreach ($kaizens as $kaizen)
                     <tr class="text-gray-700 dark:text-gray-400">
-                        <td class="px-4 py-3"><p class="">{{ $kaizen->id }}</p></td>
-                        <td class="px-4 py-3">
+                        <td class="px-4 py-3"><p class="">{{ $kaizen->id }}</p></td>{{-- ID --}}
+                        <td class="px-4 py-3">{{-- Approved --}}
                             @if ($kaizen->approved)
                                 <x-icons.true-icon/>
                             @else
                                 <x-icons.false-icon/>
                             @endif
                         </td>
-                        <td class="px-4 py-3">
+                        <td class="px-4 py-3">{{-- Name/Type --}}
                             <div class="flex items-center text-sm">
                                 <div>
                                     <p class="font-semibold">
@@ -41,7 +41,7 @@
                                 </div>
                             </div>
                         </td>
-                        <td>
+                        <td>{{-- Members --}}
                             <div class="flex items-center text-sm">
                                 <div>
                                     @foreach ($kaizen->members()->get() as $member)
@@ -51,7 +51,7 @@
                                 </div>
                             </div>
                         </td>
-                        <td>
+                        <td>{{-- Locations --}}
                             <div class="ml-2 flex items-center text-sm">
                                 <div>
                                     @if ($kaizen->all_locations)
@@ -64,20 +64,20 @@
                                 </div>
                             </div>
                         </td>
-                        <td class="px-4 py-3 text-sm">
+                        <td class="px-4 py-3 text-sm">{{-- Completion --}}
                             {{ $kaizen->completion }} %
                         </td>
-                        <td class="px-4 py-3 text-xs">
+                        <td class="px-4 py-3 text-xs">{{-- Assigned --}}
                             {{ \Carbon\Carbon::parse($kaizen->date_assigned)->format('M j, Y') }}
                         </td>
-                        <td class="px-4 py-3">
+                        <td class="px-4 py-3">{{-- Head Office Input --}}
                             @if ($kaizen->head_office_input)
                                 <x-icons.true-icon/>
                             @else
                                 <x-icons.false-icon/>
                             @endif
                         </td>
-                        <td class="px-4 py-3 w-2">
+                        <td class="px-4 py-3 w-2">{{-- Handle at Branch --}}
                             @if ($kaizen->handle_at_location)
                                 <x-icons.true-icon/>
                             @else

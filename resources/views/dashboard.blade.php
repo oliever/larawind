@@ -17,14 +17,20 @@
                 </template>
             </ul>
 
-            <div class="text-center mx-auto">
+            <div class="mx-auto">
                 <div x-show="activeTab===0">
-                    <h2 class="text-2xl font-semibold text-gray-700 dark:text-gray-200 align-middle">
+                    <h2 class="text-center  text-2xl font-semibold text-gray-700 dark:text-gray-200 align-middle">
                         Kaizen Suggestions
                         <a href="{{route('kaizen.create')}}"><button class="px-3  text-sm font-medium leading-5 text-white transition-colors duration-150 bg-purple-600 border border-transparent rounded-md active:bg-purple-600 hover:bg-purple-700 focus:outline-none focus:shadow-outline-purple">
                             + {{ __('New Kaizen Suggestion') }}</button></a>
                     </h2>
-                    <livewire:dashboard.kaizen-table/>
+                    <div class="hidden md:block">
+                        <livewire:dashboard.kaizen-table/>
+                    </div>
+                    <div class="md:hidden block">
+                        <livewire:dashboard.mobile.kaizen-table/>
+                    </div>
+
                     <div>
 
                 </div>
