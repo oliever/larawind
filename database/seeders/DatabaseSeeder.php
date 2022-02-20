@@ -32,6 +32,7 @@ class DatabaseSeeder extends Seeder
             RewardSeeder::class,
             RewardProgramSeeder::class,
             MachineCenterSeeder::class,
+            ProcessStepSeeder::class,
         ]);
     }
 }

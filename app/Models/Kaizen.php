@@ -60,6 +60,11 @@ class Kaizen extends Model //implements HasMedia
         return $this->belongsToMany(MachineCenter::class, 'kaizen_machinecenter');
     }
 
+    public function processSteps()//
+    {
+        return $this->belongsToMany(ProcessStep::class, 'kaizen_processstep');
+    }
+
     public static function last()
     {
         return static::all()->last();

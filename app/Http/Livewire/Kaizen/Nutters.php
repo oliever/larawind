@@ -27,6 +27,7 @@ class Nutters extends Component
     public $affectedAreas = [];
     public $departments = [];
     public $machineCenters = [];
+    public $processSteps = [];
     public $isRapid = false;
     public $isJustDoIt = true;
     public $hasBeforeAfter = false;
@@ -43,7 +44,14 @@ class Nutters extends Component
     public $canApprove = false;
     public $protected = true;
 
-    protected $listeners = ['employeesCheckboxUpdated', 'locationsCheckboxUpdated', 'photoUploaded', 'affectedAreasCheckboxUpdated', 'departmentsCheckboxUpdated', 'machineCentersCheckboxUpdated'];
+    protected $listeners = [
+        'employeesCheckboxUpdated', 
+        'locationsCheckboxUpdated', 
+        'photoUploaded', 
+        'affectedAreasCheckboxUpdated', 
+        'departmentsCheckboxUpdated', 
+        'machineCentersCheckboxUpdated',
+        'processStepsCheckboxUpdated'];
 
     protected $rules = [
         'kaizen.name' => 'required|min:5',
@@ -129,6 +137,8 @@ class Nutters extends Component
 
             $this->machineCenters = $this->kaizen->machineCenters()->get();
 
+            $this->processSteps = $this->kaizen->processSteps()->get();
+
             $this->setProtected();
 
             if($this->kaizen->rapid){
@@ -192,6 +202,10 @@ class Nutters extends Component
 
     public function machineCentersCheckboxUpdated($machineCenters){
         $this->machineCenters = $machineCenters;
+    }
+
+    public function processStepsCheckboxUpdated($processSteps){
+        $this->processSteps = $processSteps;
     }
 
     public function saveAsDraft(){
@@ -259,6 +273,8 @@ class Nutters extends Component
         $this->kaizen->departments()->sync($this->departments);
 
         $this->kaizen->machineCenters()->sync($this->machineCenters);
+
+        $this->kaizen->processSteps()->sync($this->processSteps);
 
         info('---nutters_kaizen_saved---');
         info($this->kaizen);

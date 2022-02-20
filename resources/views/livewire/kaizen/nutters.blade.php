@@ -153,14 +153,18 @@
                     </label>
                 </div>
                 <div class="flex mt-2 text-sm">
-                    <label class="flex items-center dark:text-gray-400">
-                        <input type="checkbox"
-                                wire:model="kaizen.handled_at_location"
-                                class="text-purple-600 form-checkbox focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:focus:shadow-outline-gray" style="border-color:purple"/>
-                        <span class="ml-2">
-                            {{ t('kaizen_general','handled_at_location') }}{{-- Handled at Store Level --}}
-                        </span>
-                    </label>
+                    @if (auth()->user()->currentTeam->id == 1)
+                        <label class="flex items-center dark:text-gray-400">
+                            <input type="checkbox"
+                                    wire:model="kaizen.handled_at_location"
+                                    class="text-purple-600 form-checkbox focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:focus:shadow-outline-gray" style="border-color:purple"/>
+                            <span class="ml-2">
+                                {{ t('kaizen_general','handled_at_location') }}{{-- Handled at Store Level --}}
+                            </span>
+                        </label>
+                    @else
+                        <label class="block text-sm"><livewire:process-steps-checkbox :kaizen="$kaizen"> </label>
+                    @endif
                 </div>
             </div>
 
