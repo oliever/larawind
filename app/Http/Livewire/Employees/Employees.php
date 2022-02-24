@@ -23,6 +23,7 @@ class Employees extends Component
         'employees.*.name' => ['required'],
         'employees.*.status' => ['required'],
         'employees.*.level' => ['required'],
+        'employees.*.location' => ['required'],
         'selectedLocation' => [],
     ];
 
@@ -35,7 +36,6 @@ class Employees extends Component
     {
         $this->locations = Location::where('team_id',auth()->user()->currentTeam->id)->get();
         $this->selectedLocation = $this->locations[0]->id;
-        info($this->selectedLocation);
         $this->employees = Employee::where('location_id', $this->selectedLocation)->get();
 
        /*  if(auth()->user()->level == "headoffice_admin")
@@ -87,6 +87,32 @@ class Employees extends Component
         if (!is_null($employee)) {
             $toUpdate = Employee::find($employee['id']);
             $toUpdate->status = $employee['status'];
+            $toUpdate->save();
+            //info(Employee::find($employee['id']));
+            $this->lastSavedName = $employee['name'];
+            $this->emit('saved');
+        }
+    }
+
+    public function changeLevel($employeeIndex){
+        $employee = $this->employees[$employeeIndex] ?? NULL;
+        if (!is_null($employee)) {
+            $toUpdate = Employee::find($employee['id']);
+            $toUpdate->level = $employee['level'];
+            $toUpdate->save();
+            //info(Employee::find($employee['id']));
+            $this->lastSavedName = $employee['name'];
+            $this->emit('saved');
+        }
+    }
+
+    public function changeLocation($employeeIndex){
+        
+        $employee = $this->employees[$employeeIndex] ?? NULL;
+        info($employee['location']);
+        if (!is_null($employee)) {
+            $toUpdate = Employee::find($employee['id']);
+            $toUpdate->location = $employee['location'];
             $toUpdate->save();
             //info(Employee::find($employee['id']));
             $this->lastSavedName = $employee['name'];

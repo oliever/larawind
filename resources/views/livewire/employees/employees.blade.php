@@ -26,8 +26,9 @@
             </th>
             <th class="px-4 py-3">   Name
             </th>
-            <th class="px-4 py-3">   Location
-            </th>
+            @if (auth()->user()->currentTeam->id == 1)
+            <th class="px-4 py-3">   {{ t('kaizen_general','location') }}
+            </th>@endif
             <th class="px-4 py-3">   Level
             </th>
             <th class="px-4 py-3">   Status
@@ -68,13 +69,25 @@
                         </div>
                     @endif
                 </td>
-                <td class="px-4 py-3" >
+                @if (auth()->user()->currentTeam->id == 1)
+                    <td class="px-4 py-3" >
+                        <p class="text-xs text-gray-600 dark:text-gray-400" >
+                            {{ $employee->location->name; }}
+                        </p>
+                        {{-- <select name="employees.{{ $index }}.location" id="employees.{{ $index }}.location" wire:model="employees.{{ $index }}.location" wire:change="changeLocation({{ $index }})" class="block w-full mt-1 text-sm dark:text-gray-300 dark:border-gray-600 dark:bg-gray-700 form-select focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:focus:shadow-outline-gray">
+                           @foreach ($locations as $location)
+                                <option value="{{ $location->id }}"  @if("Red Deer" == $location->name)
+                                    selected
+                                @endif>{{ $location->name }}</option>
+                            @endforeach
+                        </select> --}}
+                    </td>
+                @endif
+                {{-- <td>
                     <p class="text-xs text-gray-600 dark:text-gray-400" >
-                        {{ $employee->location->name; }}
-                    </p>
-                </td>
-                <td>
-                    <p class="text-xs text-gray-600 dark:text-gray-400" >
+                        {{  str_replace('_', ' ', ucwords($employee['level'], "_")) }}
+
+                        {{--
                         @if ($employee['level'] == 'super_admin')
                             Super Admin
                         @elseif ($employee['level'] == 'location_staff')
@@ -86,12 +99,21 @@
                         @elseif ($employee['level'] == 'headoffice_admin')
                             Headoffice Admin
                         @endif
+                         
                     </p>
+                </td> --}}
+                <td class="px-4 py-3 ">
+                    <select name="" id="" wire:model="employees.{{ $index }}.level" wire:change="changeLevel({{ $index }})" class="block w-full mt-1 text-sm dark:text-gray-300 dark:border-gray-600 dark:bg-gray-700 form-select focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:focus:shadow-outline-gray">
+                        @if(auth()->user()->level == 'super_admin')
+                            <option value="super_admin" >Super Admin</option>
+                        @endif
+                        <option value="location_staff" >Location Staff</option>
+                    </select>
                 </td>
-                <td class="px-4 py-3">
-                    <select name="" id="" wire:model="employees.{{ $index }}.status" wire:change="changeStatus({{ $index }})">
-                        <option value="active">Active</option>
-                        <option value="inactive">Inactive</option>
+                <td class="px-4 py-3 ">
+                    <select name="" id="" wire:model="employees.{{ $index }}.status" wire:change="changeStatus({{ $index }})" class="block w-full mt-1 text-sm dark:text-gray-300 dark:border-gray-600 dark:bg-gray-700 form-select focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:focus:shadow-outline-gray">
+                        <option value="active" >Active</option>
+                        <option value="inactive" >Inactive</option>
                     </select>
                 </td>
 
