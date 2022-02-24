@@ -100,7 +100,7 @@ class TranslationSeeder extends Seeder
                 break;
             case 'kaizen_general':
                 return [
-                    ['team_id'=>2 ,'created_at'=>carbon::now(),'section'=>'kaizen_general','field'=>    'location',             'value'=>   'Machine Center'],
+                    ['team_id'=>2 ,'created_at'=>carbon::now(),'section'=>'kaizen_general','field'=>    'location',             'value'=>   'Location'],
                     ['team_id'=>2 ,'created_at'=>carbon::now(),'section'=>'kaizen_general','field'=>    'name',                 'value'=>   'Kaizen Name'],
                     ['team_id'=>2 ,'created_at'=>carbon::now(),'section'=>'kaizen_general','field'=>    'date_assigned',        'value'=>   'Date Assigned'],
                     ['team_id'=>2 ,'created_at'=>carbon::now(),'section'=>'kaizen_general','field'=>    'completion',           'value'=>   'Completion'],

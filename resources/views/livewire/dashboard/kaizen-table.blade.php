@@ -8,7 +8,9 @@
                     <th class="px-4 py-3 w-6">Approved</th>
                     <th class="px-4 py-3 w-6">Name</th>
                     <th class="px-4 py-3 w-6">Members</th>
-                    <th class="px-4 py-3 w-6">Locations</th>
+                    @if ( settingsValue('dashboard_kaizen_column_location') == "1" )
+                        <th class="px-4 py-3 w-6">Locations</th>
+                    @endif
                     <th class="px-4 py-3 w-2">Completion</th>
                     <th class="px-4 py-3 w-2">Assigned</th>
                     <th class="px-4 py-3 w-2">Head Office Input</th>
@@ -51,19 +53,21 @@
                                 </div>
                             </div>
                         </td>
-                        <td>{{-- Locations --}}
-                            <div class="ml-2 flex items-center text-sm">
-                                <div>
-                                    @if ($kaizen->all_locations)
-                                        <p class="text-sm">All Stores</p>
-                                    @else
-                                    @foreach ($kaizen->locations()->get() as $location)
-                                        <p class="text-xs">{{$location->name}}</p>
-                                    @endforeach
-                                    @endif
+                        @if ( settingsValue('dashboard_kaizen_column_location') == "1" )
+                            <td>{{-- Locations --}}
+                                <div class="ml-2 flex items-center text-sm">
+                                    <div>
+                                        @if ($kaizen->all_locations)
+                                            <p class="text-sm">All Stores</p>
+                                        @else
+                                        @foreach ($kaizen->locations()->get() as $location)
+                                            <p class="text-xs">{{$location->name}}</p>
+                                        @endforeach
+                                        @endif
+                                    </div>
                                 </div>
-                            </div>
-                        </td>
+                            </td>
+                        @endif {{-- if ( settingsValue('dashboard_kaizen_column_location') == "1" ) --}}
                         <td class="px-4 py-3 text-sm">{{-- Completion --}}
                             {{ $kaizen->completion }} %
                         </td>

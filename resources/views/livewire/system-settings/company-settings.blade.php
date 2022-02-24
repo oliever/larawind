@@ -62,6 +62,23 @@
         </div>
     </div>
 
+    <div class="px-4 py-6 mb-4 bg-white rounded-lg shadow-md dark:bg-gray-800"><!--card-->
+        <h4 class="mb-2 text-lg font-semibold text-gray-600 dark:text-gray-300">
+            Dashboard
+        </h4>
+        
+        <div class="relative flex py-3 items-center">
+            <div class="flex-grow border-t border-gray-300 dark:border-gray-600"></div>
+            <span class="flex-shrink mx-4 text-gray-600 dark:text-gray-300">Kaizens Table Columns</span>
+            <div class="flex-grow border-t border-gray-300 dark:border-gray-600"></div>
+        </div>
+        <div class="relative flex py-3 items-center">
+            <div class="flex-grow border-t border-gray-300 dark:border-gray-600"></div>
+            <span class="flex-shrink mx-4 text-gray-600 dark:text-gray-300">Projects Table Columns</span>
+            <div class="flex-grow border-t border-gray-300 dark:border-gray-600"></div>
+        </div>
+    </div>
+
     <div>
         <div class="flex justify-center mb-8">
             <button wire:click="save" class="ml-4 px-4 py-2 text-sm font-medium leading-5 text-white transition-colors duration-150 bg-purple-600 border border-transparent rounded-lg active:bg-purple-600 hover:bg-purple-700 focus:outline-none focus:shadow-outline-purple">

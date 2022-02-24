@@ -25,7 +25,37 @@ class SystemSettingSeeder extends Seeder
                 'team_id'   =>  1,
                 'code'      =>  'custom_section_position_project',
                 'value'     =>  'before_reason'//hidden, before_reason, after_reason
-            ]
+            ],
+            [
+                'team_id'   =>  1,
+                'code'      =>  'dashboard_kaizen_column_location',
+                'value'     =>  '1'
+            ],
+            [
+                'team_id'   =>  1,
+                'code'      =>  'dashboard_kaizen_column_head_office_input',
+                'value'     =>  '1'
+            ],
+            [
+                'team_id'   =>  1,
+                'code'      =>  'dashboard_kaizen_column_handle_at_location',
+                'value'     =>  '1'
+            ],
+            [
+                'team_id'   =>  1,
+                'code'      =>  'dashboard_kaizen_column_process_step',
+                'value'     =>  '0'
+            ],
+            [
+                'team_id'   =>  1,
+                'code'      =>  'dashboard_kaizen_column_machine_center',
+                'value'     =>  '0'
+            ],
+            [
+                'team_id'   =>  1,
+                'code'      =>  'dashboard_kaizen_column_department',
+                'value'     =>  '0'
+            ],
         ];
 
         SystemSetting::insert($systemmSettings_nutters);
@@ -41,7 +71,37 @@ class SystemSettingSeeder extends Seeder
                 'team_id'   =>  2,
                 'code'      =>  'custom_section_position_project',
                 'value'     =>  'before_reason'//hidden, before_reason, after_reason
-            ]
+            ],
+            [
+                'team_id'   =>  2,
+                'code'      =>  'dashboard_kaizen_column_location',
+                'value'     =>  '0'
+            ],
+            [
+                'team_id'   =>  2,
+                'code'      =>  'dashboard_kaizen_column_head_office_input',
+                'value'     =>  '0'
+            ],
+            [
+                'team_id'   =>  2,
+                'code'      =>  'dashboard_kaizen_column_handle_at_location',
+                'value'     =>  '0'
+            ],
+            [
+                'team_id'   =>  2,
+                'code'      =>  'dashboard_kaizen_column_process_step',
+                'value'     =>  '1'
+            ],
+            [
+                'team_id'   =>  2,
+                'code'      =>  'dashboard_kaizen_column_machine_center',
+                'value'     =>  '1'
+            ],
+            [
+                'team_id'   =>  2,
+                'code'      =>  'dashboard_kaizen_column_department',
+                'value'     =>  '1'
+            ],
         ];
 
         SystemSetting::insert($systemmSettings_arMetals);
