@@ -37,7 +37,6 @@ class AffectedAreasCheckbox extends Component
             info('yo');
             info($this->selected);
         }
-        info($this->selected);
         $this->emit('affectedAreasCheckboxUpdated',$this->selected);
     }
 

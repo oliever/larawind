@@ -20,7 +20,6 @@ class SystemSettingsController extends Controller
         $this->seedTranslations();
         $translations = Translation::where('team_id',auth()->user()->currentTeam->id)->get()->toArray();
         $systemSettings = SystemSetting::where('team_id',auth()->user()->currentTeam->id)->get()->toArray();
-        info($systemSettings);
         return view('system-settings.index', compact('translations','systemSettings'));
     }
 

@@ -18,7 +18,7 @@ class DepartmentsCheckbox extends Component
 
     public function mount( $kaizen )
     {
-        //$this->selected =$kaizen->departments()->pluck('id')->toArray();
+        $this->selected =$kaizen->departments()->pluck('id')->toArray();
         $this->departments = Department::where(['team_id'=>auth()->user()->currentTeam->id])->get();
     }
 
@@ -31,13 +31,14 @@ class DepartmentsCheckbox extends Component
     }
 
    public function updatedSelected($value){
+       info('updatedSelected');
         info($value);
     }
     public function updated($key, $value)
     {
        // info($key);
         //info($value);
-        //$this->emit('departmentsCheckboxUpdated',$this->selected);
+        $this->emit('departmentsCheckboxUpdated',$this->selected);
     }
 
     public function render()
@@ -48,6 +49,10 @@ class DepartmentsCheckbox extends Component
         $this->label = "Departments";
         if($this->selectAll)
             $this->label = "All Departments";
+        else if(isset($this->selected[0])){
+            $selectedDept= Department::where(['id'=>$this->selected[0]])->first();
+            $this->label = $selectedDept->name;
+        }
         return view('livewire.departments-checkbox');
     }
 }

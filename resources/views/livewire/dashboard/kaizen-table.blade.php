@@ -8,13 +8,14 @@
                     <th class="px-4 py-3 w-6">Approved</th>
                     <th class="px-4 py-3 w-6">Name</th>
                     <th class="px-4 py-3 w-6">Members</th>
-                    @if ( settingsValue('dashboard_kaizen_column_location') == "1" )
-                        <th class="px-4 py-3 w-6">Locations</th>
-                    @endif
+                    @if ( settingsValue('dashboard_kaizen_column_location') == "1" )<th class="px-4 py-3 w-6">{{ t('kaizen_general','location') }}</th>@endif
                     <th class="px-4 py-3 w-2">Completion</th>
                     <th class="px-4 py-3 w-2">Assigned</th>
-                    <th class="px-4 py-3 w-2">Head Office Input</th>
-                    <th class="px-4 py-3">Handle at Branch</th>
+                    @if ( settingsValue('dashboard_kaizen_column_head_office_input') == "1" )<th class="px-4 py-3 w-6">Head Office Input</th>@endif  
+                    @if ( settingsValue('dashboard_kaizen_column_handle_at_location') == "1" )<th class="px-4 py-3 w-6">Handle at {{ t('kaizen_general','location') }}</th>@endif  
+                    @if ( settingsValue('dashboard_kaizen_column_machine_center') == "1" )<th class="px-4 py-3 w-6">Machine Center</th>@endif  
+                    @if ( settingsValue('dashboard_kaizen_column_department') == "1" )<th class="px-4 py-3 w-6">Department</th>@endif  
+                   
                 </tr>
             </thead>
             <tbody class="bg-white divide-y text-left dark:divide-gray-700 dark:bg-gray-800">
@@ -35,9 +36,9 @@
                                         <a href="{{route('kaizen.show', $kaizen->id)}}" class="underline">{{ $kaizen->name }}</a>
                                         </p>
                                     @if ($kaizen->rapid)
-                                    <p class="text-xs">Rapid</p>
+                                        <p class="text-xs">Rapid</p>
                                     @else
-                                    <p class="text-xs">Just Do It</p>
+                                        <p class="text-xs">Just Do It</p>
                                     @endif
 
                                 </div>
@@ -74,20 +75,30 @@
                         <td class="px-4 py-3 text-xs">{{-- Assigned --}}
                             {{ \Carbon\Carbon::parse($kaizen->date_assigned)->format('M j, Y') }}
                         </td>
-                        <td class="px-4 py-3">{{-- Head Office Input --}}
-                            @if ($kaizen->head_office_input)
-                                <x-icons.true-icon/>
-                            @else
-                                <x-icons.false-icon/>
-                            @endif
-                        </td>
-                        <td class="px-4 py-3 w-2">{{-- Handle at Branch --}}
-                            @if ($kaizen->handle_at_location)
-                                <x-icons.true-icon/>
-                            @else
-                                <x-icons.false-icon/>
-                            @endif
-                        </td>
+                        @if ( settingsValue('dashboard_kaizen_column_head_office_input') == "1" )
+                            <td class="px-4 py-3">{{-- Head Office Input --}}
+                                @if ($kaizen->head_office_input)
+                                    <x-icons.true-icon/>
+                                @else
+                                    <x-icons.false-icon/>
+                                @endif
+                            </td>
+                        @endif
+                        @if ( settingsValue('dashboard_kaizen_column_handle_at_location') == "1" )
+                            <td class="px-4 py-3 w-2">{{-- Handle at Branch --}}
+                                @if ($kaizen->handle_at_location)
+                                    <x-icons.true-icon/>
+                                @else
+                                    <x-icons.false-icon/>
+                                @endif
+                            </td>
+                        @endif
+                        @if ( settingsValue('dashboard_kaizen_column_machine_center') == "1" )
+                        
+                        @endif  
+                        @if ( settingsValue('dashboard_kaizen_column_department') == "1" )
+                        
+                        @endif  
                     </tr>
                 @endforeach
             </tbody>

@@ -270,6 +270,8 @@ class Nutters extends Component
 
         $this->kaizen->affectedAreas()->sync($this->affectedAreas);
 
+        info("saving departments...");
+        info($this->departments);
         $this->kaizen->departments()->sync($this->departments);
 
         $this->kaizen->machineCenters()->sync($this->machineCenters);

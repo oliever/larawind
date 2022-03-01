@@ -124,4 +124,18 @@ class EmployeesController extends Controller
             return redirect()->route($request['current_route']);
         return redirect()->route('dashboard');
     }
+
+    public function changeLocationList(Employee $employee){
+        info($employee);
+        $locations = Location::with('employees')->where('team_id',auth()->user()->currentTeam->id)->get();
+        return view('employees.change-location', compact('locations', 'employee'));
+    }
+    public function changeLocation(Request $request){
+        $employee = Employee::where('id',$request['employee_id'])->first();
+        $employee->location_id = $request['location_id']; 
+        $employee->save();
+        session()->flash('success', ['title'=> $employee->name . ' moved to ' .  $request['location_name'], 'subtitle'=>'ID: '. str_pad($employee->id, 4,"0", STR_PAD_LEFT)]);
+
+        return redirect('/employees');
+    }
 }

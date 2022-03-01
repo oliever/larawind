@@ -42,10 +42,10 @@ Route::group(['middleware' => ['auth:sanctum', 'verified', 'employee.selected']]
     Route::get('/project/pdf/{project}', [ProjectController::class, 'pdf'])->name('project.pdf');
 
     //Route::resource('employees', \App\Http\Controllers\EmployeesController::class);
+    Route::get('/employees', [EmployeesController::class, 'index'])->name('employees.index');
     Route::get('/employees/create/{location?}', [EmployeesController::class, 'create'])->name('employees.create');
     Route::get('/employees/select', [EmployeesController::class, 'selectList'])->name('employees.select');
     Route::post('/employees/select', [EmployeesController::class, 'select'])->name('employees.select');
-    Route::get('/employees', [EmployeesController::class, 'index'])->name('employees.index');
     Route::get('/employees/{employee}', [EmployeesController::class, 'show'])->name('employees.show');
     Route::get('/employees/edit/{employee}', [EmployeesController::class, 'edit'])->name('employees.edit');
     Route::put('/employees/update', [EmployeesController::class, 'update'])->name('employees.update');
@@ -53,6 +53,10 @@ Route::group(['middleware' => ['auth:sanctum', 'verified', 'employee.selected']]
     Route::post('/employees/store', [EmployeesController::class, 'store'])->name('employees.store');
     Route::delete('/employees/destroy{employee}', [EmployeesController::class, 'destroy'])->name('employees.destroy');
 
+    Route::get('/employees/change-location/{employee}', [EmployeesController::class, 'changeLocationList'])->name('employees.change-location-index');
+    Route::post('/employees/change-location', [EmployeesController::class, 'changeLocation'])->name('employees.change-location');
+
+    
     Route::get('/rewards', [RewardsController::class, 'index'])->name('rewards.index');
 
     Route::get('/system-settings', [SystemSettingsController::class, 'index'])->name('system-settings.index');
