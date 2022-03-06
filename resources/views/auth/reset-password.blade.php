@@ -1,7 +1,7 @@
 <x-guest-layout title="Reset Password">
     <x-authentication-card>
         <x-slot name="logo">
-            <x-authentication-card-logo />
+           {{--  <x-authentication-card-logo /> --}}
         </x-slot>
 
         <x-validation-errors class="mb-4" />
@@ -30,6 +30,9 @@
                 <x-button>
                     {{ __('Reset Password') }}
                 </x-button>
+            </div>
+            <div class="text-xs">
+                <a href="/login">Back to login</a>
             </div>
         </form>
     </x-authentication-card>

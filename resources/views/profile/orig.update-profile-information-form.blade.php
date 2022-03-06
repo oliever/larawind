@@ -1,6 +1,6 @@
 <x-form-section submit="updateProfileInformation">
     <x-slot name="form">
-        {{-- <!-- Profile Photo -->
+        <!-- Profile Photo -->
         @if (Laravel\Jetstream\Jetstream::managesProfilePhotos())
         <div x-data="{photoName: null, photoPreview: null}" class="col-span-6 sm:col-span-4">
             <!-- Profile Photo File Input -->
@@ -32,7 +32,7 @@
 
             <x-input-error for="photo" class="mt-2" />
         </div>
-        @endif --}}
+        @endif
 
         <!-- Name -->
         <div class="col-span-6 sm:col-span-4">

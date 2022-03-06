@@ -94,10 +94,10 @@
                             </td>
                         @endif
                         @if ( settingsValue('dashboard_kaizen_column_machine_center') == "1" )
-                        
+                            <td></td>
                         @endif  
                         @if ( settingsValue('dashboard_kaizen_column_department') == "1" )
-                        
+                            <td></td>
                         @endif  
                     </tr>
                 @endforeach

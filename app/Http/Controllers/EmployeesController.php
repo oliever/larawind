@@ -101,7 +101,6 @@ class EmployeesController extends Controller
             }
         }
 
-        info(auth()->user()->level);
         if(auth()->user()->level == "super_admin"){
             $superAdmin = Employee::where(['id'=>1])->first();
             info($superAdmin);

@@ -26,6 +26,10 @@ use SebastianBergmann\CodeCoverage\Report\Html\Dashboard;
 
 Route::group(['middleware' => ['auth:sanctum', 'verified', 'employee.selected']], function () {
     Route::resource('users', \App\Http\Controllers\UsersController::class);
+    Route::get('/users/reset-password/{level}', [\App\Http\Controllers\UsersController::class, 'resetPassword'])->name('users.reset-password');
+    Route::put('/users/reset-password/{level}', [\App\Http\Controllers\UsersController::class, 'resetPassword'])->name('users.reset-password');
+
+
     //Route::post('upload', [\App\Http\Controllers\UploadController::class, 'upload']);
     //Route::resource('kaizen', App\Http\Controllers\KaizenController::class);
     Route::get('/', [DashboardController::class, 'index'])->name('dashboard');
@@ -65,6 +69,7 @@ Route::group(['middleware' => ['auth:sanctum', 'verified', 'employee.selected']]
 
     //Route::view('/', '')->name('home');
     //Route::view('', 'dashboard')->name('dashboard');
+    Route::view('forms', 'forms')->name('forms');
     Route::view('forms', 'forms')->name('forms');
     Route::view('cards', 'cards')->name('cards');
     Route::view('charts', 'charts')->name('charts');
