@@ -84,17 +84,7 @@
                 </li>
             @endif
         @else
-            <li class="relative px-6 py-3">
-                {!! request()->routeIs('users.index') ? '<span class="absolute inset-y-0 left-0 w-1 bg-purple-600 rounded-tr-lg rounded-br-lg" aria-hidden="true"></span>' : '' !!}
-                <a data-turbolinks-action="replace" href="{{route('users.index')}}"
-                class="inline-flex items-center w-full text-sm {!! request()->routeIs('users.index') ? 'font-semibold dark:text-gray-100' : 'dark:text-gray-400' !!} text-gray-800 transition-colors duration-150 hover:text-gray-800
-                dark:hover:text-gray-200 " >
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z" />
-                  </svg>
-                    <span class="ml-4">{{ __('Users') }}</span>
-                </a>
-            </li>
+            
         @endif
 
         @if(auth()->user()->level != 'super_admin')
@@ -112,6 +102,17 @@
         @endif
 
         @if(auth()->user()->level == 'super_admin')
+            <li class="relative px-6 py-3">
+                {!! request()->routeIs('users.index') ? '<span class="absolute inset-y-0 left-0 w-1 bg-purple-600 rounded-tr-lg rounded-br-lg" aria-hidden="true"></span>' : '' !!}
+                <a data-turbolinks-action="replace" href="{{route('users.index')}}"
+                class="inline-flex items-center w-full text-sm {!! request()->routeIs('users.index') ? 'font-semibold dark:text-gray-100' : 'dark:text-gray-400' !!} text-gray-800 transition-colors duration-150 hover:text-gray-800
+                dark:hover:text-gray-200 " >
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M15 7a2 2 0 012 2m4 0a6 6 0 01-7.743 5.743L11 17H9v2H7v2H4a1 1 0 01-1-1v-2.586a1 1 0 01.293-.707l5.964-5.964A6 6 0 1121 9z" />
+                  </svg>
+                    <span class="ml-4">{{ __('User Logins') }}</span>
+                </a>
+            </li>
             <li class="relative px-6 py-3">
                 <a data-turbolinks-action="replace"
                 class="inline-flex items-center w-full text-sm dark:text-gray-400 text-gray-800 transition-colors duration-150 hover:text-gray-800
