@@ -33,7 +33,9 @@
             <th class="px-4 py-3">   Status
             </th>
             @if (auth()->user()->currentTeam->id == 1)
-                <th class="px-4 py-3">   {{ t('kaizen_general','location') }}</th>
+                @if(auth()->user()->level == "super_admin" || auth()->user()->level == "ho_admin")
+                    <th class="px-4 py-3">   {{ t('kaizen_general','location') }}</th>
+                @endif
             @endif
             <th class="px-4 py-3">
             </th>
@@ -107,21 +109,23 @@
                 </td>
 
                 @if (auth()->user()->currentTeam->id == 1)
-                    <td class="px-4 py-3" >
-                        {{-- <p class="text-xs text-gray-600 dark:text-gray-400" >
-                            {{ $employee->location->name; }}
-                        </p> --}}
-                        <a href="{{route('employees.change-location')}}/{{$employee->id}}"> <button class="p-1 ml-3 text-sm font-medium leading-5 text-white transition-colors duration-150 bg-purple-600 border border-transparent rounded-md active:bg-purple-600 hover:bg-purple-700 focus:outline-none focus:shadow-outline-purple">
-                            {{ __('Change ') }}{{ t('kaizen_general','location') }}
-                        </button></a>
-                        {{-- <select name="employees.{{ $index }}.location" id="employees.{{ $index }}.location" wire:model="employees.{{ $index }}.location" wire:change="changeLocation({{ $index }})" class="block w-full mt-1 text-sm dark:text-gray-300 dark:border-gray-600 dark:bg-gray-700 form-select focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:focus:shadow-outline-gray">
-                           @foreach ($locations as $location)
-                                <option value="{{ $location->id }}"  @if("Red Deer" == $location->name)
-                                    selected
-                                @endif>{{ $location->name }}</option>
-                            @endforeach
-                        </select> --}}
-                    </td>
+                    @if(auth()->user()->level == "super_admin" || auth()->user()->level == "ho_admin")
+                        <td class="px-4 py-3" >
+                            {{-- <p class="text-xs text-gray-600 dark:text-gray-400" >
+                                {{ $employee->location->name; }}
+                            </p> --}}
+                            <a href="{{route('employees.change-location')}}/{{$employee->id}}"> <button class="p-1 ml-3 text-sm font-medium leading-5 text-white transition-colors duration-150 bg-purple-600 border border-transparent rounded-md active:bg-purple-600 hover:bg-purple-700 focus:outline-none focus:shadow-outline-purple">
+                                {{ __('Change ') }}{{ t('kaizen_general','location') }}
+                            </button></a>
+                            {{-- <select name="employees.{{ $index }}.location" id="employees.{{ $index }}.location" wire:model="employees.{{ $index }}.location" wire:change="changeLocation({{ $index }})" class="block w-full mt-1 text-sm dark:text-gray-300 dark:border-gray-600 dark:bg-gray-700 form-select focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:focus:shadow-outline-gray">
+                            @foreach ($locations as $location)
+                                    <option value="{{ $location->id }}"  @if("Red Deer" == $location->name)
+                                        selected
+                                    @endif>{{ $location->name }}</option>
+                                @endforeach
+                            </select> --}}
+                        </td>
+                    @endif
                 @endif
                 <td class="px-4 py-3">
 

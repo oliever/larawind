@@ -35,6 +35,8 @@ class Employees extends Component
     public function mount()
     {
         $this->locations = Location::where('team_id',auth()->user()->currentTeam->id)->get();
+        if(auth()->user()->level == "location_manager")
+            $this->locations = Location::where('id',auth()->user()->location_locked)->get();
         $this->selectedLocation = $this->locations[0]->id;
         $this->employees = Employee::where('location_id', $this->selectedLocation)->get();
 
@@ -46,7 +48,6 @@ class Employees extends Component
 
     public function render()
     {
-        info($this->selectedLocation);
         $this->employees = Employee::where('location_id', $this->selectedLocation)->get();
         return view('livewire.employees.employees', [
             'employees' => $this->employees
