@@ -43,6 +43,9 @@ class Nutters extends Component
 
     public $canApprove = false;
     public $protected = true;
+    public $protectReason = '';
+
+    public $completion  = 0;
 
     protected $listeners = [
         'employeesCheckboxUpdated', 
@@ -89,6 +92,7 @@ class Nutters extends Component
 
     public function mount($employee = null, Kaizen $kaizen = null)
     {
+        
         //info(auth()->user()->currentTeam->id);
         $this->t = Translation::where(['team_id'=> auth()->user()->currentTeam->id,'section'=>'kaizen_general'])->get()->keyBy('field')->toArray();
       // info($this->t);
@@ -151,35 +155,45 @@ class Nutters extends Component
             }
 
         }
-        //$this->protected = false;
     }
 
     private function setProtected(){
-        //check if admin
-        if(auth()->user()->level == "headoffice_admin")
+        //check if admin or manager
+        if(auth()->user()->level == "headoffice_admin" || auth()->user()->level == "super_admin" || auth()->user()->level == "location_manager")
             $this->protected = false;
+        else{
+            /* staff level (ho and location) */
+            $this->protectReason = "";
 
-        //check if manager
-        if(auth()->user()->level == "location_manager")
-            $this->protected = false;
-
-        //check employee selected is the creator
-        if($this->kaizen->employee_id == $this->employee->id)
-            $this->protected = false;
-
-        //check employee selected is a member
-        foreach ($this->kaizen->members()->get() as $key => $employee) {
-            if($this->employee->id == $employee->id){
+            //check employee selected is the creator
+            if($this->kaizen->employee_id == $this->employee->id){
                 $this->protected = false;
-                break;
+            }else{
+                $this->protectReason = "Staff level employee and not the creator.";
             }
+                
+            //check employee selected is a member
+            foreach ($this->kaizen->members()->get() as $key => $employee) {
+                if($this->employee->id == $employee->id){
+                    $this->protected = false;
+                    break;
+                }
+            }
+            if($this->protected)
+                $this->protectReason = "Staff level employee and not the creator nor a member.";//should absolutely be the last reason to protect
+        }            
 
-        }
+        
+        
+
+        
 
         info("kaizen {$this->kaizen->id} protected: {$this->protected}");
-        info(auth()->user()->level .": ".auth()->user()->level);
+        if(!$this->protected)
+            info($this->protectReason);
+        /* info(auth()->user()->level .": ".auth()->user()->level);
         info("selected employee: {$this->employee->name} ({$this->employee->id})");
-        info($this->kaizen->members()->select('id')->get());
+        info($this->kaizen->members()->select('id')->get()); */
     }
 
     public function photoUploaded(){
@@ -258,6 +272,7 @@ class Nutters extends Component
             //dd($this->selectedLocations);
             //info(count($this->selectedLocations));
             //info(count(Location::where('area_id', null)->with('children')->get()[0]->children));
+            info($this->kaizen->completion);
         $this->kaizen->save();
 
         $this->kaizen->locations()->sync($this->selectedLocations);
@@ -300,7 +315,7 @@ class Nutters extends Component
     public function approve(){
         $this->kaizen->approved = Carbon::now();
         $this->kaizen->approved_by = auth()->user()->id;
-        //$this->kaizen->save();
+        $this->kaizen->save();
         RewardService::kaizenApproved($this->kaizen);
         $this->emit('saved');//to display action message
     }
@@ -313,6 +328,9 @@ class Nutters extends Component
     }
     public function render()
     {
+        $this->kaizen->completion = intval($this->kaizen->completion);
+        info($this->kaizen->completion);
+        $this->completion = 60;
         return view('livewire.kaizen.nutters');
     }
 
