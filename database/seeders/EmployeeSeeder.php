@@ -10,16 +10,13 @@ class EmployeeSeeder extends Seeder
     public function run()
     {
         $nutters_headoffice_staff = [
-            ['team_id'=>1,'location_id'=>'999','name'           => 'Manpreet Brar','level' => 'super_admin'],
+            ['team_id'=>1,'location_id'=>'999','name'           => 'Manpreet Brar','level' => 'super_admin', 'user_id' => 1],
+            ['team_id'=>1,'location_id'=>'999','name'           => "Paul Ogden",'level' => 'super_admin'   , 'user_id' => 2],
             ['team_id'=>1,'location_id'=>'999','name'           => 'Donald Cranston','level' => 'headoffice_staff'],
             ['team_id'=>1,'location_id'=>'999','name'           => preg_replace('!\s+!', ' ', (ucwords(strtolower("LYNN CRANSTON")))),'level' => 'headoffice_staff'],
             ['team_id'=>1,'location_id'=>'999','name'           => preg_replace('!\s+!', ' ', (ucwords(strtolower("MELISSA KUNTZ")))),'level' => 'headoffice_staff'],
             ['team_id'=>1,'location_id'=>'999','name'           => preg_replace('!\s+!', ' ', (ucwords(strtolower("KAYLA BACHMEIER")))),'level' => 'headoffice_staff'],
             ['team_id'=>1,'location_id'=>'999','name'           => preg_replace('!\s+!', ' ', (ucwords(strtolower("KELLY SEITZ")))),'level' => 'headoffice_staff'],
-            ['team_id'=>1,'location_id'=>'999','name'           => preg_replace('!\s+!', ' ', (ucwords(strtolower("PAUL OGDEN")))),'level' => 'headoffice_staff'],
-            ['team_id'=>1,'location_id'=>'999','name'           => preg_replace('!\s+!', ' ', (ucwords(strtolower("TAMMY GRUE")))),'level' => 'headoffice_staff'],
-            ['team_id'=>1,'location_id'=>'999','name'           => preg_replace('!\s+!', ' ', (ucwords(strtolower("BRAD WINSOR")))),'level' => 'headoffice_staff'],
-            ['team_id'=>1,'location_id'=>'999','name'           => preg_replace('!\s+!', ' ', (ucwords(strtolower("Paul CLEWES")))),'level' => 'headoffice_staff'],
             ['team_id'=>1,'location_id'=>'999','name'           => preg_replace('!\s+!', ' ', (ucwords(strtolower("NICOLE SUTHERLAND")))),'level' => 'headoffice_staff'],
             ['team_id'=>1,'location_id'=>'999','name'           => preg_replace('!\s+!', ' ', (ucwords(strtolower("SHELLEY CHAMPION")))),'level' => 'headoffice_staff'],
             ['team_id'=>1,'location_id'=>'999','name'           => preg_replace('!\s+!', ' ', (ucwords(strtolower("MICHELLE WELLS")))),'level' => 'headoffice_staff'],
@@ -27,11 +24,10 @@ class EmployeeSeeder extends Seeder
             ['team_id'=>1,'location_id'=>'999','name'           => preg_replace('!\s+!', ' ', (ucwords(strtolower("LAURA HILLIS")))),'level' => 'headoffice_staff'],
             ['team_id'=>1,'location_id'=>'999','name'           => preg_replace('!\s+!', ' ', (ucwords(strtolower("CECILE SEEBECK")))),'level' => 'headoffice_staff'],
             ['team_id'=>1,'location_id'=>'999','name'           => preg_replace('!\s+!', ' ', (ucwords(strtolower("BRANDI PEDERSON")))),'level' => 'headoffice_staff'],
-            ['team_id'=>1,'location_id'=>'999','name'           => "Paul Ogden",'level' => 'headoffice_admin'],
-            ['team_id'=>1,'location_id'=>'999','name'           => "Brad Winsor",'level' => 'headoffice_admin'],
-            ['team_id'=>1,'location_id'=>'999','name'           => "Paul Clewes",'level' => 'headoffice_admin'],
-            ['team_id'=>1,'location_id'=>'999','name'           => "Manpreet Brar",'level' => 'headoffice_admin'],
-            ['team_id'=>1,'location_id'=>'999','name'           => "Tammy Grue",'level' => 'headoffice_admin'],
+            
+            ['team_id'=>1,'location_id'=>'999','name'           => "Brad Winsor",'level' => 'headoffice_admin'  , 'user_id' => 3],            
+            ['team_id'=>1,'location_id'=>'999','name'           => "Tammy Grue",'level' => 'headoffice_admin'   , 'user_id' => 4],
+            ['team_id'=>1,'location_id'=>'999','name'           => "Paul Clewes",'level' => 'headoffice_admin'  , 'user_id' => 5],
         ];
         Employee::insert($nutters_headoffice_staff);
 
@@ -256,7 +252,6 @@ class EmployeeSeeder extends Seeder
             ['team_id'=>2,'location_id'=>'100','name'           => "Dom Paulo Uyboco",'level' => 'location_staff'],
             ['team_id'=>2,'location_id'=>'100','name'           => "Rene Ventura",'level' => 'location_staff'],
             ['team_id'=>2,'location_id'=>'100','name'           => "Cuong Chi Vo",'level' => 'location_staff'],
-            ['team_id'=>2,'location_id'=>'100','name'           => "Brad Wilson",'level' => 'location_staff'],
             ['team_id'=>2,'location_id'=>'100','name'           => "Ming Wu",'level' => 'location_staff'],
             ['team_id'=>2,'location_id'=>'100','name'           => "Gecong Yang",'level' => 'location_staff'],
             ['team_id'=>2,'location_id'=>'100','name'           => "Frank Colarossi",'level' => 'location_staff'],
