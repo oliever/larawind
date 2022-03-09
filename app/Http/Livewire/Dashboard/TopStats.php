@@ -2,26 +2,28 @@
 
 namespace App\Http\Livewire\Dashboard;
 
+use App\Models\Department;
+use App\Models\Kaizen;
 use Livewire\Component;
 use App\Models\Location;
 
 class TopStats extends Component
 {
+    public $topKaizenLocations;
+    public $topProjectLocations;
+    public $kaizenStarted;
+    public $kaizenFinished;
+    
     public function render()
     {
-        $data = [];
-        $data['top_kaizen_stores'] = [];//Location::withCount('kaizens')->orderBy('kaizens_count','desc')->get()->take(3);
-        $data['top_project_stores'] = [];//Location::withCount('projects')->orderBy('projects_count','desc')->get()->take(3);
-        foreach (Location::withCount('kaizens')->orderBy('kaizens_count','desc')->get()->take(3) as $location) {
+        $this->topKaizenLocations = Location::withCount('kaizens')->orderBy('kaizens_count','desc')->get()->take(3);
+        $this->topProjectLocations = Location::withCount('projects')->orderBy('projects_count','desc')->get()->take(3);
 
-            //info($location);
-            //info($location->kaizens()->get());
-        }
-        foreach (Location::withCount('projects')->orderBy('projects_count','desc')->get()->take(3) as $location) {
-
-            //info($location);
-            //info($location->kaizens()->get());
-        }
-        return view('livewire.dashboard.top-stats', ['data'=>$data]);
+        $this->topKaizenDepartments = Department::withCount('kaizens')->orderBy('kaizens_count','desc')->get()->take(3);
+        //$this->topProjectDepartments = Department::withCount('projects')->orderBy('projects_count','desc')->get()->take(3);
+        
+        $this->kaizenStarted = Kaizen::where(['team_id'=>auth()->user()->currentTeam->id])->whereNotNull('approved')->get();
+        $this->kaizenFinished = Kaizen::where(['team_id'=>auth()->user()->currentTeam->id,'completion'=>100])->whereNotNull('approved')->get();
+        return view('livewire.dashboard.top-stats');
     }
 }
