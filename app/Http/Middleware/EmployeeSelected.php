@@ -30,7 +30,7 @@ class EmployeeSelected
         //info("User location: " . $lockedLocation->name);
         \Illuminate\Support\Facades\View::share('locationLocked', $lockedLocation);
 
-        if(auth()->user()->shared){
+        if(auth()->user()->shared || auth()->user()->level == "super_admin" || auth()->user()->level == "location_manager" || auth()->user()->level == "headoffice_admin"){
             $redirectToEmployeeSelect = false;
             if($request->hasCookie('selected_employee')) {
 
@@ -39,6 +39,11 @@ class EmployeeSelected
                 $cookie_selected_employee = $request->cookie('selected_employee');
 
                 $employee = Employee::where('id', $cookie_selected_employee)->first();
+                if(auth()->user()->level == "super_admin" || auth()->user()->level == "headoffice_admin"){
+                    //workaround cleanup of selected employee cookie
+                    if($employee->user_id != auth()->user()->id)//force auto select on employees controller
+                        $redirectToEmployeeSelect = true;
+                }
                 /* 1. Check if employee exists */
                 if(!$employee){
                     info(" employee not found: {$cookie_selected_employee}");
@@ -79,6 +84,8 @@ class EmployeeSelected
                 info("redirect to employee.select");
                 return redirect()->route('employees.select', ['current_route' => Route::currentRouteName()]);
             }
+
+        }else{
 
         }
 

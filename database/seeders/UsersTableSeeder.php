@@ -43,7 +43,7 @@ class UsersTableSeeder extends Seeder
             [
                 'name'           => 'Tammy Grue',
                 'email'          => 'tgrue@nutters.com',
-                'level'             => 'headoffice_admin',
+                'level'          => 'headoffice_admin',
                 'password'       => bcrypt('password'),
                 'remember_token' => null,
                 'current_team_id'=> 1,

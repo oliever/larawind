@@ -101,14 +101,15 @@ class EmployeesController extends Controller
             }
         }
 
-        if(auth()->user()->level == "super_admin"){
-            $superAdmin = Employee::where(['id'=>1])->first();
-            info($superAdmin);
-            Cookie::queue('selected_employee', $superAdmin->id, time() + (10 * 365 * 24 * 60 * 60));
+        if(auth()->user()->level == "super_admin" || auth()->user()->level == "headoffice_admin"){
+            $employee = Employee::where(['user_id'=>auth()->user()->id])->first();
+            info('selected employee: '.$employee->name);
+            Cookie::queue('selected_employee', $employee->id, time() + (10 * 365 * 24 * 60 * 60));
             if(\Illuminate\Support\Facades\Route::has($request['current_route']))
                     return redirect()->route($request['current_route']);
                 return redirect()->route('dashboard');
         }
+
 
         $employees = [];
         if($locationLocked)

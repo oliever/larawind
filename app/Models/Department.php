@@ -15,4 +15,14 @@ class Department extends Model
         'team_id',
         'name'
     ];
+
+    public function kaizens()
+    {
+        return $this->belongsToMany(Kaizen::class,  'kaizen_department' );
+    }
+
+    public function projects()
+    {
+        return $this->belongsToMany(Project::class,  'kaizen_department' );
+    }
 }

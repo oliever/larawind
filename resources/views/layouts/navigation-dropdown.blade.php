@@ -41,19 +41,13 @@
 
             <!-- Profile menu -->
             <li class="relative">
-                @if(auth()->user()->level == "super_admin" || auth()->user()->level == "location_manager")
-                    <button class="align-middle rounded-full focus:shadow-outline-purple focus:outline-none" @click="toggleProfileMenu" @keydown.escape="closeProfileMenu" aria-label="Account" aria-haspopup="true">
-                        <img class="object-cover w-8 h-8 rounded-full" src="{{ Auth::user()->profile_photo_url }}" alt="{{ Auth::user()->name }}" aria-hidden="true" />
-                    </button>
-                @elseif(auth()->user()->level == "location_staff")
-                    <button class="align-middle rounded-full focus:shadow-outline-purple focus:outline-none" @click="toggleProfileMenu" @keydown.escape="closeProfileMenu" aria-label="Account" aria-haspopup="true">
-                        @isset($selectedEmployee)
-                        <h2 class="p-2">Employee: <strong>{{$selectedEmployee->name}}</strong>{{--  | Location: <strong>{{$locationLocked->name }}</strong> --}}</h2>
-                        @endisset
-                        
-                        {{-- <img class="object-cover w-8 h-8 rounded-full" src="{{ Auth::user()->profile_photo_url }}" alt="{{ Auth::user()->name }}" aria-hidden="true" /> --}}
-                    </button>
-                @endif
+                <button class="align-middle rounded-full focus:shadow-outline-purple focus:outline-none" @click="toggleProfileMenu" @keydown.escape="closeProfileMenu" aria-label="Account" aria-haspopup="true">
+                    @isset($selectedEmployee)
+                    <h2 class="p-2">Employee: <strong>{{$selectedEmployee->name}}</strong>{{--  | Location: <strong>{{$locationLocked->name }}</strong> --}}</h2>
+                    @endisset
+                    
+                    {{-- <img class="object-cover w-8 h-8 rounded-full" src="{{ Auth::user()->profile_photo_url }}" alt="{{ Auth::user()->name }}" aria-hidden="true" /> --}}
+                </button>
 
                 <template x-if="isProfileMenuOpen">
                     <ul x-transition:leave="transition ease-in duration-150" x-transition:leave-start="opacity-100" x-transition:leave-end="opacity-0" @click.away="closeProfileMenu" @keydown.escape="closeProfileMenu" 
